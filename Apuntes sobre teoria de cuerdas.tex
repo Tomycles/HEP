@@ -1,0 +1,698 @@
+\documentclass[]{article}
+\usepackage[utf8x]{inputenc} %permite agregar tildes
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{geometry} % cambia alturas, margenes, etc
+\geometry{a4paper,left=20mm,right=20mm,top=15mm,bottom=25mm}
+%opening
+\usepackage{graphicx} %Graficos
+\usepackage{tikz} %Dibujos de lineas
+\usepackage{wrapfig} %figuras en el medio del texto
+\usepackage{lipsum} %relleno con texto random
+
+\usepackage{titlesec} %formato de titulos de secciones, subsecciones,etc
+%\titleformat{\chapter}[display]
+%{\normalfont\sffamily\huge\bfseries\color{blue}}
+%{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+{\normalfont\sffamily\Large\bfseries\color{black}\centering}
+{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\sffamily\large\bfseries\color{teal}\centering}
+{\thesection}{1em}{}
+
+\title{Apuntes sobre Teoría de Cuerdas}
+\author{Tomás Codina}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{\hfil Capítulo 1: Cuerda Clásica \hfil}
+
+
+
+\subsection*{Acción}
+
+Como teoría clásica, lo que buscamos es la acción de una cuerda relativista ya que sabemos que con ella, obtenemos sus simetrías, magnitudes conservadas y ecuaciones de movimiento, teniendo S, tenemos todo.\\
+
+\noindent Así como una partícula traza una linea de mundo sobre el espacio de Minkowsky ($\mathbb{M}$ o $ \mathbb{R}^{1,3} $), una cuerda
+construye una hoja de mundo que parametrizaremos con $\sigma^{\alpha}=(\tau,\sigma)$
+correspondientes a una coordenada temporal y otra espacial. Concentremonos
+por el momento en cuerdas cerradas en donde $\sigma\in[0,2\pi)$.
+Esta hoja será una sub-variedad de 2 dimensiones dentro del espacio de Minkowsky en D dimensiones $\mathbb{R}^{1,D-1}$ con coordenadas $X^{\mu}(\tau,\sigma)$ con $\mu=0,...,D-1$. Si con esto queremos
+construir la acción de una cuerda relativista que sea invariante ante
+reparametrizaciones, lo cual es muy razonable, podemos tomar la idea
+de la acción de una partícula relativista, en donde, la más sencilla
+era aquella proporcional a la longitud de la linea de mundo. De esta
+forma se propone que la forma mas sencilla de hacerlo para una cuerda
+es pedir que $S$ sea proporcional al área de la hoja de mundo. Este area se contruye muy facil con argumentos de geometría diferencial, donde sabemos que dada la métrica de mi variedad en 2D $ \gamma_{\alpha\beta} $, podemos construir la dos forma 
+\begin{equation}\label{key}
+\tilde{\sigma}=\tilde{d\tau}\tilde{d\sigma}\sqrt{-Det[\gamma_{\alpha\beta}]}
+\end{equation}
+
+\noindent que no es otra cosa que el volumen métrico, o en este caso particular \textit{"el área métrica"}. De esta forma, queda claro que al integrarlo sobre toda la superficie, obtenemos el area!. Con todo esto, construimos la acción más sencilla como  
+
+\begin{equation}
+S_{ng}=-T\int d^{2}\sigma\sqrt{-det(\gamma_{\alpha\beta})}
+\end{equation}
+
+%-T\int d^{2}\sigma\sqrt{-\left(\frac{\partial X}{\partial\tau}\right)^{2}\left(\frac{\partial X}{\partial\sigma}\right)^{2}+\left(\frac{\partial X^{\mu}}{\partial\tau}\frac{\partial X_{\mu}}{\partial\sigma}\right)^{2}}
+
+\noindent la cual se conoce como la acción de \textbf{Nambu-Goto}. La constante de proporcionalidad $T$ es la tensión de la
+cuerda comunmente redefinida como $T=\frac{1}{2\pi\alpha'}$ con $\alpha'=l_{s}^{2}$,
+donde a $l_{s}$ se la identifica con la longitud de la cuerda. Como la hoja de mundo es una superficie dentro de Minkowsky, $ \gamma $ será una métrica inducida por Minkowsky y por ello tiene la forma conocida
+
+\begin{equation}\label{key}
+\gamma_{\alpha\beta}=\partial_{\alpha}X^{\mu}\partial_{\beta}X^{\nu}\eta_{\mu\nu}
+\end{equation}
+
+\noindent donde $ \eta_{\mu\nu} $ es la métrica de Minkowsky en D dimensiones. Esto nos permite expresar toda la acción en término de D objetos dinámicos $ X^{\mu} $.\\
+
+Ahora bien, la idea de tener derivadas al cuadrado dentro de una raiz en
+la acción hace que la teoría sea muy complicada de cuantizar, por lo
+que se puede utilizar otra forma totalmente equivalente de la acción
+de la cuerda conocida como la \textbf{acción de Polyakov}, la cual
+elimina la raiz a costa de introducir un nuevo campo dinámico $ g^{\alpha\beta} $
+\begin{equation}
+S_{p}=-\frac{T}{2}\int d^{2}\sigma\sqrt{-g}g^{\alpha\beta}\partial_{\alpha}X^{\mu}\partial_{\beta}X^{\nu}\eta_{\mu\nu}
+\end{equation}
+
+donde $g$ es el determinando del nuevo campo. La forma de dicha acción, desde el punto de vista de la hoja de mundo,
+es una teoría de gravedad en 2 dimensiones con D campos escalares
+no masivos!. Puede verse que ambas acciones llevan a las mismas ecuaciones de movimiento para los $X^{\mu}$ aún cuando para esta última acción tenemos que variar también el campo $ g^{\alpha\beta} $.
+
+\subsection*{Simetrías y Corrientes conservadas}
+
+%Variando la acción para se llega a su ecuación
+%de movimiento(VER COMO)
+%\begin{equation}
+%\partial_{\alpha}\left(\sqrt{-g}g^{\alpha\beta}\partial_{\beta}X^{\mu}\right)=0
+%\end{equation}
+%
+%A su vez, la métrica, al ser un objeto dinámico, también obedece una
+%ecuación de movimiento, dada por 
+%\begin{equation}
+%g_{\alpha\beta}=2f(\tau,\sigma)\partial_{\alpha}X\cdot\partial_{\beta}X
+%\end{equation}
+%
+%con 
+%\begin{equation}
+%f^{-1}=g^{\rho\xi}\partial_{\rho}X\cdot\partial_{\xi}X
+%\end{equation}
+
+%un facotor que en la Acción se termina cancelando. Este último aspecto
+%de la nueva acción hace que coincida con la de Nambu-Goto, es decir,
+%ambas llevan a la misma ecuación de movimiento para $X^{\mu}$!.\\
+
+La acción de Polyakov tiene 3 simetrías muy importantes.
+
+\begin{itemize}
+	\item Invarianza de Poincaré:
+	 $X^{\mu}\rightarrow\Lambda_{\,\nu}^{\mu}X^{\nu}+c^{\mu}$\\
+	 
+	 A diferencia de las teorías de campo usuales, aquí Poincaré aparece como una simetría interna (o global) de la teoría.
+	
+	
+	\item Invarianza de reparametrización o mejor conocida como \textbf{Difeomorfismo}.
+	\begin{itemize}
+		\item $\sigma\rightarrow\tilde{\sigma}(\sigma)$
+		\item $X^{\mu}(\sigma)\rightarrow \tilde{X}^{\mu}(\sigma')=X^{\mu}(\sigma) \ \ (escalar)$
+		\item $g_{\alpha\beta}(\sigma)\rightarrow \tilde{g}_{\alpha\beta}(\tilde{\sigma})=\frac{\partial\sigma{}^{\gamma}}{\partial\tilde{\sigma}^{\alpha}}\frac{\partial\sigma^{\delta}}{\partial\tilde{\sigma}^{\beta}}g_{\gamma\delta}(\sigma) \ \ (tensor)$
+	\end{itemize}
+
+	Esta no es realmente una simetría sino una redundancia en nuestra descripción, por lo que recibe el nombre de simetría de Gauge. Se ve claro que ante esta transformación, los $ X^{\mu} $ transforman como escalares mientras que la métrica lo hace como un tensor.
+
+
+	\item Invarianza de Weyl, la cual transforma la métrica por un factor local
+	$\Omega^{2}(\sigma)=e^{2\phi(\sigma)}$ que varía punto a punto.
+	\begin{itemize}
+		\item $X^{\mu}(\sigma)\rightarrow X^{\mu}(\sigma)$
+		\item $g_{\alpha\beta}(\sigma)\rightarrow\Omega^{2}(\sigma)g{}_{\alpha\beta}(\sigma)$ 
+	\end{itemize}
+
+	Esta invarianza es muy importante para nuestra teoría y basicamente nos dice que nuestro sistema es invariante frente a cualquier deformación de la hoja de mundo, pero siempre preservando ángulos en la grilla. Al igual que el difeomorfismo también es una simetría de Gauge.
+\end{itemize}
+
+\noindent Ahora bien, tenemos una teoría de campos con simetrías de parámetros continuos por lo que el teorema de Noether nos asegura que habrá una corriente conservada por cada uno de estos generadores y con ellas, cargas conservadas que jugarán un papel muy importante al cuantizar la teoría.
+
+\subsubsection*{Poincaré:}
+
+Las corrientes conservadas del grupo de Poincaré son bien conocidas...
+
+\subsubsection*{Difeomorfismo:}
+
+\subsubsection*{Weyl:}
+
+
+
+
+
+
+\subsection*{Ecuaciones de movimiento}
+
+
+\section*{Capítulo 2: Cuantización}
+
+[NO SE CON QUE MÉTODO CUANTIZAR PERO $ a=1 $ y $ D=26 $]\\
+
+Los primeros estados excitados son 
+\begin{equation}\label{key}
+\tilde{\alpha}^{i}_{-1}\alpha^{j}_{-1}|0;p\rangle \ \ \ i,j=2,...,D-1
+\end{equation}
+
+\noindent los cuales corresponden a $ (D-2)^2 $ estados de partículas no masivas a costa de tener $ D=26 $.
+
+Estos estados transforman como una representación de $ 24 \bigotimes 24 $ del grupo $ SO(24) $, el cual se puede descomponer en 3 representaciones irreducibles que antes transformaciones del grupo no se mezclan entre sí.
+
+\begin{equation}\label{key}
+\tilde{\alpha}^{\mu}_{-1}\alpha^{\nu}_{-1}|0;p\rangle= \left[G^{\mu \nu}(X) + b^{\mu \nu}(X) + \Phi(X)\eta^{\mu\nu}\right] |0;p\rangle \ \ \mu,\nu=2,...,D-1
+\end{equation} 
+
+Donde $ G_{\mu\nu} $ es un tensor simétrico que da lugar a una partícula no masiva de spin 2 llamada \textbf{Gravitón}, $ b_{\mu\nu} $ es una 2 forma que recibe el nombre de \textbf{Campo de Kalb-Ramond}, mientras que el campo escalar $ \Phi $ se lo conoce como \textbf{Dilatón}.
+
+
+\section*{Capítulo 3: Conformal Field Theory in 2D flat space }
+
+La teoría conforme de campos es...
+
+\subsection*{Definiciones y conceptos previos}
+
+Antes de hacer cualquier cuenta lo primero es adoptar un buen sistema de coordenadas, y en este caso particular los cálculos se simplifican al trabajar en coordenadas complejas. En la teoría a analizar, podemos notar de forma genérica nuestros dos parámetros de la hoja de mundo como $ (\sigma_1,\sigma_2) $ y pasamos a coordenadas
+
+\begin{equation}\label{complex}
+z \equiv \sigma_1 + i \sigma_2 \ \ ; \ \ \bar{z}= \sigma_1 - i\sigma_2
+\end{equation} 
+
+\noindent todo esto conlleva cambiar por ejemplos a derivadas $ \partial $ y $ \bar{\partial} $, indices de tensores, Jacobiano, etc, todo ello de forma bastante intuitiva.\\
+
+Como en cualquier teoría de campos, a partir de la acción se puede construir la integral de camino y a partir de ella obtener todo lo que necesitemos del sistema. Una de estas magnitudes importantes es el valor medio de una funcional cualquiera $ \mathcal{F}[X] $ de X, la cual puede ser por ejemplo un producto de operadores locales. A menos de una normalización este se define como por:
+
+\begin{equation}\label{meanvalue}
+\langle \mathcal{F}[X] \rangle = \int DX \ e^{-S[X]} \mathcal{F}[X]
+\end{equation} 
+
+\noindent Este valor medio se debe entender como el valor de expectación de ordenamientos temporales de productos de operadores locales $ \mathscr{O}_i $, osea 
+
+\begin{equation}\label{key}
+\langle T\{\mathcal{O}_1\mathcal{O}_2\dots\}\rangle
+\end{equation} 
+
+\noindent donde dichos campos pueden ser cualquier función o combinación de los campos principales. Por ejemplo, en la teoría de cuerdas bosónicas nuestros campos principales son $ X^{\mu} $ y $ g_{\alpha \beta} $, y un posible operador sería $ \mathcal{O}=\partial_{\alpha} X^{\mu} $ o $ \mathcal{O}=e^{-k \cdot X} $. Vale mencionar que al ser operadores locales queda implícito la dependencia punto a punto de los mismos, es decir $\mathcal{O}=\mathcal{O}(z,\bar{z})$.\\
+
+\noindent En la mayoría de los casos, estas magnitudes representan el objeto principal de estudio de la teoría, por lo que debemos saber como calcular dichos productos. El caso de mayor interés es cuando se toma el producto de dos operadores definidos muy próximos entre sí y de eso se trata el  \textbf{Operator Product Expansion (OPE)} que aproxima estos operadores cercanos como una suma de otros operadores locales
+
+\begin{equation}\label{OPE}
+\langle T\{\mathcal{O}_i(z,\bar{z})\mathcal{O}_j(w,\bar{w})\dots\}\rangle=
+\sum_k C^k_{ij}(z-w,\bar{z}-\bar{w})\langle T\{\mathcal{O}_k(w,\bar{w})\dots\}\rangle
+\end{equation}
+ 
+En él, los $\dots$  representan posibles inserciones de otros campos arbitrarios con el requisito que estos se ubiquen a distancias grandes comparadas con $|z-w|$. Estos OPE's siempre irán entre valores medios de ordenamientos temporales por lo que no los seguiremos notando. Otro aspecto importantes es que estos productos tienen un comportamiento singular cuando $z \rightarrow w$, y esto será lo único que nos importará. Así como el cálculo tiene el desarrollo de Taylor, en QFT tenemos el OPE!.\\
+
+
+Otro aspecto importante en estas teorías es conocer como transforman los distintos campos ante una simetría, al respuesta a esto vienee dada por las \textbf{identidades de Ward}. Estas se basan en el teorema de Noether y utilizan las corrientes conservadas con la variación del campo en cuestión.
+
+Supongamos que tenemos un campo $\phi$ tal que cambia antes una transformación como
+\begin{equation}
+\phi' \rightarrow \phi + \epsilon\delta\phi
+\end{equation}
+
+De esta forma, como cualquier campo $\mathcal{O} $ dependerá de este campo fundamental, este también transformará de una forma genérica 
+\begin{equation}\label{key}
+\mathcal{O}_i \rightarrow \mathcal{O}_i + \epsilon\delta \mathcal{O}_i
+\end{equation}
+
+Ahora bien, si esta transformación es una simetría de la teoría, por el teorema de Noether tendremos corrientes conservadas $ J^{a}$. Ahora bien, supongamos el escenario donde tenemos varios campos $ \mathcal{O}_i $ pero solo consideramos una región que engloba solo al parámetro $\sigma_1$ correspondiente al operador $\mathcal{O}_1(\sigma_1) $. De esta forma las identidades de Ward nos dicen que 
+\begin{equation}\label{Ward}
+ -\frac{1}{2\pi}\int_{\epsilon}\partial_a\langle J^a(\sigma) O_1(\sigma_1)\dots \rangle = \langle \delta O_1(\sigma_1)\dots\rangle
+\end{equation}
+
+\noindent donde vale remarcar que queda implícita la medida $ d\sigma \sqrt{-g} $ y el resultado no es propio de CFT's en 2D, sino que vale para cualquier simetría en cualquier dimensión del espacio!.\\
+
+Con estas definiciones y resultados pasemos a nuestro caso de interés. En primer lugar, comencemos definiendo una transformación conforme como
+
+\begin{equation}\label{conf}
+\tilde{z}=f(z) \ \ ; \ \ \tilde{X}^{\mu}(\tilde{z},\tilde{\bar{z}})=X(z,\bar{z})
+\end{equation}
+
+\noindent para cualquier función $ f(z) $ holomorfa. Teorías con dicha invarianza se denominan \textbf{Conformal Field Theories (CFT)}.
+
+\noindent Luego, una definición muy importante en este ámbito es la de peso de un operador.\\
+
+\noindent \textbf{Definición:} Decimos que un operador $ \mathcal{O} $ tiene \textbf{peso} ($h, \tilde{h} $) si ante transformaciones conformes infinitesimales del tipo $ \delta z=\epsilon z $ y $ \delta \bar{z}=\bar{\epsilon} \bar{z} $, el operador transforma de la siguiente forma:
+\begin{equation}\label{pesoinf}
+\delta \mathcal{O} = -\epsilon(h\mathcal{O} + z \partial \mathcal{O}) - \bar{\epsilon}(\tilde{h}\mathcal{O} + \bar{z}\bar{\partial}\mathcal{O}) 
+\end{equation}
+
+\noindent o equivalentemente 
+
+\begin{equation}\label{pesoinf2}
+\tilde{\mathcal{O}}(\tilde{z},\tilde{\bar{z}})=\epsilon^{-h}\bar{\epsilon}^{\tilde{h}}\mathcal{O}(z,\bar{z})
+\end{equation}
+
+\noindent $ h $ y $ \tilde{h} $ son reales y en una teoría CFT unitaria son mayores que cero. A su vez, $ h + \tilde{h} $ es la dimensión del operador, el cual determina su comportamiento ante cambio de escala, mientras que $ h - \tilde{h} $  se identifica con el spín. Operar con $ \partial $ incrementa $ h $ en 1, mientras que $ \bar{\partial} $ hace lo mismo con $ \tilde{h} $.
+
+\noindent Más adelante veremos que en CFT la corriente es proporcional a la componente del tensor de energía impulso $ T_{zz}(z) \equiv T(z) $, por ello, existe un grupo de operadores muy importante que definimos a continuación.\\
+
+\noindent \textbf{Definición:} Decimos que $ \mathcal{O} $ es un \textbf{Operador Primario} si su desarrollo OPE con $ T $ y $ \bar{T} $ se trunca al orden $ (z-w)^{-2} \ (\bar{z}-\bar{w})^{-2} $. Es decir:
+
+\begin{equation}\label{primario}
+T(z)\mathcal{O}(w,\bar{w})= h \frac{\mathcal{O}}{ (z-w)^2} + \frac{\partial \mathcal{O}}{ (z-w)} + No-singular
+\end{equation}
+
+\noindent y el análogo para $ \bar{T} $.\\
+
+\noindent De estas definiciones se desprende un importante resultado. Ante una transformación conforme infinitesimal arbitraria $ \delta z = \epsilon(z) $, un operador primario cambia como: 
+
+\begin{equation}\label{key}
+\delta \mathcal{O}(w,\bar{w}) = -h\dot{\epsilon}\mathcal{O}(w,\bar{w}) - \epsilon\partial \mathcal{O}(w,\bar{w})
+\end{equation}
+
+\noindent y el análogo para una transformación $ \delta \bar{z} = \bar{\epsilon}(\bar{z}) $. Luego, para una transformación conforme finita
+\begin{equation}\label{key}
+z \rightarrow \tilde{z}(z) \ ; \ \bar{z} \rightarrow \tilde{\bar{z}}(\bar{z})
+\end{equation}
+
+\noindent tenemos el resultado
+
+\begin{equation}\label{key}
+O(z,\bar{z}) \rightarrow \tilde{O}(\tilde{z},\bar{\tilde{z}})= \left(\frac{\partial \tilde{z}}{\partial z}\right)^{-h} \left(\frac{\partial \tilde{\bar{z}}}{\partial \bar{z}}\right)^{-\tilde{h}} O(z,\bar{z})
+\end{equation}
+\\
+
+\noindent En general, en teorías CFT el tensor de energía-impulso
+no es un operador primario, sino que se tiene un resultado general donde, dado el tensor de energía-impulso $ T_{zz} $ de la CFT, su desarrollo es de la forma
+
+\begin{equation}\label{cc}
+T(z)T(w)=\frac{c/2}{(z-w)^4}+\frac{2T(w)}{(z-w)^2}+\frac{\partial T(w)}{z-w} + no-singular
+\end{equation}
+
+\noindent y el análogo para $ \bar{T}(z)\bar{T}(w) $. De este desarrollo vemos una consecuencia general: \textit{El tensor de energía-impulso de cualquier CFT, es de peso (2,0) y no es primario!}.
+
+\noindent El factor que aparece como responsable del término cuártico, c, se lo conoce como \textbf{Carga central} y es uno de los números más importantes en CFT, en algún sentido, este número refleja los grados de libertad de la teoría!.\\
+
+Dicho todo esto, veamos ahora sí el caso particular de las identidades de Ward para simetrías conforme. Puede demostrarse que para una transformación conforme del tipo
+ 
+\begin{equation}
+\delta z = \epsilon(z) \ ; \ \delta \bar{z} = 0
+\end{equation}
+
+\noindent se conservan las corrientes 
+
+\begin{equation}\label{Jz}
+J_z=0 \ ; \ J_{\bar{z}}=T_{zz}(z)\epsilon(z)\equiv T(z)\epsilon(z)
+\end{equation}
+
+\noindent Por otro lado, si la simetría transforma a las variables como 
+\begin{equation}\label{key}
+\delta z = 0 \ ; \ ; \delta \bar{z} = \bar{\epsilon}(\bar{z})
+\end{equation}
+
+\noindent obtenemos las corrientes
+\begin{equation}\label{key}
+\bar{J}_z=\bar{T}(\bar{z})\bar{\epsilon}(\bar{z}) \ ; \ \bar{J}_{\bar{z}}=0
+\end{equation} 
+
+En este caso particular, para la primer simetría puede verse que las identidades de Ward nos dan
+
+\begin{equation}\label{IW1}
+\delta \mathcal{O}_1(\sigma_1) = -Res\left[\epsilon(z)T(z)\mathcal{O}_1(\sigma_1)\right]
+\end{equation}
+
+\noindent Y el análogo para la otra transformación.
+
+Pero a su vez, tenemos, por definición de OPE y residuo:
+
+\begin{equation}\label{IW2}
+J_z(z)\mathcal{O}_1(w,\bar{w})=\dots \frac{Res\left[J_z\mathcal{O}_1(w,\bar{w})\right]}{z-w} \dots
+\end{equation}
+
+
+\noindent Con todas estas ideas, para el caso que nos interesa, podemos agrupar las cosas para obtener un resultado muy importante en CFT 2D, esta relación surge de igualar las relaciones $ \ref{IW1} $ y $ \ref{IW2} $ e introducir la corriente conforme
+
+\begin{equation}\label{piola1}
+T(z)\epsilon(z)\mathcal{O}(w,\bar{w})=\dots \frac{-\delta \mathcal{O}}{z-w} \dots=\dots \frac{Res\left[T(z)\epsilon(z)\mathcal{O}_1(w,\bar{w})\right]}{z-w} \dots
+\end{equation}
+
+\noindent lo que nos dice que conociendo el OPE de cualquier operador $ \mathcal{O} $ con el tensor de energía-impulso, podemos saber como transforma este operador ante la simetría conforme correspondiente. O, la conclusión en la dirección inversa es que sabiendo como transforma conforme un operador $ \mathcal{O} $, obtenemos parte del OPE con la corriente conservada!. repartiendo barras para todos lados se obtiene la relación para la transformación conjugada.
+
+\subsection*{Generadores, y cargas conservadas}
+
+Pasemos ahora a estudiar más en detalle la simetría conforme analizando los generadores de la transformación y sus cargas conservadas.
+
+\subsection*{Anomalías y Dimensión crítica}
+
+En estas teorías, tenemos una métrica dinámica por lo que la transformación conforme no es una simetría en sí, sino una redundancia en nuestra descripción del sistema mejor conocida como simetría de Gauge. Puede ocurrir que en la teoría clásica se preserve dicha simetría pero al cuantizar quede rota, estas se denominan \textbf{anomalías}. Si bien, decimos que esto es una redundancia, es muy importante preservar estas invarianzas ya que teorías de campos con anomalías no tienen ningún significado físico.
+
+Para nuestro caso partícular sabemos que la teoría clásica descripta por la acción de Polyakov es invariante conforme, y una consecuencia de ello es la traza nula del tensor de energía-momento 
+\begin{equation}\label{traza}
+T_a^a=0
+\end{equation}
+
+Ahora bien, al cuantizar, nos encontramos con una anomalía
+
+\begin{equation}\label{key}
+\langle T_a^a\rangle=-\frac{c}{12}R
+\end{equation}
+
+Donde c es la carga central de la teoría y $ R $ es el escalar de Ricci en 2 dimensiones. Lo que se observa facilmente es que en espacios curvos, la condición
+$ \ref{traza} $ no se satisface a menos que $ c=0 $. \textit{Es entonces nuestro próximo objetivo cancelar dicha anomalía}\\
+
+Para ello, lo que haremos es ajustar el valor de $ c=0 $ de una manera un tanto rebuscada. El análisis comienza con la función de partición para la acción $ \ref{Pol} $ dada por
+
+\begin{equation}\label{key}
+Z[X,g]=\frac{1}{Vol}\int DXDg \ e^{-S_p[X,g]}
+\end{equation} 
+
+\noindent la cual considera todos los valores posibles de los campos $ X $ y $ g $, por lo que aquellos que se relaciones mediante una simetría Conforme o difeomorfismo también entrarán en el cálculo. Ahora bien, nuestro primer paso es obtener los estados físicos del sistema, por ello, solo queremos integrar sobre configuraciones físicamente distintas y no que se relacionen mediante un Gauge. Dicho esto, el término $ \frac{1}{Vol} $ lo que hace es cancelar toda esa contribución espúria del cálculo. Para poder realizar los cálculos entonces debemos separar la integral en un factor físico y otro que contenga todas estas configuraciones redudantes y así poder cancelarlas con el  $ \frac{1}{Vol} $. Para hacer esto se utiliza el \textbf{método de Faddeev-Papov}. Lo que busca este método es fijar un Gauge, digamos $g \rightarrow \hat{g}$ y luego identificar toda la contribución de las transformaciones de Gauge que luego al integrar se termina cancelando con el $ \frac{1}{Vol} $. Así, nos queda una integral de camino con una métrica fija $ \hat{g} $ invariante ante las simetrías que queríamos preservar y con los grados de libertad físicos del problema. Pero no todo es color de rosas, este método tiene un precio y consta de la aparición de nuevos campos conocidos como \textbf{Ghost fields}.\\
+
+\noindent Una vez aplicado el método, se obtiene la función de partición física
+
+\begin{equation}\label{Zfis}
+Z=\int DX Db Dc \ e^{\{-S_p[X,\hat{g}]-S_G[b,c,\hat{g}]\}}
+\end{equation}
+
+Donde aparece la contribución de una acción de nuevos campos $ b $ y $ c $, los cuales son variables de Grassmann y b tiene traza nula.
+
+\begin{equation}\label{Sg}
+S_G[b,c,\hat{g}]=\frac{1}{2\pi} \int d^2\sigma\sqrt{g}b_{\alpha\beta}\nabla^{\alpha}c_{\beta}
+\end{equation}
+
+\noindent Esta acción aparece en pie de igualdad con los campos originales $ X $ y $ \hat{g} $ y tienen el rol de cancelar las polarizaciones no-físicas, dejando solo D-2 grados de libertad!.
+Lo siguiente que haremos es notar que la acción $ \ref{Sg} $ es invariante conforme y los campos $ c,b $ no transforman ante dicha simetría. De esto se desprende que mirando solo la acción de los ghost, tenemos una CFT. Ahora bien, como toda CFT podemos calcular su tensor de energía-impulso (muy tedioso de hacer), fijarnos los diferentes OPE's de los operadores de la teoría, por ejemplo $T(z)c(w),T(z)b(w),c(z)b(w),etc $ y buscar operadores primarios, etc. De todas ellas, la que más nos importa a nosotros es observar el OPE de $ T $ que al provenir de una CFT, sabemos que debe tener la forma de $ \ref{cc} $. El resultado de hacer todo esto es
+
+\begin{equation}\label{key}
+T(z)T(w)= \frac{-13}{(z-w)^4}+\frac{2T(w)}{(z-w)^2}+\frac{\partial T(w)}{z-w} + no-singular
+\end{equation}
+
+\noindent que remarcablemente tiene la forma esperada para una CFT y lo más importante de todo, es que obtenemos $ c=-26 $ para el sistema ghost $ c,b $. Es decir, esto es exactamente lo que estabamos buscando!.\\
+
+El razonamiento sigue de la siguientes manera: Como queremos una teoría cuántica conforme entonces necesitamos $ c=0 $, para ello encontramos que esta $ c $ podemos obtenerla como contribución de dos cargas, una de $ S_p $ y otra de $ S_G $. La de este último es $ c=-26 $, luego como cada campo escalar aporta un $ c=1 $, lo que podemos concluir es que si $ S_p $ es la acción de D campos escalares, obtenemos finalmente que 
+
+\begin{equation}\label{key}
+c_t=c_G + D\times1=0 \ \iff \ D=26
+\end{equation}
+
+En conclusión, para una teoría de escalares libres, podemos deshacernos de la anomalía y obtener $ c=0 $ a costa de estar en 26 dimensiones!. \textit{La dimensión de la teoría de cuerdas bosónica cerrada proviene del requisito de preservar la simetría conforme a nivel cuántico!}.\\
+
+De esto se desprende que en realidad una teoría con D campos escalares no tiene nada de especial, lo único que importa es que nuestra (o nuestras) CFT recolecten entre todos sus campos un total de 26 cargas centrales para poder preservar la simetría conforme. Esto puedo lograrlo de muchas maneras y da lugar a distintas variantes de la teoría. Un caso particular es el de describir una cuerda moviendose en $ \mathbb{M}^4 $ con que podemos meter $ D=4 $ escalares libres junto con otra CFT de $ c=22 $, esta CFT se la suele llamar \textbf{el sector interno} de la teoría.\\
+
+\textcolor{red}{\textbf{Duda:}} Teniendo la cuantización canónica y la de coordenadas tipo luz, ¿porque introduzco Ghost y utilizo BRST? supuestamente es para quedarme con los grados de libertad reales del sistema pero al fin y al cabo termino imponiendo nuevas condiciones que es lo mismo.
+\subsection*{Vertex operators}
+
+En base a lo dicho en la sección anterior, sea como sea, nuestra teoría consistirá de los ghost fields b,c junto con una CFT de $ c=26 $
+
+
+
+en donde $ J_z $ es holomorfa y $ J_{\bar{z}} $ es anti-holomorfa, salvo en los puntos singulares $ \sigma \rightarrow \sigma_1 $ por lo que podemos utilizar el teorema de los residuos y obtener una forma más restringida de las identidades de Ward
+
+\begin{equation}\label{key}
+aaa
+\end{equation}
+
+
+
+\section{reciclable Trash}
+
+
+%Ahora bien, estas simetrias de Gauge se pueden utilizar para darle
+%una forma más copada a la ecuación de movimiento que nos interesa
+%xx. La métrica en principio tiene 3 coordenadas independientes pero
+%podemos ajustar todas ellas a nuestro antojo utilizando las dos invarianzas
+%en los parámetros y finalmente la invarianza de Weyl. De esta forma
+%se puede demostrar que podemos elegir todas las componentes de la
+%métrica para que conincidan con la correspondiente al espacio plano!,
+%es decir, $g_{\alpha\beta}=\eta_{\alpha\beta}$. En él, las cuentas
+%se simplifican enormemente llevando a ecuaciones de ondas libres.
+%\begin{equation}
+%\partial_{\alpha}\partial^{\alpha}X^{\mu}=0
+%\end{equation}
+%
+%Ahora bien, es imposible que las ecuaciones horribles de xx lleven
+%a las mismas soluciones que xx, lo que nos estamos olvidando es que
+%la métrica también debe cumplir con xx, en el gauge particular $g_{\alpha\beta}=\eta_{\alpha\beta}$,
+%estas ecuaciones ''extra'' son 
+%\begin{equation}
+%\partial_{\alpha}X\cdot\partial_{\beta}X-\frac{1}{2}\eta_{\alpha\beta}\eta^{\gamma\delta}\partial_{\gamma}X\cdot\partial_{\delta}X\equiv T_{\alpha\beta}=0
+%\end{equation}
+%
+%Donde se definió el tensor de energía momento $T_{\alpha\beta}$ y
+%esto da lugar a 2 condiciones extra que deben cumplir los $X^{\mu}$
+%%\begin{align}
+%%	T_{01} & =T_{10}=\partial_{\tau}X\cdot\partial_{\sigma}X=0\\
+%%	T_{00} & =T_{11}=\frac{1}{2}\left[\left(\partial_{\tau}X\right)^{2}+\left(\partial_{\sigma}X\right)^{2}\right]=0
+%%\end{align}
+%
+%Es decir, en definitiva los $X^{\mu}$deberán cumplir las 3 ecuaciones
+%xx,xx y xx. Dicho esto, comencemos resolviendo la primer ecuación!.
+%Como esta tiene una forma covariante, podemos elegir un sistema en
+%particular para resolverla, escojamos coordenadas tiempo luz en la
+%hoja de mundo, es decir
+%\begin{equation}
+%\sigma^{\pm}=\tau\pm\sigma
+%\end{equation}
+%
+%Con la cual la solución mas general para xx
+%\begin{equation}
+%X^{\mu}(\tau,\sigma)=X_{L}^{\mu}(\sigma^{+})+X_{R}^{\mu}(\sigma^{-})
+%\end{equation}
+%
+%con $X_{L,R}^{\mu}$ arbitrarios. Pero si queremos imponer las condiciones
+%xx y xx, y a su vez la condición de periodicidad, la solución más
+%general se obtiene expandiendo en modos de Fourier
+%\begin{align}
+%	X_{L}^{\mu} & =\frac{1}{2}x^{\mu}+\frac{1}{2}\alpha'p^{\mu}\sigma^{+}+i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\tilde{\alpha_{n}^{\mu}}e^{-in\sigma^{+}}\\
+%	X_{R}^{\mu} & =\frac{1}{2}x^{\mu}+\frac{1}{2}\alpha'p^{\mu}\sigma^{-}+i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\alpha_{n}^{\mu}e^{-in\sigma^{-}}
+%\end{align}
+%
+%donde los objetos $x^{\mu}$y $p^{\mu}$son la posición y momento
+%del centro de masa de la cuerda mientras que los demás términos son
+%oscilaciones de la misma. A su vez, debemos imponer que estos campos
+%sean reales por lo que se traduce en 
+%\begin{align}
+%	\tilde{\alpha_{n}^{\mu}} & =\left(\tilde{\alpha_{-n}^{\mu}}\right)^{*}\\
+%	\alpha_{n}^{\mu} & =\left(\alpha_{-n}^{\mu}\right)^{*}
+%\end{align}
+%
+%Luego, todavía debemos imponer las condiciones xx y xx, por lo que,
+%definiendo $\alpha_{0}^{\mu}=\tilde{\alpha}_{0}^{\mu}\equiv\sqrt{\frac{\alpha'}{2}}p^{\mu}$,
+%obtenemos 
+%\begin{align}
+%	\frac{\alpha'}{2}\sum_{n,m}\alpha_{m}\cdot\alpha_{n-m}e^{-in\sigma^{-}} & \equiv\alpha'\sum_{n}L_{n}e^{-in\sigma^{-}}=0\\
+%	\frac{\alpha'}{2}\sum_{n,m}\tilde{\alpha}_{m}\cdot\tilde{\alpha}_{n-m}e^{-in\sigma^{+}} & \equiv\alpha'\sum_{n}\tilde{L}_{n}e^{-in\sigma^{+}}=0
+%\end{align}
+%
+%donde definimos los modos $L_{n}\equiv\frac{1}{2}\sum_{m}\alpha_{m}\cdot\alpha_{n-m}$
+%y el análogo para $\tilde{L}_{n}$, ya que con ellos se ve facilmente
+%que al ser xx y xx desarrollos de Fourier, las condiciones se satisfacen
+%si y solos si se cumple
+%\begin{align}
+%	L_{n} & =0\\
+%	\tilde{L}_{n} & =0
+%\end{align}
+%
+%Con $n\in\mathbb{Z}$. El caso particular de $n=0$ nos lleva a la
+%relación
+%\begin{equation}
+%p^{\mu}p_{\mu}=M^{2}=\frac{4}{\alpha'}\sum_{n>0}\alpha_{n}\cdot\alpha_{-n}=\frac{4}{\alpha'}\sum_{n>0}\tilde{\alpha}_{n}\cdot\tilde{\alpha}_{-n}
+%\end{equation}
+%
+%Lo cual quiere decir que la masa efectiva de la cuerda vendrá dada
+%por los niveles de excitación de la cuerda!. A esta igualdad se la
+%conoce como ''Level matching''. 
+%
+%Tenemos la accion de Polyakov para la cuerda clásica.
+%\begin{equation}\label{Pol}
+%S[g_{ab},X{^\mu}]=\int d^2\sigma\sqrt{g}g^{ab}\partial_aX^{\mu}\partial_bX^{\nu}\eta_{\mu\nu}
+%\end{equation}
+%
+%Ella describe una sub-variedad de $2$ dimensiones, conocida como hoja de mundo, dentro del espacio de Minkowsky de dimensión D. En ella los dos objetos dinámicos que aparecen son los campos $g_{ab}$ y $X^{\mu}$.
+%
+%La acción posee 3 importantes simetrías:
+%\begin{itemize}
+%	\item Invarianza de Poincaré:
+%	\begin{equation}\label{Poincare}
+%	X^{\mu} \rightarrow \Lambda_{\nu}^{\mu}X^{\nu} + C^{\mu}
+%	\end{equation}
+%	\item Invarianza de reparametrización o Diffeomorfismo:
+%	\begin{equation}\label{key}
+%	\sigma^{\alpha} \rightarrow \tilde{\sigma}^{\alpha}(\sigma^{\alpha})
+%	\end{equation}
+%\end{itemize}
+%
+%\subsection*{Ecuaciones de movimiento}
+%
+%BLA BLA BLA
+%
+%
+%\section*{Cuantización}
+%
+%Nuestro objetivo es cuantizar los D escalares $X^{\mu}$gobernados
+%por las ecuaciones de movimiento xx y las condiciones xx. Debido a
+%las simetrías de nuestro sistema, tenemos más grados de libertad de
+%los que realmente tiene nuestro problema físico, esto es propio de
+%cualquier teoría de Gauge y aparece también, por ejemplo, en la cuantización
+%del campo electromagnético. Para ello existen dos caminos posibles:
+%El primero de ellos consiste en mantener la covarianza de nuestra
+%teoría a costa de mantener todos los campos $X^{\mu}$ como independientes
+%e imponer las condiciones entre ellos al fnal del cálculo, solo para
+%los estados físicos, esto se conoce como \textbf{cuantización covariante}.
+%Otro camino posible es imponer de entrada las condiciones, es decir
+%adoptar un Gauge partícular, y trabajar durante todo el cálculo con
+%los estados físicos. Claro esta que este último método rompe la covarianza.
+%En esta sección adoptaremos la segunda forma de cuantizar los campos
+%escalares.
+%
+%Para ello primero observamos que así como pudimos imponer nuestras
+%condiciones para movernos a un espacio plano en la hoja de mundo,
+%todavía sobrevive un Gauge residual (¿PORQUE?) que nos permite utilizar
+%un cambio de coordenadas astuto para simplificar los cálculos. Habiendo
+%conseguido $g_{\alpha\beta}=\eta_{\alpha\beta}$ todavía podemos hacer
+%un cambio de los parámetros $\sigma\rightarrow\tilde{\sigma}(\sigma)$
+%tal que nos cambie la métrica en la forma $\eta_{\alpha\beta}\rightarrow\Omega^{2}(\sigma)\eta_{\alpha\beta}$
+%que podemos deshacer con una transformación de Weyl. Para encontrar
+%dichas transformaciones, cambiamos a parámetros tipo tiempo 
+%\begin{equation}
+%\sigma^{\pm}=\tau\pm\sigma
+%\end{equation}
+%con
+%\begin{equation}
+%ds^{2}=-d\sigma^{-}d\sigma^{+}
+%\end{equation}
+%donde podemos ver claro que cualquier transformación de la forma 
+%\begin{equation}
+%\sigma^{+}\rightarrow\tilde{\sigma}^{+}(\sigma^{+})\,,\,\sigma^{-}\rightarrow\tilde{\sigma}^{-}(\sigma^{-})
+%\end{equation}
+%cumple con lo que queriamos de multiplicar a la métrica de Minkowsky
+%por un factor conforme!. Ahora con esto, la forma más sencilla de
+%proceder es definiendo nuevas coordenadas para los campos
+%\begin{equation}
+%X^{\pm}=\sqrt{\frac{1}{2}}\left(X^{0}\pm X^{D-1}\right)\,,\,X^{i},i=1,...,D-2
+%\end{equation}
+%
+%lo que se conoce como \textbf{Gauge de cono de luz} y claramente rompe
+%la covarianza ya que distingue una coordenada de las demás. Ahora,
+%si bien podríamos argumentar que si partímos de una teoría invariante
+%de Lorentz y adoptamos un Gauge particular para hacer los cálculos,
+%luego al final de todo recuperaremos la covarianza, esto no es cierto!.
+%En teoría cuantica de campos existen \textbf{Anomalías} que se definen
+%como simetrías de la teoría clásica que no sobreviven el proceso de
+%cuantización y concluye en una teoría cuántica sin dicha simetría!.
+%Dicho esto, debemos proceder con cautela. De xx se puede ver que la
+%solución más general para $X^{+}$es de la forma
+%\begin{equation}
+%X^{+}=X_{L}^{+}(\sigma^{+})+X_{R}^{+}(\sigma^{-})
+%\end{equation}
+%
+%Luego, podemos elegir convenientemente el Gauge residual xx para llevar
+%la solución de $X^{+}$ a la sencilla forma
+%\begin{equation}
+%X^{+}=x^{+}+\alpha'p^{+}\tau
+%\end{equation}
+%
+%Por otro lado, la solución para los campos $X^{i}$con $i=1,...,D-2$
+%sigue siendo xx mientras que para $X^{-}$la cosa resulta muy sencilla
+%adoptado este Gauge particular (de hecho, para eso fue elegido!).
+%Este último campo queda determinado, a menos de constantes, por los
+%$X^{i}$, esto se puede ver de las condiciones xx xx sobre $X^{-}$las
+%cuales explicitan dicha dependencia. Para ello, notamos que la solución
+%más general para $X^{-}$ es nuevamente 
+%\begin{equation}
+%X^{-}=X_{L}^{-}(\sigma^{+})+X_{R}^{-}(\sigma^{-})
+%\end{equation}
+%
+%La cual podemos desarrollar en modos de Fourier
+%
+%\begin{align}
+%	X_{L}^{-} & =\frac{1}{2}x^{-}+\frac{1}{2}\alpha'p^{-}\sigma^{+}+i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\tilde{\alpha_{n}^{-}}e^{-in\sigma^{+}}\\
+%	X_{R}^{-} & =\frac{1}{2}x^{-}+\frac{1}{2}\alpha'p^{-}\sigma^{-}+i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\alpha_{n}^{-}e^{-in\sigma^{-}}
+%\end{align}
+%
+%Y lo remarcable de todo esto es que al imponer las condiciones xx
+%y xx, observamos que los coeficientes del desarrollo no son independientes,
+%sino que se relacionan con los ya calculados mediante
+%\begin{equation}
+%\alpha_{n}^{-}=\sqrt{\frac{1}{2\alpha'}}\frac{1}{p^{+}}\sum_{m=-\infty}^{+\infty}\sum_{i=1}^{D-2}\alpha_{n-m}^{i}\alpha_{m}^{i}
+%\end{equation}
+%
+%y el análogo para los $\tilde{\alpha}_{n}^{-}$. Por otro lado todavía
+%nos queda un parámetro independiente, la constante de integración
+%$x^{-}$. En cambio $p^{-}$también queda determinado observando el
+%caso particular de $\alpha_{0}^{-}=\sqrt{\frac{\alpha'}{2}}p^{-}$.
+%Este último se puede combinar con $\tilde{\alpha}_{0}^{-}$ para obtener
+%\begin{equation}
+%M^{2}=2p^{+}p^{-}-\sum_{i=1}^{D-2}p^{i}p^{i}=\frac{4}{\alpha'}\sum_{n>0}\sum_{i=1}^{D-2}\alpha_{-n}^{i}\alpha_{n}^{i}=\frac{4}{\alpha'}\sum_{n>0}\sum_{i=1}^{D-2}\tilde{\alpha}_{-n}^{i}\tilde{\alpha}_{n}^{i}
+%\end{equation}
+%
+%Donde la primer igualdad es simplemente $p^{\mu}p_{\mu}$expresado
+%en la métrica de las nuevas coordenadas de luz. Ahora bien, recapitulando
+%brevemente hasta aquí, lo que hicimos fue partir de la acción covariante
+%de D campos, luego por las libertades de Gauge del problema, sabíamos
+%que no todos ellos serían independientes, o mejor dicho, no todos
+%construirían estados físicos. Dado esto, eliminamos dichos grados
+%de libertad superfluos escojiendo el Gauge de cono de luz y con él,
+%la dinámica de todo el sistema clásico queda descripta no por D sino
+%por $2\left(D-2\right)$ campos $\alpha_{n}^{i}$y $\tilde{\alpha}_{n}^{i}$
+%junto con los modos 0 $x^{i},p^{i},x^{-},p^{+}$que describen posiciones
+%y momentos del centro de masa de la cuerda ($x^{+}$no tiene realidad
+%física ya que de xx , observamos que puede reabsorverse en una redefinición
+%de $\tau$, por otro lado $p^{-}$ya mencionamos que queda determinado
+%por las demas variables). A estos campos físicos $\alpha_{n}^{i}$y
+%$\tilde{\alpha}_{n}^{i}$ , se los conoce como \textbf{modos trasversales}!.
+%
+%Habiendo encontrado los grados de libertad físicos del sistema clásico
+%ahora cuanticemos!. Como siempre, lo que debemos hacer es definir
+%los momentos canónicos conjugados, enconrtrar los corchetes de Poisson
+%de esta teoría clásica (con los grados de libertad físicos y no la
+%forma covariante original!) y finalmente imponer las condiciones de
+%conmutación. Todo esto da lugar a las relaciones
+%\begin{align}
+%	\left[x^{i},p^{j}\right] & =i\delta^{ij}\,,\,\left[x^{-},p^{+}\right]=-i\\
+%	\left[\alpha_{n}^{i},\alpha_{m}^{j}\right] & =\left[\tilde{\alpha}_{n}^{i},\tilde{\alpha}_{m}^{j}\right]=n\delta^{ij}\delta_{n+m,0}
+%\end{align}
+%
+%donde lo que observamos es que tenemos las relaciones de conmutación
+%esperadas para la posición y momento del centro de masa de la cuerda,
+%pero a su vez estas vienen acompañadas por infinitos osciladores armónicos!.
+%Para vincular esto con los operadores de creación y destrucción de
+%teoría de camposs basta simplemente identificar (omitiendo supraindices)
+%$\alpha_{n}=\frac{\alpha_{n}}{\sqrt{n}}$ y $\alpha_{n}^{\dagger}=\frac{\alpha_{-n}}{\sqrt{n}}$
+%con $n>0$, lo cual nos lleva a la vieja y conocida relación $\left[\alpha_{n},\alpha_{m}^{\dagger}\right]=\delta_{nm}$.
+%Esto nos lleva a interpretar que cada campo da lugar a dos torres
+%infinitas de operadores de creación y destrucción. La primer torre
+%se construye con los modos de derecha $\alpha_{n}$con $n<0$ para
+%crear y $n>0$ para destruir, mientras que la otra se construye de
+%igual manera con los operadores de izquierda!. Por último, como $x^{+}$no
+%queda definido, podemos imponer 
+%\begin{equation}
+%\left[x^{+},p^{-}\right]=-i
+%\end{equation}
+%
+%(¿PORQUE?). Luego, procedemos como de costrumbre, definiendo el estado
+%de vacío $|0,p>$tal que
+%\begin{align}
+%	P^{\mu}|0,p^{\mu} & >=p^{\mu}|0,p^{\mu}>\\
+%	\alpha_{n}^{i} & |0,p^{\mu}>=\tilde{\alpha}_{n}^{i}|0,p^{\mu}>=0
+%\end{align}
+%
+%con $n>0$.
+%
+%(Los L0 tienen el problema de que al tener n=0, hay una ambiguedad
+%cuando pasamos de los alpha como simples campos en la descripcion
+%clásica a operadores en el espacio de Hilbert. Esta ambiguedad vienen
+%dada por el hecho de que tengo una suma infinita de aplha\_m . alpha\_-m
+%en clásica y como estos no conmutan en la descripcion cuantica, lo
+%que obtenemos es que cada término lo puedo ordenar de una forma distinta
+%sacando una constante diferente en casa caso y esto da lugar a infinitos
+%L0 cuanticos a partir del L0 clasico!)
+%
+%(Anomalias: Simetrias en la teoría clásica que no sobreviven en la
+%cuantización)
+%%\begin{wrapfigure}{l}{0.5\linewidth}
+%%	\includegraphics[width=\linewidth]{string_worldsheet}
+%%\end{wrapfigure}
+
+\end{document}
+

@@ -1,0 +1,652 @@
+\documentclass{article}
+
+%Packages
+
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=25mm}
+\usepackage{tcolorbox}
+\usepackage{bookman} % font
+\usepackage{marvosym}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\setlength\parindent{0pt} % elimina sangría de todos los parrafos
+
+
+\usepackage{lettrine} % letra capital}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{7pt}
+\setlength{\DefaultNindent}{0pt}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+\renewcommand{\DefaultLoversize}{-0.70}
+
+%Primero se declara el paquete lettrine y el numero de renglones que debe abarcar la inicial. En seguida DefaultFindent, la distancia de la inicial a la letra siguiente en el primer renglón y DefaultNindent, la distancia que se desplaza a la derecha del inicio del primer renglón, los renglones subsecuentes que abarca la capitular.Después se declara la font a utilizar, en este caso yinit, con unos parámetros que la describen, y ﬁnalmente el tamaño de la letra.
+
+\usepackage{yfonts}
+
+
+%Pagestyle
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{{\color{brown!60!black}\Large\Coffeecup}}
+\lhead{\textit{Capítulo 1}}
+\fancyfoot{}
+\lfoot{\tiny{Octubre 2017 - v1.0}}
+\rfoot{\thepage}
+
+%Title
+\title{\vspace{-35pt}\huge{\textbf{\textcolor{teal}{Supergravedad:}}} \\ \vspace{0.1cm} \large{\textbf{Simetrías y Ecuaciones de Movimiento}}}
+\date{\vspace{-20pt}}
+\author{\textit{Tomás Codina}}
+
+%%%---%%%
+
+%Document
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\newtcolorbox{boxumen}{colback=white,colframe=teal,boxrule=1pt}
+\newtcolorbox{boxquation}{colback=white,colframe=black,boxrule=1pt}
+
+
+
+
+
+Predicha como un límite de bajas energías en teoría de cuerdas, la acción de supergravedad contiene información sobre la dinámica de 3 campos fundamentales definidos en un espacio-tiempo de 10 dimensiones. Estos son el \textit{gravitón} $ g_{\mu\nu} $, un tensor $ \binom{0}{2} $ totalmente simétrico, $ b_{\mu\nu} $ una 2-forma llamada \textit{campo de Kalb-Ramond} y un campo escalar $ \phi $, conocido como \textit{Dilatón}. El objetivo del presente capítulo se divide en dos partes, en primer lugar queremos estudiar las simetrías de la acción, corroborando que la misma se mantiene invariante al aplicar ciertas transformaciones, luego, finalizamos el capítulo deduciendo las ecuaciones de movimiento para los campos a partir del principio de mínima acción.  
+
+\rule{\textwidth}{0.4pt}
+
+\section{\textcolor{teal}{Acción y simetrías}}\label{sim} %CORREGIDO
+ 
+Comenzamos presentando la acción de supergravedad 
+
+\begin{equation}\label{S}
+S[\textbf{g},\textbf{b},\pmb{\phi}]=\int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi}\left[R + 4 \partial_{\mu}\phi\partial^{\mu} \phi - \frac{1}{12} H_{\mu \nu \alpha}H^{\mu \nu \alpha}\right]  
+\end{equation}
+
+en donde podemos observar que aparecen distintos personajes. En primer lugar notamos $ g $ al determinante del tensor métrico $ g_{\mu\nu} $ y su raiz cuadrada juega el papel de jacobiano para cambios generales de coordenadas. Por otro lado al primer objeto entre brackets se lo conoce como \textit{escalar de Ricci} 
+
+\begin{equation}\label{R}
+R \equiv g^{\mu \nu}R_{\mu\nu} \equiv g^{\mu \nu}R^{\sigma}_{ \ \mu\sigma\nu}
+\end{equation}
+
+el cual se define a partir del \textit{tensor de Ricci} $ R_{\mu\nu} $ que a su vez se obtiene contrayendo dos indices del \textit{tensor de curvatura}\footnote{De aquí en adelante se utilizará la coma (,) para notar derivadas parciales y punto y coma (;) para referirse a la derivada covariante. Por otro lado también se introduce la notación $ N A_{\left(a_1... a_N \right)} $ y $ N A_{\left[a_1...a_N \right]} $ para términos simétricos y antisimétricos en $ a_1...a_N $ respectivamente. }
+
+\begin{equation}\label{riccitensor}
+ R^{\sigma}_{ \ \mu \rho \nu} \equiv 2\Gamma^{\sigma}_{\mu\left[ \nu \right.,\left. \rho \right]} +   2\Gamma^{\eta}_{\mu\left[ \nu \right.}\Gamma^{\sigma}_{ \left. \rho \right] \eta}
+\end{equation} 
+
+donde se introdujo la \textit{conexión de Levi-Civita} que se relaciona finalmente con la métrica $ g_{\mu\nu} $ mediante
+
+\begin{equation*}
+\Gamma^{\sigma}_{\mu\nu} = \frac{1}{2}g^{\sigma \alpha}\left[ 2g_{\alpha (\mu,\nu)} - g_{\mu\nu,\alpha}\right]
+\end{equation*}
+
+Estas definiciones nos permiten observar que el escalar de Ricci contiene hasta términos cúbicos en la métrica y derivadas segundas de la misma.
+
+Siguiendo con los objetos que aparecen en \ref{S}, nos encontramos con un término cinético para el dilatón. Este campo también aparece en el factor $e^{-2\phi} $ que multiplica a todos los demás factores, dicho coeficiente puede reabsorberse en el jacobiano redefiniendo la métrica sin alterar las ecuaciones de movimiento. Escrita como la tenemos, se dice que expresamos la acción en el \textit{String-frame}.
+
+El último término que aparece en la acción es el tensor de curvatura de la 2-forma
+
+\begin{equation}\label{H}
+H_{\mu \nu \alpha} \equiv 3 b_{\left[ \mu \nu , \alpha \right] }
+\end{equation}
+
+que no es otra cosa que la derivada exterior del campo de Kalb-Ramond.
+
+\newpage
+
+Descrita la acción pasemos a estudiar sus simetrías, estas se dividen en dos tipos:
+
+\vspace{0.4cm}
+
+\begin{center}
+	\rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\begin{itemize}
+	\item[\large{\textcolor{teal}{ a)}}] Dado un cambio general de coordenadas o \textit{Difeomorfismo} $ x^{\mu} \longrightarrow x'^{\mu}=x'^{\mu}(x) $, este puede parametrizarse mediante un vector $ \xi^{\mu} $ de la forma
+	
+	\begin{equation*}
+	x'^{\mu}=\left(e^{-\xi_{\rho} \partial^{\rho}} x\right)^{\mu}= x^{\mu} - \xi^{\mu}(x) + O(\xi^2)
+	\end{equation*} 
+	
+	donde al desarrollar llegamos a la versión infinitesimal de la transformación. Ante este cambio los campos fundamentales transforman de la siguientes manera
+	
+	\begin{subequations}
+	\begin{align}
+	\delta g_{\mu \nu} &= \mathcal{L}_{\xi}g_{\mu \nu} = \xi^{\rho}g_{\mu \nu , \rho} + \xi_{ \ ,\mu}^{\rho}g_{\rho \nu} + \xi_{ \ ,\nu}^{\rho}g_{\mu \rho}\\ \label{deltag}
+	\delta b_{\mu \nu} &= \mathcal{L}_{\xi}b_{\mu \nu} = \xi^{\rho}b_{\mu \nu , \rho} + \xi_{ \ ,\mu}^{\rho}b_{\rho \nu} + \xi_{ \ ,\nu}^{\rho}b_{\mu \rho}\\ \label{deltab}
+	\delta \phi &= \mathcal{L}_{\xi} \phi = \xi^{\rho} \phi_{,\rho} \\ \label{deltafi}
+	\end{align}
+	\end{subequations}
+	
+	donde se introdujo la \textit{derivada de Lie}, la cual actúa sobre un tensor $ \binom{r}{s} $ genérico como
+	
+\begin{equation*}
+	\begin{aligned}
+	\left(\mathcal{L}_{\xi}\textbf{T}\right)^{a_1a_2...a_r}_{b_1b_2...b_s} \equiv 
+	\mathcal{L}_{\xi}T^{a_1a_2...a_r}_{b_1b_2...b_s} = \xi^{\rho}T^{a_1a_2,...a_r}_{b_1b_2...b_s,\rho}
+	+ \xi^{\rho}_{ \ , b_1}T^{a_1a_2,...a_r}_{\rho b_2,...b_s} + \dots - \xi^{a_1}_{ \ , \rho}T^{\rho a_2...a_r}_{b_1 b_2...b_s} - \dots
+	\end{aligned}
+\end{equation*}
+	
+	Esta es lineal y verifica la regla de Leibniz. Veremos que estos cambios efectivamente reproducen una simetría para la acción ya que $S'[g',b',\phi']$ difiere de la original en términos de borde.\\
+	
+	\item[\large{\textcolor{teal}{ b)}}] En segundo lugar, demostraremos que la acción es invariante ante una transformación de Gauge para la 2-forma que no afecta a los otros dos campos
+	
+	\begin{equation}\label{gauge}
+	\begin{aligned}
+	\delta b_{\mu \nu} = 2 \lambda_{\left[\mu , \nu\right]}
+	\\
+	\delta g_{\mu \nu} = \delta \phi = 0\\
+	\end{aligned}
+	\end{equation}
+	
+	siendo $ \lambda $ una 1-forma.
+\end{itemize}
+
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\vspace{0.4cm}
+
+
+Comencemos demostrando \textcolor{teal}{ \large{a)}}, la invarianza ante difeomorfismos. Para ello, notamos al Lagrangiano de supergravedad como
+
+\begin{equation}\label{L}
+\mathscr{L}= e^{-2\phi}\left[R + 4 \partial_{\mu}\phi\partial^{\mu} \phi - \frac{1}{12} H_{\mu \nu \alpha}H^{\mu \nu \alpha}\right]
+\end{equation}
+
+y con él, nuestra estrategia será demostrar que ante cambio de coordenadas todos sus términos transforman como escalares mientras que el factor $\sqrt{-g} $ lo hace como una densidad escalar, es decir
+
+\begin{equation}\label{densidad}
+\delta \sqrt{-g} = \left(\xi^{\rho} \sqrt{-g}\right)_{, \rho}
+\end{equation}
+
+de ser esto cierto, al final del cálculo tendremos
+
+\begin{equation}\label{tegia}
+\begin{aligned}
+S' = S + \delta S = S + \int\mathrm{dx^{10}} \left[ \delta \sqrt{-g} \mathscr{L} + \sqrt{-g} \delta \mathscr{L} \right] =\\
+S + \int\mathrm{dx^{10}} \left[ \left(\xi^{\rho} \sqrt{-g}\right)_{, \rho} \mathscr{L} + \sqrt{-g} \xi^{\rho}\mathscr{L}_{,\rho} \right] = S + \int\mathrm{dx^{10}} \left( \xi \sqrt{-g} \mathscr{L} \right)_{,\rho} = S
+\end{aligned}
+\end{equation} 
+
+donde para la última igualdad usamos el teorema de Stokes para identificar $ \delta S $ como un término de borde y supusimos que los campos se anulan en el infinito.\\
+
+Con esta idea en mente, comencemos viendo como transforma $ \sqrt{-g} $. Aplicando regla de la cadena podemos ver que se relaciona con el determinante mediante
+
+\begin{equation}\label{aux1}
+\delta \sqrt{-g} = \frac{\sqrt{-g}}{2} \frac{1}{g} \delta g
+\end{equation}
+
+y para calcular la variación del determinante usamos la propiedad
+
+\begin{equation*}
+Det(g'_{\mu \nu})= Det(g_{\mu \nu} + \delta g_{\mu \nu}) = g Det\left( \delta^{\alpha}_{\beta} + g^{\alpha \rho } \delta g_{\rho \beta }\right) \approx g \left[ 1 + g^{\mu \nu} \delta g_{\mu \nu}\right]
+\end{equation*}
+
+de donde despejamos $ \delta g $ e introduciendolo en \ref{aux1} obtenemos
+
+\begin{equation}\label{vardet}
+\delta \sqrt{-g} = \frac{\sqrt{-g}}{2} g^{\mu \nu} \delta g_{\mu \nu}
+\end{equation}
+
+donde la última expresión utiliza que la variación es pequeña. Si bien, en este caso particular utilizaremos la variación de la métrica producto de un difeomorfismo infinitesimal, es importante aclarar que la forma de \ref{vardet} vale para cualquier variación. Dicho esto, introduciendo la variación \ref{deltag} se obtiene facilmente
+
+\begin{equation*}
+\delta \sqrt{-g} = \frac{\sqrt{-g}}{2} g^{\mu \nu} \mathcal{L}_{\xi} g_{\mu \nu} =  \sqrt{-g} \xi^{\rho}_{ \ ,\rho} + \xi^{\rho}\left[\frac{\sqrt{-g}}{2} g^{\mu\nu} g_{\mu \nu , \rho}\right]
+\end{equation*} 
+
+donde podemos comparar el corchete del último término con la fórmula \ref{vardet} con $ \delta \rightarrow \partial_{\rho} $ para ver que
+
+\vspace{0.4cm}
+
+\begin{boxquation}
+	\begin{equation}\label{res1}
+	\delta \sqrt{-g} = \sqrt{-g} \xi^{\rho}_{ \ ,\rho} + \xi^{\rho}\sqrt{-g}_{,\rho} = \left(\xi^{\rho} \sqrt{-g}\right)_{, \rho}
+	\end{equation}
+\end{boxquation}
+
+Que coincide con la transformación de una densidad escalar \ref{densidad}.\\
+
+\vspace{0.4cm}
+
+Pasemos ahora al primer y más sencillo término del Lagrangiano, la exponencial del dilatón $ e^{-2\phi} $. Dado que $ \phi $ es un escalar, es sencillo demostrar que cualquier función del mismo será también un escalar. Sin meternos en cálculos podemos notar que esto es una consecuencia de que la derivada de Lie cumple dos propiedades muy importantes, linealidad y la regla de Leibniz. Con estas herramientas podemos pensar a la exponencial (o cualquier otra función bien comportada) como un desarrollo en serie, en él aparecerá la suma de distintas potencias del dilatón, utilizando Leibniz podemos decir que el producto de dos o más campos escalares también transforma como un escalar, finalmente utilizando linealidad concluimos que la suma de elementos del tipo $ \binom{0}{0} $ transforma de la misma forma, en resumidos pasos lo que obtenemos es
+
+\begin{equation*}
+\delta e^{-2 \phi} = \sum_n \frac{1}{n!} \delta ( \phi^n) \underbrace{=}_{\text{ Leibniz}} \sum_n \frac{1}{n!} \mathcal{L}_{\xi} ( \phi^n)\underbrace{=}_{\text{ Linealidad}} \mathcal{L}_{\xi} \left( \sum_n \frac{1}{n!} \phi^n \right)
+\end{equation*} 
+
+\begin{boxquation}
+\begin{equation}\label{res2}
+\delta e^{-2 \phi} = \mathcal{L} e^{-2\phi} = \xi^{\rho}\left(e^{-2\phi}\right)_{,\rho}
+\end{equation}
+\end{boxquation}
+
+\vspace{0.6cm}
+
+Ahora si, concentrémonos en el escalar de Ricci. En este caso, primero veamos como transforma la conexión de Levi-Civita, cuya variación viene dada por
+
+\begin{equation}\label{gamadifeo}
+\delta \Gamma^{\sigma}_{\mu \nu} = \frac{1}{2}\mathcal{L}_{\xi} g^{\sigma \alpha}\left[ 2g_{\alpha (\mu,\nu)} - g_{\mu\nu,\alpha}\right] + \frac{1}{2}g^{\sigma \alpha}\left[ \left(\mathcal{L}_{\xi} g_{\alpha \mu}\right)_{,\nu} + \left(\mathcal{L}_{\xi} g_{\alpha \nu}\right)_{,\mu} - \left(\mathcal{L}_{\xi}g_{\mu\nu}\right)_{,\alpha}\right]
+\end{equation} 
+
+donde resulta conveniente reescribir la derivada parcial de la derivada de Lie de la siguiente forma
+
+\begin{equation*}
+\left(\mathcal{L}_{\xi} g_{\alpha \mu}\right)_{,\nu} = \left(\xi^{\rho}g_{\alpha \mu , \rho}\right)_{, \nu } + \left(\xi_{ \ ,\alpha}^{\rho}g_{\rho \mu}\right)_{,\nu} + \left(\xi_{ \ ,\mu}^{\rho}g_{\alpha \rho}\right)_{,\nu} = \xi^{\rho}\left(g_{\alpha \mu , \nu}\right)_{,\rho} + 
+\xi_{ \ ,\alpha}^{\rho}g_{\rho \mu, \nu} + \xi_{ \ ,\mu}^{\rho}g_{\alpha \rho , \nu} + \xi_{ \ ,\nu}^{\rho}g_{\alpha \mu, \rho} + \xi^{\rho}_{ \ ,\alpha \nu} g_{\rho \mu} + \xi^{\rho}_{ \ ,\mu \nu} g_{\alpha \rho}
+\end{equation*}
+
+A pesar de que la derivada de Lie solo tiene sentido aplicada a tensores y $ g_{\alpha \mu , \nu} $ no corresponde a las componentes de ningún tensor, puede notarse que los primeros 4 términos de la igualdad corresponderían a la derivada de Lie de un elemento $ \binom{0}{3} $ por lo que notamos simbolicamente
+
+\begin{equation}\label{liepart1}
+\left(\mathcal{L}_{\xi} g_{\alpha \mu}\right)_{,\nu} = \mathcal{L}_{\xi} g_{\alpha \mu , \nu} + \xi^{\rho}_{ \ ,\alpha \nu} g_{\rho \mu} + \xi^{\rho}_{ \ ,\mu \nu} g_{\alpha \rho}
+\end{equation}
+ 
+Introduciendo esto en \ref{gamadifeo}, utilizando linealidad y agrupando los términos en derivadas segundas de $ \xi $ obtenemos
+
+\begin{equation*}
+\delta \Gamma^{\sigma}_{\mu \nu} = \frac{1}{2}\mathcal{L}_{\xi} g^{\sigma \alpha}\left[ 2g_{\alpha (\mu,\nu)} - g_{\mu\nu,\alpha}\right] + \frac{1}{2}g^{\sigma \alpha}\left[ \mathcal{L}_{\xi} \left( 2g_{\alpha (\mu,\nu)} - g_{\mu \nu , \alpha }\right)\right] + \frac{1}{2}g^{\sigma \alpha}\left[ 2\xi^{\rho}_{ \ ,\mu \nu} g_{\alpha \rho} \right]
+\end{equation*}
+
+Utilizando la regla de Leibniz, podemos representar a los dos primeros términos como la derivada de Lie de un tensor $ \binom{1}{2} $ entendiendo claro que es meramente simbólico, de esta forma concluimos que la conexión no transforma como un tensor, sino que difiere por derivadas segundas en $ \xi $
+
+\begin{equation}\label{deltagama}
+\delta \Gamma^{\sigma}_{\mu \nu} = \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu}  + \xi^{\sigma}_{ \ , \mu \nu}
+\end{equation}
+
+Habiendo obtenida la transformación de la conexión métrica, ahora tenemos una forma de expresar la variación del tensor de curvatura, dada por
+
+\begin{equation*}
+ \begin{aligned}
+ \delta R^{\sigma}_{ \ \mu \rho \nu} &= 2\delta \Gamma^{\sigma}_{\mu\left[ \nu \right.,\left. \rho \right]} +   2\delta \Gamma^{\eta}_{\mu\left[ \nu \right.}\Gamma^{\sigma}_{ \left. \rho \right] \eta} + 2\Gamma^{\eta}_{\mu\left[ \nu \right.}\delta \Gamma^{\sigma}_{ \left. \rho \right] \eta}=\\
+  &=\left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu}\right)_{,\rho} - \left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \rho}\right)_{,\nu} +\\
+  &+\left( \mathcal{L}_{\xi} \Gamma^{\eta}_{\mu \nu}  + \xi^{\eta}_{ \ , \mu \nu} \right)\Gamma^{\sigma}_{\rho \eta} - \left( \mathcal{L}_{\xi} \Gamma^{\eta}_{\mu \rho}  + \xi^{\eta}_{ \ , \mu \rho} \right)\Gamma^{\sigma}_{\nu \eta} + \\
+  &+ \Gamma^{\eta}_{\mu \nu} \left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\rho \eta}  + \xi^{\sigma}_{ \ , \rho \eta} \right) - \Gamma^{\eta}_{\mu \rho} \left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\nu \eta}  + \xi^{\sigma}_{ \ , \nu \eta} \right)
+ \end{aligned}
+\end{equation*}
+ 
+distribuyendo y agrupando se puede ver que
+
+\begin{equation}\label{varcurv}
+ \delta R^{\sigma}_{ \ \mu \rho \nu} =  \left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu}\right)_{,\rho} - \left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \rho}\right)_{,\nu} + \mathcal{L}_{\xi} \left(2\Gamma^{\eta}_{\mu\left[ \nu \right.}\Gamma^{\sigma}_{ \left. \rho \right] \eta}\right) +
+ 2 \xi^{\eta}_{ \ , \mu \left[ \right. \nu}\Gamma^{\sigma}_{\left. \rho \right] \eta} - 2 \xi^{\sigma}_{ \ , \eta \left[ \right. \nu}\Gamma^{\eta}_{\left. \rho \right] \mu} 
+\end{equation}
+
+Luego, sin repetir las cuentas puede verse que al desarrollar la derivada parcial de la derivada de Lie de la conexión se llega a una expresión similar a \ref{liepart1}
+
+\begin{equation*}
+\left( \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu}\right)_{,\rho} = \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu , \rho} + \xi^{\eta}_{ \ , \rho  \mu}\Gamma^{\sigma}_{ \nu \eta} + \xi^{\eta}_{ \ , \rho  \nu}\Gamma^{\sigma}_{ \mu \eta} - \xi^{\sigma}_{ \ , \rho \eta} \Gamma^{\eta}_{ \mu  \nu}
+\end{equation*}
+
+Introduciendo esto en \ref{varcurv} podemos ver que todos los términos con derivadas segundas de $ \xi $ se terminan cancelando entre si para obtener finalmente
+
+\begin{equation*}
+\delta R^{\sigma}_{ \ \mu \rho \nu} = \mathcal{L}_{\xi} \left( 2 \Gamma^{\sigma}_{\mu \left[\nu , \rho\right] } \right) + \mathcal{L}_{\xi} \left(2\Gamma^{\eta}_{\mu\left[ \nu \right.}\Gamma^{\sigma}_{ \left. \rho \right] \eta}\right) = \mathcal{L}_{\xi} R^{\sigma}_{ \ \mu \rho \nu}
+\end{equation*}
+
+que nos dice que el tensor de curvatura transforma como un tensor $ \binom{1}{3} $. Con este resultado estamos muy cerca de probar el caracter escalar del primer término del Lagrangiano, para ello utilizamos que la derivada de Lie cumple la regla de Leibniz, por lo que contracciones y productos de tensores transforman como tensores. De esta forma concluimos que
+
+\begin{equation*}
+\delta R_{\mu \nu} = \delta R^{\sigma}_{ \ \mu \sigma \nu} = \mathcal{L}_{\xi} R^{\sigma}_{ \ \mu \sigma \nu} = \mathcal{L}_{\xi} R_{\mu \nu} 
+\end{equation*} 
+
+Transforma como un tensor $ \binom{0}{2} $ mientras que finalmente
+
+\vspace{0.4cm}
+
+\begin{boxquation}
+\begin{equation}\label{res3}
+\delta R = \delta \left( g^{\mu \nu }R_{\mu \nu }\right) = \mathcal{L}_{\xi} \left( g^{\mu \nu }R_{\mu \nu }\right) = \mathcal{L}_{\xi} R = \xi^{\rho}R_{,\rho} 
+\end{equation}
+\end{boxquation}
+
+donde vemos que efectivamente $ R $ transforma como un escalar\\
+
+\vspace{0.4cm}
+
+Pasemos ahora el segundo término del Lagrangiano, $ \partial_{\mu}\phi\partial^{\mu}\phi $. Si bien en general la derivada parcial de un tensor no da como resultado otro tensor, en el caso particular de escalares su derivada transforma como un objeto $ \binom{0}{1} $. Para ver esto simplemente observamos 
+
+\begin{equation*}
+\delta \left( \phi_{,\mu} \right) = \left(\delta \phi\right)_{,\mu} = \left(\xi^{\rho} \phi_{,\rho}\right)_{,\mu} = \xi^{\rho}\phi_{,\mu\rho} + \xi^{\rho}_{ \ ,\mu} \phi_{,\rho} = \mathcal{L}_{\xi} \phi_{,\mu}
+\end{equation*}
+
+Donde vemos que efectivamente $ \phi_{,\mu} $ transforma como un tensor $ \binom{0}{1} $. De esta forma, apelamos nuevamente a la regla de Leibniz para concluir que la contracción de dos de estas derivadas con la métrica varía solo con el término de transporte
+
+\vspace{0.4cm}
+
+\begin{boxquation}
+\begin{equation}\label{res4}
+\delta \left(\partial_{\mu}\phi\partial^{\mu}\phi\right) = \delta \left(\partial_{\mu}\phi\partial_{\nu}\phi g^{\mu \nu}\right) = \xi^{\rho} \left(\partial_{\mu}\phi\partial^{\mu}\phi\right)_{,\rho}
+\end{equation}
+\end{boxquation}
+
+\vspace{0.4cm}
+
+Vayamos finalmente al último término de nuestra acción, el tensor de curvatura de la 2-forma $ H_{\mu\nu\alpha} $ para el cual utilizaremos una importante propiedad de la derivada de Lie relacionada con la derivada exterior. Dada una forma diferencial $ \alpha $ y el mapeo de $p$ formas a $ p+1 $ formas $ \tilde{\mathrm{d}}:\mathbb{T} \binom{0}{p} \rightarrow \mathbb{T} \binom{0}{p+1} $ puede demostrarse que se cumple
+
+\begin{equation*}
+\tilde{\mathrm{d}} \left( \mathcal{L}_{\xi} \alpha \right) = \mathcal{L} \left( \tilde{\mathrm{d}} \alpha\right)
+\end{equation*}
+
+lo cual no es otra cosa que decir que la derivada de Lie conmuta con la derivada exterior. Utilizando esto, que la curvatura se obtiene como la derivada exterior del campo $ \textbf{b} $
+
+\begin{equation*}
+H_{\mu\nu\alpha} = 3 b_{\left[ \mu \nu , \alpha\right] } = \left(\tilde{\mathrm{d}}\textbf{b}\right)_{\mu \nu \alpha}
+\end{equation*}
+
+y que la variación de la 2-forma viene dada por \ref{deltab}, se obtiene de forma directa 
+
+\begin{equation*}
+\delta H_{\mu\nu\alpha} = \left[\tilde{\mathrm{d}} \left( \mathcal{L}_{\xi} \textbf{b} \right)\right]_{\mu \nu \alpha} = \left[ \mathcal{L}_{\xi} \left(  \tilde{\mathrm{d}} \textbf{b} \right)\right]_{\mu \nu \alpha} = \mathcal{L}_{\xi} \delta H_{\mu\nu\alpha}
+\end{equation*}
+
+Lo que demuestra que efectivamente transforma como un tensor $ \binom{0}{3} $. Con este resultado el procedimiento es idéntico a los términos anteriores, utilizando Leibniz podemos concluir que la contracción de dos tensores $ H_{\mu \nu \alpha} $ con 3 métricas es un escalar
+\begin{boxquation}
+\begin{equation}\label{res5}
+\delta  \left(H_{\mu\nu\alpha}  H^{\mu\nu\alpha}\right) = \delta \left(H_{\mu\nu\alpha}  H_{\rho\sigma\beta} g^{\mu \rho} g^{\nu \sigma}g^{\alpha \beta}\right) = \mathcal{L}_{\xi} \left( H_{\mu\nu\alpha}  H^{\mu\nu\alpha} \right) = \xi^{\rho} \left( H_{\mu\nu\alpha}  H^{\mu\nu\alpha} \right)_{,\rho}
+\end{equation}
+\end{boxquation}
+
+\vspace{0.4cm}
+
+Finalmente, uniendo el resultado de la transformación del factor multiplicativo del Lagrangiano $ e^{-2\phi} $, \ref{res2},  con los otros 3 \ref{res3},  \ref{res4}  y  \ref{res5}  y utilizando nuevamente Leibniz para expresar el producto de escalares como un escalar, podemos concluir que el Lagrangiano en su totalidad transforma como un elemento $ \binom{0}{0} $. Por otro lado, podemos unir esto con \ref{res1} y utilizar la ecuación  \ref{tegia} lo que nos permite concluir que la acción es invariante ante difeomorfismos.\\
+
+\vspace{0.4cm}
+
+Analizada la simetría ante cambio general de coordenadas, revisemos ahora la invarianza de Gauge \ref{gauge}. Como dicha simetría solo afecta a la 2-forma, el único término a analizar será $ \left(H_{\mu\nu\alpha}  H^{\mu\nu\alpha}\right)  $. Para ello simplemente veamos que el mismo tensor $\textbf{H} $ queda inalterado, esto se sigue sencillamente de
+
+\begin{equation*}
+H'_{\mu\nu\alpha} = 3 b'_{\left[ \mu \nu , \alpha\right]} = 3 b_{\left[ \mu \nu , \alpha\right]}+ \underbrace{3\lambda_{\left[ \mu ,\nu \alpha\right]}}_{\text{ =0}} = 3 b_{\left[ \mu \nu , \alpha\right]} = H_{\mu\nu\alpha}
+\end{equation*}
+
+donde el término del campo $ \lambda $ se anula por contener derivadas dobles dentro de un antisimetrizador. De esto se deduce que el único término que contiene a la 2-forma no se modifica y consecuentemente la acción en su totalidad se mantiene invariante ante la transformación de Gauge.
+
+\newpage
+
+\section{\textcolor{teal}{Ecuaciones de movimiento}}\label{ecu}
+
+Dada una acción, podemos obtener las ecuaciones clásicas de movimiento de los campos fundamentales extremando la funcional $S[\textbf{g},\textbf{b},\pmb{\phi}] $, en otras palabras lo que buscamos son las trayectorias que cumplen
+
+\begin{equation*}
+\frac{\delta S}{\delta g_{\mu\nu}} = \int\mathrm{dx^{10}} \frac{\delta}{\delta g_{\mu\nu}} \left(\sqrt{-g} \mathscr{L}\right)=0
+\end{equation*}
+
+donde tomamos a modo de ejemplo la variación con respecto al gravitón. De forma equivalente lo que haremos nosotros será ver como varía la acción $\delta S $ al variar los campos $ \delta g_{\mu \nu} $ queriendo obtener al final de los cálculos una expresión de la forma
+
+\begin{equation}\label{ecubase}
+\delta S = \int \mathrm{dx^{10}} \Delta g_{\mu\nu} \delta g^{\mu\nu} = 0
+\end{equation} 
+
+donde 
+
+\begin{equation*}
+\Delta g_{\mu\nu} \equiv \frac{\delta}{\delta g^{\mu\nu}} \left(\sqrt{-g} \mathscr{L}\right)
+\end{equation*}
+
+Suponiendo ahora que las variaciones en los bordes de integración son cero (extremos fijos), puede demostrarse que pedir \ref{ecubase} equivale a 
+
+\begin{equation*}
+\Delta g_{\mu\nu}(\textbf{g},\textbf{b},\pmb{\phi}) =0
+\end{equation*}
+
+que serán las ecuaciones de movimiento para la métrica!. Con esta idea en mente, comencemos con el campo escalar
+
+\subsection{Dilatón}
+
+Antes de variar la acción, introduzcamos la \textit{derivada covariante} que será útil para cálculos futuros. Dicha derivada se define como un mapeo de tensores $\binom{r}{s}$ a $ \binom{r}{s+1} $  y actúa de la siguiente forma
+
+
+\begin{equation}\label{cov}
+\begin{aligned}
+\nabla_{\mu} T^{a_1a_2...a_r}_{b_1b_2...b_s} = T^{a_1a_2,...a_r}_{b_1b_2...b_s,\mu}
++ \Gamma^{a_1}_{\mu \rho}T^{\rho a_2,...a_r}_{b_1 b_2...b_s} + \dots - \Gamma^{\sigma}_{\mu b_1}T^{a_1 a_2,...a_r}_{\sigma b_2...b_s} - \dots
+\end{aligned}
+\end{equation}
+
+Esta derivada cumple varias propiedades, entre las cuales se destacan linealidad y que verifica la regla de Leibniz. Un caso particular de \ref{cov} es cuando el tensor es un escalar, en dicho caso, la derivada covariante actúa simplemente como derivada parcial y por ello es licito reemplazar nuestro Lagrangiano \ref{L} por
+
+\begin{equation*}
+\mathscr{L}= e^{-2\phi}\left[R + 4 \nabla_{\mu}\phi\nabla^{\mu} \phi - \frac{1}{12} H_{\mu \nu \alpha}H^{\mu \nu \alpha}\right] \equiv e^{-2\phi} \mathscr{L}_0
+\end{equation*}
+
+donde aprovechamos para definir $ \mathscr{L}_0 $ como el mismo Lagrangiano sin el factor exponencial multiplicando. Ahora si, con la idea de reproducir \ref{ecubase} para el caso del dilatón variamos la acción
+
+\begin{equation*}
+ \delta S = \int\mathrm{dx^{10}}\sqrt{-g} \left[ \delta \left(e^{-2\phi}\right) \mathscr{L}_0  + e^{-2\phi} \delta \left( 4 \nabla_{\mu}\phi\nabla^{\mu} \phi \right) \right]
+\end{equation*}
+
+donde ambos términos se varían trivialmente. Por parte de la exponencial resulta
+
+\begin{equation*}
+\delta \left(e^{-2\phi}\right) = -2 e^{-2\phi} \delta \phi 
+\end{equation*}
+
+Por otro lado, para el término cinético se obtiene
+
+\begin{equation*}
+\delta \left( 4 \nabla_{\mu}\phi\nabla^{\mu} \phi \right) = 4 \left( \nabla_{\mu} \delta \phi \nabla^{\mu} \phi + \nabla_{\mu} \phi \nabla^{\mu} \delta \phi \right) = 8 \nabla_{\mu} \delta \phi \nabla^{\mu} \phi
+\end{equation*}
+
+Ahora bien, como lo que queremos es llegar a una expresión en la forma de \ref{ecubase} sacaremos la variación de $ \phi $ de adentro de la derivada covariante integrando por partes y utilizando nuevamente el teorema de Stokes para eliminar términos de borde. De esta forma obtenemos
+
+\begin{equation*}
+\delta S = \int\mathrm{dx^{10}}\sqrt{-g} \left[-2 \mathscr{L}  - 8 \nabla_{\mu} \left( e^{-2\phi} \nabla^{\mu} \phi \right) \right] \delta \phi = 	-2 \int\mathrm{dx^{10}}\sqrt{-g} e^{-2\phi}\left[  \mathscr{L}_0 + 4 \left( -2 \nabla_{\mu}\phi\nabla^{\mu}\phi + \nabla_{\mu}\nabla^{\mu} \phi \right) \right] \delta \phi
+\end{equation*} 
+
+Igualando a cero y utilizando extremos fijos obtenemos nuestra primera ecuación de movimiento
+
+\vspace{0.4cm}
+\begin{boxquation}	
+\begin{equation}\label{eqdil}
+\Delta \phi = R - 4 \left[ \left(\nabla \phi\right)^2 - \Box \phi \right] - \frac{1}{12} H^2 = 0
+\end{equation}
+\end{boxquation}
+
+donde simplificamos la notación notando $ \left(\nabla \phi\right)^2 \equiv \nabla_{\alpha} \phi \nabla^{\alpha} \phi $, $ \Box \equiv \nabla_{\alpha}\nabla^{\alpha} $ y a $ H^2 $ como dos tensores de curvatura totalmente contraídos.
+
+\vspace{0.4cm}
+
+\subsection{Gravitón}
+
+Pasemos ahora a la variación de la acción con respecto al gravitón
+
+\begin{equation}\label{vargra}
+\delta S = \int\mathrm{dx^{10}} \left\{ \delta \sqrt{-g} \mathscr{L} + \sqrt{-g} e^{-2\phi} \left[\delta R + 4 \nabla_{\mu}\phi\nabla_{\nu}\phi \delta g^{\mu\nu} - \frac{1}{12} H_{\mu \alpha \beta}H_{\nu \sigma \rho} \delta \left( g^{\mu\nu} g^{\alpha\sigma} g^{\beta\rho}\right)\right]  \right\}
+\end{equation}
+
+donde por simplicidad con cálculos futuros nemombramos los indices del término correspondiente a $ \textbf{H} $. La parte correspondiente al dilatón aparece directamente en la forma deseada mientras que nos quedan 3 términos para analizar por separado.\\ 
+
+La variación del jacobiano viene dada por \ref{vardet} la cual podemos llevar a la forma 
+
+\begin{equation}\label{vardet2}
+\delta \sqrt{-g} = - \frac{\sqrt{-g}}{2} g_{\mu \nu} \delta g^{\mu \nu}
+\end{equation}
+
+utilizando
+
+\begin{equation*}
+\delta (g^{\mu\alpha}g_{\alpha\nu})= \delta \left( \delta^{\mu}_{\nu}\right) =0
+\end{equation*}
+para subir los indices de la variación.
+
+Por otro lado, la variación del último término viene dada por
+
+\begin{equation}\label{varh}
+\begin{aligned}
+ H_{\mu \alpha \beta}H_{\nu \sigma \rho} \delta \left( g^{\mu\nu} g^{\alpha\sigma} g^{\beta\rho}\right) = H_{\mu \alpha \beta}H_{\nu \sigma \rho} \left( \delta g^{\mu\nu} g^{\alpha\sigma} g^{\beta\rho} +g^{\mu\nu} \delta g^{\alpha\sigma} g^{\beta\rho} + g^{\mu\nu} g^{\alpha\sigma} \delta g^{\beta\rho}\right)=\\
+= H_{\mu \alpha \beta}H_{\nu}^{ \ \alpha \beta} \delta g^{\mu \nu} + H_{\alpha \mu \beta}H_{ \ \nu \ }^{\alpha \ \beta} \delta g^{\mu \nu} + H_{\alpha \beta \mu}H_{ \ \ \nu \ }^{\alpha \beta} \delta g^{\mu \nu}  = 3 H_{\mu \alpha \beta} H_{\nu}^{ \ \alpha \beta} \delta g^{\mu\nu}
+\end{aligned}
+\end{equation}
+
+donde para la ante última igualdad se redefinieron los indices antes de contraerlos con la métrica y para la última se utilizo el carácter antisimétrico del tensor de curvatura para reordenar los indices $ \mu , \nu $ de la misma forma en los 3 términos.\\
+
+Analicemos ahora la variación del escalar de Ricci
+
+\begin{equation}\label{varr}
+\delta R = R_{\mu\nu}\delta g^{\mu\nu} + g^{\mu\nu} \delta R_{\mu\nu}
+\end{equation}
+
+donde si bien el primer término se encuentra en la forma deseada el segundo requiere un poco de trabajo. Utilizando la definición \ref{riccitensor} observamos que la variación del tensor de Ricci viene dada por
+ 
+\begin{equation}\label{aux2}
+\delta R_{\mu\nu} = \delta^{\rho}_{\sigma} \delta R^{\sigma}_{ \ \mu \rho \nu} = \delta^{\rho}_{\sigma} \left[\delta\Gamma^{\sigma}_{\mu \nu ,\rho } + \Gamma^{\sigma}_{ \rho \eta}\delta \Gamma^{\eta}_{\mu \nu }  - \Gamma^{\eta}_{\mu \rho } \delta  \Gamma^{\sigma}_{ \nu \eta} - \left( \delta\Gamma^{\sigma}_{\mu \rho ,\nu } + \Gamma^{\sigma}_{ \nu \eta} \delta \Gamma^{\eta}_{\mu \rho } - \Gamma^{\eta}_{\mu \nu } \delta  \Gamma^{\sigma}_{ \rho \eta}  \right) \right]
+\end{equation}
+ 
+donde la forma sugestiva de reordenar los términos se debe a que si suponemos por un segundo que $ \delta \Gamma^{\sigma}_{\mu \nu}  $ se comporta como un tensor $ \binom{1}{2} $ entonces, lo que tenemos en \ref{aux2} no es otra cosa que
+ 
+\begin{equation}\label{deltariccitensor}
+\delta R_{\mu\nu}= \delta^{\rho}_{\sigma} \left( \nabla_{\rho} \delta \Gamma^{\sigma}_{\mu \nu} - \nabla_{\nu} \delta \Gamma^{\sigma}_{\mu \rho}\right) = \delta\Gamma^{\sigma}_{\mu \left[\nu ; \sigma \right]}
+\end{equation}
+ 
+donde nos queda como trabajo probar que la variación de la conexión efectivamente transforma como tal. Para ello, la forma más fácil de visualizarlo es notando que  $ \delta \Gamma^{\sigma}_{\mu \nu}  $ se lee simplemente como la forma en la que cambia la conexión al variar la métrica, los puntos claves aquí son que dicha variación será la diferencia entre dos objetos que transforman cada una por separado como conexiones, digamos $\tilde{\Gamma}^{\sigma}_{\mu \nu} $ y  $ \Gamma^{\sigma}_{\mu \nu}  $, y que ambos objetos están evaluados en los mismos puntos ya que la variación viene dada por un cambio en el campo fundamental y no una transformación de coordenadas!. De esta forma, podemos ver que ante un difeomorfismo obtenemos
+
+\begin{equation*}
+\delta_{difeo} \left( \delta\Gamma^{\sigma}_{\mu \nu} \right) = \delta_{difeo} \left( \tilde{\Gamma}^{\sigma}_{\mu \nu}(x) - {\Gamma}^{\sigma}_{\mu \nu} (x)\right)  = \mathcal{L}_{\xi} \tilde{\Gamma}^{\sigma}_{\mu \nu}  + \xi^{\sigma}_{ \ , \mu \nu} - \mathcal{L}_{\xi} \Gamma^{\sigma}_{\mu \nu}  - \xi^{\sigma}_{ \ , \mu \nu} = \mathcal{L}_{\xi}\delta\Gamma^{\sigma}_{\mu \nu}
+\end{equation*}
+
+donde en la tercer igualdad se utilizó linealidad y la transformación de una conexión genérica \ref{deltagama}. Esto prueba el carácter tensorial del objeto en cuestión y en consecuencia podemos expresar la variación del tensor de Ricci como \ref{deltariccitensor}. Ahora bien, sería conveniente tener una expresión del mismo en términos de la métrica y sus perturbaciones, esto se logra explicitando la forma de $ \delta \Gamma^{\sigma}_{\mu \nu}  $, la cual podemos expresar como
+
+\begin{equation*}
+\delta \Gamma^{\sigma}_{\mu \nu} = \delta \left( g^{\sigma \alpha}  \Gamma_{\alpha \mu \nu} \right) = - g^{\sigma \lambda} \Gamma^{\beta}_{\mu\nu} \delta g_{\lambda \beta} + g^{\sigma\alpha}\delta\Gamma_{\alpha \mu \nu} = \frac{1}{2} g^{\sigma\alpha}\left( \delta g_{\alpha \mu , \nu} + \delta g_{\alpha \nu , \mu} - \delta g_{\mu \nu , \alpha} - 2\Gamma^{\beta}_{\mu \nu} \delta g_{\alpha \beta}\right)
+\end{equation*}
+
+donde en el primer término de la segunda igualdad se bajo los indices de la variación. Luego, podemos sumar y restar $ \Gamma^{\beta}_{\nu \alpha} \delta g_{\beta\mu} $ y lo mismo con $ \Gamma^{\beta}_{\mu \alpha} \delta g_{\beta\nu} $ y reordenando los términos es sencillo demostrar que el resultado final es
+
+\begin{equation}\label{deltagamacov}
+\delta \Gamma^{\sigma}_{\mu\nu} = \frac{1}{2}g^{\sigma\alpha}\left(2\delta g_{\alpha \left(\mu ; \nu \right)} - \delta g_{\mu\nu ;\alpha}\right)
+\end{equation}
+
+El cual es manifiestamente covariante, esto puede tomarse como una demostración alternativa de que la variación de la conexión se comporta tensorialmente. Ahora bien, introduciendo \ref{deltariccitensor} en \ref{varr} y a su vez este en la variación de la acción, podemos notar que quedará un término de la forma
+
+\begin{equation}\label{aux3}
+\int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi} g^{\mu\nu}\delta R_{\mu\nu} = \int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi}g^{\mu\nu}\left( \nabla_{\sigma} \delta \Gamma^{\sigma}_{\mu \nu} - \nabla_{\nu} \delta \Gamma^{\sigma}_{\mu \sigma}\right) = \int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi} T^{\alpha}_{ \ \ ;\alpha} 
+\end{equation}
+
+donde utilizamos la compatibilidad de la derivada covariante con la métrica $ \left( g^{\mu\nu}_{ \ \ \ ; \alpha}=0  \right) $ y definimos el tensor 
+
+\begin{equation*}
+T^{\alpha} \equiv g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu \nu} -  g^{\mu\alpha} \delta \Gamma^{\sigma}_{\mu \sigma}
+\end{equation*}
+
+el cual se puede reescribir en términos de $ \delta\textbf{g} $ utilizando la expresión \ref{deltagamacov} como
+
+\begin{equation*}
+\begin{aligned}
+T^{\alpha}  = \frac{1}{2} g^{\mu\nu} g^{\alpha\lambda}\left(2\delta g_{\lambda \left(\mu ; \nu \right)} - \delta g_{\mu\nu ;\lambda}\right) - \frac{1}{2}g^{\mu\alpha} g^{\sigma\lambda}\left(2\delta g_{\lambda \left(\mu ; \sigma \right)} - \delta g_{\mu\sigma ;\lambda}\right) = \\
+= g^{\mu\nu} g^{\alpha\lambda}\delta g_{\mu \left[ \lambda ; \nu \right]} = - \delta g^{\nu\alpha}_{ \ \ \ ; \nu} + \left( g_{\mu\nu}g^{\alpha\lambda} \delta g^{\mu\nu}\right)_{;\lambda} =  \left( - \delta g^{\alpha\beta} + g_{\mu\nu}g^{\alpha\beta} \delta g^{\mu\nu}\right)_{ ; \beta}
+\end{aligned}
+\end{equation*}
+
+y al introducirlo en \ref{aux3} obtenemos
+
+\begin{equation*}
+\begin{aligned}
+\int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi} T^{\alpha}_{ \ \ ;\alpha} &= \int\mathrm{dx^{10}} \sqrt{-g}\left(e^{-2\phi}\right)_{ ; \alpha\beta} \left(g_{\mu\nu}g^{\alpha\beta} \delta g^{\mu\nu} - \delta g^{\alpha\beta} \right) =\\
+&=\int\mathrm{dx^{10}} \sqrt{-g}e^{-2\phi} \left[ \left( 4 \nabla_{\alpha}\phi \nabla^{\alpha} \phi - 2 \nabla_{\alpha}\nabla^{\alpha} \phi \right)g_{\mu\nu} - 4\nabla_{\mu}\phi \nabla_{\nu}\phi + 2 \nabla_{\mu}\nabla_{\nu} \phi  \right]\delta g^{\mu\nu}
+\end{aligned}
+\end{equation*}
+
+Para llegar a dicha expresión se utilizó el teorema de Stokes dos veces ( una por cada derivada covariante, $ \alpha $ y $ \beta $ ) y gracias a ello vemos que obtenemos el término $ g^{\mu\nu}\delta R_{\mu\nu} $ en la forma deseada.\\
+ 
+Con este último resultado, ya tenemos todas las variaciones expresadas como queríamos, por lo que introduciendo \ref{vardet2}, \ref{varh} y \ref{varr} en \ref{vargra} nos queda
+
+\begin{equation*}
+\begin{aligned}
+\delta S &= \int\mathrm{dx^{10}}\sqrt{-g} e^{-2\phi} \times \\
+&\left[ -\frac{1}{2} g_{\mu\nu}\mathscr{L}_0  + R_{\mu\nu} + \left(4 \nabla_{\alpha}\phi\nabla^{\alpha}\phi  -2\nabla_{\alpha}\nabla^{\alpha}\phi \right)g_{\mu\nu} - 4\nabla_{\mu}\phi \nabla_{\nu}\phi + 2 \nabla_{\mu}\nabla_{\nu} \phi + 4\nabla_{\mu}\phi \nabla_{\nu}\phi -   \frac{1}{4} H_{\mu \alpha \beta}H_{\nu}^{ \ \alpha \beta} \right] \delta g^{\mu\nu} 
+\end{aligned}
+\end{equation*} 
+ 
+Luego, al igual que en el caso del campo escalar, las ecuaciones de movimiento vendrán dadas por la anulación del término entre brackets, que luego de reordenar obtenemos
+
+\vspace{0.4cm}
+
+\begin{boxquation}
+\begin{equation*}
+\Delta g_{\mu \nu} = G_{\mu\nu} + 2 g_{\mu\nu} \left[ \left(\nabla \phi\right)^2 - \Box \phi \right] + 2 \nabla_{\mu}\nabla_{\nu} \phi - \frac{1}{4} \left( H_{\mu\alpha\beta} H_{\nu}^{ \ \alpha\beta} - \frac{1}{6} H^2 g_{\mu\nu} \right) = 0
+\end{equation*}
+\end{boxquation}
+
+donde utilizamos la misma notación que en la ecuación del dilatón y definimos el tensor de Einstein como
+
+\begin{equation}\label{G}
+G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{12} g_{\mu\nu} R
+\end{equation}
+
+\subsection{Campo de Kalb-Ramond}
+
+Pasemos ahora al último campo fundamental variando la acción con respecto a la 2-forma. Al aparecer en un solo término del Lagrangiano, extremar la acción se convierte en un trabajo sencillo
+
+\begin{equation}\label{varb}
+\delta S = \int\mathrm{dx^{10}}\sqrt{-g} e^{-2\phi} \delta \left( -\frac{1}{12}H^2\right) = -\frac{1}{6}\int\mathrm{dx^{10}}\sqrt{-g} e^{-2\phi} \delta H_{\mu \nu \alpha} H^{\mu \nu \alpha}
+\end{equation}
+
+donde podemos notar que
+
+\begin{equation}\label{key}
+\delta H_{\mu \nu \alpha} H^{\mu \nu \alpha} = \delta b_{\left[ \mu \nu , \alpha\right]} H^{\mu \nu\alpha}  = \delta b_{ \left[\mu \nu ; \alpha\right]} H^{\mu \nu\alpha} = \delta b_{ \mu \nu ; \alpha} H^{\mu \nu\alpha}
+\end{equation}
+
+donde para la segunda igualdad se utilizó que la conexión es simétrica ante el intercambio de sus dos índices contravariantes (Torsión nula) por lo que de aplicar la derivada convariante \ref{cov} solo sobrevive la derivada parcial. Por otro lado, para obtener la última igualdad observamos que no es necesario mantener el antisimetrizador en $ b_{\mu\nu ; \alpha} $ ya que está contraído con un tensor totalmente antisimetrico. De esta forma, introducimos nuestro resultado en \ref{varb} e integramos por partes 
+
+\begin{equation}\label{key}
+\delta S =\frac{1}{6}\int\mathrm{dx^{10}}\sqrt{-g} e^{-2\phi} \left( e^{-2 \phi} H^{\mu\nu \alpha}\right)_{ ; \alpha} \delta b_{\mu\nu} 
+\end{equation}
+
+De la cual extraemos finalmente las ecuaciones de movimiento
+
+\begin{boxquation}
+\begin{equation}\label{key}
+\Delta b^{\mu\nu} = -2 \nabla_{\alpha} \phi  H^{\mu\nu \alpha} +  \nabla_{\alpha}H^{\mu\nu \alpha}=0
+\end{equation}
+\end{boxquation}
+
+\vspace{0.4cm}
+
+\rule{\textwidth}{0.4pt}
+
+\vspace{0.2cm}
+
+\begin{boxumen}
+\textbf{Resumen:}
+
+POSIBLE RESUMEN
+
+\begin{equation*}
+\begin{aligned}
+\Delta \phi &= R - 4 \left[ \left(\nabla \phi\right)^2 - \Box \phi \right] - \frac{1}{12} H^2 = 0\\
+\Delta g_{\mu\nu} &= G_{\mu\nu} + 2 g_{\mu\nu} \left[ \left(\nabla \phi\right)^2 - \Box \phi \right] + 2 \nabla_{\mu}\nabla_{\nu} \phi - \frac{1}{4} \left( H_{\mu\alpha\beta} H_{\nu}^{ \ \alpha\beta} - \frac{1}{6} H^2 g_{\mu\nu} \right) = 0\\
+\Delta b^{\mu\nu} &= -2 \nabla_{\alpha} \phi  H^{\mu\nu \alpha} +  \nabla_{\alpha}H^{\mu\nu \alpha}=0
+\end{aligned}
+\end{equation*}
+
+\end{boxumen}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

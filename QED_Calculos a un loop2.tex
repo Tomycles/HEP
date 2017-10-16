@@ -1,0 +1,1001 @@
+\documentclass{article}
+
+%Packages
+
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=25mm}
+\usepackage{tcolorbox}
+\usepackage{bookman} % font
+\usepackage{marvosym}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\setlength\parindent{0pt} % elimina sangría de todos los parrafos
+\usepackage{tikz} %Dibujos de lineas
+\usepackage{tikz-feynman} % diagramas de Feynman
+\usepackage{feynmf}
+\usepackage{cancel} %para poner las variables slash
+
+
+\usepackage{lettrine} % letra capital}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{7pt}
+\setlength{\DefaultNindent}{0pt}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+\renewcommand{\DefaultLoversize}{-0.70}
+
+%Primero se declara el paquete lettrine y el numero de renglones que debe abarcar la inicial. En seguida DefaultFindent, la distancia de la inicial a la letra siguiente en el primer renglón y DefaultNindent, la distancia que se desplaza a la derecha del inicio del primer renglón, los renglones subsecuentes que abarca la capitular.Después se declara la font a utilizar, en este caso yinit, con unos parámetros que la describen, y ﬁnalmente el tamaño de la letra.
+
+\usepackage{yfonts}
+
+
+%Pagestyle
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{{\color{brown!60!black}\Large\Coffeecup}}
+\lhead{\textit{Capítulo 1}}
+\fancyfoot{}
+\lfoot{\tiny{Octubre 2017 - v1.0}}
+\rfoot{\thepage}
+
+%Title
+\title{\vspace{-35pt}\huge{\textbf{\textcolor{teal}{QED:}}} \\ \vspace{0.1cm} \large{\textbf{Cálculos a un loop}}}
+\date{\vspace{-20pt}}
+\author{\textit{Tomás Codina}}
+
+%%%---%%%
+
+%Document
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\newtcolorbox{boxumen}{colback=white,colframe=teal,boxrule=1pt}
+\newtcolorbox{boxquation}{colback=white,colframe=black,boxrule=1pt}
+
+
+
+
+
+Predicha como un límite de bajas energías en teoría de cuerdas, la acción de supergravedad contiene información sobre la dinámica de 3 campos fundamentales definidos en un espacio-tiempo de 10 dimensiones. Estos son el \textit{gravitón} $ g_{\mu\nu} $, un tensor $ \binom{0}{2} $ totalmente simétrico, $ b_{\mu\nu} $ una 2-forma llamada \textit{campo de Kalb-Ramond} y un campo escalar $ \phi $, conocido como \textit{Dilatón}. El objetivo del presente capítulo se divide en dos partes, en primer lugar queremos estudiar las simetrías de la acción, corroborando que la misma se mantiene invariante al aplicar ciertas transformaciones, luego, finalizamos el capítulo deduciendo las ecuaciones de movimiento para los campos a partir del principio de mínima acción.  
+
+\rule{\textwidth}{0.4pt}
+
+
+\section{\textcolor{teal}{Campos de Dirac, fotones y QED}}\label{sim}
+	
+\subsection{Lagrangiano clásico}
+Para describir los procesos que ocurren a nivel fundamental entre las
+partículas del modelo estándar (SM) utilizamos la teoría cuántica de campos
+en donde modelamos a nuestras partículas como excitaciones del vacío
+producidas por operadores de campos. En estas notas nos centraremos en el caso particular en donde solo consideramos la interacción electromagnética entre fermiones de spin $ \frac{1}{2} $ y los bosones no masivos de spin $ 1 $ mediadores del campo electromagnético, los fotones, esto nos lleva a la teoría de la electrodinámica cuántica (QED). Si bien es obvio que estos procesos ocurrirán a escalas en donde predominan los efectos cuánticos, comencemos analizando la teoría de campos \textbf{Clásica} correspondiente al proceso. Como en todas estas teorías dinámicas, lo primero que haremos es identificar el Lagrangiano del sistema. No daremos deducciones ni motivaciones de como obtenerlo pero la realidad es que la naturaleza de dichas interacciones, están gobernadas por la densidad Lagrangiana \ref{lqed}
+
+\begin{equation}\label{lqed}
+\mathscr{L}_{QED}=\overline{\psi}\left(\frac{i}{2}\gamma^{\mu}
+\overleftrightarrow{\partial_{\mu}}-m\right)\psi-\frac{1}{4}F_{\mu\nu}F^{\mu\nu}-e\overline{\psi}\gamma^{\mu}A_{\mu}\psi
+\end{equation}
+
+El primer término representa la parte cinética de un campo fermiónico de Dirac libre $ \psi(x) $ de masa $ m $, en él aparece el spinor adjunto $ \overline{\psi}(x)\equiv\psi^{\dagger}(x) \gamma^0 $. Luego tenemos el término cinético para el campo del fotón $ A_{\mu} $, que coincide con la versión tensorial de las ecuaciones de Maxwell sin fuentes, con
+
+\begin{equation*}
+F_{\mu\nu} = 2 \partial_{[\mu}A_{\nu]}
+\end{equation*}
+
+
+Por último, el término cubico en los campos, representa
+una interacción entre fermiones de carga $ e $ y el campo mediador y puede reescribirse como
+
+\begin{equation}\label{lint}
+\mathscr{L}_{int}\equiv-e\overline{\psi}\gamma^{\mu}A_{\mu}\psi\equiv J^{\mu}A_{\mu}
+\end{equation}
+
+donde definimos la corriente fermiónica $J^{\mu}$. Esta definición no es un mero capricho sino que así definida, dicha magnitud es exactamente la corriente conservada de Noether producto de la simetría interna global (independiente de las coordenadas $ x^{\mu} $)
+
+\begin{equation*}
+\begin{aligned}
+\psi(x) \longrightarrow \psi'(x)=e^{-ie\alpha}\psi(x)\\
+\bar{\psi}(x) \longrightarrow \overline{\psi}'(x)=\overline{\psi}(x)e^{ie\alpha}\\
+A'_{\mu}(x) \longrightarrow A_{\mu}(x) 
+\end{aligned}
+\end{equation*}
+
+Este Lagrangiano tiene toda la información que necesitamos
+del sistema físico, de él extraeremos que procesos pueden
+ocurrir y cuales no y la interacción entre las partículas presentes estará gobernada por \ref{lint}.\\
+
+\subsection{Operadores de campo}\label{sec_campos}
+Ahora bien, todo esta descripción es clásica. Para pasar al caso cuántico, se comienza identificando a los campos $ \psi $ y $ A_{\mu} $ como operadores que actúan sobre un espacio de Hilbert, luego se deducen sus propiedades de conmutación o anticonmutación de la forma más conveniente lo que se conoce como \textbf{Primera cuantización}. Luego se desarrollan dichos campos en ondas planas con operadores de creación y destrucción como coeficientes y se expresan todas las magnitudes de la teoría en términos de estos operadores ($ \mathscr{H},\mathscr{P} $, etc), a este proceso se lo conoce como \textbf{Segunda cuantización}. Realizar estos procedimientos para campos de Dirac y fotones no es nada simple, para el primero de ellos, la \textbf{cuantización canónica}\footnote{Este proceso consiste en obtener los momentos conjugados $ \Pi(x) $, calcular los corchetes de Poisson en la descripción clásica y finalmente pasar a conmutadores identificando $ \{\cdot,\cdot\}_{P} \rightarrow \frac{1}{i\hbar} \left[\cdot,\cdot\right]_{C}$.} no funciona ya que lleva a un estado de vació inestable, es decir que la teoría me permitiría crear partículas con energías tan negativas como quiera, y a su vez se viola causalidad, esto nos lleva a relaciones de anti-conmutación entre los campos y por consiguiente a una \textbf{estadística de Fermi-Dirac}. Por otro lado, en el caso del mediador, al tener una simetría de Gauge, sus grados de libertad no son todos físicos. Para resolver esto se puede escoger un Gauge antes de cuantizar, lo que rompe la covarianza y se vuelve tedioso, o bien pueden dejarse los grados de libertad espúrios introduciendo multiplicadores de Lagrange y preservando así la covarianza. Este último método, conocido como \textbf{cuantización de Gupta-Bleuler} tiene la particularidad de introducir estados de norma negativa (Ghost) que al final de los cálculos deben ser eliminados convenientemente imponiendo las condiciones de Gauge en forma de valores medios de operadores pero solo entre estados físicos.
+
+Esta claro que todo esto no es una tarea trivial por lo que no lo haremos en estas notas, los cálculos y discusiones pueden encontrarse en \cite{Itzqui}. 
+
+Sea como sea que se realice la cuantización, exponemos los resultados finales del proceso. 
+
+\subsubsection{Dirac}\label{sec_dirac}
+
+En primer lugar, suponiendo campos de Dirac \textit{libres}, tenemos los desarrollos 
+
+\begin{equation}\label{dirac}
+\begin{aligned}
+\psi(x) = \int \frac{d^3k}{(2\pi)^3}\frac{m}{k_0}\sum_{\alpha=\pm 1 }\left[b(k,\alpha)u(k,\alpha) e^{-i k \cdot x} + d^{\dagger}(k,\alpha)v(k,\alpha)e^{i k \cdot x}\right]\\
+\overline{\psi}(x) = \int \frac{d^3k}{(2\pi)^3}\frac{m}{k_0}\sum_{\alpha=\pm 1 }\left[b^{\dagger}(k,\alpha)\overline{u}(k,\alpha) e^{i k \cdot x} + d(k,\alpha)\overline{v}(k,\alpha)e^{-i k \cdot x}\right]
+\end{aligned}
+\end{equation} 
+
+donde $ u $, $ v $ y sus adjuntos son vectores de cuatro componentes que aparecen en la solución de la ecuación de Dirac. El primero de ellos corresponde a soluciones de energía ($ k_0 $) positiva mientras que el segundo a negativas. Estos están caracterizados por el momento ($ k $) y helicidad ($ \alpha=\pm $). Por otro lado es importante aclarar que el producto que aparece en la exponenciales es el correspondiente a cuadri-vectores. finalmente los campos $ b,d,b^{\dagger} $ y $ d^{\dagger} $ son los conocidos operadores de creación y destrucción que pueden expresarse en términos de los campos de Dirac como
+
+\begin{equation}\label{key}
+\begin{aligned}
+b(k,\alpha)=\int d^3x \ \overline{u}(k,\alpha)e^{i k \cdot x}\gamma^0\psi (x)\\
+b^{\dagger}(k,\alpha)=\int d^3x \ \overline{\psi}(x)\gamma^0 e^{-i k \cdot x}u(k,\alpha)\\
+d(k,\alpha)=\int d^3x \ \overline{\psi}(x)\gamma^0 e^{i k \cdot x}v(k,\alpha)\\
+d^{\dagger}(k,\alpha)=\int d^3x \ \overline{v}(k,\alpha)e^{-i k \cdot x}\gamma^0\psi (x)\\
+\end{aligned}
+\end{equation}
+
+Para todos los operadores presentes tenemos las siguientes reglas de conmutación \textit{a tiempos iguales}:
+
+\begin{equation}\label{key}
+\begin{aligned}
+\{\psi_{\xi}(t,\mathbf{x}),\psi_{\eta}^{\dagger}(t,\mathbf{y})\} = \delta^3(\mathbf{x}-\mathbf{y})\delta_{\xi \eta}\\
+\{b_{\alpha}(k),b_{\beta}^{\dagger}(q)\} = (2\pi)^3\frac{k_0}{m}\delta^3(\mathbf{k}-\mathbf{q})\delta_{\alpha \beta}\\
+\{d_{\alpha}(k),d_{\beta}^{\dagger}(q)\} = (2\pi)^3\frac{k_0}{m}\delta^3(\mathbf{k}-\mathbf{q})\delta_{\alpha \beta}\\
+\end{aligned}
+\end{equation}
+
+y todos los restantes cero. En la primera de ellas hemos especificado las componentes spinoriales $ \xi $ y $ \eta $ mientras que para las dos últimas igualdades notamos la helicidad como un sub-indice solo por comodidad.
+
+El estados de vacío se define como aquel estado $ |0\rangle $ tal que 
+
+\begin{equation}\label{key}
+b(k,\alpha)|0\rangle = d(k,\alpha)|0\rangle=0 \ \ \forall k,\alpha
+\end{equation}
+
+A su vez con los operadores de creación podemos construir el \textbf{espacio de Fock} para fermiones donde tendremos 4 tipos de partículas\footnote{ No entraremos en detalle, pero puede verse que dichos estados poseen norma infinito lo que no corresponde con un estado de Hilbert. Los verdaderos estados físicos se construyen con una suma infinita de estos estados cuya función de onda si es cuadrado integrable, basicamente esto expresa la idea de que una partícula no es una onda plana sino un paquete de ondas.}
+
+\begin{equation}\label{key}
+\left.\begin{aligned}
+|k,\frac{1}{2}\rangle = b^{\dagger}(k,+1)|0\rangle\\
+|k,-\frac{1}{2}\rangle = b^{\dagger}(k,-1)|0\rangle\\
+|q,\frac{1}{2}\rangle = d^{\dagger}(k,+1)|0\rangle\\
+|q,-\frac{1}{2}\rangle = d^{\dagger}(k,-1)|0\rangle
+\end{aligned}
+\right.\begin{aligned}
+\qquad \text{(fermión con momento k y helicidad $ \frac{1}{2} $)}\\
+\qquad \text{(fermión con momento k y helicidad $ -\frac{1}{2} $)}\\
+\qquad \text{(anti-fermión con momento q y helicidad $ -\frac{1}{2} $)}\\
+\qquad \text{(anti-fermión con momento q y helicidad $ \frac{1}{2} $)}
+\end{aligned}
+\end{equation}  
+
+Con esto, podemos nombrar de forma genérica a $ b^{\dagger} $ y $ d^{\dagger} $ como $ a^{\dagger}(i) $ donde notamos momento y helicidad con un solo índice $ i $ para construir una base del espacio de Fock
+
+\begin{equation}\label{key}
+a^{\dagger}(1)\dots a^{\dagger}(n)|0\rangle
+\end{equation}  
+
+Un último resultado de Dirac muy importante para nuestros cálculos futuros proviene de los anti-conmutadores entre campos a \textit{distinto tiempo}. Definiendo el ordenamiento temporal como
+
+\begin{equation}\label{key}
+T\{\psi_{\xi}(x)\overline{\psi}_{\xi'}(y)\}=\Theta(x^0 - y^0)\psi_{\xi}(x)\overline{\psi}_{\xi'}(y) - \Theta(y^0 - x^0)\overline{\psi}_{\xi'}(y)\psi_{\xi}(x)
+\end{equation}
+
+Se puede ver que el valor de expectación de vacío del ordenamiento temporal entre dos campos de Dirac  
+
+\begin{equation}\label{prop_dirac}
+\left\langle T\{\psi_{\xi}(x)\overline{\psi}_{\xi'}(y)\} \right\rangle \equiv S_{f \xi \xi'}(x-y)=\int\frac{d^{4}k}{(2\pi)^{4}}e^{-ik\cdot(x-y)}\left(\frac{\cancel{k}+m}{k^2-m^2+i\epsilon}\right)_{\xi\xi'}
+\end{equation}
+
+corresponde a la \textbf{función de Green} de la ecuación de Dirac libre también conocido como \textbf{Propagador fermiónico}. En él, el término $ i\epsilon $ se utiliza para desplazar los polos del eje real, es común introducir dicho factor en la masa, como si fuese una componente imaginaria de la misma $ m'\equiv(m-i\epsilon')$ tal que $ m'^2=m^2 + i\epsilon $.
+
+\subsubsection{Fotón}\label{sec_foton}
+
+La deducción de los resultados para el fotón provienen de dejar manifiesta la covarianza de la teoría a costa de introducir un multiplicador de Lagrange $ \lambda $ con la condición de Gauge. Esto da lugar a la densidad Lagrangeana
+
+\begin{equation}\label{key}
+\mathscr{L}=-\frac{1}{4}F_{\mu\nu}F^{\mu\nu}-\frac{\lambda}{2}\left(\partial \cdot A\right)^2
+\end{equation}
+Que no es exactamente el de Maxwell por lo que tampoco lo serán las ecuaciones. Estas se recobrarán al imponer las condiciones al final del cálculo. Como los resultados son independientes del valor de dicho multiplicador, expondremos todo fijando $ \lambda=1 $ lo cual, abuzando del lenguaje, se conoce como escoger el \textbf{Gauge de Feynman}.
+
+Dicho esto, comencemos presentando el desarrollo de Fourier para el campo del fotón
+
+\begin{equation}
+A_{\mu}(x) \int \frac{d^3k}{2k_0(2\pi)^3} \sum_{\lambda=0}^3 \left[a^{(\lambda)}(k)\epsilon_{\mu}^{(\lambda)}(k)e^{-ik\cdot x} + a^{(\lambda)\dagger}(k)\epsilon_{\mu}^{(\lambda)*}(k)e^{ik\cdot x} \right]
+\end{equation}
+
+con $ k_0 = | \mathbf{k} | $ y $ \epsilon^{(\lambda)}(k) $ son un conjunto de cuatro vectores reales linealmente independientes que representan las polarizaciones del fotón. Claramente de estas 4, solo dos serán físicas ya que son los grados de libertad que posee una partícula de spin 1 no masiva. Estos campos y los operadores de creación y destrucción satisfacen las relaciones de conmutación a \textit{tiempos iguales}
+
+\begin{equation}
+\begin{aligned}
+\left[\dot{A}_{\mu}(t,\mathbf{x}),A_{\nu}(t,\mathbf{y})\right]=ig_{\mu \nu}\delta^3(\mathbf{x} - \mathbf{y})\\
+\left[a^{(\lambda)}(k),a^{(\lambda')\dagger}(k')\right]=-g^{\lambda \lambda'}2k_0(2\pi)^3\delta^3(\mathbf{k} - \mathbf{k'})\\
+\end{aligned}
+\end{equation}
+
+y todos los demás conmutadores nulos. Como no utilizaremos en ningún momento el espacio de Fock para los fotones no profundizaremos en ello, pero es importante remarcar que el hecho de que la componente $ g^{00} $ sea negativa, nos lleva a estados con norma negativa. Para solucionar esto se utilizan las condiciones de Gauge entre valores medios solo para estados físicos, esto resuelve el problema y el espacio de Fock que sobrevive es el correspondiente a los fotones físicos con solo las polarizaciones trasversales!. Por último utilizando los conmutadores a distintos tiempo, podemos obtener
+
+\begin{equation}\label{prop_foton}
+\left\langle T\{A_{\mu}(x)A_{\nu}(y)\} \right\rangle =\int\frac{d^{4}k}{(2\pi)^{4}}e^{-ik\cdot(x-y)}\left(\frac{-ig_{\mu\nu}}{k^2 +i\epsilon}\right)
+\end{equation}
+
+que al igual que antes, coincide con la función de Green de la ecuación de Maxwell y recibe el nombre de propagador del fotón.\\
+
+Si bien sabemos que la fuerza electromagnética es de rango infinito o equivalentemente que el fotón es no masivo, en ciertas ocasiones este fenómeno provoca lo que se conoce como divergencias infrarojas en los cálculos. Esta complicación se resuelve introduciendo una masa ficticia $ \mu $ al fotón y al final de los cálculos tomar el limite correspondiente. Para introducir este factor se debería partir de la ecuación de Proca en lugar de Maxwell y cuantizar desde ahí, no haremos la deducción aquí pero es sencillo ver que al final de cuentas, fijando $ \lambda=1 $ el término de masa afectará al propagador simplemente en la forma
+
+\begin{equation}\label{prop_fotonmu}
+\left\langle T\{A_{\mu}(x)A_{\nu}(y)\} \right\rangle =\int\frac{d^{4}k}{(2\pi)^{4}}e^{-ik\cdot(x-y)}\left(\frac{-ig_{\mu\nu}}{k^2 -\mu^2 +i\epsilon}\right)
+\end{equation} 
+
+\section{\textcolor{teal}{Interacción y teoría de perturbaciones}}
+
+Introducido el Lagrangiano de QED y los desarrollos de sus campos, podemos utilizarlos para explicar
+las interacciones que mencionamos inicialmente y obviamente como en
+estas circunstancias los efectos son puramente cuánticos, esto lo
+lograremos calculando probabilidades. En definitiva queremos responder
+cual es la probabilidad de que un dado proceso ocurra, y en física
+de partículas esto se traduce en ``dado un estados inicial de mis
+partículas, ¿cual es la probabilidad de encontrar otro estado luego
+de que hayan interactuado?''. En general para ello describimos los
+estados de nuestras partículas físicas como vectores en el espacio
+de Hilbert, aquí en particular, estos estados los etiquetamos con
+su cuadrimomento asociado $p^{\mu}$ que cumplirá la relación de dispersión
+relativista $p^{2}=m^{2}$ correspondiente a si es una partícula masiva
+o igualada a $ 0 $ en caso contrario, también debemos especificar la polarización $\alpha$
+y con ello obtenemos $|p^{\mu},\alpha \rangle$ que no es otra cosa que un
+operador de creación aplicado al vació, la naturaleza de dicho operador
+dependerá de la partícula creada en cuestión. Con ello, si consideramos
+un número arbitrario de partículas y anti-partículas \textbf{libres
+}incidentes con cuadrimomentos y polarizaciones $q_{i}$, $\alpha_{i}$
+y $q'_{i}$, $\alpha'_{i}$ respectivamente y el análogo para partículas
+y anti-partículas salientes $k_{j}$, $\beta_{j}$
+y $k'_{j}$, $\beta'_{j}$ , la probabilidad de que esto ocurra vendrá
+dado por
+\begin{equation}
+P_{fi}=\left|\left\langle ...,k'_{1},\beta'_{1},k_{1},\beta_{1},out|q_{1},\alpha_{1},q'_{1},\alpha'_{1}...,in\right\rangle \right|^{2}=\left|\left\langle ...,k'_{1},\beta'_{1},k_{1},\beta_{1},in|\hat{S}|q_{1},\alpha_{1},q'_{1},\alpha'_{1}...,in\right\rangle \right|^{2}\equiv S_{fi}
+\end{equation}
+
+Donde $\hat{S}$ es el operador que vincula los operadores entrantes libres con los salientes luego de interactuar
+
+\begin{equation}\label{key}
+|out\rangle=\hat{S}^{\dagger}|in\rangle
+\end{equation}
+
+y su forma analítica viene dada por
+
+\begin{equation}\label{key}
+S=T\{e\left[i\int d^4 x \ \mathcal{L}_I(x)\right]\}
+\end{equation} 
+
+donde se ve que la única contribución al proceso viene dada por la parte interactuando del Lagrangiano \ref{lint}!. En definitiva, si calculamos este elemento de matriz obtenemos lo que queríamos y ganamos. La expresión analítica de dicha magnitud
+viene dada por la \textbf{fórmula de Reducción} que
+junto con otras ecuaciones, forman la base de todo lo que haremos.
+
+\subsection{Fórmula de Reducción}
+
+La idea (muy resumida) consiste en expresar los momentos como operadores
+de creación aplicados al vació, los cuales dependerán de la naturaleza
+de las partículas interactuantes y al utilizar los desarrollos en términos de
+los campos, explicitarán dicho caracter fermiónico, bosónico, etc
+haciendo aparecer operadores de Dirac o Klein Gordon junto con los
+coeficientes de la expansión (por ejemplo $u(k,\beta)$ y $v(k,\beta'$)
+para Dirac) y las funciones de onda que acompañan a cada momento.
+Por ejemplo, las ecuaciones \ref{red1} y \ref{red2}  son la reducción de un fermión
+y un anti-fermión entrante respectivamente, mientras que \ref{red3}  y \ref{red4}  corresponden
+al caso saliente.
+\begin{subequations}\label{red}
+	\begin{align}
+	\left\langle out|b_{in}^{\dagger}(q_{1},\alpha_{1})|in\right\rangle  & =disc.-i\int d^{4}x_{1}\left\langle out|\overline{\psi}(x_{1})|in\right\rangle \left(-i\overleftarrow{\cancel{\partial}}_{x_{1}}-m\right)u(q_{1},\alpha_{1})e^{-iq_{1}\cdot x_{1}} \label{red1}\\
+	\left\langle out|d_{in}^{\dagger}(q'_{1},\alpha'_{1})|in\right\rangle  & =disc.+i\int d^{4}x'_{1}\overline{v}(q'_{1},\alpha'_{1})e^{-iq'_{1}\cdot x'_{1}}\left(i\cancel{\partial}_{x'_{1}}-m\right)\left\langle out|\psi(x'_{1})|in\right\rangle \label{red2} \\
+	\left\langle out|b_{out}(k{}_{1},\beta{}_{1})|in\right\rangle  & =disc.-i\int d^{4}y_{1}\overline{u}(k_{1},\beta{}_{1})e^{-ik_{1}\cdot y_{1}}\left(i\cancel{\partial}_{y_{1}}-m\right)\left\langle out|\psi(y_{1})|in\right\rangle \label{red3} \\
+	\left\langle out|d_{out}(k'_{1},\beta'_{1})|in\right\rangle  & =disc.+i\int d^{4}y'_{1}\left\langle out|\overline{\psi}(y'_{1})|in\right\rangle \left(-i\overleftarrow{\cancel{\partial}}_{y'_{1}}-m\right)v(k'_{1},\beta'_{1})e^{-ik'_{1}\cdot y'_{1}} \label{red4}
+	\end{align}
+\end{subequations}
+
+Aqui $disc.$ son términos no conexos que representan los casos en
+donde algunas partículas pasan de largo sin interactuar con el resto
+y los ket $ in $ y bra $ out $ representan todo lo que resta de haberle sacado
+la partícula o anti-partícula al estado sin reducir. A su vez, esta
+claro que los $ u $, $ v $, etc, se contraen con los campos $\psi$ y $\overline{\psi}$,
+siendo en realidad $\left\langle \overline{\psi}_{\xi}(x_{1})\right\rangle ...u_{\xi}(q_{1,}\alpha_{1})$...
+donde $\xi=1,2,3,4$ son indices de Dirac.
+
+Es muy importante notar que los campos que aparecen en dicha fórmula $\psi$ y $\overline{\psi}$,
+son campos de Dirac \textit{interactuantes}, regidos por el Lagrangiano de
+QED en su totalidad, y no los libres!. Los desarrollos que presentamos en la sección \ref{sec_dirac} eran los correspondientes a fermiones libres, por otro lado no conocemos dichos desarrollos en el caso completo interactuante. Por el momento, dejemos de lado este problema que trataremos en la sección \ref{sec_green}.\\
+
+Siguiendo, podemos repetir el procedimiento anterior expresando ahora $ |q_2,\alpha_1 \rangle $, $ | k_2,\beta_{1} \rangle $, etc en término de los operadores de creación correspondiente y así seguir hasta
+agotar todos los momentos presentes. La expresión final se conoce como fórmula de reducción
+para fermiones. La construcción
+es muy intuitiva utilizando siempre las ecuaciones \ref{red} , sin embargo,
+a diferencia de la reducción de las primeras 4 partículas en \ref{red} , al reducir dos o más objetos en el valor de expectación dentro de la integral aparecerá el ordenamiento temporal de los campos presentes. Para ver todo esto en concreto y en particular observar
+la importancia del ordenamiento temporal en la expresión, escribamos
+como ejemplo el caso de dos electrones incidentes y dos salientes,
+mejor conocido como scattering de electrones o \textbf{scattering de Moller}.
+En él, olvidándonos por simplicidad de las polarizaciones y obviando
+las contracciones entre coeficientes y campos, tendremos dos fermiones
+incidentes con momentos $q_{1}$ y $q_{2}$ y dos fermiones salientes
+con momentos $k_{1}$ y $k_{2}$, por lo que solo debemos agregar dos
+porciones de \ref{red1}  y dos cucharadas soperas de \ref{red3}  y Voil'a, con el cuidado
+de que ahora los ket $ in $ y bra $ out $ son los vectores de vació y dentro
+de ellos aparecerá no el producto de los campos, sino el ordenamiento
+temporal.
+\begin{equation}\label{Moller}
+\begin{aligned}
+S_{fi}^{c} =(-i)^{4}\int d^{4}x_{1}d^{4}x_{2}d^{4}y_{1}d^{4}y_{2}e^{i\left(k_{1}\cdot y_{1}+k_{2}\cdot y_{2}-q_{1}\cdot x_{1}-q_{2}\cdot x_{2}\right)}\overline{u}(k_{1})\left(i\cancel{\partial}_{y_{1}}-m\right)\overline{u}(k_{2})\left(i\cancel{\partial}_{y_{2}}-m\right) \times\\
+\left\langle 0|T\left\{ \psi(y_{1})\psi(y_{2})\overline{\psi}(x_{1})\overline{\psi}(x_{2})\right\} |0\right\rangle ^{c}\left(-i\overleftarrow{\cancel{\partial}}_{x_{1}}-m\right)u(q_{1})\left(-i\overleftarrow{\cancel{\partial}}_{x_{2}}-m\right)u(q_{2})
+\end{aligned}
+\end{equation}
+
+Donde el supra-indice $ c $ quiere decir que solo observamos la contribución
+conexa del cálculo. 
+
+\subsection{Funciones de Green generalizadas}\label{sec_green}
+
+Ahora si, como lo prometido es deuda, veamos como solucionar el tema de tener campos interactuantes en la formula de reducción que, de hecho, es facil notar que el ordenamiento temporal de dichos campos es lo único que no sabemos calcular de toda la ecuación y representa el corazón de todos los cálculos de scattering!. La forma genérica de este coeficiente viene dada por
+
+\begin{equation}\label{greengen}
+\left\langle T\left\{ \psi(y_{1})...\psi(y_{m})\overline{\psi}(x_{1})...\overline{\psi}(x_{n})\right\} \right\rangle ^{c}\equiv G(x_{1}...,y_{m})
+\end{equation}
+
+y se denominada \textbf{Función de Green generalizada}. Nuestro objetivo consiste en expresar todo esto en término de los campos libres,
+los cuales coinciden con los campos entrantes y notaremos $\psi_{in}$, esto no es otra cosa más que pasarse al esquema de interacción como
+hacíamos en cuántica no relativista!
+
+\begin{equation}\label{int}
+\psi(x)=U^{\dagger}(t)\psi_{in}U(t)
+\end{equation}
+
+Este operador unitario $ U(t) $ es el encargado de transformar los campos en el esquema de interacción y de hecho se relaciona con el operador $ \hat{S}$ de la forma 
+
+\begin{equation}\label{key}
+S=\lim_{t\rightarrow \infty} U(t)
+\end{equation}
+
+Con esta herramienta, lo que se hace es expresar los distintos $ \psi $ dentro de \ref{greengen}  como en \ref{int}  y reagrupando, tomando limite y demás se llega a una expresión hermosa en término de campos libres
+
+\begin{equation}\label{green_generalizado}
+G(x_{1}...,y_{m})=\left\langle T\left\{ \psi_{in}(y_{1})...\psi_{in}(y_{m})\overline{\psi}_{in}(x_{1})...\overline{\psi}_{in}(x_{n})e\left[i\int d^{4}z \ \mathcal{L}_{int}(z) \ \right]\right\} \right\rangle ^{\#}
+\end{equation}
+
+%lamentablemente no
+%se conoce la solución exacta y nos tenemos que conformar con un desarrollo
+%pertrubativo, al estar hablando del esquema de interacción, claro
+%esta que solo contribuirá la parte xx del Lagrangiano. En él, podemos
+%pensar a la carga como un parámetro que mide nuestra interacción,
+%en QED se utiliza la constante de estructura fina $\alpha\equiv$$\frac{e^{2}}{4\pi}$
+%en lugar de $e$ y los desarrollos perturbativos se efectúan en potencias
+%de dicha magnitud.
+
+En ella, el supra-indice $ \# $ será explicado en la sección \ref{sim}. Esta forma de expresar todo tan compacto puede llevar a una desilusión ya que es meramente simbólica, en realidad al expresar
+el ordenamiento temporal de todos los campos junto con la exponencial,
+lo que realmente quiere decir es que primero debemos desarrollar la
+exponencial en serie de potencias, luego truncar hasta un dado término
+p y recién ahí tomar el ordenamiento, este valor p, no es otra cosa más que el orden al que queremos
+calcular nuestro proceso!. La solución exacta para estos cálculos no se conoce y al final de cuentas lo que estamos haciendo no es otra cosa que hacer teoría de perturbaciones. En nuestro caso particular lo que tenemos es el lagrangiano \ref{lint} en la exponencial, en él, podemos pensar a la carga $ e $ como un parámetro que mide la intensidad de la interacción o análogamente trabajar con la constante de estructura fina $\alpha\equiv$$\frac{e^{2}}{4\pi}$, los desarrollos serán en potencias de dicha magnitud. Por ejemplo, a orden $p=0$ lo que tenemos es la exponencial aproximada por un uno, por lo que solo nos quedan los campos libres y claro esta que no aparece la carga, en este caso podemos decir que dicho proceso es de orden $\alpha^{0}$. Al
+siguiente orden $p=1$, tendremos la primer corrección por interacción,
+la cual si nos fijamos en la forma que tiene el Lagrangiano de interacción, vendrá multiplicado
+por la carga $ e $, es decir, el primer orden de nuestra serie perturbativa
+es orden $\alpha^{\frac{1}{2}}$ en el siguiente habrá dos interacciones
+y tendremos orden $\alpha$ y así sucesivamente. En definitiva tenemos
+el desarrollo en potencias de la constante de acople que mencionamos
+previamente!. Si bien hasta ahora no dijimos nada de como calcular
+el ordenamiento temporal de estos campos libres (lo cual explicaremos
+en seguida, no desesperéis), parecería ser que si la constante de
+acople es menor a 1, el desarrollo converge y tenemos un mecanismo
+automático para calcularlo a cualquier orden, sin embargo la vida
+no es tan bella y así expresada esta es una serie asintótica divergente!.
+Extraer información de estos términos divergentes que aparecerán será
+uno de los propósitos de estas notas. 
+
+\subsection{Identidades de Wick}
+
+Las dos secciones anteriores nos permitieron entender la importancia de saber calcular los valores de expectación del ordenamiento temporal de un número arbitrario de campos (libres), en esta sección obtendremos este
+último eslabón del proceso de scattering. Para ello utilizaremos unas
+igualdades conocidas como \textbf{Teorema de Wick} que nos relaciona
+el ordenamiento temporal de un número genérico de campos, con sumas
+y productos de ordenes normales y valores de expectación de vacío
+de ordenamientos temporales de solo dos campos. Para bosones (spín
+0, 1, etc), estas identidades surgen de desarrollar en serie la igualdad
+\begin{equation}\label{wickbos}
+T\left\{ e\left[-i\int d^{4}xA(x)\cdot j(x)\right]\right\} =:e\left[-i\int d^{4}xA(x)\cdot j(x)\right]:\,e\left[-\frac{1}{2}\int d^{4}xd^{4}y\left\langle 0|T\left\{ A(x)\cdot j(x)A(y)\cdot j(y)\right\} |0\right\rangle \right]
+\end{equation}
+e igualar coeficiente a coeficiente que acompañen a los distintos
+productos de las corrientes $j(x_{1})...j(x_{n})$ simetrizado por
+ser bosones. En este contexto, las corrientes $ j(x_i) $ son tomadas solo como variables auxiliares
+que sirven para identificar los términos de ambos lados en el desarrollo y no tienen ninguna influencia
+física. Cada orden del desarrollo del lado izquierdo me dará una identidad distinta al igualarlo con el lado
+derecho. Por ejemplo, para el desarrollo a orden 2, puede verse que obtenemos
+
+\begin{equation}
+T\left\{ A(x_{1})A(x_{2})\right\} =:A(x_{1})A(x_{2}):+\left\langle T\left\{ A(x_{1})A(x_{2})\right\} \right\rangle 
+\end{equation}
+Mientras que para el siguiente orden
+\begin{equation}
+\begin{aligned}
+T\left\{ A(x_{1})A(x_{2})A(x_{3})\right\} =:A(x_{1})A(x_{2})A(x_{3}):+:A(x_{1}):\left\langle T\left\{ A(x_{2})A(x_{3})\right\} \right\rangle +\\ +:A(x_{2}):\left\langle T\left\{ A(x_{1})A(x_{3})\right\} \right\rangle + :A(x_{3}):\left\langle T\left\{ A(x_{1})A(x_{2})\right\} \right\rangle 
+\end{aligned}
+\end{equation}
+y así siguiendo... A los valores medio del orden temporal entre dos
+campos se los denomina \textbf{contracciones} y se los nota como
+
+\begin{equation}\label{key}
+\left\langle T\left\{ A(x_{1})A(x_{2})\right\} \right\rangle \equiv \overbracket{A(x_{1})A(x_{2})}
+\end{equation}
+
+Y se ve que no son otra cosa más que los propagadores que definimos en la sección \ref{sec_campos} para los campos en cuestión!
+
+Una consecuencia inmediata de esto, y muy importante para cálculos posteriores, es que el valor
+medio de vacío del ordenamiento temporal de un número impar de campos
+es 0!. Esto se debe a que en dicho caso, en todos los términos aparece
+al menos un campo en orden normal sin contraer y al tomar valor medio
+se anulan.\\
+
+De forma análoga se pueden obtener identidades de Wick
+para fermiones al desarrollar las exponenciales en la igualdad
+\begin{equation}\label{wickfer}
+\begin{aligned}
+T\left\{ e\left[i\int d^{4}x\left(\overline{\eta}(x)\psi(x)+\overline{\psi}(x)\eta(x)\right)\right]\right\} =:e\left[i\int d^{4}x\left(\overline{\eta}(x)\psi(x)+\overline{\psi}(x)\eta(x)\right)\right]:\\
+\times e\left[-\int d^{4}xd^{4}y\overline{\eta}(x)\left\langle 0|T\left\{ \psi(x)\overline{\psi}(y)\right\} |0\right\rangle \eta(y)\right]
+\end{aligned}
+\end{equation}
+donde $\eta$ y $\overline{\eta}$, al igual que $ j(x) $ para el caso bosónico, son meros entes matemáticos que
+se utilizan para llegar a la igualdad con la propiedad de anticonmutar
+entre si y también con los campos fermiónicos. Para llegar a las identidades
+de Wick nuevamente deben desarrollarse ambas expresiones e igualar
+cada término que acompañe a los productos de estas ''fuentes'' $\eta$
+y $\overline{\eta}$ , utilizando las propiedades de anticonmutación
+y antisimetrizando. De esta forma, al primer orden obtenemos
+\begin{align}
+T\left\{ \psi(x)\psi(y)\right\}  & =:\psi(x)\psi(y):\\
+T\left\{ \overline{\psi}(x)\overline{\psi}(y)\right\}  & =:\overline{\psi}(x)\overline{\psi}(y):\\
+T\left\{ \psi(x)\overline{\psi}(y)\right\}  & =:\psi(x)\overline{\psi}(y):+\left\langle 0|T\left\{ \psi(x)\overline{\psi}(y)\right\} |0\right\rangle 
+\end{align}
+De las cuales podemos extraer la consecuencia de que al tomar valor
+de expectación, se anulan las contracciones de spinores entre si y
+spinores adjuntos entre sí. De este desarrollo no se ve, pero puede
+demostrarse que al igual que en el caso bosónico, al tomar valor medio,
+solo serán no nulos aquellos ordenes normales que tengan un número
+par de campos. Un último resultado que no demostramos pero puede deducirse
+de las expresiones \ref{wickbos} y \ref{wickfer} introduciendo campos en orden normal y
+desarrollando como antes, es que también es valido obtener identidades
+de Wick para operadores en orden normal como por ejemplo
+\begin{equation}
+T\left\{ \phi(x):\phi^{4}(y):\right\} ,T\left\{ \psi(x)\overline{\psi}(y):\overline{\psi}(z)\cancel{A}(z)\psi(z):\right\} ,etc
+\end{equation}
+con la salvedad de que operadores dentro del mismo orden normal no
+se contraen entre si!.
+
+Ahora bien, como lo que queríamos calcular era el valor medio del
+orden normal de operadores, en nuestro caso particular solo trabajaremos con las identidades
+de Wick ''ensanguchadas'', lo que nos deja como resultado 4 consecuencias
+importantes a retener para los cálculos siguientes
+
+\begin{itemize}
+	\item Solo contribuirán los casos con un número par de campos, indistintamente
+	de su naturaleza.
+	\item En fermiones, solo aparecerán contracciones entre spinores y adjuntos.
+	\item Operadores dentro del mismo orden normal no se contraen entre sí.
+	\item El valor medio de vacío del ordenamiento temporal de cualquier número
+	par de campos, se escribe como una suma de productos entre contracciones
+	de a dos campos.
+\end{itemize}
+
+Si bien los 3 primeros son importante y ya los habíamos mencionado,
+el último es el resultado más satisfactorio ya que es lo que estábamos
+buscando para resolver nuestro problema!. El ordenamiento de muchos
+campos libres que queríamos calcular en \ref{green_generalizado}, ahora lo reducimos al de reemplazar ordenes temporales de solo
+dos, los cuales sabemos que, al ser campos no interactuantes, coinciden con la función de Green común
+y corriente del fermión o bosón en cuestión, dadas por \ref{prop_dirac} y \ref{prop_fotonmu}!. 
+
+
+%Para dos fermiones (omitiendo el sub-indice in), la forma
+%analítica de esta función es
+%\begin{equation}
+%	\left\langle T\left\{ \psi_{\alpha}(y_{1})\overline{\psi}_{\beta}(x_{1})\right\} \right\rangle \equiv\psi_{\alpha}(y_{1})\overline{\psi}_{\beta}(x_{1})=S_{f}(y_{1}-x_{1})=\int\frac{d^{4}p}{(2\pi)^{4}}e^{ip\cdot(y_{1}-x_{1})}\left(\frac{i}{\cancel{p}-m+i\epsilon}\right)_{\alpha\beta}
+%\end{equation}
+%Por otro lado, para un bosón de spín 1 en el Gauge de Feynman, esto
+%es
+%\begin{equation}
+%	\left\langle T\left\{ A_{\mu}(y_{1})A_{\nu}(x_{1})\right\} \right\rangle \equiv A_{\mu}(y_{1})A_{\nu}(x_{1})=\int\frac{d^{4}p}{(2\pi)^{4}}e^{ip\cdot(y_{1}-x_{1})}\left(\frac{-ig_{\mu\nu}}{p^{2}-\mu^{2}+i\epsilon}\right)
+%\end{equation}
+%
+%Donde en el último caso $\mu$ es la masa del bosón (que para el fotón
+%en particular no se iguala a 0 directamente ya que pueden ocurrir
+%divergencias infrarojas) y el término $i\epsilon$ se agrega para
+%correr los polos del eje real en la integral. Con esto, vemos que
+%la manera de calcular lo que estabamos buscando es simplemente tomar
+%todos los campos que aparecen en el ordenamiento y contraerlos entre
+%ellos de todas las formas posibles. 
+
+\subsection{Diagramas de Feynman}\label{sec_feyn}
+
+En numerosas ocasiones
+tendremos una gran cantidad de campos a contraer entre si por lo que
+las permutaciones pueden ser demasiadas como para hacer a mano. Para
+evitar cálculos innecesarios, conviene pensar de una forma simbólica
+muy poderosa. Estas identifican las posiciones de las partículas entrantes
+y salientes $(x_{i},y_{j})$ como puntos externos y las correspondientes
+a los campos que salen de la interacción $(z_{i})$ como vértices.
+La idea es que un propagador fermiónico representa una flecha con
+la dirección del momento entre los dos campos involucrados y el propagador
+de fotón se simboliza con un linea ondulada. 
+
+\begin{equation*}
+\begin{aligned}
+\overbracket{\psi_{\alpha}(y_{1})\overline{\psi}_{\beta}(x_{1})} \equiv \feynmandiagram [ horizontal=f1 to f2] {f1[dot,label=\(x_1\,\beta\)] -- [fermion] f2[dot,label=\(y_1\,\alpha\)]};\\
+\overbracket{A_{\mu}(y_{1})A_{\nu}(x_{1})} \equiv \feynmandiagram [horizontal=f1 to f2] {f1[dot,label=\(y_1 \mu\)] -- [photon] f2[dot,label=\(x_1 \nu\)]};
+\end{aligned}
+\end{equation*}
+Con estos símbolos, la idea es unir todos estos puntos
+entre sí (lo que corresponde justamente a todas las contracciones
+posibles!). En el caso de QED, tenemos la interacción dada por el orden normal de \ref{lint},
+por lo que a orden 1 en el desarrollo de la exponencial de \ref{green_generalizado}, aparecerán campos entrantes, salientes y  $:-e\overline{\psi}\gamma^{\mu}A_{\mu}\psi :$, cuyos 3 campos están evaluados en el mismo punto $ z $. En términos
+diagramáticos, lo que sucederá es que de este vértice saldrán 2 lineas
+fermiónica y una del fotón que deberán unirse con los puntos restantes y se simboliza
+
+
+Otra observación importante es que estos símbolos nos permite
+crear procesos en donde partículas siguen de largo (elementos no conexos),
+o diagramas en donde aparezcan sub-diagramas que no estén conectados
+a puntos externos conocidos como \textbf{diagramas de vacío}. Con
+estos dos último comentarios podemos finalmente revelar el misterioso
+indicador $\#$ de la ecuación xx, este quiere decir que de todas
+las posibles contracciones entre campos, solo debemos considerar las
+conexas y sin sub-diagramas de vacío. Esto es exctamente lo que estabamos
+buscando, un metodo para cálcular nuestra función de Green generalizada
+de muchos campos, sin tener que hacer las pseudo-infinitas contracciones
+posibles!. Los diagramas de Feynman, nos permiten visualizar cuales
+son los únicos dibujos que contribuirán al proceso y luego traducirlos
+a la expresión matematica haciendo la identificación xx y xx!. Este
+método es excelente y al usarlo en los cálculos posteriores verémos
+cuando se simplifica todo al pensar de esta forma.
+
+\section{\textcolor{teal}{Cálculos a un loop}}
+
+Ahora que tenemos todas las herramientas y formulas mágicas a nuestra
+disposición, podemos, en principio, calcular cualquier proceso de
+QED. Sin embargo, como mencionamos anteriormente, al momento de calcular
+los distintos ordenes en teoría de perturbación, aparecen numerosos
+problemas cuya solución no es nada trivial. 
+
+
+\subsection{Self-energy}
+
+Como caso particular, comencemos analizando el fenómeno de la auto-energía del electrón
+o \textbf{self-energy}. Para ello, no buscaremos obtener una matriz
+de interacción $S_{fi}^{c}$, sino que centraremos nuestro cálculo
+en la función de Green de dos puntos para distintos ordenes, en ella,
+omitimos el sub-indice in simplemente por comodidad.
+
+\begin{equation}\label{qedgreen}
+G(x_{1},y_{1})=\left\langle T\left\{ \psi(y_{1})\overline{\psi}(x_{1})e\left[-ie\int d^{4}z_{1}:\overline{\psi}(z_{1})\gamma^{\mu}A_{\mu}(z_{1})\psi(z_{1}):\right]\right\} \right\rangle ^{\#}
+\end{equation}
+
+En ella observamos que al haber solo dos campos fermiónicos puede
+parecer muy amigable e inofensiva, sin embargo pronto veremos las complicaciones
+que esconde bajo la primer corrección. Como mencionamos anteriormente,
+el primer paso para calcular esto es desarrollar la exponencial y
+calcular los distintos ordenes. 
+
+\subsubsection*{Orden $\alpha^0$ y $\alpha^{\frac{1}{2}}$}
+
+Comencemos con el orden cero, en donde
+aproximamos la exponencial por la unidad y notamos a esta contribución
+como 
+\begin{equation}\label{g0}
+G^{o}(x_{1},y_{1}) \equiv \left\langle T\left\{ \psi(y_{1})\overline{\psi}(x_{1})\right\} \right\rangle =\int\frac{d^{4}p}{(2\pi)^{4}}e^{-ip\cdot(y_{1}-x_{1})}\left(\frac{i}{\cancel{p}-m+i\epsilon}\right)
+\end{equation}
+donde vemos que es simplemente el propagador y en términos diagramaticos
+vemos que el ''proceso'' se simboliza como
+\begin{equation}
+IMAGEN
+\end{equation}
+Recordardando la definición de transformada de Fourier de la función
+de Green generalizada
+\begin{equation}
+\widetilde{G}(k_{1},...,q_{1},...)=\int d^{4}x_{1}...d^{4}y_{1}...e^{i(+k_{1}\cdot y_{1}+...-q_{1}\cdot x_{1}-...)}G(x_{1},...y_{1},...)
+\end{equation}
+Vemos que esto es exactamente lo que aparece en el elemento de matriz
+de interacción, con $q_{i}$ representando los momentos entrantes
+y $k_{j}$ los salientes!. Aunque repetimos que no vamos a calcular
+la probabilidad de ningún proceso, es conveniente calcular G en el
+espacio de momento porque sabemos que será luego lo que aparezca en
+cualquier calculo. Es decir, podemos hacer la cuenta para las correcciones
+de este propagador sin pensar en ningún proceso en particular y luego
+cuando queramos usarlo para otra cosa simplemente lo metemos en el
+cálculo así como está!. Dicho esto, integramos la expresión \ref{g0} en
+$x_{1}$ e $y_{1}$ para obtener
+
+\begin{equation}\label{g0fourier}
+\begin{aligned}
+\widetilde{G^{o}}(k_{1},q_{1})&= \int d^{4}x_{1}d^{4}y_{1} e^{i(k_{1}\cdot y_{1} - q_{1}\cdot x_{1})}\left[ \int\frac{d^{4}p}{(2\pi)^{4}}e^{-ip\cdot(y_{1}-x_{1})}\left(\frac{i}{\cancel{p}-m+i\epsilon}\right) \right] =\\
+&=\int\frac{d^{4}p}{(2\pi)^{4}} \int d^{4}x_{1} e^{ix_1\cdot(p-q_1)} \int d^{4}y_{1} e^{iy_1\cdot(k_1-p)} \left(\frac{i}{\cancel{p}-m+i\epsilon}\right) =\\
+&=(2\pi)^{4}\int d^{4}p \ \left[\delta(p-q_{1})\delta(k_1-p)\left(\frac{i}{\cancel{p}-m+i\epsilon}\right)\right]=(2\pi)^{4}\delta(k_{1}-q_{1})\left(\frac{i}{\cancel{q}_{1}-m+i\epsilon}\right)
+\end{aligned}
+\end{equation}
+
+donde utilizamos el desarrollo de la delta de Dirac
+
+\begin{equation}\label{key}
+\int d^{4}x e^{-ip \cdot x} = \left(2 \pi\right)^4 \delta^{(4)}(p)
+\end{equation}
+
+Esto quiere decir que al trabajar en el espacio de momentos nos apareció de
+manera automática la conservación del cuadri-impulso!. Esto se lee
+simplemente como una partícula con momento $q_{1}$ saliente, que
+se propaga conservando su momento.\\
+
+Pasemos ahora al orden siguiente,
+de \ref{qedgreen}, vemos que la primer corrección aparece como
+\begin{equation}
+G^{1}(x_{1},y_{1})=-ie\int d^{4}z_{1}\left\langle T\left\{ \psi(y_{1})\overline{\psi}(x_{1}):\overline{\psi}(z_{1})\cancel{A}(z_{1})\psi(z_{1}):\right\} \right\rangle ^{\#}
+\end{equation}
+
+Que de acuerdo al teorema de Wick, podríamos expresarlo en término
+de suma de productos de contracciones de a dos campos. Pero sin siquiera
+hacer cuentas podemos observar que en dicha expresión aparece un número
+impar de campos, esto quiere decir que cada término de la suma tendrá
+contraído 4 campos y uno quedará libre, este último al no estar contraído
+con nadie aparece en orden normal, por lo que al tomar valor medio
+de vacío anulará los términos. En conclusión, por nuestra consecuencia
+3) del teorema de Wick lo que tenemos aquí es una suma de ceros, osea,
+este término perturbativo no contribulle en nada!.
+
+\subsubsection*{Orden $\alpha$}
+
+Ahora si, finalmente,
+lidiemos con la primer corrección real al proceso que se obtiene de \ref{qedgreen} como
+\begin{equation}\label{g2}
+G^{2}(x_{1},y_{1})=\frac{(-ie)^{2}}{2}\int d^{4}z_{1}d^{4}z_{2}\left\langle T\left\{ \psi_{\beta}(y_{1})\overline{\psi}_{\alpha}(x_{1}):\overline{\psi}_{\delta}(z_{1})\cancel{A}_{\delta\gamma}(z_{1})\psi_{\gamma}(z_{1})::\overline{\psi}_{\sigma}(z_{2})\cancel{A}_{\sigma\xi}(z_{2})\psi_{\xi}(z_{2}):\right\} \right\rangle ^{\#}
+\end{equation}
+
+Aquí, si tenemos un número par de campos y debemos hacer todas las
+contracciones posibles que nos den elementos conexos y sin subdiagramas
+de vacío. Para ello, utilizamos los diagramas de Feynman para observar
+que solo existen dos gráficos posibles. Recordando que solo se contraen
+los bosones entre ellos, spinores con spinores adjuntos y que campos
+dentro del mismo orden normal no se contraen, construyamos uno de
+estos diagramas. Comenzamos uniendo el punto externo inicial $x_{1}$
+con uno de los vértices $z_{1}$, $\overbracket{\psi(z_{1})\overline{\psi}(x_{1})}$.
+Luego este vértice tiene restantes un bosón y un spinor adjunto, el
+primero de ellos solo puede contraerse con el bosón del otro vértice
+$z_{2}$, $\overbracket{\cancel{A}(z_{1})\cancel{A}(z_{2})}$. Por otro lado, el
+spinor adjunto tiene en principio 2 opciones, podemos contraerlo directamente
+con el punto externo final $y_{1}$, pero esto nos dejaría a $\psi(z_{2})$
+y $\overline{\psi}(z_{2})$ solos que no pueden contraerse entre sí
+ya que están dentro del mismo orden normal, por lo que no es válida.
+Esto nos deja con la segunda opción, $\overbracket{\psi(z_{2})\overline{\psi}(z_{1})}$.
+Finalmente hacemos la última contracción posible entre el spinor restante
+del segundo vértice y el punto externo final, $\overbracket{\psi(y_{1})\overline{\psi}(z_{2})}$.
+En definitiva armando componente a componente con xx y xx, obtenemos
+el diagrama de la figura xx
+\begin{equation}
+FIGURA
+\end{equation}
+
+Y analíticamente se expresa como 
+\begin{equation}\label{feyng2}
+\overbracket{\psi(z_{1})\overline{\psi}(x_{1})}\overbracket{\cancel{A}(z_{1})\cancel{A}(z_{2})}\overbracket{\psi(z_{2})\overline{\psi}(z_{1})}\overbracket{\psi(y_{1})\overline{\psi}(z_{2})}
+\end{equation}
+
+El segundo diagrama se construye exactamente de la misma manera intercambiando
+los vértices y analíticamente aporta el mismo valor ya que $ z_1 $ y $ z_2 $ son indices mudos de integración en \ref{g2}, por lo que en
+definitiva, nuestra función de Green generalizada es la suma de dos
+términos de la forma \ref{feyng2}.
+\begin{equation}
+G^{2}(x_{1},y_{1})=(-ie)^{2}\int d^{4}z_{1}d^{4}z_{2}\overbracket{\psi_{\gamma}(z_{1})\overline{\psi}_{\alpha}(x_{1})}\overbracket{\cancel{A}_{\delta\gamma}(z_{1})\cancel{A}_{\sigma\xi}(z_{2})}\overbracket{\psi_{\xi}(z_{2})\overline{\psi}_{\delta}(z_{1})}\overbracket{\psi_{\beta}(y_{1})\overline{\psi}_{\sigma}(z_{2})}
+\end{equation}
+
+Donde introducimos las componentes matriciales nuevamente para ver
+mejor luego como se multiplican entre si dentro de las integrales.
+Si cada una de estas contracciones las remplazamos con \ref{prop_dirac} y \ref{prop_foton} y trabajamos
+en el espacio de momentos como hicimos en \ref{g0fourier}, obtenemos
+
+\begin{equation}\label{key}
+\begin{aligned}
+\widetilde{G^{(2)}}(k_{1},q_{1})&=\int \mathrm{d^4x_1}\mathrm{d^4y_1} e^{i (k_1 \cdot y_1 - q_1 \cdot x_1)} \left\{  (-ie)^{2}\int \mathrm{d^{4}z_{1,2}}  \left[  \int\frac{\mathrm{d^{4}p_1}}{(2\pi)^{4}}e^{-ip_1\cdot(z_{1}-x_{1})}\left(\frac{i}{\cancel{p}_1-m+i\epsilon}\right)_{\gamma\psi} \right. \right. \times \\ &\int\frac{\mathrm{d^{4}p_2}}{(2\pi)^{4}}e^{-ip_2\cdot(z_1-z_2)}\left(\frac{\gamma_{\delta\gamma}^{\mu} \left(-ig_{\mu\nu}\right) \gamma_{\sigma\xi}^{\nu}}{p^2_2 -\mu^2 +i\epsilon}\right) \int\frac{\mathrm{d^{4}p_3}}{(2\pi)^{4}}e^{-ip_3\cdot(z_{2}-z_{1})}\left(\frac{i}{\cancel{p}_3-m+i\epsilon}\right)_{\xi\delta} \times \\
+& \left. \left. \int\frac{\mathrm{d^{4}p_4}}{(2\pi)^{4}}e^{-ip_4\cdot(y_{1}-z_{2})}\left(\frac{i}{\cancel{p}_4-m+i\epsilon}\right)_{\beta\sigma}  \right]  \right\}
+\end{aligned}
+\end{equation}
+
+donde podemos utilizar nuevamente el desarrollo de las deltas para integrar $ x_1, y_1, z_1 $ y $ z_2 $  llegando así a la expresión
+
+\begin{equation}\label{key}
+\begin{aligned}
+\widetilde{G^{(2)}}(k_{1},q_{1})&=(-ie)^{2} \int \mathrm{d^{4}p_{1,2,3,4}}  \left[ \right. \delta (p_1 -q_1) \delta(p_1 + p_2 - p_3) \delta (p_3 - p_2 - p_4) \delta (k_1 - p_4) \times \\
+& \left(\frac{i}{\cancel{p}_1-m+i\epsilon}\right)_{\gamma\psi} \left(\frac{\gamma_{\delta\gamma}^{\mu} \left(-ig_{\mu\nu}\right) \gamma_{\sigma\xi}^{\nu}}{p^2_2 -\mu^2 +i\epsilon}\right) \left(\frac{i}{\cancel{p}_3-m+i\epsilon}\right)_{\xi\delta} \left(\frac{i}{\cancel{p}_4-m+i\epsilon}\right)_{\beta\sigma}\left.  \right] 
+\end{aligned}
+\end{equation}
+
+donde vemos que nuevamente intregar en la coordenadas espacio-temporales nos devuelve deltas de Dirac. De ellas, la primera y la última indican que los dos momentos del desarrollo del propagador de las lineas externas, $p_{1}$ y $p_{4}$, corresponden a los momentos que aparece en el elemento de matriz $S_{fi}^{c}$, $q_{1}$y $k_{1}$ para la el electrón incidente y saliente respectivamente, en donde es clave remarcar que si estas partículas son reales, se cumple $q_{1}^{2}=m^{2}$ y lo mismo para $k$, por lo que se dice que estas deltas cumplen la función de poner a las partículas en la capa de masa o
+\textbf{On-shell}. Luego, las otras dos deltas restantes expresan la conservación del momento en cada vértice!.
+
+Dicho esto, avancemos un paso más integrando los momentos $ p_1,p_3 $ y $ p_4 $
+
+\begin{equation}
+\begin{aligned}
+\widetilde{G^{2}}(k_{1},q_{1})&=(2\pi)^{4}\delta(q_{1}-k_{1})\left(\frac{i}{\cancel{k}_{1}-m+i\epsilon}\right)_{\beta\sigma}\times\\
+&\left[(-ie)^{2}\int\frac{\mathrm{d^{4}p_2}}{(2\pi)^{4}}(\gamma_{\sigma\xi}^{\mu})\left(\frac{i}{(\cancel{q}_{1}+\cancel{p}_2)-m+i\epsilon}\right)_{\xi\delta}(\gamma_{\delta\gamma}^{\nu})\left(\frac{-ig_{\mu\nu}}{p_2^{2}-\mu^{2}+i\epsilon}\right) \right] \left(\frac{i}{\cancel{q}_{1}-m+i\epsilon}\right)_{\gamma\alpha}
+\end{aligned}
+\end{equation}
+
+Donde ahora apareció la conservación del impulso total. De esta forma,
+renombrando $p_2\equiv p$ y utilizando la información de
+la delta para expresar $k_{1}=q_{1}\equiv q$ obtenemos la hermosa
+fórmula
+\begin{equation}
+\widetilde{G^{2}}(q)=(2\pi)^{4}\left(\frac{i}{\cancel{q}-m+i\epsilon}\right)_{\beta\sigma} \left[-i\Sigma(q)\right]_{\sigma \delta} \left(\frac{i}{\cancel{q}-m+i\epsilon}\right)_{\delta \alpha}
+\end{equation}
+donde definimos la matriz
+\begin{equation}
+-i\Sigma(q)=(-ie)^{2}\int\frac{d^{4}p}{(2\pi)^{4}}\gamma^{\mu}\left(\frac{i}{(\cancel{q}+\cancel{p})-m+i\epsilon}\right)\gamma^{\nu}\left(\frac{-ig_{\mu\nu}}{p^{2}-\mu^{2}+i\epsilon}\right)
+\end{equation}
+
+Y observamos que esto es lo único que falta calcular de todo, una
+integral no trivial, nuestro primer encuentro con el cálculo de \textbf{un
+	loop}. En ella, el momento del fotón no esta definido y por consiguiente
+el del fermión interior tampoco!, por eso debemos integrar en todos
+ellos siempre cumpliendo la conservación dada por las deltas que utilizamos,
+esto hará que ninguna de estas dos partículas cumpla la relación de
+dispersión relativista, en otras palabras, tenemos \textbf{partículas
+	virtuales} dentro del loop! . Ahora si, comencemos con los cálculos
+y adentremonos en el perverso mundo de las divergencias ultravioletas.
+
+Comencemos ordenando un poco las cosas. Primero, notamos que el término
+$i\epsilon$ puede considerarse como una parte imaginaria de la masa
+y redefinir $m'=m-i\epsilon$, y lo mismo para la masa del fotón virtual $\left(\mu^{2}\right)^{'}=\mu^{2}-i\epsilon\equiv\mu'^{2}$.
+Luego también podemos multiplicar y dividir por $(\cancel{q}+\cancel{p})+m'$
+que con el denominador se transforma en $(\cancel{q}+\cancel{p})^{2}-m'^{2}=(q+p)^{2}-m'^{2}$,
+por propiedades de las gamma, y el numerador lo reescribimos como
+$\gamma^{\alpha}(q_{\alpha}+p_{\alpha})+m'$. Por último, contraemos
+las gammas con la métrica y obtenemos
+\begin{equation}\label{aux}
+-i\Sigma(q)=(-ie)^{2}\gamma^{\mu}\left[\int\frac{\mathrm{d^{4}p}}{(2\pi)^{4}}\frac{\gamma^{\alpha}(q_{\alpha}+p_{\alpha})+m'}{\left((q+p)^{2}-m'^{2}\right)\left(p^{2}-\mu'^{2}\right)}\right]\gamma_{\mu}
+\end{equation}
+
+Ahora bien, historicamente no se como se habrán intentado resolver
+este tipo de integrales pero aparentemente la forma más directa es
+aquella introducida por Feynman, el cual para resolver dicha integral,
+agrega otra integral!. Esta idea se basa en la igualdad
+\begin{equation}
+\frac{1}{AB}=\int_{_{0}}^{^{1}}\mathrm{dx}\frac{1}{\left[xA+(1-x)B\right]^{2}}
+\end{equation}
+
+En nuestro caso particular podemos identificar A con el primer paréntesis
+del denominador en \ref{aux} y B con el segundo, de esta forma, aparecerá
+la integral en x junto con el denominador
+\begin{equation}
+\left[x\left((q+p)^{2}-m'^{2}\right)+(1-x)\left(p^{2}-\mu'^{2}\right)\right]^{2}
+\end{equation}
+
+el cual, sumando y restando $ p^2 $ y lo mismo con $ x^2q^2 $, puede reescribirse como 
+\begin{equation}
+\left[\left(p+xq\right)^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}
+\end{equation}
+
+De esta forma, trasladamos el momento $p \longrightarrow p - xq$, con Jacobiano
+1, en el cual no debemos olvidarnos que es un cambio coordenada a
+coordenada del cuadimomento, por lo que el numerador de \ref{aux} cambiará
+a $\gamma^{\alpha}\left[q_{\alpha}(1-x)+p_{\alpha}\right]+m'$.
+En definitiva obtenemos
+\begin{equation}\label{aux1}
+\begin{aligned}
+-i\Sigma(q)&=(-ie)^{2}\gamma^{\mu}\int_{_{0}}^{^{1}}dx\int\frac{\mathrm{d^{4}p}}{(2\pi)^{4}}\left\{ \frac{\gamma^{\alpha}\left[q_{\alpha}(1-x)+p_{\alpha}\right]+m'}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\} \gamma_{\mu}=\\
+&=(-ie)^{2}\gamma^{\mu}\int_{_{0}}^{^{1}}dx\int\frac{\mathrm{d^{4}p}}{(2\pi)^{4}}\left\{ \frac{\cancel{q}(1-x)+m'}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\} \gamma_{\mu}
+\end{aligned}
+\end{equation}
+donde para la última igualdad se utilizó que la parte con $\cancel{p}$
+
+\begin{equation}\label{key}
+\int\frac{\mathrm{d^{4}p}}{(2\pi)^{4}} \frac{\cancel{p}}{f(p^2)}
+\end{equation}
+
+con $ f(p^2) $ una función par en $ p $ con respecto al volumen de integración, se anula por ser el cociente entre una función impar y otra par. 
+
+Siguiendo, notamos que el numerador no depende de $ p $ por lo que analizamos por separado el denominador
+
+\begin{equation}
+\begin{aligned}
+\int\frac{\mathrm{d^{3}p}}{(2\pi)^{4}}&\int_{-\infty}^{+\infty}\mathrm{dp_{0}}\frac{1}{\left[p_{0}^{2}-\overline{p}\cdot\overline{p}+(1-x)xq^{2}-x(m-i\epsilon)^{2}-(\mu^{2}-i\epsilon)(1-x)\right]^{2}}=\\
+\int\frac{\mathrm{d^{3}p}}{(2\pi)^{4}}&\int_{-\infty}^{+\infty}\mathrm{dp_{0}}\frac{1}{\left[p_{0}^{2}-R^{2}(x)+i\delta(x)\right]^{2}}
+\end{aligned}
+\end{equation}
+
+Donde agrupamos toda la parte real en una función $R^{2}(x) \equiv \overline{p}\cdot\overline{p}+(x-1)xq^{2} + x m^{2} + \mu^{2}(1-x) $
+y todo lo que sea imaginario en $\delta(x) \equiv 2mx\epsilon_1 + (1-x)\epsilon_2$, donde por única vez diferenciamos ambos prescript para recordar que no tienen porque ser iguales (uno viene de correr el eje real para $ m $ y el otro para la integral del fotón). De todas formas lo importante de este término es que sigue siendo infinitesimal y también es un desplazamiento
+fuera del eje real. Si bien este ultimo es positivo, el signo de $R^{2}$
+depende de los valores de las masas y momentos que, en particular, si consideramos que las partículas interactuantes están On-shell $(q^2=m^2)  $, $ R^2 $ es estrictamente positivo, de todas formas, para contemplar cualquier escenario, mantengamos el momento $ q $ sin especificar su naturaleza. Luego, notando que estamos integrando en todo $p_{0}$, la integral tendrá polos en
+$p_{0}=\pm\sqrt{\overline{p}\cdot\overline{p}+(x-1)xq^{2} + x m^{2} + \mu^{2}(1-x)-i\delta}$, dado esto, podemos hacer un cambio de variables muy astuto conocido
+como \textbf{Rotación de Wick}, en la cual cambiamos $p_{0}\rightarrow ip_{0}$, lo cual se identifica como una rotación en el plano complejo, pasando a integrar ahora sobre  el eje imaginario como se muestra en la figura xx, en donde asumimos
+que $R^{2}(x)>0$\\
+
+(PREGUNTAR: en caso contrario los polos están del
+otro lado del eje real, es decir, el derecho arriba e izquierdo abajo
+y debería hacer la rotación inversa $p'_{0}\rightarrow ip'_{0}$,
+¿es así?¿importa?).\\
+
+De esta forma ''esquivamos'' los polos por lo que podemos tirar los corrimientos
+imaginarios $i\delta$ que ya no juegan ningún papel. Por otro lado
+observamos que dicha rotación nos lleva a 
+\begin{equation}
+p^{2}=p_{0}^{2}-\overline{p}\cdot\overline{p}\rightarrow-\left(p_{0}^{2}+\overline{p}\cdot\overline{p}\right)=\left. -p^{2}\right|_{euclideo}
+\end{equation}
+
+Es decir, con esta rotación, pasamos del espacio Minkowskyano a uno
+Euclideo!. De esta forma, ahora estamos integrando en $\mathbb{R}^{4}$
+\begin{equation}\label{parteeuclidea}
+i\int_{\mathbb{R}^{4}}\frac{\mathrm{d^{4}p}}{(2\pi)^{4}}\frac{1}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}
+\end{equation}
+
+El factor i sale del Jacobiano y recordamos que ahora el momento cuadrado corresponde al
+euclideo. Aprovechando la simetría de la integral, podemos pasar a esféricas
+en 4-D y notar que nada depende de las coordenadas angulares, por lo que dicha contribución se integra trivialmente obteniendo así el ángulo sólido correspondiente a la 3-esfera. 
+\begin{equation}
+\frac{i\Omega_{3}}{(2\pi)^{4}}\int_{-\infty}^{+\infty}\mathrm{dp}\frac{p^{3}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}
+\end{equation}
+
+Donde nos queda la integral radial para nada trivial, de hecho de esta forma se puede visualizar rapidamente su caracter divergente que tanto veníamos anticipando. Para valores grande del momento, vemos que esta integral se comporta como
+\begin{equation}
+\int^{+\infty}\mathrm{dp}\frac{p^{3}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}\ \thicksim\ lim_{\Lambda\rightarrow+\infty}ln(\Lambda)
+\end{equation}
+
+La cual claramente diverge!. Es decir, esta integral así definida no converge. Dado que todo lo que hicimos hasta ahora fue simplemente reescribir
+algunos términos, podemos concluir que \ref{g2} no converge. ¿Y
+ahora?, ¿Como seguimos?, claro esta que no podemos seguir de aquí
+en adelante sin hacer algo al respecto ya que nuestra teoría no tendría ningún poder predictivo. 
+Ese algo que tenemos que hacer se llama \textbf{Regularización} y consiste en eliminar de forma consistente la parte divergente del cálculo. Existen varias maneras de regularizar una integral,
+introducir un Cut-off que suavice el integrando para que converja
+en los bordes es una. Otro método conocido como Pauli-Villard introduce un acople
+con otra partícula ficticia de masa $ M $ muy grande. Por último, el método de \textbf{Regularización Dimensional} cambia levemente la dimensión del espacio de integración.
+En todos ellos, al finalizar los cálculos se deben tomar los limites
+correspondientes. 
+
+Para nuestro caso particular utilizaremos el método
+de regularización dimensional, el cual consiste en realizar los cálculos en un espacio-tiempo de dimensión arbitraria $ D $. Para ello, volvamos unos pasos atrás quedándonos con la integral sobre $ \mathbb{R}^4 $ de \ref{parteeuclidea} pero ahora considerando D dimensiones e introduzcamos esto en donde corresponde de \ref{aux1} para definir la versión regularizada de $ \Sigma(q) $
+
+\begin{equation}\label{aux2}
+\begin{aligned}
+-i\Sigma(q)&:=\xi^{4-D}i(-ie)^{2}\gamma^{\mu}\int_{_{0}}^{^{1}}\mathrm{dx}\int_{\mathbb{R}^{D}}\frac{\mathrm{d^{D}p}}{(2\pi)^{D}}\frac{\left(\cancel{q}(1-x)+m\right)}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}} \gamma_{\mu}=\\
+&=\xi^{4-D} i(-ie)^{2}\int_{_{0}}^{^{1}}\mathrm{dx}\underset{\textbf{A}}{\underbrace{\gamma^{\mu}\left(\cancel{q}(1-x)+m\right) \gamma_{\mu}}}\frac{\Omega_D}{(2\pi)^{D}}\underset{\textbf{B}}{\underbrace{\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}}}
+\end{aligned}
+\end{equation}
+
+Donde introducimos un factor $ \xi $ con unidades de masa para que el cálculo tenga las unidades correctas en cualquier dimensión!. A su vez, tenemos la extensión del ángulo sólido para valores continuos de la dimensión
+
+\begin{equation}\label{angulosolido}
+\Omega_D = \frac{2 \pi^{\frac{D}{2}}}{\Gamma (\frac{D}{2})}
+\end{equation}
+
+donde se definió la \textbf{función Gamma} que está definida para valores no negativos de su argumento por lo que la dimensión $ D $ esta acotada por debajo tal que $ D>0 $. Por otro lado, analizando nuevamente la parte radial del cálculo, observamos que para valores grandes del momento la integral converge si
+
+\begin{equation}\label{key}
+\frac{p^{D-1}}{p^4} = p^{\lambda} \ \ \lambda<1 \ \ \iff D < 4
+\end{equation}
+
+Es decir, que para el espacio físico en $ D=4 $, la integral no converge, como ya habíamos demostrado. Ahora bien, teniendo la restricción $ 0<D<4 $, la manera de regularizar esto es hacer una extensión analítica a $ D= 4 -2\epsilon $ y finalizado los cálculos tomar el límite para $ \epsilon $ yendo a $ 0 $. Manteniendo por comodidad $ D $ sin especificar, veamos el término $ \textbf{A} $ de la ecuación \ref{aux2}. Utilizamos las propiedades para las matrices gamma en $ D $ dimensiones
+
+\begin{equation}
+\begin{aligned}
+\left\{\gamma_{\mu},\gamma_{\nu}\right\} &= 2 g_{\mu\nu}
+\gamma_{\mu}\gamma^{\mu}&=D
+\end{aligned}
+\end{equation}
+ 
+con $ g_{\mu\nu} $ la métrica en D dimensiones, y con ellas se deduce
+
+\begin{equation}\label{key}
+\gamma_{\mu}\gamma_{\nu}\gamma^{\mu}=\gamma_{\nu}(2-D)
+\end{equation}
+ 
+Recordando que $ \cancel{q}=\gamma_{\nu}q^{\nu} $, se verifica facilmente que el término $ \textbf{A} $ queda
+
+\begin{equation}\label{A}
+\gamma^{\mu}\left(\cancel{q}(1-x)+m\right) \gamma_{\mu} = (2-D)\cancel{q}(1-x)+Dm
+\end{equation}
+
+Ahora bien, para la parte $ \textbf{B} $ de \ref{aux2} podemos renombrar 
+
+\begin{equation}\label{key}
+f(x,q) \equiv -(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)
+\end{equation}
+
+que suponemos positivo por simplicidad, obteniendo
+
+\begin{equation}\label{key}
+\begin{aligned}
+\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}} &= \int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2} + f(x,q)\right]^2}= \frac{1}{f(x,q)^2}\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[\frac{p^{2}}{f(x,q)} + 1\right]^2} =\\
+&= f(x,q)^{\left(\frac{D-4}{2}\right)} \int_0^{\infty}\mathrm{dz}\frac{z^{\left(\frac{D-2}{2}\right)}}{\left(z + 1\right)^2}
+\end{aligned}
+\end{equation}
+
+donde para pasar a la última igualdad utilizamos el cambio de variables $ p \longrightarrow \left(zf(x,q)\right)^{\frac{1}{2}} $ y la paridad de la integral. Esta última es conocida como la \textbf{función beta} o \textbf{integral de Euler}, definida como
+
+\begin{equation}\label{key}
+B(x,y) \equiv \int_0^{\infty} \frac{z^{x-1}}{(z+1)^{x+y}}\mathrm{dz} \ \ \ \Re(x)>0 \ , \ \Re(y)>0
+\end{equation}
+ 
+donde identificamos para nuestro caso particular $ x= \frac{D}{2} $ e $ y= \frac{4-D}{2} $ (ambos mayores a cero en virtud de haber tomado la extensión analítica $ D=4-2\epsilon $). A su vez, la función beta se relaciona con la función gamma mediante la igualdad
+
+\begin{equation}\label{key}
+B(x,y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
+\end{equation}
+
+Viendo que en nuestro caso se reduce todo a
+
+\begin{equation}\label{B}
+f(x,q)^{\left(\frac{D-4}{2}\right)} \int_0^{\infty}\mathrm{dz}\frac{z^{\left(\frac{D-2}{2}\right)}}{\left(z + 1\right)^2} = f(x,q)^{\left(\frac{D-4}{2}\right)} \frac{\Gamma(\frac{D}{2}) \Gamma(\frac{4-D}{2})}{\Gamma(2)}
+\end{equation}
+
+Ahora si, analizados los términos $ \textbf{A} $ y $ \textbf{B} $, introducimos \ref{A} y \ref{B} en \ref{aux2} para obtener
+
+
+\begin{equation}
+\Sigma(q)=\xi^{4-D} e^{2}\frac{2\pi^{\frac{D}{2}}}{(2\pi)^{D}} \Gamma\left(\frac{4-D}{2}\right)\int_{_{0}}^{^{1}}\mathrm{dx} \left[(2-D)\cancel{q}(1-x)+Dm \right] f(x,q)^{\left(\frac{D-4}{2}\right)}
+\end{equation}
+
+donde utilizamos \ref{angulosolido} para tener todo en término de las funciones gamma y $ \Gamma(2)=1 $. Ahora si, especificando el valor de la dimensión, tenemos
+
+\begin{equation}\label{aux3}
+\Sigma(q)= \frac{\alpha}{4\pi}\Gamma(\epsilon)\int_{_{0}}^{^{1}}\mathrm{dx} \left[2(\epsilon-1)\cancel{q}(1-x)+(4-2\epsilon)m \right] \left[\frac{\xi^2 4\pi}{f(x,q)}\right]^{\epsilon}
+\end{equation}
+
+habiendo definido a la constante de estructura fina $ \alpha\equiv \frac{e^2}{4\pi} $. Ahora bien, como lo que queremos es tirar el límite de $ \epsilon $ yendo a cero, nos conviene desarrollar en serie los términos en potencias del mismo. Para ello, tenemos el desarrollo de Laurent para la función Gamma
+
+\begin{equation}\label{desarrollogamma}
+\Gamma(z)=\frac{1}{z} - \gamma + O(z)
+\end{equation}
+
+donde $ \gamma = 0.577... $ se conoce como la \textbf{constante de Euler}.
+
+A su vez, podemos desarrollar
+
+\begin{equation}\label{desarrolloexponente}
+\left[\frac{\xi^2 4\pi}{f(x,q)}\right]^{\epsilon} = e^{\epsilon \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right]} = 1 + \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right] \epsilon + O(\epsilon^2)
+\end{equation}
+
+Ahora si, introducimos los desarrollos \ref{desarrollogamma} y \ref{desarrolloexponente} en \ref{aux3} para obtener
+
+\begin{equation}\label{aux4}
+\begin{aligned}
+\Sigma(q)&=\frac{\alpha}{4\pi}\left[\frac{1}{\epsilon} - \gamma + O(\epsilon) \right] \int_{_{0}}^{^{1}}\mathrm{dx} \left[2(\epsilon-1)\cancel{q}(1-x)+(4-2\epsilon)m \right] \left[1 + \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right] \epsilon + O(\epsilon^2)\right]=\\
+&=\frac{\alpha}{4\pi} \left\{\frac{1}{\epsilon} \left[\int_0^1 \mathrm{dx} \left( 4m - 2\cancel{q}(1-x)\right)\right] \right. + \\
+&+ \left. \left[ \int_{_{0}}^{^{1}}\mathrm{dx} \  2\cancel{q}(1-x)-2m + \left( 4m - 2\cancel{q}(1-x)\right) \log \left(\frac{\xi^2 4\pi}{f(x,q)}\right) - \gamma \left( 4m - 2\cancel{q}(1-x)\right)\right]  + O(\epsilon)\right\} 
+\end{aligned}
+\end{equation}
+ 
+donde nos quedamos solo a orden $ \epsilon^0 $ porque los demás términos no contribuyen al tomar el limite. Dicho orden podemos notarlo como $ I_0 $  y efectuar las integrales en $ x $ de la forma
+
+\begin{equation}\label{key}
+\begin{aligned}
+I_0 &= \cancel{q}(1-\gamma) -2m(1 +2\gamma) + \int_{0}^{1} \mathrm{dx} \left[ 4m - 2\cancel{q}(1-x)\right]\left[ \log(4\pi \xi^2) - \log\left(f(x,q)\right)\right] =\\
+&= \cancel{q}(1-\gamma) -2m(1 +2\gamma) + \left(\cancel{q}+4m\right)\log(4\pi \xi^2) - \int_{0}^{1} \mathrm{dx} \left[ 4m - 2\cancel{q}(1-x)\right]\log \left(f(x,q)\right) 
+\end{aligned}
+\end{equation}
+
+
+
+Por otro lado, el primer corchete de \ref{aux4} se integra trivialmente obteniendo $ \cancel{q} + 4m $. Luego, introduciendo esto y xxx en \ref{aux4} llegamos a la expresión final   
+\section{Apéndice: mathematical tools}
+
+\subsection{Análisis complejo}
+
+Quantum Field Theory vol 1: pg 209(230)
+
+
+\begin{thebibliography}{9}
+	
+	\bibitem{Itzqui}
+	Claude Itzykson \& Jean-Bernard Zuber,
+	\textit{Quantum Field Theory},
+	Capítulos 3.2 y 3.3. (¿como cito bien?)
+	
+\end{thebibliography}	
+	
+	
+\end{document}
