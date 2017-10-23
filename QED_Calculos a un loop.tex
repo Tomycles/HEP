@@ -561,7 +561,9 @@ cuando se simplifica todo al pensar de esta forma.
 Ahora que tenemos todas las herramientas y formulas mágicas a nuestra
 disposición, podemos, en principio, calcular cualquier proceso de
 QED. Sin embargo, como mencionamos anteriormente, al momento de calcular
-los distintos ordenes en teoría de perturbación, aparecen algunas complicaciones.
+los distintos ordenes en teoría de perturbación, aparecen algunas complicaciones.\\
+
+Antes de comenzar los cálculos mencionemos brevemente a modo de introducción con que nos encontraremos en el camino. En este punto claro está que nuestro trabajo se redujo a, dado un número arbitrario de campos externos, calcular la función de Green generalizada \ref{green_generalizado} correspondiente al orden en la constante de acople que nosotros querramos. Gracias al teorema de Wick, vimos que el producto de estos campos siempre los podíamos escribir como suma de productos de contracciones de solo dos de ellos, los cuales remarcamos que coinciden con los propagadores \ref{prop_dirac} y \ref{prop_fotonmu}, dicho esto es facil notar que, entre otras cosas, tendremos una integral sobre los momentos por cada cada propagador. Veremos luego que si ahora pasamos al espacio de Fourier, muchas de estas integrales se resolverán trivialmente por conservación de la energía en cada vértice del proceso mientras que en ciertas ocasiones quedarán una o más integrales que requerirán un poco de esfuerzo. Resolver las mismas no será tarea facil ya que presentarán un comportamiento divergente para grandes valores del momento en cuestión!, estas se conocen como divergencias ultravioletas. En otras palabras el último eslabón de nuestro cálculo al proceso de scatering no es otra cosa que una integral divergente. Claramente si queremos que nuestra teoría tenga algún poder predictivo hay que hacer algo con este inconveniente. La solución a ello se conoce como renormalización, un método con el cual podremos extraer las contribuciones finitas a las cantidades físicas de la teoría. Explicar y entender la idea de este mecanismo será el objetivo de lo que resta en estas notas.
 
 \subsection{Divergencias ultravioletas}
 
@@ -778,13 +780,27 @@ En definitiva obtenemos
 -i\Sigma(q)=(-ie)^{2}\gamma^{\mu}\int_{_{0}}^{^{1}}dx\int\frac{\mathrm{\mathrm{d^4}p}}{(2\pi)^{4}}\left\{ \frac{\gamma^{\alpha}\left[q_{\alpha}(1-x)-p_{\alpha}\right]+m'}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\} \gamma_{\mu}
 \end{equation}
 
-Suficiente por ahora, en lugar de resolver esta integral así como está, paremos un segundo para analizar su comportamiento a grandes valores del momento $ p^{\mu} $. Haciendo simplemente un conteo de potencias, tenemos 5 potencias de $ p $ en el numerador y 4 en el denominador vemos que en dicho límite la integral se comporta de forma esquemática como
+En ella, vemos\footnote{Para aquellos que los argumentos de paridad no sean suficiente, en la sección \ref{sec_RD} se deduce dicha igualdad (Eq: \ref{paridad})} que el término
 
 \begin{equation}\label{key}
-\int^{\infty} \mathrm{d^4}p \frac{1}{p^3}
+\int\frac{\mathrm{d^4}p}{(2\pi)^{4}}\left\{ \frac{\cancel{p} }{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\}  = 0
 \end{equation}
 
-La cual claramente diverge!. Estas son las previamente mencionadas divergencias ultravioletas que esperabamos encontrar y en este caso particular decimos que diverge linealmente en p. Lo problemático de esto es que dado que todo lo que hicimos hasta ahora fue simplemente reescribir algunos términos, podemos concluir que las divergencias ultravioletas afectan directamente a \ref{g2}, de modo que así como está, nuestra teoría no cuenta con ningún poder predictivo. Claro está que esto no puede quedar así!. Antes de ver como se soluciona este problema, pasemos a analizar otro caso particular en la teoría de QED.
+ya que el numerador es impar y el denominador par con respecto al volumen de integración. De esta forma nos queda
+
+\begin{boxquation}
+\begin{equation}\label{sigma}
+\Sigma(q)=-ie^{2}\int_{_{0}}^{^{1}}dx \gamma^{\mu}\left(\cancel{q}(1-x)+m'\right) \gamma_{\mu} \int\frac{\mathrm{d^4}p}{(2\pi)^{4}}\left\{\frac{1}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\}
+\end{equation}
+\end{boxquation}
+
+Suficiente por ahora, en lugar de resolver esta integral así como está, paremos un segundo para analizar su comportamiento a grandes valores del momento $ p^{\mu} $. Haciendo simplemente un conteo de potencias, tenemos 4 potencias de $ p $ en el numerador y 4 en el denominador vemos que en dicho límite la integral se comporta de forma esquemática como
+
+\begin{equation}\label{key}
+\int^{\infty} \mathrm{d^4}p \frac{1}{p^4}
+\end{equation}
+
+La cual claramente diverge!. Estas son las previamente mencionadas divergencias ultravioletas que esperabamos encontrar y en este caso particular decimos que diverge logaritmicamente en p. Lo problemático de esto es que dado que todo lo que hicimos hasta ahora fue simplemente reescribir algunos términos, podemos concluir que las divergencias ultravioletas afectan directamente a \ref{g2}, de modo que así como está, nuestra teoría no cuenta con ningún poder predictivo. Claro está que esto no puede quedar así!. Antes de ver como se soluciona este problema, pasemos a analizar otro caso particular en la teoría de QED.
 
 \subsubsection{Polarización del vacío} 
 
@@ -848,7 +864,7 @@ i \Pi^{\mu\nu}(k) \equiv -(-ie)^{2} \int \frac{\mathrm{d^4}p}{(2\pi)^4} \ Tr\lef
 que juega el papel de auto-energía del fotón análogo a \ref{autoenergiaelectron}. Al igual que en el caso anterior, podemos simplificar las cuentas, introduciendo la parte imaginaria $ i\epsilon $ en $ m $ y $ \mu $ y multiplicando y dividiendo por $ \cancel{p}+m' $ y $ \cancel{p}+\cancel{k}+m' $.
 
 \begin{equation}\label{aux5}
-\Pi^{\mu\nu}(k) \equiv i e^2 \int \frac{\mathrm{d^4}p}{(2\pi)^4} \ \frac{Tr\left\{ \gamma^{\mu}\left(\cancel{p}+m'\right)\gamma^{\nu}\left(\cancel{p}+\cancel{k}+m'\right) \right\}}{\left(p^2 -m'^2\right)\left[\left(p+k\right)^2 -m'^2 \right]}   
+\Pi^{\mu\nu}(k) = i e^2 \int \frac{\mathrm{d^4}p}{(2\pi)^4} \ \frac{Tr\left\{ \gamma^{\mu}\left(\cancel{p}+m'\right)\gamma^{\nu}\left(\cancel{p}+\cancel{k}+m'\right) \right\}}{\left(p^2 -m'^2\right)\left[\left(p+k\right)^2 -m'^2 \right]}   
 \end{equation}
 
 Luego, podemos introducir los parámetros de Feynman \ref{integralfeynman2} identificando A con el corchete del denominador y B con el paréntesis, de esta forma, el denominador quedará
@@ -856,18 +872,75 @@ Luego, podemos introducir los parámetros de Feynman \ref{integralfeynman2} iden
 \begin{equation}\label{key}
 \begin{aligned}
 D&\equiv \left[x\left(p+k\right)^2-xm'^2 + \left(p^2 - m'^2\right)(1-x)\right]^2\\
-&=\left[p^2-m'^2 + 2pk + k^2x\right]^2=\\
+&=\left[p^2-m'^2 + 2pk + k^2x\right]^2\\
 &=\left[\left(p+kx\right)^2 - m'^2 + k^2x(1-x)\right]^2
 \end{aligned}
 \end{equation}
 
 donde para la última igualdad completamos cuadrados. Antes de introducir esto en \ref{aux5}, efectuamos la traslación $ p_{\alpha} \longrightarrow p_{\alpha} - k_{\alpha}x $ y nos queda
 
-\begin{equation}
-\Pi^{\mu\nu}(k) \equiv i e^2 \int \frac{\mathrm{d^4}p}{(2\pi)^4} \ \frac{Tr\left\{ \gamma^{\mu}\left(\cancel{p}-\cancel{k}x +m'\right)\gamma^{\nu}\left(\cancel{p}+\cancel{k}(1-x)+m'\right) \right\}}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2}   
+\begin{equation}\label{aux6}
+\Pi^{\mu\nu}(k) = i e^2 \int_0^1 \mathrm{d}x \int \frac{\mathrm{d^4}p}{(2\pi)^4} \ \frac{Tr\left\{ \gamma^{\mu}\left(\cancel{p}-\cancel{k}x +m'\right)\gamma^{\nu}\left(\cancel{p}+\cancel{k}(1-x)+m'\right) \right\}}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2}   
 \end{equation}
 
-Llegado a este punto, veamos nuevamente que sucede con el conteo de potencias. En \ref{vacumpolarization} tenemos 6 potencias en el numerador y 4 en el denominador por lo que esta segunda integral también posee una divergencia ultravioleta, pero en este caso cuadrática!. Dejando también este caso para calcular luego, veamos si tenemos más suerte en el próximo.
+Para organizar un poco el numerador, es necesario enlistar algunas propiedades de las matrices gamma y su traza. Por motivos que quedarán más claro luego, presentemos estas relaciones considerando dimensión arbitraria $ d $. En primer lugar tenemos el anti-conmutador
+
+\begin{equation}\label{gamma1}
+\left\{\gamma^{\mu},\gamma^{\nu}\right\}=2g^{\mu\nu}
+\end{equation} 
+
+donde $ g^{\mu\nu} $es la métrica del espacio de Minkoski en $ d $ dimensiones con asignatura $ (+---...) $, luego tenemos
+
+\begin{equation}\label{gamma2}
+\begin{aligned}
+\gamma^{\mu}\gamma_{\mu}&=d\\
+\gamma_{\mu}\gamma_{\nu}\gamma^{\mu}&=(2-d)\gamma_{\nu}
+\end{aligned}
+\end{equation} 
+
+donde la última relación se sigue de la primera y segunda. Luego, relacionado con las trazas tenemos las propiedades
+
+\begin{equation}\label{gamma3}
+\begin{aligned}
+Tr&\left\{\Pi_{i=2n+1}\gamma_i\right\}=0 \ \ n\in \mathbb{N}_0\\
+Tr&\{\mathbb{I}\}=f(d)\\
+Tr&\{\gamma_{\mu}\gamma_{\nu}\}=f(d)g_{\mu\nu}\\
+Tr&\{\gamma_{\mu}\gamma_{\rho}\gamma_{\nu}\gamma_{\sigma}\}=f(d)\left(g_{\mu\rho}g_{\nu\sigma}-g_{\mu\nu}g_{\rho\sigma}+g_{\mu\sigma}g_{\rho\nu}\right)
+\end{aligned}
+\end{equation}
+
+donde $ f(d) $ es una función de la dimensión que cumple $ f(4)=4 $, como no necesitaremos más información que esa, no resulta relevante explicitarla.\\
+
+Hecha esta digresión podemos acomodar el numerador de \ref{aux6} utilizando que la traza de un número impar de gammas se anula y que nuevamente términos de la forma 
+
+\begin{equation}\label{key}
+\int \mathrm{d^4}p \frac{\cancel{p}}{F(p)}
+\end{equation}
+
+con $ F(p) $ una función par, valen cero por paridad con respecto al volumen de integración. De esta forma, nos queda
+
+\begin{equation}\label{key}
+\begin{aligned}
+N&=Tr\left\{\gamma^{\mu}\gamma^{\rho}\gamma^{\nu}\gamma^{\sigma}\right\} \left(p_{\rho}p_{\sigma} - k_{\rho}k_{\sigma}x(1-x)\right) - m'xTr\left\{\gamma^{\mu}\cancel{k}\gamma^{\nu}\right\} - m'(1-x)Tr\left\{\gamma^{\mu}\gamma^{\nu}\cancel{k}\right\} - m'^2 Tr\left\{\gamma^{\mu}\gamma^{\nu}\right\}\\
+&=Tr\left\{\gamma^{\mu}\gamma^{\rho}\gamma^{\nu}\gamma^{\sigma}\right\} \left(p_{\rho}p_{\sigma} - k_{\rho}k_{\sigma}x(1-x)\right) - m'^2 Tr\left\{\gamma^{\mu}\gamma^{\nu}\right\}\\
+&= 4\left\{2p^{\mu}p^{\nu}-2x(1-x)(k^{\mu}k^{\nu}-k^2g^{\mu\nu}) - g^{\mu\nu} \left[ p^2 - m'^2 + k^2x(1-x)\right]\right\}
+\end{aligned}
+\end{equation}
+
+donde utilizamos las propiedades de \ref{gamma2} con $ d=4 $ para llegar a la última igualdad. Introduciendo esto en \ref{aux6} obtenemos
+
+
+\begin{boxquation}
+\begin{equation}\label{pi}
+\begin{aligned}
+\Pi^{\mu\nu}(k) &= i e^2 4 \int_0^1 \mathrm{d}x \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
+&\times \left\{ \frac{2p^{\mu}p^{\nu}}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2} - \frac{2x(1-x)(k^{\mu}k^{\nu}-k^2g^{\mu\nu})}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2}-\frac{g^{\mu\nu}}{\left[ p^2 -m'^2 + k^2x(1-x)\right]} \right\} 
+\end{aligned}   
+\end{equation}
+\end{boxquation}
+
+
+Llegado a este punto, veamos nuevamente que sucede con el conteo de potencias. Aquí tenemos 3 términos, el primero y el último divergen de forma cuadrática mientras que el del medio lo hace de manera logarítmica ya que contiene 4 potencias en el numerador y 4 en el denominador. Cuando calculemos este tipo de integrales demostraremos que el primer y último término se cancelan entre si quedando solo la divergencia logarítmica para el proceso. Dejando también este caso para calcular luego, veamos si tenemos más suerte en el próximo.
 \subsubsection{Corrección al vértice de interacción}
 
 El tercer proceso fundamental de QED, se obtiene al analizar la función de Green de 3 puntas donde tenemos un electrón incidente y otro electrón junto con un fotón a la salida. Analíticamente tenemos
@@ -995,12 +1068,28 @@ donde completamos cuadrados para la última igualdad. Ahora introducimos esto en
 \Lambda_{\mu}(q,k)=-ie^22\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^4}p}{(2\pi)^4} \frac{  \gamma^{\nu}\left(\cancel{k}(1-x)-\cancel{p} -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y)-\cancel{p} -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3}
 \end{equation}
 
-Llegado al mismo punto que siempre, podemos hacer el conteo de potencias para verificar que, una vez más, esta integral posee divergencial ultravioletas logarítimas!\\
+relación que podemos desglozar en dos partes. Utilizando nuevamente que el denominador es par con respecto al volúmen de integración, los términos lineales en $ \cancel{p} $ se anulan y nos queda
 
+
+\begin{boxquation}
+\begin{equation}\label{lambda}
+\begin{aligned}
+\Lambda_{\mu}(q,k)&=-ie^22\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
+&\times \left\{ \frac{  \gamma^{\nu}\cancel{p}\gamma_{\mu}\cancel{p}\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right.\\
+&+ \left. \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right\}\\
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+De esta relación podemos ver que existen dos contribuciones a la corrección del vértice, una con divergencias ultravioletas logarítmicas $ (\Lambda_{\mu}^{(1)}(q,k)) $ y la otra sin problemas de convergencia $ (\Lambda_{\mu}^{(2)}(q,k)) $.\\
+
+\begin{equation}
+\Lambda_{\mu}(q,k) \equiv \Lambda_{\mu}^{(1)}(q,k) + \Lambda_{\mu}^{(2)}(q,k)
+\end{equation}
  
 Ahora bien, ¿hasta donde sigue esto?, parecería ser que todo proceso que queremos calcular nos da valores infinitos y no hay escapatoria. En realidad esto no es así, si bien en este resumen no hicimos ningún otro cálculo más que los tres anteriores, existen otros procesos que no poseen divergencias ultravioletas y dan resultados muy interesantes sin demasiadas complicaciones como por ejemplo los primeros ordenes del scattering electrón-electrón o el scattering Compton entre otros. De todas formas, dicho esto surge naturalmente hacerse la pregunta ¿Es posible predecir que procesos contendrán divergencias ultravioletas y cuales no? o analogamente ¿Se pueden identificar todos los diagramas divergentes de la teoría?. Espectacularmente la respuesta es sí! y para ello se utiliza el concepto de \textbf{grado de divergencia superficial} que pasamos a explicar en la siguiente sección.
 
-\subsubsection{Grado de divergencia superficial}
+\subsubsection{Grado de divergencia superficial}\label{sec_superficial}
 
 La idea de este concepto es justamente responder la pregunta previamente formulada, dada una teoría, queremos saber cuales son todos los diagramas que contendrán divergencias ultravioletas. Centrandonos en el caso particular de QED, lo que vimos de nuestro estudio de las self-energy y correción al vértice es que el conteo de potencias nos ayudó a predecir sin mayor dificultad la divergencia de las integrales. Esto llevado al caso de un proceso genérico es la idea del grado de divergencia superficial, este no es más que el exponente final del momento que quedará dentro de la integral para grandes valores del mismo!. De esta forma, el exponente ($ D $) de una integral genérica tendrá un numerador con 4 potencias (dimensión del espacio) por cada integral que haya que resolver, la cual corresponde al número de loops ($ L $) (en los casos estudiados teníamos un loop equivalente a una integral a resolver). Por otro lado, en el denominador habrá una potencia por cada propagador o pata internas fermiónicas ($ E_i $) y 2 potencias por cada pata interna fotónica ($ P_i $). De esta forma, el grado de divergencia superficial viene dado por
 
@@ -1032,7 +1121,15 @@ Finalmente, combinando todas ellas encontramos el grado de divergencia superfici
 D=4-\frac{3E_e}{2}-P_e
 \end{equation}
 
-Que la sencillez de esta igualdad no los engañe, ella nos dice que para configuraciones en donde $ D\geq0 $ obtendremos diagramas divergentes!. Pongamos a prueba nuestra nueva fórmula para los casos estudiados. En la self-energy del electrón, tenemos $ E_e=2 $ y $ P_e=0 $, entonces $ D=1 $, una divergencia lineal tal como habíamos visto!. Pasemos ahora a la polarización del vacío en donde teníamos $ E_e=0 $ y $ P_e=2 $, aquí obtenemos $ D=2 $ que de nuevo concuerda con nuestro cálculo. Finalmente para la correción al vértice tenemos $ E_e=2 $ y $ P_e=1 $ por lo que $ D=0 $ y encontramos una divergencia logaritmica como esperábamos. La moraleja de todo esto es que con solo mirar el grado de divergencia superficial podríamos haber inferido de ante mano el carácter divergente de los 3 procesos estudiados!. A estos tres se los conoce como diagramas \textbf{primitivamente divergentes} y podemos preguntarnos si existen otros diagramas primitivamente divergentes. Observando  \ref{D} vemos que existen otros dos posibles dados por la combinación $ E_e=0 $ y $ P_e=3 $ el cual diverge linealmente y corresponde al siguiente diagrama de Feynman\\
+Que la sencillez de esta igualdad no los engañe, ella nos dice que para configuraciones en donde $ D\geq0 $ obtendremos diagramas divergentes!. Pongamos a prueba nuestra nueva fórmula para los casos estudiados. 
+
+En la self-energy del electrón, tenemos $ E_e=2 $ y $ P_e=0 $, entonces nos predice $ D=1 $, es decir una divergencia lineal. De \ref{sigma} vemos que esto no es del todo cierto, si bien el cálculo sí diverge, vimos que lo hace logaritmicamente, esto se debe a que el conteo de potencias que resuelve el grado de divergencias superficial corresponde a la integral \ref{aux1} (previa a utilizar la herramienta de paridad) la cual diverge linealmente como se predice. 
+
+Pasemos ahora a la polarización del vacío en donde teníamos $ E_e=0 $ y $ P_e=2 $, aquí obtenemos $ D=2 $ que no concuerda con \ref{pi} ya que probaremos luego que los términos cuadraticamente divergentes se cancelan mutuamente, de todas formas también predice un comportamiento divergente.
+
+Finalmente para la corrección al vértice tenemos $ E_e=2 $ y $ P_e=1 $ por lo que $ D=0 $ y encontramos una divergencia logarítmica como esperábamos. 
+
+La moraleja de todo esto es que con solo mirar el grado de divergencia superficial podríamos haber inferido de ante mano el carácter divergente de los 3 procesos estudiados!. A estos tres se los conoce como diagramas \textbf{primitivamente divergentes} y podemos preguntarnos si existen otros diagramas del mismo índole. Observando  \ref{D} vemos que existen otros dos posibles dados por la combinación $ E_e=0 $ y $ P_e=3 $ el cual diverge linealmente y corresponde al siguiente diagrama de Feynman\\
 
 FIGURA\\
 
@@ -1040,24 +1137,313 @@ Si bien, es cierto que este proceso diverge, puede demostrase que el mismo se ca
 
 FIGURA\\
 
-que con $ E_e=0 $ y $ P_e=4 $, predice una divergencia logaritmica. De todas formas, resulta ser que por invarianza de Gauge, dicho diagrama termina siendo convergente.\\
+que con $ E_e=0 $ y $ P_e=4 $, predice una divergencia logarítmica. De todas formas, resulta ser que por invarianza de Gauge, dicho diagrama termina siendo convergente.\\
 
 Dicho esto, nos vemos tentados a concluir que los tres procesos que nos proponemos calcular son los únicos divergentes de la teoría, esto sin embargo no es cierto y se debe a que al considerar solo la información de las patas externas, puede suceder que diagramas con $ D<0 $ resulten finalmente divergentes!. Cualquier proceso convergente a orden cero que contenga un loop como subdiagrama sirve de ejemplo para visualizar esto. Uno de ellos puede ser el scattering de Moller ($ E_e=4 $) a orden uno en teoría de perturbaciones, el cual predice $ D=-2 $ y al tener loops internos resulta divergente. Este pequeño comentario es el motivo por el cual se lo llama grado de divergencia \underline{superficial}, ya que no contiene información de los sub-diagramas internos de los procesos. De todas maneras, lo que si se ve es que cualquier divergencia que aparezca dentro de estos sub-diagramas será de la forma de los diagramas primitivos que vimos anteriormente! por lo que calculados ellos, solo debemos ponerlos luego en el lugar correcto del proceso en cuestión y listo!.\\
 
 Ahora si, sabiendo que agotamos todos los diagramas primitivamente divergentes, rescatemos a la electrodinámica cuántica intentando darle algún sentido a las divergencias ultravioletas, ¡A por ellos!.
 
-\subsection{Regularización dimensional}
+\subsection{Regularización}
 
-Dado que los tres procesos que analizamos poseen divergencias ultravioletas, debemos hacer algo al respecto para que nuestra teoría pueda describir satisfactoriamente la naturaleza. El primer paso de ese algo se llama \textbf{Regularización}, un proceso que se encarga de definir nuevas integrales a partir de las divergentes que tenemos. Esto no puede hacerse de cualquier manera y por ello existen unas pocas maneras de lograrlo de forma consistente. Entre ellas se encuentra la implementación de un \textbf{Cut-off} que suavice el integrando en los límites de integración, o la introducción de un acople ficticio con una partícula de masa $ M $ conocido como regularización de Pauli-Villars, en ambos casos luego de resolver las integrales se debe tomar el limite correspondiente a infinito. Existe un tercer método conocido como \textbf{Regularización dimensional} que consiste en trabajar las integrales en una dimensión genérica $ d $ para luego hacer la extensión analítica a $ d=4-2\epsilon $ y finalmente tomar el límite para $ \epsilon $ yendo a cero. Este último será el que utilizaremos y pasamos a describirlo a continuación.\\
+Dado que los tres procesos que analizamos poseen divergencias ultravioletas, debemos hacer algo al respecto para que nuestra teoría pueda describir satisfactoriamente la naturaleza. El primer paso de ese algo se llama \textbf{Regularización}, un proceso que se encarga de definir nuevas integrales a partir de las divergentes que tenemos. Esto no puede hacerse de cualquier manera y por ello existen unos pocos mecanismos para lograrlo de forma consistente. Entre ellos se encuentra la implementación de un \textbf{Cut-off} que suavice el integrando en los límites de integración, o la introducción de un acople ficticio con una partícula de masa $ M $ conocido como regularización de Pauli-Villars, en ambos casos luego de resolver las integrales se debe tomar el limite correspondiente a infinito. Existe un tercer método conocido como \textbf{Regularización dimensional} que consiste en trabajar las integrales en una dimensión genérica $ d $ para luego hacer la extensión analítica a $ d=4-2\epsilon $ y finalmente tomar el límite para $ \epsilon $ yendo a cero. Este último será el que utilizaremos y pasamos a describirlo a continuación.\\
 
-Notando la forma
+\subsubsection{Regularización Dimensional}\label{sec_RD}
 
-Antes de comenzar los cálculos mencionemos brevemente a modo de introducción con que nos encontraremos en el camino. En este punto claro está que nuestro trabajo se redujo a, dado un número arbitrario de campos externos, calcular la función de Green generalizada \ref{green_generalizado} correspondiente al orden en la constante de acople que nosotros querramos. Gracias al teorema de Wick, vimos que el producto de estos campos siempre los podíamos escribir como suma de productos de contracciones de solo dos de ellos, los cuales remarcamos que coinciden con los propagadores \ref{prop_dirac} y \ref{prop_fotonmu}, dicho esto es facil notar que, entre otras cosas, tendremos una integral sobre los momentos por cada cada propagador. Veremos luego que si ahora pasamos al espacio de Fourier, muchas de estas integrales se resolverán trivialmente por conservación de la energía en cada vértice del proceso mientras que en ciertas ocasiones quedarán una o más integrales que requerirán un poco de esfuerzo. Resolver las mismas no será tarea facil ya que presentarán un comportamiento divergente para grandes valores del momento en cuestión!, estas se conocen como \textbf{divergencias ultravioletas}. En otras palabras el último eslabón de nuestro cálculo al proceso de scatering no es otra cosa que una integral divergente. Claramente si queremos que nuestra teoría tenga algún poder predictivo hay que hacer algo con este inconveniente. La solución a ello se conoce como \textbf{Renormalización}, un método con el cual podremos extraer las contribuciones finitas a las cantidades físicas de la teoría. Explicar y entender la idea de este mecanismo será el objetivo de lo que resta en estas notas.
+La idea de regularización dimensional consiste en tomar una versión bien comportada de las integrales en \ref{sigma}, \ref{pi} y \ref{lambda} tal que converjan para grandes valores del momento. Por lo visto en la sección \ref{sec_superficial} el problema de dichas divergencias radica en un conteo de potencias mayor o igual a cero para momentos yendo a infinito, el cual podría mejorarse si estuviésemos en un espacio de dimensión menor. Por ejemplo, de la ecuación \ref{sigma} vemos que si estuviésemos en un espacio de dimensión menor o igual a 3 la integral sería convergente!. Motivado por esto, surge la idea de definir nuevas integrales en una dimensión arbitraria $ d $ menor, que obviamente no convergerán para $ d=4 $ pero se las puede llevar a dicho valor mediante una extensión analítica $ d=4-2\epsilon $. Esto quiere decir, que trabajaremos pensando que estamos en una dimensión tal que las integrales convergen, pero con la obligación de hacer la extensión analítica y al final de los cálculos llevar $ \epsilon $ a cero!.\\
+
+Dicho esto, podemos observar que las partes divergentes de las ecuaciones \ref{sigma}, \ref{pi} y \ref{lambda} poseen formas similares, todas ellas se pueden expresar como
+
+\begin{equation}\label{RD1}
+I_4(q)=\int\mathrm{d^4}p \frac{1}{\left(p^2 - q^2 \right)^a}
+\end{equation}
+
+o
+
+\begin{equation}\label{RD2}
+I_4(q)=\int\mathrm{d^4}p \frac{p^{\mu}}{\left(p^2 - q^2 \right)^a}
+\end{equation}
+
+o
+
+\begin{equation}\label{RD3}
+I_4(q)=\int\mathrm{d^4}p \frac{p^{\mu} p^{\nu}}{\left(p^2 - q^2 \right)^a}
+\end{equation}
+
+donde $ q^2 $ es una función cualquiera de $ q,k,x,y $ que adopta la forma necesaria para cada caso particular, por ejemplo para la self-energy del electrón utilizaríamos $ q^2 = (1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x) $ y así con el resto.  
+Habiendo notado esto, nuestro primer paso es demostrar que \ref{RD2} y \ref{RD3} se pueden calcular a partir de \ref{RD1}!.
+Para ello comenzamos definiendo la integral regularizada
+
+\begin{equation}\label{RD4}
+I_d(q):=\int\mathrm{d^d}p \frac{1}{\left(p^2 - q^2 \right)^a}
+\end{equation}
+
+donde como anticipamos, estaremos trabajando en un espacio Minkowskiano con una dimensión temporal y $ d-1 $ espaciales y haciendo un simple conteo de potencias vemos que la integral solo converge para valor $ d< 2a -1 $, lo cual nos dice que para nuestro caso de interés $ a=2 $, la dimensión debe ser menor que 3, es decir, que para el espacio físico en $ d=4 $, la integral no converge como ya habíamos demostrado. Ahora bien la manera de regularizar esto es hacer una extensión analítica a $ d= 4 -2\epsilon $ y finalizado los cálculos tomar el límite para $ \epsilon $ yendo a $ 0 $. Teniendo esto en mente, por comodidad mantendremos la dimensión sin explicitar hasta el final de los cálculos.
+
+Ante un cambio de variables
+
+\begin{equation}\label{RDtransf}
+p^{\mu} \longrightarrow p^{\mu} + q^{\mu} 
+\end{equation}
+
+obtenemos
+
+\begin{equation}
+\int\mathrm{d^d}p \frac{1}{\left(p^2 - q^2 \right)^a}=\int\mathrm{d^d}p \frac{1}{\left(p^2 + 2pq \right)^a}
+\end{equation}
+
+Luego, podemos derivar ambos miembros con respecto a $ q_{\mu} $ y renombrando $ a \longrightarrow a - 1 $ obtener
+
+\begin{equation}\label{RD5}
+\int\mathrm{d^d}p \frac{p^{\mu}}{\left(p^2 + 2pq\right)^a} = -\int\mathrm{d^d}p \frac{q^{\mu}}{\left(p^2 - q^2 \right)^a}
+\end{equation}
+
+Usando la transformación inversa de \ref{RDtransf}
+
+\begin{equation}\label{RDtransfinv}
+p^{\mu} \longrightarrow p^{\mu} - q^{\mu} 
+\end{equation}
+
+en el lado derecho de \ref{RD2} llegamos a la interesante igualdad
+
+\begin{equation}\label{paridad}
+\int\mathrm{d^d}p \frac{p^{\mu}}{\left(p^2 - q^2\right)^a} =0
+\end{equation}
+
+que no es otra cosa que el resultado que afirmamos en los cálculos de un loop utilizando argumentos de paridad, al tener un numerador impar en el volumen de integración y una función de $ p^2 $ en el denominador era de esperar obtener la anulación de \ref{RD2}!\\
+
+Siguiendo un paso más, podemos diferenciar nuevamente la igualdad \ref{RD5} con respecto a $ q_{\nu} $
+
+\begin{equation}\label{RD6}
+\begin{aligned}
+-2a\int\mathrm{d^d}p \frac{p^{\mu}p^{\nu}}{\left(p^2 +2pq \right)^{a+1}}&=-g^{\mu\nu}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^a} -2a q^{\mu}q^{\nu}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^{a+1}} \ \ \\
+& \iff\\
+\int\mathrm{d^d}p \frac{p^{\mu}p^{\nu}}{\left(p^2 +2pq \right)^a}&= \frac{g^{\mu\nu}}{2(a-1)}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^{a-1}} + q^{\mu}q^{\nu}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^a}	
+\end{aligned}
+\end{equation}
+
+finalmente podemos utilizar el cambio \ref{RDtransfinv} en el primer término, despejar y llegar a la relación
+
+\begin{equation}\label{picancel}
+\begin{aligned}
+\int\mathrm{d^d}p \frac{p^{\mu}p^{\nu}}{\left(p^2 -q^2 \right)^a} + \int\mathrm{d^d}p \frac{q^{\mu}q^{\nu} -\left(q^{\mu}p^{\nu} + q^{\nu}p^{\mu}\right)}{\left(p^2 -q^2\right)^a} &= \frac{g^{\mu\nu}}{2(a-1)}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^{a-1}} + q^{\mu}q^{\nu}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^a}\\
+& \iff\\
+\int\mathrm{d^d}p \frac{p^{\mu}p^{\nu}}{\left(p^2 -q^2 \right)^a} &= \frac{g^{\mu\nu}}{2(a-1)}\int\mathrm{d^d}p \frac{1}{\left(p^2 -q^2\right)^{a-1}}
+\end{aligned}
+\end{equation}
+
+Al igual que \ref{paridad}, esta relación nos es muy útil ya que renombrando $ q^2 \equiv -m'^2 + k^2x(1-x) $ y considerando el caso $ a=2 $ vemos que nos predice que los términos cuadráticamente divergentes de \ref{pi} se terminan cancelando y nos queda solamente el término logaritmico!. A su vez, es importante remarcar que dicha expresión queda determinada por \ref{RD4} con $ a $ disminuido en 1. De esta forma, concluimos que la única integral a calcular es simplemente \ref{RD4}, comencemos!\\
+
+Para resolver este tipo de problemas conviene introducir coordenadas polares de la forma
+
+\begin{equation}\label{key}
+p = \left(p_0,r,\phi,\theta_1,...,\theta_{d-3}\right)
+\end{equation}
+
+con $ \left(-\infty < p_0 < \infty\right)  $, $ \left(0 < r < \infty\right)  $, $ \left(0 < \phi < 2\pi\right)  $ y $ \left(0 < \theta_i < \pi\right)  $. Luego, su elemento diferencial se expresa de la forma
+
+\begin{equation}\label{key}
+\mathrm{d^d}p=\mathrm{d}p_0 \ r^{d-2} \mathrm{d}r \ \mathrm{d} \Omega_{d-1}
+\end{equation}
+
+donde $ \mathrm{d} \Omega_{d-1} $ es el diferencial de ángulo solido para la (d-1)-esfera y contiene toda la cosntribución angular de $ \phi $ y los $ \theta_i $. En esta coordenadas, la integral \ref{RD1} nos queda
+
+\begin{equation}\label{auxRD}
+\begin{aligned}
+I_d(q)&=\int_{-\infty}^{\infty}\mathrm{d}p_0\int_{0}^{\infty} \mathrm{d}r r^{d-2}  \int \mathrm{d} \Omega_{d-1} \frac{1}{\left(p_0^2 - r^2 -q^2\right)^a}=\\
+&=\Omega_{d-1} \int_{-\infty}^{\infty}\mathrm{d}p_0\int_{0}^{\infty}\mathrm{d}r \frac{r^{d-2}}{\left(p_0^2 - r^2 -q^2\right)^a}
+\end{aligned}
+\end{equation}
+
+donde para la última igualdad utilizamos que el integrando no dependen de las coordenadas angulares. Por otro lado podemos utilizar la forma explícita del elemento de ángulo sólido dada por
+
+\begin{equation}\label{angulosolido}
+\Omega_{d-1} = \frac{2 \pi^{\frac{d-1}{2}}}{\Gamma (\frac{d-1}{2})}
+\end{equation}
+
+donde se utilizó la \textbf{función Gamma} que está definida para valores no negativos de su argumento por lo que la dimensión $ d $ ahora también recibe una cota inferior $ d>1 $. Esta función cumple la propiedad 
+
+\begin{equation}\label{key}
+z \Gamma(z)= \Gamma(z+1)
+\end{equation} 
+
+que nos será útil en breve.
+
+Para calcular la parte radial, definimos la función \textbf{Beta de Euler}
+
+\begin{equation}\label{betaeuler}
+B(x,y)=\frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)} = \equiv 2 \int_0^{\infty} \frac{z^{2x-1}}{(z^2+1)^{x+y}}\mathrm{dz} \ \ \ \Re(x)>0 \ , \ \Re(y)>0
+\end{equation}
+
+que podemos reescribir de una forma más conveniente cambiando $ x=\frac{1+b}{2} $, $ y=a - \frac{1+b}{2} $ y $ z=\frac{z}{A} $ para obtener
+
+\begin{equation}
+\frac{\Gamma(\frac{1+b}{2}) \Gamma(a - \frac{1+b}{2})}{\Gamma(a)} =\frac{2}{A^{b+1-2a}} \int_0^{\infty} \frac{z^b}{(z^2+A^2)^a}\mathrm{dz}
+\end{equation}
+
+lo que finalmente resulta en 
+
+\begin{equation}\label{betaeuler2}
+\int_0^{\infty} \frac{z^b}{(z^2+A^2)^a}\mathrm{dz} = \frac{\Gamma(\frac{1+b}{2}) \Gamma(a - \frac{1+b}{2})}{2 \Gamma(a) (A^2)^{a-\frac{b+1}{2}}} 
+\end{equation}
+
+Relación con la cual podemos resolver la parte radial de \ref{auxRD} mediante la identificación $ z=r $, $ b= d-2 $ y $ A^2=q^2 -p_0^2 $. De esta forma obtenemos
+
+\begin{equation}\label{key}
+\begin{aligned}
+I_d(q)&= \frac{2 \pi^{\frac{d-1}{2}}}{\Gamma (\frac{d-1}{2})} \int_{-\infty}^{\infty}\mathrm{d}p_0 (-1)^a \frac{\Gamma(\frac{d-1}{2} ) \Gamma(a - \frac{d-1}{2})}{2 \Gamma(a) \left[q^2 - p_0^2\right]^{a-\frac{d-1}{2}}}\\
+&= (-1)^{\frac{d-1}{2}} \pi^{\frac{d-1}{2}}  \frac{\Gamma(a - \frac{d-1}{2} )}{\Gamma(a)}\int_{-\infty}^{\infty}\mathrm{d}p_0 \frac{1}{\left[p_0^2 - q^2\right]^{a-\frac{d-1}{2}}}
+\end{aligned}
+\end{equation}
+
+donde explicitamos la forma del ángulo sólido y dimos vuelta el corchete a costa de un signo menos. Para esta segunda integral, podemos utilizar paridad para obtener
+
+\begin{equation}\label{key}
+\int_{-\infty}^{\infty}\mathrm{d}p_0 \frac{1}{\left[p_0^2 - q^2\right]^{a-\frac{d-1}{2}}} = 2 \int_{0}^{\infty}\mathrm{d}p_0 \frac{1}{\left[p_0^2 - q^2\right]^{a-\frac{d-1}{2}}}
+\end{equation}
+
+y ahora sí hacer uso de \ref{betaeuler2} con $ z=p_0 $, $ b= 0 $, $ A^2=-q^2$ y $ a \rightarrow a-\frac{d-1}{2} $ 
+
+\begin{equation}\label{key}
+\begin{aligned}
+I_d(q)= (-1)^{\frac{d-1}{2}} \pi^{\frac{d-1}{2}}  \frac{\Gamma(a - \frac{d-1}{2} )}{\Gamma(a)} \frac{\Gamma(\frac{1}{2})\Gamma(a - \frac{d}{2} )}{\Gamma(a-\frac{d-1}{2})\left[ -q^2\right]^{a-\frac{d}{2}} }  
+\end{aligned}
+\end{equation}
+
+donde podemos utilizar $ \Gamma(\frac{1}{2})= \pi^{\frac{1}{2}} $ para obtener nuestra solución genérica
+
+\begin{equation}\label{id}
+I_d(q)=(-1)^{a} i \pi^{\frac{d}{2}} \frac{\Gamma(a - \frac{d}{2} )}{\Gamma(a)} \frac{1}{\left[q^2\right]^{a-\frac{d}{2}}}
+\end{equation}
+
+
+La cual, así definida solo es válida para las condiciones $ 1<d<2a-1 $. Las mismas se satisfacen para el caso particular de $ \Lambda_{\mu}^{(2)}(q,k) $ en \ref{lambda} por lo que no presenta divergencias como habíamos anticipado. La forma de la integral se corresponde con \ref{id} para $ d=4 $ y $ a=3 $ dada por
+
+
+\begin{boxquation}
+\begin{equation}\label{idvertex}
+I_4(q)=(-1) i \pi^2 \frac{\Gamma(1)}{\Gamma(3)} \frac{1}{q^2} = -\frac{i \pi^2}{2q^2} 
+\end{equation}
+\end{boxquation}
+
+Luego, para los casos restante en \ref{sigma}, \ref{pi} y $ \Lambda^{(1)}(q,k) $ en \ref{vertex} con $ a=2 $, nos vemos obligados a explicitar la extensión analítica tomando $ d=4-2\epsilon $ con $ \epsilon $ tomado al menor orden posible
+
+\begin{equation}\label{key}
+I_{4-2\epsilon}(q)=i \pi^2 \Gamma(\epsilon ) \left(\pi q^2\right)^{-\epsilon}
+\end{equation}
+
+donde podemos considerar el desarrollo de la función gamma
+
+\begin{equation}
+\Gamma(-n + \epsilon) = \frac{(1)^n}{n!} \left[ \frac{1}{\epsilon} + \sum_{k=1}^{n-1}\frac{1}{k} - \gamma_E + O(\epsilon)\right]
+\end{equation}
+
+para el caso particular $ n=0 $
+
+\begin{equation}\label{desagamma}
+\Gamma(\epsilon)= \frac{1}{\epsilon} - \gamma_E + O(\epsilon) 
+\end{equation}
+
+donde aparece la \textbf{constante de Euler-Mascheroni} $ \gamma_E $. A su vez, utilizamos el desarrollo 
+
+\begin{equation}\label{desalog}
+A^{-\epsilon} = 1 -\log(A) \epsilon  + O(\epsilon^2)
+\end{equation}
+
+Finalmente, introduciendo \ref{desagamma} y \ref{desalog} llegamos a la tan ansiada expresión
+
+\begin{boxquation}
+\begin{equation}\label{solucion}
+\begin{aligned}
+I_{4-2\epsilon}(q)&=i \pi^2 \left(\frac{1}{\epsilon} - \gamma_E + O(\epsilon) \right) \left[1 - \log\left(\pi q^2\right) \epsilon + O(\epsilon^2) \right]\\
+&=i \pi^2 \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(\pi q^2\right) + O(\epsilon) \right]
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+Ahora si, finalizado el proceso de regularización vemos que las cosas no resultaron del todo agradables. Habiamos dicho que la idea de regularizar era obtener una versión finita de las integrales y, si bien es cierto que mediante este método pudimos llegar a una expresión analítica de las mismas, vemos que si quisiésemos tomar el limite $ \epsilon \longrightarrow \infty $ seguiríamos teniendo un resultado divergente!. La manera de resolver este inconveniente será absorber las partes divergentes en parámetros del Lagrangiano que obviamente no serán observables, este es el famoso proceso de renormalización que discutiremos más adelante. Por el momento conservemos el término divergente para ver luego que hacemos con él y pasemos a calcular las versiones regularizadas de los procesos que dejamos en pausa. 
 
 \subsubsection{Self-energy regularizado}
 
+Con estas nuevas herramientas tomemos la versión regularizada de \ref{sigma} definiendo
+
+\begin{equation}\label{sigmareg1}
+\Sigma(q):=-i\xi^{4-d}e^{2}\int_{_{0}}^{^{1}}dx \gamma^{\mu}\left(\cancel{q}(1-x)+m'\right) \gamma_{\mu} \int\frac{\mathrm{d^d}p}{(2\pi)^d}\left\{\frac{1}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\}
+\end{equation}
+
+donde se introduce el parámetro arbitrario $ \xi $ con unidades de masa para mantener las mismas de forma consistente. Esto surge de que en una dimensión arbitraria el Lagrangiano tiene que tener unidades de masa a la $ -d $ para que la acción sea adimensional (ya que tomamos $ c=\hbar=1 $) en consecuencia la constante de acople $ e $ debe venir acompañado de un parámetro con unidades de masa como en \ref{sigmareg1}. Para comenzar con el cálculo podemos utilizar las propiedades de las gamma en $ d $ dimensiones para llevar la parte independiente de $ p $ a
+
+\begin{equation}\label{A}
+\gamma^{\mu}\left(\cancel{q}(1-x)+m'\right) \gamma_{\mu} = (2-d)\cancel{q}(1-x)+dm' = 2\left[2m' - \cancel{q}(1-x) \right] + 2\epsilon \left[ \cancel{q}(1-x) - m' \right]
+\end{equation}
+
+Introduciendo \ref{A} y dasarrollando $ \left(\xi^2 4 \pi^2\right)^\epsilon = 1 + \log\left(\xi^2 4 \pi^2\right) \epsilon + O(\epsilon^2)$ obtenemos
+
+\begin{equation}
+\begin{aligned}
+\Sigma(q)&=-i\frac{e^2}{8\pi^4}\int_{_{0}}^{^{1}}dx \left\{ 2m' - \cancel{q}(1-x) + \epsilon\left[ \cancel{q}(1-x) - m' + \log\left(\xi^2 4 \pi^2\right) \left(2m' - \cancel{q}(1-x)\right)\right]\right\}\\
+&\times \int\mathrm{d^d}p\left\{\frac{1}{\left[p^{2}+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right]^{2}}\right\}
+\end{aligned}
+\end{equation}
+
+de la cual reconocemos la integral sobre el momento como \ref{solucion} con $ q^2=+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)  $ . Metiendo este desarrollando y quedandonos hasta orden cero en $ \epsilon $ llegamos a la expresión
+
+\begin{equation}
+\begin{aligned}
+\Sigma(q)&=-i\frac{e^2}{8\pi^4}\int_{_{0}}^{^{1}}dx \left\{ 2m' - \cancel{q}(1-x) + \epsilon\left[ \cancel{q}(1-x) - m' + \log\left(\xi^2 4 \pi^2\right) \left(2m' - \cancel{q}(1-x)\right)\right]\right\}\\
+&\times i\pi^2\left\{ \frac{1}{\epsilon} - \gamma_E -\log\left[\pi\left((1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)\right)\right] \right\}\\
+&=\frac{e^2}{8\pi^2}\int_{0}^{1}\mathrm{d}x \left\{ \frac{\left[2m' - \cancel{q}(1-x)\right]}{\epsilon} \right. \\
+&+ \left. \left[ \left(\cancel{q}(1-x) - m' \right)\left(1+\gamma_E\right) - m'\left(1 + 2\gamma_E\right) + \left(\cancel{q}(1-x) - 2m'\right) \log \left(\frac{(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)}{\xi^24\pi}\right)\right] \right\}
+\end{aligned}
+\end{equation}
+
+Relación que podemos integrar trivialmente para el caso $ \frac{1}{\epsilon} $ mientras que al término de orden cero lo renombramos como
+
+\begin{equation}\label{key}
+F(q,m,\mu)\equiv \frac{e^2}{16\pi^2} \left\{\cancel{q}\left(1+\gamma_E\right) - 2m\left(1+2\gamma_E\right) + 2\int_{0}^{1}\mathrm{d}x  \left(\cancel{q}(1-x) - 2m'\right) \log \left(\frac{(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)}{\xi^24\pi}\right)  \right\}
+\end{equation}
+
+Y de esta forma, introduciendo la constante de acople de QED $ \alpha = \frac{e^2}{4\pi} $ obtenemos
+
+\begin{equation}\label{key}
+\Sigma(q) = \frac{\alpha \left(4m - \cancel{q}\right)}{4\pi \epsilon} + F(q,m)
+\end{equation}
+
+donde tiramos el prescript imaginario $ +i\epsilon $ ya que no es más necesario. De esta relación lo que podemos notar es que aún habiendo regularizado las integrales no nos es posible eliminar el término divergente del cálculo, por otro lado, es importante notar que la parte "finita" de $ \Sigma(q) $, $ F(q,m,\mu) $ tiene dos inconvenientes. En primer lugar, vemos que depende de una escala arbitraria $ \xi $ que aparecería en el valor de los observables, es decir, la amplitud de probabilidad de mi proceso dependería de esta escala no física!, esto claramente no puede ser así y veremos más adelante como resolverlo (¿COMO?). Por otro lado, vemos que la masa ficticia del fotón que agregamos al comienzo del trabajo no puede mandarse a cero impunemente, si lo hiciésemos nos encontraríamos con una divergencia logarítmica en la integral para $ x=0 $!. Esto claramente es otro problema ya que sabemos de toda la vida que el fotón no tiene masa, estas son las conocidas \textbf{divergencias infrarojas}. La manera de solucionarlo es incorporando otros diagramas análogos al caso que se quiere tratar pero agregando un fotón a la salida con la misma masa ficticia, por ejemplo para nuestro caso particular deberíamos agregar\\
+
+FIGURAS\\
+
+que es simplemente el mismo diagrama que xx pero permitiendole emitir fotones de vez en cuando durante el proceso, el conocido \textbf{Bemstralung}. La incorporación de estos términos increiblemente cancela la parte arbitraria del cálculo dejando nuestra teoría libre de divergencias infrarojas!. La explicación de porque esto funciona es que en realidad ni el proceso xx ni los xx son observables, sino que al momento de medir deben considerarse todos ellos porque experimentalmente no es posible distinguirlos ya que los detectores tienen un Threshold mínimo de energía, fotones con energías menor al mismo no se ven.\\
+
+Viendo que siguen habiendo varios problemas a resolver, dejemos nuevamente de lado este problema y pasemos al otro proceso que quedo pendiente
+  
+
+\subsubsection{Polarización del vacío regularizado}
+
+\subsubsection{Vértice regularizado}
+
+\subsection{Renormalización}
+
+\subsubsection{Grupo de renormalización y función beta}
+ 
+ 
+\section{Apéndice: mathematical tools}
+
+\subsection{Análisis complejo}
+
+Quantum Field Theory vol 1: pg 209(230)
 
 
+\begin{thebibliography}{9}
+	
+	\bibitem{Itzqui}
+	Claude Itzykson \& Jean-Bernard Zuber,
+	\textit{Quantum Field Theory},
+	Capítulos 3.2 y 3.3. (¿como cito bien?)
+	
+\end{thebibliography}	
+	
+	
+\end{document}
 \begin{equation}\label{key}
 \int\frac{\mathrm{\mathrm{d^4}p}}{(2\pi)^{4}} \frac{\cancel{p}}{f(p^2)}
 \end{equation}
@@ -1178,9 +1564,6 @@ que suponemos positivo por simplicidad, obteniendo
 
 donde para pasar a la última igualdad utilizamos el cambio de variables $ p \longrightarrow \left(zf(x,q)\right)^{\frac{1}{2}} $ y la paridad de la integral. Esta última es conocida como la \textbf{función beta} o \textbf{integral de Euler}, definida como
 
-\begin{equation}\label{key}
-B(x,y) \equiv \int_0^{\infty} \frac{z^{x-1}}{(z+1)^{x+y}}\mathrm{dz} \ \ \ \Re(x)>0 \ , \ \Re(y)>0
-\end{equation}
 
 donde identificamos para nuestro caso particular $ x= \frac{D}{2} $ e $ y= \frac{4-D}{2} $ (ambos mayores a cero en virtud de haber tomado la extensión analítica $ D=4-2\epsilon $). A su vez, la función beta se relaciona con la función gamma mediante la igualdad
 
@@ -1242,33 +1625,4 @@ I_0 &= \cancel{q}(1-\gamma) -2m(1 +2\gamma) + \int_{0}^{1} \mathrm{dx} \left[ 4m
 
 
 
-Por otro lado, el primer corchete de \ref{aux4} se integra trivialmente obteniendo $ \cancel{q} + 4m $. Luego, introduciendo esto y xxx en \ref{aux4} llegamos a la expresión final  
-
-\subsubsection{Polarización del vacío regularizado}
-
-\subsubsection{Vértice regularizado}
-
-\subsection{Cálculos a un loop: Renormalización}
-
-\subsubsection{Grupo de renormalización y función beta}
-
-\subsection{Divergencia superficial} 
- 
-\section{Apéndice: mathematical tools}
-
-\subsection{Análisis complejo}
-
-Quantum Field Theory vol 1: pg 209(230)
-
-
-\begin{thebibliography}{9}
-	
-	\bibitem{Itzqui}
-	Claude Itzykson \& Jean-Bernard Zuber,
-	\textit{Quantum Field Theory},
-	Capítulos 3.2 y 3.3. (¿como cito bien?)
-	
-\end{thebibliography}	
-	
-	
-\end{document}
+Por otro lado, el primer corchete de \ref{aux4} se integra trivialmente obteniendo $ \cancel{q} + 4m $. Luego, introduciendo esto y xxx en \ref{aux4} llegamos a la expresión final
