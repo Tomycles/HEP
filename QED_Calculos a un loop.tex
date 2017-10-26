@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[tickz]{article}
 
 %Packages
 
@@ -19,8 +19,7 @@
 \usepackage{color}
 \setlength\parindent{0pt} % elimina sangría de todos los parrafos
 \usepackage{tikz} %Dibujos de lineas
-\usepackage{tikz-feynman} % diagramas de Feynman
-\usepackage{feynmf}
+\usepackage[compat=1.0.0]{tikz-feynman} % diagramas de Feynman
 \usepackage{cancel} %para poner las variables slash
 
 
@@ -515,8 +514,7 @@ y corriente del fermión o bosón en cuestión, dadas por \ref{prop_dirac} y \re
 
 \subsection{Diagramas de Feynman}\label{sec_feyn}
 
-En numerosas ocasiones
-tendremos una gran cantidad de campos a contraer entre si por lo que
+En numerosas ocasiones tendremos una gran cantidad de campos a contraer entre si por lo que
 las permutaciones pueden ser demasiadas como para hacer a mano. Para
 evitar cálculos innecesarios, conviene pensar de una forma simbólica
 muy poderosa. Estas identifican las posiciones de las partículas entrantes
@@ -526,12 +524,13 @@ La idea es que un propagador fermiónico representa una flecha con
 la dirección del momento entre los dos campos involucrados y el propagador
 de fotón se simboliza con un linea ondulada. 
 
-\begin{equation*}
+\begin{equation}\label{feyn}
 \begin{aligned}
 \overbracket{\psi_{\alpha}(y_{1})\overline{\psi}_{\beta}(x_{1})} \equiv \feynmandiagram [ horizontal=f1 to f2] {f1[dot,label=\(x_1\,\beta\)] -- [fermion] f2[dot,label=\(y_1\,\alpha\)]};\\
 \overbracket{A_{\mu}(y_{1})A_{\nu}(x_{1})} \equiv \feynmandiagram [horizontal=f1 to f2] {f1[dot,label=\(y_1 \mu\)] -- [photon] f2[dot,label=\(x_1 \nu\)]};
 \end{aligned}
-\end{equation*}
+\end{equation}
+
 Con estos símbolos, la idea es unir todos estos puntos
 entre sí (lo que corresponde justamente a todas las contracciones
 posibles!). En el caso de QED, tenemos la interacción dada por el orden normal de \ref{lint},
@@ -539,22 +538,43 @@ por lo que a orden 1 en el desarrollo de la exponencial de \ref{green_generaliza
 diagramáticos, lo que sucederá es que de este vértice saldrán 2 lineas
 fermiónica y una del fotón que deberán unirse con los puntos restantes y se simboliza
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.2\linewidth]{vertice}
+\caption{Vértice de interacción en QED}
+\label{fig_vertex}
+\end{figure}
 
-Otra observación importante es que estos símbolos nos permite
+
+
+Otra observación importante es que estos símbolos nos permiten
 crear procesos en donde partículas siguen de largo (elementos no conexos),
-o diagramas en donde aparezcan sub-diagramas que no estén conectados
+o diagramas en donde aparezcan sub-diagramas, es decir, que no estén conectados
 a puntos externos conocidos como \textbf{diagramas de vacío}. Con
-estos dos último comentarios podemos finalmente revelar el misterioso
-indicador $\#$ de la ecuación xx, este quiere decir que de todas
+estos dos últimos comentarios podemos finalmente revelar el misterioso
+indicador $\#$ de la ecuación \ref{green_generalizado}, este quiere decir que de todas
 las posibles contracciones entre campos, solo debemos considerar las
-conexas y sin sub-diagramas de vacío. Esto es exctamente lo que estabamos
-buscando, un metodo para cálcular nuestra función de Green generalizada
+conexas y sin sub-diagramas de vacío. Otro caso a considerar en los posibles diagramas que aparecerán más adelante es el de los \textbf{diagramas truncados} e \textbf{irreducibles}. El primer de ellos hace referencia a los diagramas que no contengan correcciones en sus patas externas, lo que se conoce como diagramas con las patas externas amputadas. La figura \ref{fig_truncados} sirve a modo de ejemplo para identificar estos diagramas
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{truncados}
+	\caption{(a) contiene una corrección interna que no afecta a la patas externas por lo que es un diagrama truncado, por otro lado (b), (c) y (d) son ejemplos de diagramas no truncados.}
+	\label{fig_truncados}
+\end{figure}
+
+
+La razón por la que hacemos esta distinción es que los diagramas truncados serán los únicos que aparezcan en el cálculo del elemento de matriz \ref{green_generalizado}, es decir que la formula de reducción solo tiene en cuenta aquellos diagramas con sus patas externas amputadas. No haremos la demostración pero en breves palabras esto se debe a que en dicha fórmula aparecen los operadores de Dirac o Klein-Gordon según corresponda y esto aplicado a la exponenciales hacen aparecer las inversas de los propagadores, luego, estos factores multiplicados a la función de green generalizada es exactamente la definición de la función de green truncada que da lugar a los diagramas truncados. En otras palabras, solo necesitamos este tipo de diagramas!.
+
+Por último, definimos los diagramas propios como aquellos diagramas conexos y truncados que se mantienen como tal ante el corte de cualquiera de sus patas internas.
+
+De esta forma ya estamos en condiciones de comenzar con nuestros cálculos, la diagramática de Feynman es exactamente lo que estábamos buscando, un método para calcular nuestra función de Green generalizada
 de muchos campos, sin tener que hacer las pseudo-infinitas contracciones
 posibles!. Los diagramas de Feynman, nos permiten visualizar cuales
 son los únicos dibujos que contribuirán al proceso y luego traducirlos
-a la expresión matemática haciendo la identificación xx y xx!. Este
+a la expresión matemática haciendo las identificaciones \ref{feyn}!. Este
 método es excelente y al usarlo en los cálculos posteriores veremos
-cuando se simplifica todo al pensar de esta forma.
+cuando se simplifica todo.
 
 \section{\textcolor{teal}{Cálculos a un loop}}
 
@@ -563,7 +583,8 @@ disposición, podemos, en principio, calcular cualquier proceso de
 QED. Sin embargo, como mencionamos anteriormente, al momento de calcular
 los distintos ordenes en teoría de perturbación, aparecen algunas complicaciones.\\
 
-Antes de comenzar los cálculos mencionemos brevemente a modo de introducción con que nos encontraremos en el camino. En este punto claro está que nuestro trabajo se redujo a, dado un número arbitrario de campos externos, calcular la función de Green generalizada \ref{green_generalizado} correspondiente al orden en la constante de acople que nosotros querramos. Gracias al teorema de Wick, vimos que el producto de estos campos siempre los podíamos escribir como suma de productos de contracciones de solo dos de ellos, los cuales remarcamos que coinciden con los propagadores \ref{prop_dirac} y \ref{prop_fotonmu}, dicho esto es facil notar que, entre otras cosas, tendremos una integral sobre los momentos por cada cada propagador. Veremos luego que si ahora pasamos al espacio de Fourier, muchas de estas integrales se resolverán trivialmente por conservación de la energía en cada vértice del proceso mientras que en ciertas ocasiones quedarán una o más integrales que requerirán un poco de esfuerzo. Resolver las mismas no será tarea facil ya que presentarán un comportamiento divergente para grandes valores del momento en cuestión!, estas se conocen como divergencias ultravioletas. En otras palabras el último eslabón de nuestro cálculo al proceso de scatering no es otra cosa que una integral divergente. Claramente si queremos que nuestra teoría tenga algún poder predictivo hay que hacer algo con este inconveniente. La solución a ello se conoce como renormalización, un método con el cual podremos extraer las contribuciones finitas a las cantidades físicas de la teoría. Explicar y entender la idea de este mecanismo será el objetivo de lo que resta en estas notas.
+Antes de comenzar los cálculos mencionemos brevemente a modo de introducción con que nos encontraremos en el camino. En este punto claro está que nuestro trabajo se redujo a, dado un número arbitrario de campos externos, calcular la función de Green generalizada \ref{green_generalizado} correspondiente al orden en la constante de acople que nosotros queramos. Gracias al teorema de Wick, vimos que el producto de estos campos siempre lo podíamos escribir como suma de productos de contracciones de solo dos de ellos, los cuales remarcamos que coinciden con los propagadores \ref{prop_dirac} y \ref{prop_fotonmu}, finalmente los diagramas de Feynman nos facilitan la vida diciendo en términos simbólicos cuales de estas contracciones contribuirán y cuales no. 
+Dicho esto es fácil notar que, entre otras cosas, tendremos una integral sobre los momentos por cada propagador. Veremos luego que si ahora pasamos al espacio de Fourier, muchas de estas integrales se resolverán trivialmente por conservación de la energía en cada vértice del proceso mientras que en ciertas ocasiones quedarán una o más integrales que requerirán un poco de esfuerzo. Resolver las mismas no será tarea fácil ya que presentarán un comportamiento divergente para grandes valores del momento en cuestión!, estas se conocen como divergencias ultravioletas. En otras palabras el último eslabón de nuestro cálculo al proceso de scatering no es otra cosa que una integral divergente. Claramente si queremos que nuestra teoría tenga algún poder predictivo hay que hacer algo con este inconveniente. La solución a ello se conoce como renormalización, un método con el cual podremos extraer las contribuciones finitas a las cantidades físicas de la teoría. Explicar y entender la idea de este mecanismo será el objetivo de lo que resta en estas notas.
 
 \subsection{Divergencias ultravioletas}
 
@@ -588,11 +609,9 @@ como
 \begin{equation}\label{g0}
 G^{(0)}(x_{1},y_{1}) \equiv \left\langle T\left\{ \psi(y_{1})\overline{\psi}(x_{1})\right\} \right\rangle =\int\frac{\mathrm{\mathrm{d^4}}p}{(2\pi)^{4}}e^{-ip\cdot(y_{1}-x_{1})}\left(\frac{i}{\cancel{p}-m+i\epsilon}\right)
 \end{equation}
-donde vemos que es simplemente el propagador y en términos diagramaticos
-vemos que el ''proceso'' se simboliza como
-\begin{equation}
-IMAGEN
-\end{equation}
+donde vemos que es simplemente el propagador y en términos diagramáticos
+vemos que el ''proceso'' se simboliza como la primer imagen de \ref{feyn} llevando un momento $ p $.
+
 Recordardando la definición de transformada de Fourier de la función
 de Green generalizada
 \begin{equation}
@@ -643,7 +662,7 @@ contraído 4 campos y uno quedará libre, este último al no estar contraído
 con nadie aparece en orden normal, por lo que al tomar valor medio
 de vacío anulará los términos. En conclusión, por nuestra consecuencia
 3) del teorema de Wick lo que tenemos aquí es una suma de ceros, osea,
-este término perturbativo no contribulle en nada!.\\
+este término perturbativo no contribuye en nada!.\\
 
 Ahora si, finalmente,
 lidiemos con la primer corrección real al proceso que se obtiene de \ref{qedgreen} como
@@ -669,11 +688,16 @@ ya que están dentro del mismo orden normal, por lo que no es válida.
 Esto nos deja con la segunda opción, $\overbracket{\psi(z_{2})\overline{\psi}(z_{1})}$.
 Finalmente hacemos la última contracción posible entre el spinor restante
 del segundo vértice y el punto externo final, $\overbracket{\psi(y_{1})\overline{\psi}(z_{2})}$.
-En definitiva armando componente a componente con xx y xx, obtenemos
-el diagrama de la figura xx
-\begin{equation}
-FIGURA
-\end{equation}
+En definitiva armando componente a componente con \ref{feyn}, obtenemos
+el diagrama de la figura \ref{fig_self-energy}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\linewidth]{selfenergy}
+	\caption{Self-energy, primer corrección al propagador electrónico.}
+	\label{fig_self-energy}
+\end{figure}
 
 Y analíticamente se expresa como 
 \begin{equation}\label{feyng2}
@@ -828,7 +852,18 @@ Luego, siguiendo con la expansión en \ref{qedgreenfot}, el siguiente orden nos 
 G^{(2)}(x_{1},y_{1})=\frac{(-ie)^{2}}{2}\int \mathrm{\mathrm{d^4}}z_{1,2}\left\langle T\left\{  A_{\mu}(x_{1})A_{\nu}(y_{1}):\overline{\psi}_{\alpha}(z_{1})\cancel{A}_{\alpha\beta}(z_{1})\psi_{\beta}(z_{1})::\overline{\psi}_{\gamma}(z_{2})\cancel{A}_{\gamma\delta}(z_{2})\psi_{\delta}(z_{2}):\right\} \right\rangle ^{\#}
 \end{equation}
 
-Aquí, utilizamos el teorema de Wick, para desarrollar esto en término de contracciones de a dos campos. Para no hacer cuentas innecesarias, pensamos en los diagramas de Feynmann que pueden constribuir al proceso. Repitiendo argumentos análogos al caso electrónico, observamos que solos hay dos diagramas posibles que coinciden en valor por simetría ante el intercambio de los vértices de interacción. En definitiva podemos reescribir \ref{g2fot} como
+Aquí, utilizamos el teorema de Wick, para desarrollar esto en término de contracciones de a dos campos. Para no hacer cuentas innecesarias, pensamos en los diagramas de Feynmann que pueden constribuir al proceso. Repitiendo argumentos análogos al caso electrónico, observamos que solos hay dos diagramas posibles que coinciden en valor por simetría ante el intercambio de los vértices de interacción simbolizados por
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\linewidth]{vacumpol}
+	\caption{Polarización del vacío, primera corrección al propagador fotónico.\texttt{}}
+	\label{fig_vacumpol}
+\end{figure}
+
+
+
+En definitiva podemos reescribir \ref{g2fot} como
 
 \begin{equation}\label{key}
 \begin{aligned}
@@ -927,13 +962,13 @@ N&=Tr\left\{\gamma^{\mu}\gamma^{\rho}\gamma^{\nu}\gamma^{\sigma}\right\} \left(p
 \end{aligned}
 \end{equation}
 
-donde utilizamos las propiedades de \ref{gamma2} con $ d=4 $ para llegar a la última igualdad. Introduciendo esto en \ref{aux6} obtenemos
+donde utilizamos las propiedades de \ref{gamma3} con $ d=4 $ para llegar a la última igualdad. Introduciendo esto en \ref{aux6} obtenemos
 
 
 \begin{boxquation}
 \begin{equation}\label{pi}
 \begin{aligned}
-\Pi^{\mu\nu}(k) &= i e^2 4 \int_0^1 \mathrm{d}x \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
+\Pi^{\mu\nu}(k) &= i e^2 f(4) \int_0^1 \mathrm{d}x \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
 &\times \left\{ \frac{2p^{\mu}p^{\nu}}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2} - \frac{2x(1-x)(k^{\mu}k^{\nu}-k^2g^{\mu\nu})}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2}-\frac{g^{\mu\nu}}{\left[ p^2 -m'^2 + k^2x(1-x)\right]} \right\} 
 \end{aligned}   
 \end{equation}
@@ -955,28 +990,24 @@ Desarrollando, es sencillo notar que el orden cero se anulará por tener un núm
 G^{(1)}(x_1,y_1,y_2)=(-ie)\int \mathrm{d^4}z_{1} \left\langle T\left\{ \overline{\psi}_a(x_1)\psi_b(y_1)A_{\mu}(y_2) :\overline{\psi}_c(z_{1})\cancel{A}_{cd}(z_{1})\psi_d(z_{1}):\right\} \right\rangle ^{\#}
 \end{equation}
 
-donde haciendo simple feynmenología, observamos que el único diagrama posible es
-
-FIGURA
-
-lo que nos lleva a
+donde haciendo simple feynmenología, observamos que el único diagrama posible es el correspondiente a la figura \ref{fig_vertex}, lo que nos lleva a
 
 \begin{equation}\label{key}
 G^{(1)}(x_1,y_1,y_2)=(-ie)\int \mathrm{d^4}z_{1} \overbracket{\psi_b(y_1)\overline{\psi}_c(z_{1})} \gamma^{\nu}_{cd} \overbracket{\psi_d(z_{1})\overline{\psi}_a(x_1)}  \overbracket{A_{\mu}(y_2) A_{\nu}(z_1)}
 \end{equation}
 
-Luego, procedemos con nuestro ya familiar método de explicitar los propagadores y pasar al espacio de momentos integrando ahora en las 3 posiciones $ x_1 $ y $ y_1,2 $
+Luego, procedemos con nuestro ya familiar método de explicitar los propagadores y pasar al espacio de momentos integrando ahora en las 3 posiciones $ x_1 $ y $ y_{1,2} $
 
 \begin{equation}\label{expfourier}
 \int\mathrm{d^4}x_1\mathrm{d^4}y_{1,2} e^{-i\left(q_1 \cdot x_1 - k_1 \cdot y_1 - k_2 \cdot y_2\right)}
 \end{equation}
 
-. De esta forma, las integrales en las posiciones nos pondrán en la capa de masa mientras que la integral en $ z_1 $ nos dará la conservación del momento en el vértice
+De esta forma, las integrales en las posiciones nos pondrán en la capa de masa mientras que la integral en $ z_1 $ nos dará la conservación del momento en el vértice
 
 \begin{equation}\label{key}
 \begin{aligned}
-\widetilde{G}^{(1)}&= (-ie)\int \mathrm{d^4}p_{1,2,3} \delta(p_2-q_1)\delta(p_1+p_3-p_2) \delta(k_1-p_1)\delta(k_2-p_3) \left(\frac{i}{\cancel{p}_1 -m'}\right) \gamma^{\nu}\left(\frac{i}{\cancel{p}_2 -m'}\right) \left(\frac{-ig_{\mu\nu}}{p^2_3-\mu'^2}\right)\\
-&=(-ie) \delta(k_1 +k_2 -q_1)  \left(\frac{1}{\cancel{q}_1 -m'}\right) \gamma_{\mu}\left(\frac{1}{\cancel{k}_1 -m'}\right) \left(\frac{1}{k_2^2-\mu'^2}\right)
+\widetilde{G}^{(1)}&= (2\pi)^4(-ie)\int \mathrm{d^4}p_{1,2,3} \delta(p_2-q_1)\delta(p_1+p_3-p_2) \delta(k_1-p_1)\delta(k_2-p_3) \left(\frac{i}{\cancel{p}_1 -m'}\right) \gamma^{\nu}\left(\frac{i}{\cancel{p}_2 -m'}\right) \left(\frac{-ig_{\mu\nu}}{p^2_3-\mu'^2}\right)\\
+&=(2\pi)^4 \delta(k_1 +k_2 -q_1)  \left(\frac{1}{\cancel{q}_1 -m'}\right) \left(-ie\gamma_{\mu}\right)\left(\frac{1}{\cancel{k}_1 -m'}\right) \left(\frac{1}{k_2^2-\mu'^2}\right)
 \end{aligned}
 \end{equation}
 
@@ -991,15 +1022,16 @@ G^{(3)}(x_1,y_1,y_2)&=\frac{(-ie)^3}{3!}\int \mathrm{d^4}z_{1,2,3}\\
 \end{aligned}
 \end{equation}
 
-Ahora bien, dado que tenemos 12 campos, veamos con cuidado cuales son los diagramas que contribuyen. Comencemos como para el loop electrónico contrayendo el campo del punto externo $ x_1 $. Como queremos diagramas conexos y truncados, tenemos 3 posibilidades para contraer correspondiente a los vértices, elijamos por ejemplo contraer con $ z_1 $. De esta forma el electrón saliente de este vértice tiene dos opciones, solo puede conectarse a los vértices $ z_2 $ o $ z_3 $ ya que al conectarnos directamente con $ y_1 $ obtendríamos un diagrama no truncado!. Dicho esto, escojamos $ z_3 $. De esta forma, al primer vértice le queda el fotón que nuevamente por temas de truncamiento solo puede contraerse con el vértice que no tocamos hasta el momento, $ z_2 $ y a su vez, de aquí solo puede salir un electrón hacia $ y_1 $. Finalmente nos queda contraer el electrón y fotón saliente del $ z_3 $ que tienen solo una posibilidad. En definitiva el diagrama que construimos paso a paso se representa por la figura xx\\
+Ahora bien, dado que tenemos 12 campos, veamos con cuidado cuales son los diagramas que contribuyen. A diferencia de los casos anteriores ahora aparecerán diagramas no truncados, por lo que es importante tenerlo en cuenta junto con la necesidad de formar diagramas conexos y sin vacío. Comencemos contrayendo el campo del punto externo $ x_1 $, para el cual tenemos 3 posibilidades correspondiente a los vértices, elijamos por ejemplo contraer con $ z_1 $. De esta forma el electrón saliente de este vértice tiene dos opciones, solo puede conectarse a los vértices $ z_2 $ o $ z_3 $ ya que al conectarnos directamente con $ y_1 $ obtendríamos un diagrama no truncado!. Dicho esto, escojamos $ z_3 $. De esta forma, al primer vértice le queda el fotón que nuevamente por temas de truncamiento solo puede contraerse con el vértice que no tocamos hasta el momento, $ z_2 $ y a su vez, de aquí solo puede salir un electrón hacia $ y_1 $. Finalmente nos queda contraer el electrón y fotón saliente del $ z_3 $ que tienen solo una posibilidad. En definitiva el diagrama que construimos paso a paso se representa por la figura \ref{fig_vertex2}
 
-FIGURA\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\linewidth]{vertice2}
+	\caption{Primer corrección al vértice de interacción de QED.}
+	\label{fig_vertex2}
+\end{figure}
 
-Los demás diagramas que evitamos construir por no ser truncados son de la forma\\
-
-FIGURAS\\
-
-los cuales por lo visto anteriormente en la sección \ref{sec_feyn} no contribuirán a $ S^c $.
+Los demás diagramas que evitamos construir por no ser truncados son exactamente los correspondientes a las figuras (b),(c) y (d) de \ref{fig_truncados} que, por lo visto anteriormente en la sección \ref{sec_feyn}, no contribuirán a $ S^c $.
 Como mencionamos, existen 6 combinaciones posibles en total intercambiando los vértices, al igual que en los casos anteriores, esto lleva al mismo resultado para todos ellos dado que $ z_1,2,3 $ son indices mudos de integración. De esta forma obtenemos un único término a calcular 
 
 \begin{equation}\label{key}
@@ -1037,7 +1069,7 @@ y definiendo el \textbf{vértice corregido}
 obtenemos
 
 \begin{equation}\label{key}
-\widetilde{G}^{(3)}(q,k)=(2\pi)^4 \left(\frac{-ig^{\mu\nu}}{(q-k)^2-\mu'^2}\right) \left(-ie\Lambda_{\mu}(q,k)\right)\left(\frac{i}{\cancel{q}-m'}\right)
+\widetilde{G}^{(3)}(q,k)=(2\pi)^4 \left(\frac{-ig^{\mu\nu}}{(q-k)^2-\mu'^2}\right)\left(\frac{i}{\cancel{k}-\cancel{p}-m'}\right) \left(-ie\Lambda_{\mu}(q,k)\right)\left(\frac{i}{\cancel{q}-m'}\right)
 \end{equation}
 
 Al igual que en los casos anteriores, concentremos nuestra atención en \ref{vertex}. Comencemos multiplicando y dividiendo por $ k_{\alpha}-p_{\alpha} +m' $ y $ q_{\alpha}-p_{\alpha} +m' $
@@ -1129,15 +1161,27 @@ Pasemos ahora a la polarización del vacío en donde teníamos $ E_e=0 $ y $ P_e
 
 Finalmente para la corrección al vértice tenemos $ E_e=2 $ y $ P_e=1 $ por lo que $ D=0 $ y encontramos una divergencia logarítmica como esperábamos. 
 
-La moraleja de todo esto es que con solo mirar el grado de divergencia superficial podríamos haber inferido de ante mano el carácter divergente de los 3 procesos estudiados!. A estos tres se los conoce como diagramas \textbf{primitivamente divergentes} y podemos preguntarnos si existen otros diagramas del mismo índole. Observando  \ref{D} vemos que existen otros dos posibles dados por la combinación $ E_e=0 $ y $ P_e=3 $ el cual diverge linealmente y corresponde al siguiente diagrama de Feynman\\
+La moraleja de todo esto es que con solo mirar el grado de divergencia superficial podríamos haber inferido de ante mano el carácter divergente de los 3 procesos estudiados!. A estos tres se los conoce como diagramas \textbf{primitivamente divergentes} y podemos preguntarnos si existen otros diagramas del mismo índole. Observando  \ref{D} vemos que existen otros dos posibles dados por la combinación $ E_e=0 $ y $ P_e=3 $ el cual diverge linealmente y corresponde al diagrama de Feynman de la figura \ref{fig_triangle}
 
-FIGURA\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\linewidth]{triangle}
+	\caption{Diagrama de 3 puntas electrónicas}
+	\label{fig_triangle}
+\end{figure}
 
-Si bien, es cierto que este proceso diverge, puede demostrase que el mismo se cancela exactamente con el diagrama análogo pero con el electrón virtual recorriendo el sentido opuesto. De esta forma no es necesario considerarlo. El último diagrama es el scattering de luz con luz dado por\\
+Si bien, es cierto que este proceso diverge, puede demostrase que el mismo se cancela exactamente con el diagrama análogo pero con el electrón virtual recorriendo el sentido opuesto. De esta forma no es necesario considerarlo. El último diagrama es el scattering de luz con luz dado por
 
-FIGURA\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\linewidth]{box}
+	\caption{Scattering de luz con luz.}
+	\label{fig_box}
+\end{figure}
 
-que con $ E_e=0 $ y $ P_e=4 $, predice una divergencia logarítmica. De todas formas, resulta ser que por invarianza de Gauge, dicho diagrama termina siendo convergente.\\
+que con $ E_e=0 $ y $ P_e=4 $, predice una divergencia logarítmica. De todas formas, resulta ser que por invarianza de Gauge, dicho diagrama termina siendo convergente.
+
+\newpage
 
 Dicho esto, nos vemos tentados a concluir que los tres procesos que nos proponemos calcular son los únicos divergentes de la teoría, esto sin embargo no es cierto y se debe a que al considerar solo la información de las patas externas, puede suceder que diagramas con $ D<0 $ resulten finalmente divergentes!. Cualquier proceso convergente a orden cero que contenga un loop como subdiagrama sirve de ejemplo para visualizar esto. Uno de ellos puede ser el scattering de Moller ($ E_e=4 $) a orden uno en teoría de perturbaciones, el cual predice $ D=-2 $ y al tener loops internos resulta divergente. Este pequeño comentario es el motivo por el cual se lo llama grado de divergencia \underline{superficial}, ya que no contiene información de los sub-diagramas internos de los procesos. De todas maneras, lo que si se ve es que cualquier divergencia que aparezca dentro de estos sub-diagramas será de la forma de los diagramas primitivos que vimos anteriormente! por lo que calculados ellos, solo debemos ponerlos luego en el lugar correcto del proceso en cuestión y listo!.\\
 
@@ -1145,7 +1189,7 @@ Ahora si, sabiendo que agotamos todos los diagramas primitivamente divergentes, 
 
 \subsection{Regularización}
 
-Dado que los tres procesos que analizamos poseen divergencias ultravioletas, debemos hacer algo al respecto para que nuestra teoría pueda describir satisfactoriamente la naturaleza. El primer paso de ese algo se llama \textbf{Regularización}, un proceso que se encarga de definir nuevas integrales a partir de las divergentes que tenemos. Esto no puede hacerse de cualquier manera y por ello existen unos pocos mecanismos para lograrlo de forma consistente. Entre ellos se encuentra la implementación de un \textbf{Cut-off} que suavice el integrando en los límites de integración, o la introducción de un acople ficticio con una partícula de masa $ M $ conocido como regularización de Pauli-Villars, en ambos casos luego de resolver las integrales se debe tomar el limite correspondiente a infinito. Existe un tercer método conocido como \textbf{Regularización dimensional} que consiste en trabajar las integrales en una dimensión genérica $ d $ para luego hacer la extensión analítica a $ d=4-2\epsilon $ y finalmente tomar el límite para $ \epsilon $ yendo a cero. Este último será el que utilizaremos y pasamos a describirlo a continuación.\\
+Dado que los tres procesos que analizamos poseen divergencias ultravioletas, debemos hacer algo al respecto para que nuestra teoría pueda describir satisfactoriamente la naturaleza. El primer paso de ese algo se llama \textbf{Regularización}, un proceso que se encarga de definir nuevas integrales a partir de las divergentes que tenemos. Esto no puede hacerse de cualquier manera y por ello existen unos pocos mecanismos para lograrlo de forma consistente. Entre ellos se encuentra la implementación de un Cut-off que suavice el integrando en los límites de integración, o la introducción de un acople ficticio con una partícula de masa $ M $ conocido como regularización de Pauli-Villars, en ambos casos luego de resolver las integrales se debe tomar el limite correspondiente a infinito. Existe un tercer método conocido como \textbf{Regularización dimensional} que consiste en trabajar las integrales en una dimensión genérica $ d $ para luego hacer la extensión analítica a $ d=4-2\epsilon $ y finalmente tomar el límite para $ \epsilon $ yendo a cero. Este último será el que utilizaremos y pasamos a describirlo a continuación.\\
 
 \subsubsection{Regularización Dimensional}\label{sec_RD}
 
@@ -1312,7 +1356,7 @@ I_d(q)= (-1)^{\frac{d-1}{2}} \pi^{\frac{d-1}{2}}  \frac{\Gamma(a - \frac{d-1}{2}
 donde podemos utilizar $ \Gamma(\frac{1}{2})= \pi^{\frac{1}{2}} $ para obtener nuestra solución genérica
 
 \begin{equation}\label{id}
-I_d(q)=(-1)^{a} i \pi^{\frac{d}{2}} \frac{\Gamma(a - \frac{d}{2} )}{\Gamma(a)} \frac{1}{\left[q^2\right]^{a-\frac{d}{2}}}
+I_d(q)=(-1)^{\frac{d}{2}} i \pi^{\frac{d}{2}} \frac{\Gamma(a - \frac{d}{2} )}{\Gamma(a)} \frac{1}{\left[-q^2\right]^{a-\frac{d}{2}}}
 \end{equation}
 
 
@@ -1328,7 +1372,7 @@ I_4(q)=(-1) i \pi^2 \frac{\Gamma(1)}{\Gamma(3)} \frac{1}{q^2} = -\frac{i \pi^2}{
 Luego, para los casos restante en \ref{sigma}, \ref{pi} y $ \Lambda^{(1)}(q,k) $ en \ref{vertex} con $ a=2 $, nos vemos obligados a explicitar la extensión analítica tomando $ d=4-2\epsilon $ con $ \epsilon $ tomado al menor orden posible
 
 \begin{equation}\label{key}
-I_{4-2\epsilon}(q)=i \pi^2 \Gamma(\epsilon ) \left(\pi q^2\right)^{-\epsilon}
+I_{4-2\epsilon}(q)=i \pi^2 \Gamma(\epsilon ) \left(-q^2 \pi \right)^{-\epsilon}
 \end{equation}
 
 donde podemos considerar el desarrollo de la función gamma
@@ -1354,8 +1398,8 @@ Finalmente, introduciendo \ref{desagamma} y \ref{desalog} llegamos a la tan ansi
 \begin{boxquation}
 \begin{equation}\label{solucion}
 \begin{aligned}
-I_{4-2\epsilon}(q)&=i \pi^2 \left(\frac{1}{\epsilon} - \gamma_E + O(\epsilon) \right) \left[1 - \log\left(\pi q^2\right) \epsilon + O(\epsilon^2) \right]\\
-&=i \pi^2 \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(\pi q^2\right) + O(\epsilon) \right]
+I_{4-2\epsilon}(q)&=i \pi^2 \left(\frac{1}{\epsilon} - \gamma_E + O(\epsilon) \right) \left[1 - \log\left(-q^2\pi \right) \epsilon + O(\epsilon^2) \right]\\
+&=i \pi^2 \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(-q^2\pi\right) + O(\epsilon) \right]
 \end{aligned}
 \end{equation}
 \end{boxquation}
@@ -1385,7 +1429,7 @@ Introduciendo \ref{A} y dasarrollando $ \left(\xi^2 4 \pi^2\right)^\epsilon = 1 
 \end{aligned}
 \end{equation}
 
-de la cual reconocemos la integral sobre el momento como \ref{solucion} con $ q^2=+(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)  $ . Metiendo este desarrollando y quedandonos hasta orden cero en $ \epsilon $ llegamos a la expresión
+de la cual reconocemos la integral sobre el momento como \ref{solucion} con $ -q^2=(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)  $ . Metiendo este desarrollando y quedándonos hasta orden cero en $ \epsilon $ llegamos a la expresión
 
 \begin{equation}
 \begin{aligned}
@@ -1399,38 +1443,412 @@ de la cual reconocemos la integral sobre el momento como \ref{solucion} con $ q^
 Relación que podemos integrar trivialmente para el caso $ \frac{1}{\epsilon} $ mientras que al término de orden cero lo renombramos como
 
 \begin{equation}\label{key}
-F(q,m,\mu)\equiv \frac{e^2}{16\pi^2} \left\{\cancel{q}\left(1+\gamma_E\right) - 2m\left(1+2\gamma_E\right) + 2\int_{0}^{1}\mathrm{d}x  \left(\cancel{q}(1-x) - 2m'\right) \log \left(\frac{(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)}{\xi^24\pi}\right)  \right\}
+F(q,m,\mu,\xi)\equiv \frac{e^2}{16\pi^2} \left\{\cancel{q}\left(1+\gamma_E\right) - 2m\left(1+2\gamma_E\right) + 2\int_{0}^{1}\mathrm{d}x  \left(\cancel{q}(1-x) - 2m'\right) \log \left(\frac{(1-x)xq^{2}-xm'^{2}-\mu'^{2}(1-x)}{\xi^24\pi}\right)  \right\}
 \end{equation}
 
 Y de esta forma, introduciendo la constante de acople de QED $ \alpha = \frac{e^2}{4\pi} $ obtenemos
 
-\begin{equation}\label{key}
-\Sigma(q) = \frac{\alpha \left(4m - \cancel{q}\right)}{4\pi \epsilon} + F(q,m)
+\begin{boxquation}
+\begin{equation}\label{sigmaregular}
+\Sigma(q) = \frac{\alpha \left(4m - \cancel{q}\right)}{4\pi \epsilon} + F(q,m,\mu,\xi)
 \end{equation}
+\end{boxquation}
 
-donde tiramos el prescript imaginario $ +i\epsilon $ ya que no es más necesario. De esta relación lo que podemos notar es que aún habiendo regularizado las integrales no nos es posible eliminar el término divergente del cálculo, por otro lado, es importante notar que la parte "finita" de $ \Sigma(q) $, $ F(q,m,\mu) $ tiene dos inconvenientes. En primer lugar, vemos que depende de una escala arbitraria $ \xi $ que aparecería en el valor de los observables, es decir, la amplitud de probabilidad de mi proceso dependería de esta escala no física!, esto claramente no puede ser así y veremos más adelante como resolverlo (¿COMO?). Por otro lado, vemos que la masa ficticia del fotón que agregamos al comienzo del trabajo no puede mandarse a cero impunemente, si lo hiciésemos nos encontraríamos con una divergencia logarítmica en la integral para $ x=0 $!. Esto claramente es otro problema ya que sabemos de toda la vida que el fotón no tiene masa, estas son las conocidas \textbf{divergencias infrarojas}. La manera de solucionarlo es incorporando otros diagramas análogos al caso que se quiere tratar pero agregando un fotón a la salida con la misma masa ficticia, por ejemplo para nuestro caso particular deberíamos agregar\\
+donde tiramos el prescript imaginario $ +i\epsilon $ ya que no es más necesario. De esta relación lo que podemos notar es que aún habiendo regularizado las integrales no nos es posible eliminar el término divergente del cálculo, por otro lado, es importante notar que la parte "finita" de $ \Sigma(q) $, $ F(q,m,\mu,\xi) $ tiene dos inconvenientes. En primer lugar, vemos que depende de una escala arbitraria $ \xi $ que aparecería en el valor de los observables, es decir, la amplitud de probabilidad de mi proceso dependería de esta escala no física!, esto claramente no puede ser así y veremos más adelante como resolverlo. Por otro lado, vemos que la masa ficticia del fotón que agregamos al comienzo del trabajo no puede mandarse a cero impunemente, si lo hiciésemos nos encontraríamos con una divergencia logarítmica en la integral para $ x=0 $!. Esto claramente es otro problema ya que sabemos de toda la vida que el fotón no tiene masa, estas son las conocidas \textbf{divergencias infrarrojas}. La manera de solucionarlo es incorporando otros diagramas análogos al caso que se quiere tratar pero agregando un fotón a la salida con la misma masa ficticia, este es el conocido \textbf{Bremsstrahlung }. La incorporación de estos términos increíblemente cancela la parte arbitraria del cálculo dejando nuestra teoría libre de divergencias infrarojas!. La explicación de porque esto funciona es que en realidad los procesos sin y con emisión de fotones no son observables por si solos, sino que al momento de medir deben considerarse todos ellos porque experimentalmente no es posible distinguirlos ya que los detectores tienen un threshold mínimo de energía, fotones con energías menor al mismo no se ven.\\
 
-FIGURAS\\
-
-que es simplemente el mismo diagrama que xx pero permitiendole emitir fotones de vez en cuando durante el proceso, el conocido \textbf{Bemstralung}. La incorporación de estos términos increiblemente cancela la parte arbitraria del cálculo dejando nuestra teoría libre de divergencias infrarojas!. La explicación de porque esto funciona es que en realidad ni el proceso xx ni los xx son observables, sino que al momento de medir deben considerarse todos ellos porque experimentalmente no es posible distinguirlos ya que los detectores tienen un Threshold mínimo de energía, fotones con energías menor al mismo no se ven.\\
-
-Viendo que siguen habiendo varios problemas a resolver, dejemos nuevamente de lado este problema y pasemos al otro proceso que quedo pendiente
+Viendo que siguen habiendo varios problemas a resolver, dejemos nuevamente de lado la self-energy del electrón y pasemos al otro proceso que quedo pendiente
   
 
 \subsubsection{Polarización del vacío regularizado}
 
+Para el caso de la polarización del vacío comenzamos recordando lo que dijimos en la sección de regularización dimensional observando que el primer y último término de \ref{pi} se terminan cancelando como consecuencia de \ref{picancel} con $ a=2 $ y $ -q^2= -m'^2 + k^2x(1-x) $. Dicho esto, definimos la versión regularizada de $ \Pi^{\mu\nu}(k) $ como
+
+
+\begin{equation}
+\begin{aligned}
+\Pi^{\mu\nu}(k) :&= -i\xi^{4-d} e^2 f(d) \int_0^1 \mathrm{d}x 2x(1-x)(k^{\mu}k^{\nu}-k^2g^{\mu\nu}) \int \frac{\mathrm{d^d}p}{(2\pi)^d} \left\{\frac{1}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2} \right\}\\
+&= \frac{e^2}{4\pi^2}  \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right) \int_{0}^{x} \mathrm{d}x 2x(1-x) \left[ 1 + \log\left(\xi^24\pi^2\right)\epsilon \right] \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(\pi\left(-m'^2 + k^2x(1-x)\right)\right)\right]\\
+\end{aligned}   
+\end{equation}
+
+donde podemos distribuir los productos, agrupar potencias de $ \epsilon $ y efectuar las integrales sencillas al igual que el caso electrónico para obtener finalmente
+
+\begin{boxquation}
+\begin{equation}\label{piregular}
+\Pi^{\mu\nu}(k) = \frac{\alpha \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right)}{3\pi \epsilon} - G(k,m,\xi)
+\end{equation}
+\end{boxquation}
+
+donde se notó la parte finita como
+
+\begin{equation}\label{key}
+G(k,m,\xi) \equiv \frac{\alpha \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right)}{\pi}\left\{ \frac{\gamma}{3} + 2\int_{0}^{1} \mathrm{d}x x(1-x) \log\left[\frac{k^2x(1-x) -m^2 }{4 \pi \xi^2}\right] \right\}
+\end{equation}
+
+A diferencia del primer caso, esta parte no contiene divergencias infrarrojas pero sigue teniendo el problema de la dependencia en $ \xi $. Nuevamente nos aparece una parte divergente de la misma forma!. Agreguemos un objeto más a nuestra lista de procesos pendientes y pasemos al último diagrama primitivamente divergente
+
 \subsubsection{Vértice regularizado}
+
+Recordando que en la ecuación \ref{lambda} tenemos una parte divergente y otra convergente, concentrémonos en la primera de ellas dejando la segunda para la última sección. Para ello, comenzamos definiendo la versión regularizada de la misma
+
+\begin{equation}
+\begin{aligned}
+\Lambda^{(1)}_{\mu}(q,k):&=-2ie^2 \xi^{4-d} \left(\gamma^{\nu}\gamma_{\alpha}\gamma_{\mu} \gamma_{\beta} \gamma_{\nu}\right) \int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^d}p}{(2\pi)^d}\\
+&\times \left\{ \frac{  p^{\alpha}p^{\beta}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right.
+\end{aligned}
+\end{equation}
+
+donde podemos utilizar \ref{picancel} para ir a nuestro caso con $ a=2 $, y contraer las gammas $ \alpha $ y $ \beta $ con la métrica para utilizar la propiedad
+
+\begin{equation}\label{key}
+\left(\gamma^{\nu}\gamma^{\alpha}\gamma_{\mu} \gamma_{\alpha} \gamma_{\nu}\right) = (2-d)^2 \gamma_{\mu} = 4\gamma_{\mu} (1-2\epsilon) + O(\epsilon^2)
+\end{equation}
+
+que se deduce sencillamente de \ref{gamma2} y \ref{gamma3}. Luego, metiendo este desarrollo junto con al de $ \left(\xi^2 4\pi^2\right)^{\epsilon} $, tenemos
+
+\begin{equation}
+\begin{aligned}
+\Lambda^{(1)}_{\mu}(q,k)&=-\frac{2ie^2}{(2\pi)^4} \left(4\gamma_{\mu} (1-2\epsilon)\right)\left( 1 + \log\left(\xi^2 4\pi^2\right) \epsilon\right) \frac{1}{4}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \mathrm{d^d}p\\
+&\times \left\{ \frac{  1}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^2} \right\}\\
+&=\frac{e^2}{32\pi^2} 4\gamma_{\mu} \int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left\{ \frac{1}{\epsilon} - \gamma_E - 2 - \log\left[\frac{k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)}{\xi^2 4\pi}\right]\right\}
+\end{aligned}
+\end{equation}
+
+lo que nos lleva a la ya familiar expresión
+
+\begin{boxquation}
+\begin{equation}\label{vertexregular}
+\Lambda^{(1)}_{\mu}(q,k)=\frac{\alpha \gamma_{\mu}}{4\pi \epsilon} - H(q,k,m,\mu,\xi)
+\end{equation}
+\end{boxquation}
+
+donde definimos la parte de orden cero en $ \epsilon $ como
+
+\begin{equation}\label{key}
+H(q,k,m,\mu,\xi) \equiv \frac{\alpha \gamma_{\mu}}{4\pi} \left\{ \gamma_E + 2 + 2\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \log\left[\frac{k^2x(1-x) +q^2y(1-y) -2kqxy -m^2(x+y) -\mu^2(1-x-y)}{\xi^2 4\pi}\right] \right\}
+\end{equation}
+
+que nuevamente contiene divergencias infrarrojas y dependencia en la escala de energías no física. Ahora si, es un buen punto para convencerse de que estas divergencias tienen un mismo origen y requiere un método sistemático para ser eliminadas, necesitamos renormalizar!.
+
+
+
 
 \subsection{Renormalización}
 
-\subsubsection{Grupo de renormalización y función beta}
- 
- 
-\section{Apéndice: mathematical tools}
+Repasemos un poco que es lo que tenemos hasta ahora y reconozcamos el patrón común en todas estas divergencias problematicas. Para toda la sección que sigue utilizaremos $ m_0 $ y $ e_0 $ en lugar de $ m $ y $ e $ por cuestiones que quedarán claras luego. Si bien nosotros trabajamos la Self-energy a orden $ \alpha $, es posible extenderlo a cualquier orden sumando todos los diagramas irreducibles de una partícula (1PI). Esquematicamente esto quiere decir
 
-\subsection{Análisis complejo}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{self-energy}
+	\caption{Expansión en loops de la Self-energy.}
+	\label{fig_selfenergy}
+\end{figure}
 
-Quantum Field Theory vol 1: pg 209(230)
+donde vemos claro que lo que calculamos nosotros es a un loop. Esto se traduce en la transformada de Fourier de la función de Green como en la figura \ref{fig_selfenergy2}
+
+\newpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{self-energy2}
+	\caption{Expansión en loops de la transformada de Fourier de la función de Green.}
+	\label{fig_selfenergy2}
+\end{figure}
+
+que analíticamente se expresa como 
+
+\begin{equation}\label{key}
+ \widetilde{G}(q) = \frac{i}{\cancel{q}- m_0} + \frac{i}{\cancel{q}- m_0} \left(-i \Sigma(\cancel{q})\right) \frac{i}{\cancel{q}- m_0} + \frac{i}{\cancel{q}- m_0} \left(-i \Sigma(\cancel{q})\right) \frac{i}{\cancel{q}- m_0}\left(-i \Sigma(\cancel{q})\right) \frac{i}{\cancel{q}- m_0} + \dots
+\end{equation}
+
+donde recordamos que al estar estas relaciones siempre entre spinores $ \overline{u}(q) $ y $ u(q) $ en la fórmula de reducción y que la ecuación de Dirac dicta
+
+\begin{equation}\label{key}
+\begin{aligned}
+\overline{u}(q) \cancel{q}&=m\overline{u}(q)\\
+\cancel{q} u(q)&= m u(q)
+\end{aligned}
+\end{equation}
+
+podemos pensar todo como si fuesen números en lugar de matrices y conmutar las cosas. De esta forma reagrupamos en
+
+\begin{equation}\label{mpolo}
+\frac{i}{\cancel{q}- m_0} \left[ \sum_{n=0}^{\infty} \left(\frac{\Sigma(\cancel{q})}{\cancel{q}- m_0}\right)^n\right] = \frac{i}{\cancel{q}- m_0 - \Sigma(\cancel{q})}
+\end{equation}
+
+Ahora bien, recordando la idea de que la masa de las partículas coincidía con el polo de la función de Green, lo que vemos acá es que por el hecho de haber interacción este polo se corre. Es decir, que la masa que aparece en el Lagrangiano  (que ahora llamamos $ m_0 $) corresponde a la masa de la partícula en ausencia de interacciónes o lo que es lo mismo a orden 0 en teoría de perturbaciones!. Al analizar cada vez energías más altas, vemos que la masa se modifica a un nuevo valor que llamaremos $ m $. 
+
+Por otro lado, también debemos recordar que lo que importa de estas funciones de Green es su residuo, el cual haciendo un desarrollo en potencias del polo ($ m $) vemos que el denominador se expresa como
+
+\begin{equation}\label{key}
+\cancel{q} - m_0 - \Sigma(\cancel{q}) = \left[ 1 -\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right]_{\cancel{q}=m} \left(\cancel{q}-m\right)  + O\left(\cancel{q}-m\right)^2
+\end{equation}
+
+por lo que el residuo también se modifica. En conclusión vemos que las interacciones nos cambiaron el propagador de orden cero
+
+\begin{equation}\label{key}
+\frac{i}{\cancel{q} - m_0}
+\end{equation}
+
+de residuo 1 y polo (masa) $ m_0 $, a un propagador a todo orden
+
+\begin{equation}\label{key}
+\frac{Z_2 i}{\cancel{q}-m}
+\end{equation}
+
+Con residuo
+
+\begin{equation}\label{z2}
+Z_2 \equiv \left[ 1 -\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right]^{-1}_{\cancel{q}=m}
+\end{equation}
+
+y una nueva masa
+
+\begin{equation}\label{m}
+m = m_0 +\Sigma(m)
+\end{equation}
+
+\vspace{2cm}
+
+Para el propagador del fotón la situación es muy parecida, en este caso tenemos el análogo a \ref{fig_selfenergy2} pero con propagadores fotónicos conectando la correción de vacío. Para expresar todo analíticamente recordamos que \ref{piregular} no contiene divergencias infrarrojas por lo que podemos tirar la masa ficticia del fotón (para este y todos los ordenes) y obtener
+
+\begin{equation}\label{key}
+\widetilde{G}(k)_{\mu\nu} = \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(i\Pi^{\rho\sigma}\right)\frac{-i g_{\sigma\nu}}{k^2} + \dots 
+\end{equation}
+
+Ahora bien, para poder utilizar nuevamente el truquito de expresar todo como una seria geométrica, podemos observar que \ref{piregular} se puede expresar de la forma
+
+\begin{equation}\label{pimunu}
+i\Pi_{\mu\nu}(k) =i\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left(-\Pi(k)\right)
+\end{equation}
+
+Si bien este es el caso particular de orden $ \alpha $, pidiendo covarianza, un tensor que depende de $ q $ solo puede depender de $ g_{\mu\nu} $ y la combinación $ q_{\mu\nu} $. A su vez existen unas igualdades conocidas como \textbf{identidades de Ward} que demandan $ q^{\mu}\Pi_{\mu\nu}=0 $ y esto hace que la combinación \ref{pimunu} sea la única posible, por lo que vale a cualquier orden!. Con esta aclaración ahora podemos expresar todos los ordenes de la misma forma y reagrupando tenemos
+
+\begin{equation}\label{key}
+\begin{aligned}
+\widetilde{G}(k)_{\mu\nu} &= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \frac{g_{\sigma\nu}}{k^2} \left(-\Pi(k)\right) + \dots\\
+&=\frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[ -\Pi(q) + \left(-\Pi\right)^2(q) + \dots \right]\\
+&= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[\frac{1}{1 + \Pi(k)} -1 \right]\\
+&= \frac{-i}{k^2\left(1+\Pi(k)\right)} \left[g_{\mu\nu} - \frac{k_{\mu}k_{\nu}}{k^2}\right] - \frac{ik_{\mu}k_{\nu}}{k^4}
+\end{aligned}
+\end{equation}
+
+Donde podemos volver a utilizar las identidades de Ward para dejar de considerar los términos con $ k_{\mu} $ y similares. Con ello obtenemos
+
+\begin{equation}\label{key}
+\widetilde{G}(k)_{\mu\nu} = \frac{-ig_{\mu\nu}}{k^2\left(1+\Pi(k)\right)}
+\end{equation}
+
+El cual es un resultado análogo al caso electrónico pero con una salvedad muy importante, la interacción no modifica el valor del polo, lo que quiere decir que el fotón sigue teniendo masa nula a todo orden!. Esto es consecuencia directa de que este término no posee divergencias infrarrojas. Sin embargo, se modifica el valor del residuo con un factor
+
+\begin{equation}\label{z3}
+Z_3 \equiv \frac{1}{\left(1+\Pi(k)\right)_{k=0}}
+\end{equation}
+
+donde debemos evaluar en el polo ($ k=0 $).\\
+
+Pasando al caso del vértice, para la función de Green de 3 puntos tenemos a orden 1 en la constante de acople el proceso
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\linewidth]{verticecor}
+	\caption{Interacción de QED a primer orden en $ \alpha $.}
+	\label{fig_vertexcompleto}
+\end{figure}
+
+Donde analíticamente se expresa como
+
+\begin{equation}\label{key}
+\begin{aligned}
+\widetilde{G}^{\nu} &= \widetilde{G}^{(1)} + \widetilde{G}^{(3)} + \dots\\
+&= \left(\frac{-ig^{\mu\nu}}{(q-k)^2-\mu^2}\right)\left(\frac{i}{\cancel{k}-\cancel{p}-m}\right) (-ie)\left( \gamma_{\mu}  + \Lambda_{\mu}(q,k)\right)\left(\frac{i}{\cancel{q}-m}\right) + \dots
+\end{aligned} 
+\end{equation}
+
+Donde vemos que esto es exactamente una corrección al vértice de interacción! (de ahí el nombre). Esto nos lleva a definir un nuevo vértice
+
+\begin{equation}\label{key}
+\gamma_{\mu} \longrightarrow \Gamma_{\mu}= \gamma_{\mu} + \Lambda_{\mu}
+\end{equation}
+
+que tomando solo la parte divergente regularizada \ref{vertexregular} vemos que la corrección podemos escribirla como
+
+\begin{equation}\label{key}
+\Lambda^{(1)}_{\mu}(q,k) = \gamma_{\mu} \Lambda(q,k)
+\end{equation}
+
+omitiendo el supraindice $ (1) $ por comodidad. Lo que sugiere un nuevo factor de acople
+
+\begin{equation}\label{vertexz1}
+Z^{-1}_1\left(-e \gamma_{\mu}\right)
+\end{equation}
+
+con $ Z^{-1}_1 $ igual a uno para el orden cero, en donde se recupera la interacción sin correcciones.\\
+
+Ahora bien, muy lindo todo, vemos que lo calculado hasta ahora tiene influencias directas en todos los aspectos físicos del Lagrangiano, las interacciones modifican residuos, polos y vértices pero seguimos ocultando los problemas en la definición de $ Z_{1,2,3} $, nuestras amplitudes siguen siendo infinitas, bueno, aquí es donde viene la magia, un milagro está a punto de ocurrir.\\
+
+La idea consiste en pensar que los parámetros del Lagrangiano de toda la vida, que notamos convenientemente $ e_0, m_0$,etc no son observables físicos, sino que son una buena aproximación para bajas energías!. ¿Esto quiere decir que la carga eléctrica y masa del electrón no son lo que pensamos toda la vida?, exactamente. Estos parámetros que aparecen en el Lagrangiano los llamamos \textbf{parámetros desnudos} y divergen orden a orden en teoría de perturbaciones, lo que sucede es que dichas magnitudes poseen las divergencias justas para cancelar las divergencias que vienen de las interacciones $ Z_{1,2,3} $. Por ejemplo para el caso de $ m_0 $, proponemos que tiene justo la divergencia opuesta a $ \Sigma $ en \ref{mpolo} dejando luego de la cancelación una contribución física al polo del propagador a lo cual llamamos $ m $ y esa sí es la masa física de las partículas!. Este es el famoso método de \textbf{Renormalización} y en resumen consiste en suponer que al momento de pasar al caso cuántico debo suponer que los parámetros $ m_0,e_0 $ también deben tener contribuciones distintas a $ 1 $ para distintos ordenes de teoría de perturbaciones, estos parámetros desnudos serán divergentes y debemos ''vestirlos'' con las interacciones para quedarnos con la contribución física que resulta ser un observable!.
+
+Para llevar a cabo este procedimiento y extraer los resultados físicos hay dos maneras que obviamente son totalmente equivalentes. La primera de ellas consiste en expresar todas estas variables desnudas en término de las físicas en los cálculos divergentes y listo. La otra manera es utilizar contratérminos, la cual resuelve el problema de forma más sistemática y es el más utilizado para ordenes altos. Nosotros seguiremos este esquema y la explicación en el marco de QED se explica a continuación.\\|
+
+Por todo lo discutido hasta el momento, el Lagrangiano con el que estuvimos trabajando todo este tiempo es de la forma
+
+\begin{equation}\label{lqedb}
+\mathscr{L}_{QED}=\overline{\psi}_B\left(\frac{i}{2}
+\overleftrightarrow{\cancel{\partial}}-m_B\right)\psi_B-\frac{1}{4}F_{B \mu\nu}F_B^{\mu\nu}-e_B\overline{\psi}_B\cancel{A}\psi_B
+\end{equation}
+
+donde ahora explicitamos que son las variables desnudas las que aparecen. Estos términos coinciden con \ref{lqed} a orden 0 pero al siguiente ya divergen. Luego, vimos que este Lagrangiano predice a orden $ \alpha $
+
+\begin{equation}\label{gesdesnudas}
+\begin{aligned}
+\widetilde{G}(q) &=\int \mathrm{d^4}x_1y_1 e^{-iq\cdot( x_1 - y_1)}\left\langle T\left\{ \psi_B(y_1)\overline{\psi}_B(x_1)\right\} \right\rangle = \frac{iZ_2}{\cancel{q}-m}\\
+ \widetilde{G}_{\mu\nu}(k)&=\int \mathrm{d^4}x_1y_1 e^{-ik\cdot( x_1 - y_1)}\left\langle T\left\{ A_{B\mu}(y_1)A_{B\nu}(x_1)\right\}\right\rangle =\frac{-iZ_3g_{\mu\nu}}{k^2}
+\end{aligned}
+\end{equation}
+
+donde $ Z_2 $, $ Z_3 $ y $ m $ vienen dados por \ref{z2}, \ref{z3} y \ref{m} respectivamente. Ahora bien, las segundas igualdades de \ref{gesdesnudas} son simplemente las transformadas de Fourier de las funciones de Green generalizadas para los campos interactuantes $ \psi_B, A_{B\mu} $, esto nos sugiere definir los campos vestidos como
+
+\begin{equation}\label{key}
+\begin{aligned}
+\psi &\equiv \sqrt{Z_2}\psi_B\\
+A_{\mu} &\equiv \sqrt{Z_3} A_{B\mu}
+\end{aligned}
+\end{equation}
+
+construido mediante el producto de dos variables divergentes pero cuyo valor es finito (he aquí el truco). Con esta definición obviamente la expresión de \ref{lqedb} cambiará a 
+
+\begin{equation}\label{lqedb2}
+\mathscr{L}_{QED}=Z_2\overline{\psi}\left(\frac{i}{2}
+\overleftrightarrow{\cancel{\partial}}-m_B\right)\psi-\frac{Z_3}{4}F_{ \mu\nu}F^{\mu\nu}-e_B\frac{Z_2 \sqrt{Z_3}}{z_1}\overline{\psi}\cancel{A}\psi
+\end{equation}
+
+donde agregamos la corrección dada por el vértice \ref{vertexz1}. Ahora, así como hicimos con la masa, podemos redefinir la carga eléctrica como
+
+\begin{equation}\label{key}
+e \equiv e_B\frac{Z_2 \sqrt{Z_3}}{z_1}
+\end{equation}
+
+cuyo resultado será finito. Con esto, resulta conveniente desglosar \ref{lqedb2}
+
+\begin{equation}\label{lqedr}
+\begin{aligned}
+\mathscr{L}^{R}_{QED}&=\overline{\psi}\left(\frac{i}{2}
+\overleftrightarrow{\cancel{\partial}}-m\right)\psi-\frac{1}{4}F_{ \mu\nu}F^{\mu\nu}-e\overline{\psi}\cancel{A}\psi\\
+&+ \overline{\psi}\left( \left(Z_2 - 1\right)\frac{i}{2}\overleftrightarrow{\cancel{\partial}}-\delta m\right)\psi -\frac{\left(Z_3 -1\right)}{4}F_{ \mu\nu}F^{\mu\nu} - e\left(Z_1-1\right)\overline{\psi}\cancel{A}\psi
+\end{aligned}
+\end{equation}
+
+donde definimos 
+
+\begin{equation}\label{deltam}
+\delta m = Z_2 m_B - m
+\end{equation}
+
+\ref{lqedr} se conoce como el \textbf{Lagrangiano renormalizado} de QED y en él, vemos que increíblemente recuperamos el $ \mathscr{L}_{QED} $ con las magnitudes físicas de siempre pero al ingresar al mundo cuántico-relativista nos aparecen correcciones divergentes que se encargan orden a orden de cancelar las divergencias y dejar los observables que corresponde!. Estos son los famosos \textbf{Contraterminos} y que con un número finito de ellos pueda cancelar todas las divergencias orden por orden es lo que hace a una teoría renormalizable.
+
+Teniendo la expresión correcta de nuestro Lagrangiano, lo correcto al momento de calcular las funciones de Green a orden $ \alpha $ es tener en cuenta todos estos términos, por lo que nos aparecen nuevos diagramas de Feynman dados por la contribución de orden $ \alpha $ de los contraterminos. La lista de todos ellos se muestra en la figura \ref{fig_contraterminos} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\linewidth]{contraterminos}
+	\caption{Diagramas de Feynman para QED renormalizado.}
+	\label{fig_contraterminos}
+\end{figure}
+
+
+En donde vemos que el contratérmino para el propagador electrónico contiene un término proporcional al momento ya que esto es lo que aparece en el espacio de momentos cuando tenemos una derivada en el Lagrangiano. El mismo argumento vale para el contratérmino del fotón solo que dicha forma se encuentra oculta. Para ver que este término es efectivamente de esta forma recordamos que al estar $ \mathscr{L}_{QED} $ dentro de una acción, podemos tirar términos de borde y con ello integrar por partes $ -\frac{1}{4}F_{ \mu\nu}F^{\mu\nu} $  para obtener $ -\frac{1}{2}A_{\mu}\left( -\partial^2 g^{\mu\nu} + \partial^{\mu} \partial^{\nu} \right)A_{\nu}  $ lo que corresponde en el espacio de momentos al factor de la figura \ref{fig_contraterminos}.
+
+Con estos nuevos diagramas ahora tenemos una versión renormalizada de la función de Green generalizada a orden 1. Mirando la parte de la Self-energy, tenemos
+
+\begin{equation}\label{aux8}
+-i \Sigma_R(q) = -i \Sigma(q) + i\cancel{q}\left(Z_2 -1\right) -\delta m
+\end{equation}
+
+
+donde recordando la definición de $ m $, \ref{m}, podemos reescribir \ref{deltam} como
+
+\begin{equation}\label{key}
+\delta m = Z_2 m_B - m = Z_2 \left(m -\Sigma(m)\right) -m = m\left(Z_2 -1\right) - Z_2 \Sigma(m)
+\end{equation}
+
+y ahora podemos hacer uso de la definición de $ Z_2 $, \ref{z2}, parar tirar términos de orden superior
+
+\begin{equation}\label{key}
+Z_2 \Sigma(m) = \left[ 1 -\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right]^{-1}_{\cancel{q}=m} \Sigma(m) = \left[ 1 +\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}} + O(\alpha^2)\right]_{\cancel{q}=m} \Sigma(m) = \Sigma(m) + O(\alpha^2)
+\end{equation}
+
+Luego reemplazamos esto en \ref{aux8} y tenemos
+
+\begin{equation}\label{key}
+\begin{aligned}
+-i \Sigma_R(q) &= -i\Sigma(q) + \left(i\cancel{q} - m\right)\left(Z_2 -1\right) - \Sigma(m)\\
+&= -i\Sigma(q) + \left(i\cancel{q} - m\right)\left(\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right)_{\cancel{q}=m} - \Sigma(m)
+\end{aligned}
+\end{equation}
+
+Para obtener la expresión final renormalizada, derivamos \ref{sigmaregular}
+
+\begin{equation}\label{key}
+\frac{\mathrm{d}\Sigma}{\mathrm{d}\cancel{q}} = 
+\end{equation}
+
+\begin{equation}\label{key}
+\frac{\alpha \left(4m - \cancel{q}\right)}{4\pi \epsilon} + F(q,m,\mu,\xi)
+\end{equation}
+
+
+
+
+
+\subsection{Función Beta y momento magnético anómalo}
+Tratemos la única integral convergente del trabajo para subirnos un poco el autoestima y veamos que nos predice el único cálculo (por el momento) con un valor contrastable con la experiencia\\
+
+Para ello, retomemos la parte convergente de \ref{lambda} sin ninguna regularización
+
+\begin{equation}\label{key}
+\begin{aligned}
+\Lambda^{(2)}_{\mu}(q,k)&=-ie^22\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
+& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right\}
+\end{aligned}
+\end{equation}
+
+donde vemos que la integral en el momento es exactamente \ref{idvertex}.
+
+
+\begin{equation}\label{aux7}
+\begin{aligned}
+\Lambda^{(2)}_{\mu}(q,k)&=-\frac{e^2}{16 \pi^2}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \\
+& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]} \right\}\\
+\end{aligned}
+\end{equation}
+
+Ahora podemos aprovechar la herramienta de que esta corrección al vértice estará ensanguchada por los spinores $ \overline{u}(k) $ por izquierda y $ u(q) $ por derecha en la fórmula de reducción, y con ello hacer uso de la la solución de Dirac
+
+\begin{equation}\label{key}
+\begin{aligned}
+\overline{u}(k) \cancel{k}&=m\overline{u}(k)\\
+\cancel{q} u(q)&= m u(q)
+\end{aligned}
+\end{equation}  
+
+y a su vez utilizar
+
+\begin{equation}\label{key}
+\gamma^{\alpha}\cancel{k}=\gamma^{\alpha}\gamma^{\beta} k_{\beta} = \left( 2g^{\alpha\beta} - \gamma^{\beta}\gamma^{\alpha}\right)k_{\beta}= 2k^{\beta} - \cancel{k}\gamma^{\alpha}
+\end{equation}
+
+donde recurrimos a la propiedad de anti-conmutación de las matrices gamma. Con estas igualdades podemos reescribir el numerador de \ref{aux7} como
+
+\begin{equation}\label{key}
+\begin{aligned}
+\overline{u}(k) \ N \ u(q) &= \overline{u}(k) \left[\gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}\right] u(q)\\
+&=
+\end{aligned}
+\end{equation}
+
+para reemplazar el numerador por 
+
 
 
 \begin{thebibliography}{9}
