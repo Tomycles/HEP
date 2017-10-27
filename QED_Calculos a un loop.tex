@@ -2,6 +2,7 @@
 
 %Packages
 
+
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish,es-noquoting]{babel}
 \usepackage{geometry}
@@ -39,9 +40,9 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{{\color{brown!60!black}\Large\Coffeecup}}
-\lhead{\textit{Capítulo 1}}
+\lhead{\textit{QED}}
 \fancyfoot{}
-\lfoot{\tiny{Octubre 2017 - v1.0}}
+\lfoot{\tiny{Octubre 2017}}
 \rfoot{\thepage}
 
 %Title
@@ -63,7 +64,7 @@
 
 
 
-Predicha como un límite de bajas energías en teoría de cuerdas, la acción de supergravedad contiene información sobre la dinámica de 3 campos fundamentales definidos en un espacio-tiempo de 10 dimensiones. Estos son el \textit{gravitón} $ g_{\mu\nu} $, un tensor $ \binom{0}{2} $ totalmente simétrico, $ b_{\mu\nu} $ una 2-forma llamada \textit{campo de Kalb-Ramond} y un campo escalar $ \phi $, conocido como \textit{Dilatón}. El objetivo del presente capítulo se divide en dos partes, en primer lugar queremos estudiar las simetrías de la acción, corroborando que la misma se mantiene invariante al aplicar ciertas transformaciones, luego, finalizamos el capítulo deduciendo las ecuaciones de movimiento para los campos a partir del principio de mínima acción.  
+ 
 
 \rule{\textwidth}{0.4pt}
 
@@ -1032,7 +1033,7 @@ Ahora bien, dado que tenemos 12 campos, veamos con cuidado cuales son los diagra
 \end{figure}
 
 Los demás diagramas que evitamos construir por no ser truncados son exactamente los correspondientes a las figuras (b),(c) y (d) de \ref{fig_truncados} que, por lo visto anteriormente en la sección \ref{sec_feyn}, no contribuirán a $ S^c $.
-Como mencionamos, existen 6 combinaciones posibles en total intercambiando los vértices, al igual que en los casos anteriores, esto lleva al mismo resultado para todos ellos dado que $ z_1,2,3 $ son indices mudos de integración. De esta forma obtenemos un único término a calcular 
+Como mencionamos, existen 6 combinaciones posibles en total intercambiando los vértices, al igual que en los casos anteriores, esto lleva al mismo resultado para todos ellos dado que $ z_{1,2,3} $ son indices mudos de integración. De esta forma obtenemos un único término a calcular 
 
 \begin{equation}\label{key}
 \begin{aligned}
@@ -1404,7 +1405,7 @@ I_{4-2\epsilon}(q)&=i \pi^2 \left(\frac{1}{\epsilon} - \gamma_E + O(\epsilon) \r
 \end{equation}
 \end{boxquation}
 
-Ahora si, finalizado el proceso de regularización vemos que las cosas no resultaron del todo agradables. Habiamos dicho que la idea de regularizar era obtener una versión finita de las integrales y, si bien es cierto que mediante este método pudimos llegar a una expresión analítica de las mismas, vemos que si quisiésemos tomar el limite $ \epsilon \longrightarrow \infty $ seguiríamos teniendo un resultado divergente!. La manera de resolver este inconveniente será absorber las partes divergentes en parámetros del Lagrangiano que obviamente no serán observables, este es el famoso proceso de renormalización que discutiremos más adelante. Por el momento conservemos el término divergente para ver luego que hacemos con él y pasemos a calcular las versiones regularizadas de los procesos que dejamos en pausa. 
+Ahora si, finalizado el proceso de regularización vemos que las cosas no resultaron del todo agradables. Habiamos dicho que la idea de regularizar era obtener una versión finita de las integrales y, si bien es cierto que mediante este método pudimos llegar a una expresión analítica de las mismas, vemos que si quisiésemos tomar el limite $ \epsilon \longrightarrow 0 $ seguiríamos teniendo un resultado divergente!. La manera de resolver este inconveniente será absorber las partes divergentes en parámetros del Lagrangiano que obviamente no serán observables, este es el famoso proceso de renormalización que discutiremos más adelante. Por el momento conservemos el término divergente para ver luego que hacemos con él y pasemos a calcular las versiones regularizadas de los procesos que dejamos en pausa. 
 
 \subsubsection{Self-energy regularizado}
 
@@ -1467,7 +1468,7 @@ Para el caso de la polarización del vacío comenzamos recordando lo que dijimos
 \begin{equation}
 \begin{aligned}
 \Pi^{\mu\nu}(k) :&= -i\xi^{4-d} e^2 f(d) \int_0^1 \mathrm{d}x 2x(1-x)(k^{\mu}k^{\nu}-k^2g^{\mu\nu}) \int \frac{\mathrm{d^d}p}{(2\pi)^d} \left\{\frac{1}{\left[p^2 -m'^2 + k^2x(1-x)\right]^2} \right\}\\
-&= \frac{e^2}{4\pi^2}  \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right) \int_{0}^{x} \mathrm{d}x 2x(1-x) \left[ 1 + \log\left(\xi^24\pi^2\right)\epsilon \right] \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(\pi\left(-m'^2 + k^2x(1-x)\right)\right)\right]\\
+&= -\frac{e^2}{4\pi^2}  \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \int_{0}^{x} \mathrm{d}x 2x(1-x) \left[ 1 + \log\left(\xi^24\pi^2\right)\epsilon \right] \left[ \frac{1}{\epsilon} - \gamma_E - \log\left(\pi\left(-m'^2 + k^2x(1-x)\right)\right)\right]\\
 \end{aligned}   
 \end{equation}
 
@@ -1475,14 +1476,14 @@ donde podemos distribuir los productos, agrupar potencias de $ \epsilon $ y efec
 
 \begin{boxquation}
 \begin{equation}\label{piregular}
-\Pi^{\mu\nu}(k) = \frac{\alpha \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right)}{3\pi \epsilon} - G(k,m,\xi)
+\Pi^{\mu\nu}(k) = \frac{-\alpha \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right)}{3\pi \epsilon} + G^{\mu\nu}(k,m,\xi)
 \end{equation}
 \end{boxquation}
 
 donde se notó la parte finita como
 
 \begin{equation}\label{key}
-G(k,m,\xi) \equiv \frac{\alpha \left(k^{\mu}k^{\nu}-k^2g^{\mu\nu}\right)}{\pi}\left\{ \frac{\gamma}{3} + 2\int_{0}^{1} \mathrm{d}x x(1-x) \log\left[\frac{k^2x(1-x) -m^2 }{4 \pi \xi^2}\right] \right\}
+G^{\mu\nu}(k,m,\xi) \equiv \frac{\alpha \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right)}{\pi}\left\{ \frac{\gamma}{3} + 2\int_{0}^{1} \mathrm{d}x x(1-x) \log\left[\frac{k^2x(1-x) -m^2 }{4 \pi \xi^2}\right] \right\}
 \end{equation}
 
 A diferencia del primer caso, esta parte no contiene divergencias infrarrojas pero sigue teniendo el problema de la dependencia en $ \xi $. Nuevamente nos aparece una parte divergente de la misma forma!. Agreguemos un objeto más a nuestra lista de procesos pendientes y pasemos al último diagrama primitivamente divergente
@@ -1518,19 +1519,160 @@ lo que nos lleva a la ya familiar expresión
 
 \begin{boxquation}
 \begin{equation}\label{vertexregular}
-\Lambda^{(1)}_{\mu}(q,k)=\frac{\alpha \gamma_{\mu}}{4\pi \epsilon} - H(q,k,m,\mu,\xi)
+\Lambda^{(1)}_{\mu}(q,k)=\frac{\alpha \gamma_{\mu}}{4\pi \epsilon} - H_{\mu}(q,k,m,\mu,\xi)
 \end{equation}
 \end{boxquation}
 
 donde definimos la parte de orden cero en $ \epsilon $ como
 
 \begin{equation}\label{key}
-H(q,k,m,\mu,\xi) \equiv \frac{\alpha \gamma_{\mu}}{4\pi} \left\{ \gamma_E + 2 + 2\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \log\left[\frac{k^2x(1-x) +q^2y(1-y) -2kqxy -m^2(x+y) -\mu^2(1-x-y)}{\xi^2 4\pi}\right] \right\}
+H_{\mu}(q,k,m,\mu,\xi) \equiv \frac{\alpha \gamma_{\mu}}{4\pi} \left\{ \gamma_E + 2 + 2\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \log\left[\frac{k^2x(1-x) +q^2y(1-y) -2kqxy -m^2(x+y) -\mu^2(1-x-y)}{\xi^2 4\pi}\right] \right\}
 \end{equation}
 
-que nuevamente contiene divergencias infrarrojas y dependencia en la escala de energías no física. Ahora si, es un buen punto para convencerse de que estas divergencias tienen un mismo origen y requiere un método sistemático para ser eliminadas, necesitamos renormalizar!.
+que nuevamente contiene divergencias infrarrojas y dependencia en la escala de energías no física. Ahora si, es un buen punto para convencerse de que estas divergencias tienen un mismo origen y requiere un método sistemático para ser eliminadas. Antes de pasar a ello Tratemos la única integral convergente del trabajo para subirnos un poco el autoestima y veamos que nos predice el único cálculo (por el momento) con un valor contrastable con la experiencia\\
+
+\subsubsection{Momento magnético anómalo}
+
+Retomemos la parte convergente de \ref{lambda} sin ninguna regularización
+
+\begin{equation}\label{key}
+\begin{aligned}
+\Lambda^{(2)}_{\mu}(q,k)&=-ie^22\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
+& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right\}
+\end{aligned}
+\end{equation}
+
+donde vemos que la integral en el momento es exactamente \ref{idvertex}.
 
 
+\begin{equation}\label{aux7}
+\begin{aligned}
+\Lambda^{(2)}_{\mu}(q,k)&=-\frac{e^2}{16 \pi^2}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \\
+& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]} \right\}\\
+\end{aligned}
+\end{equation}
+
+Ahora podemos aprovechar la herramienta de que esta corrección al vértice estará ensanguchada por los spinores $ \overline{u}(k) $ por izquierda y $ u(q) $ por derecha en la fórmula de reducción, y con ello hacer uso de la la solución de Dirac
+
+\begin{equation}\label{diraceq}
+\begin{aligned}
+\overline{u}(k) \cancel{k}&=m\overline{u}(k)\\
+\cancel{q} u(q)&= m u(q)
+\end{aligned}
+\end{equation}  
+
+y a su vez utilizar
+
+\begin{equation}\label{key}
+\gamma^{\nu}\gamma_{\alpha}\gamma_{\mu}\gamma_{\beta}\gamma_{\nu} = -2 \left( \gamma_{\alpha}\gamma_{\mu}\gamma_{\beta} + \gamma_{\alpha}\gamma_{\beta}\gamma_{\mu} -\gamma_{\mu}\gamma_{\beta}\gamma_{\alpha}\right)
+\end{equation}
+
+donde recurrimos a la propiedad de anti-conmutación de las matrices gamma. Con estas igualdades se puede trabajar el numerador de \ref{aux7} conmutando tantas veces como sea necesario para llevar las variables $ \cancel{k} $ a la izquierda de todas las matrices y las variables $ \cancel{q} $ a la derecha, luego aplicando, \ref{diraceq} transforma estas magnitudes en $ m $ y con ello separar en 3 términos
+
+\begin{equation}\label{num}
+\overline{u}(k) \ N \ u(q) = \overline{u}(k) \left[-4m\left(x-xy-y^2\right)q_{\mu} -4m\left(y-xy-x^2\right)k_{\mu} + A\gamma_{\mu}\right] u(q)
+\end{equation}
+
+donde no se escribe la expresión que acompaña a $ \gamma_{\mu} $ porque no será necesario. Por otro lado, en el denominador consideramos el caso en donde las partículas están On-shell, para utilizar $ q^2 =k^2= m^2 $ y recordando que el cuadrimomento del fotón saliente corresponde a $q-k $ con masa nula, usamos $ 0 = \left(q-k\right)^2=2m^2 - 2q\cdot k $. Con todo esto podemos reescribir el denominador de \ref{aux7} como
+
+\begin{equation}\label{den}
+\begin{aligned}
+D&= k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\\
+&=m^2x(1-x) +m^2y(1-y) -2m^2xy -m'^2(x+y) -\mu'^2(1-x-y)\\
+&=-m^2\left[(x+y)^2 + \frac{\mu^2}{m^2}(1-x-y)\right]
+\end{aligned}
+\end{equation}
+
+Luego, introduciendo \ref{num} y \ref{den} en \ref{aux7} obtenemos
+
+\begin{equation}\label{key}
+\Lambda^{(2)}_{\mu}(q,k)=-\frac{\alpha}{\pi}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left[ \frac{  \left(x-xy-y^2\right)q_{\mu} + \left(y-xy-x^2\right)k_{\mu}}{m\left(x+y\right)^2 + \frac{\mu^2}{m} \left(1-x-y\right)}\right] + B\gamma_{\mu}
+\end{equation}
+
+donde nuevamente agrupamos todo lo que acompaña a $ \gamma_{\mu} $ en un nuevo término $ B $ que eventualmente contendrá divergencias infrarrojas. Por otro lado, lo que resta calcular no contiene ninguna divergencia al tomar $ \mu \longrightarrow 0 $ por lo que vamos a hacer uso de esto y calcular (dejando de considerar el término de $ \gamma_{\mu} $ )
+
+\begin{equation}\label{key}
+\begin{aligned}
+\Lambda^{(2)}_{\mu}(q,k)&=-\frac{\alpha}{m\pi}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left[ \frac{  \left(x-xy-y^2\right)q_{\mu} + \left(y-xy-x^2\right)k_{\mu}}{\left(x+y\right)^2}\right]\\
+&=-\frac{\alpha}{\pi}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left[ \frac{  x-xy-y^2}{\left(x+y\right)^2}\right] \left(q_{\mu} + k_{\mu}\right)
+\end{aligned}
+\end{equation}
+
+donde para la segunda igualdad utilizamos que ambas integrales eran las mismas simplemente renombrando $ x \leftrightarrow y $. De esta forma, nuestro trabajo se reduce a calcular
+
+\begin{equation}\label{key}
+\begin{aligned}
+\int_0^1\mathrm{d}x&\int_0^{1-x}\mathrm{d}y \left[ \frac{x-xy-y^2}{\left(x+y\right)^2}\right] = \int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left[ \frac{x}{\left(x+y\right)^2}\right] - \int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \left[ \frac{y}{x+y}\right]\\
+&= -\int_0^1\mathrm{d}x (x-1) + \int_0^1\mathrm{d}x (x-1) - \int_0^1\mathrm{d}x x \log(x)= \frac{1}{4}
+\end{aligned}
+\end{equation}
+
+donde utilizamos partes y que $ x\log(x) \longrightarrow 0 $ con $ x \rightarrow 0 $ para llegar al último resultado. Finalmente la parte convergente nos queda
+
+\begin{boxquation}
+\begin{equation}\label{lambdaconver}
+\Lambda^{(2)}_{\mu}(q,k) = \frac{-\alpha}{4m\pi} \left(q_{\mu} + k_{\mu}\right) + D\gamma_{\mu}
+\end{equation}
+\end{boxquation}
+
+Luego de tanto dar vueltas, tenemos nuestro primer resultado, pero... ¿que nos dice?. Recordando la ecuación de Dirac, podemos utilizar las ecuaciones \ref{diraceq} junto con las relaciones de conmutación y anticonmutación de las gamma
+
+\begin{equation}\label{key}
+\begin{aligned}
+\left\{ \gamma_{\mu},\gamma_{\nu} \right\} &= 2g_{\mu\nu}\\
+\left[\gamma_{\mu},\gamma_{\nu}\right]& \equiv -2i \sigma_{\mu\nu}
+\end{aligned}
+\end{equation}
+
+para deducir
+
+\begin{equation}\label{key}
+\begin{aligned}
+\gamma_{\mu} u(q) &= \frac{1}{m}\left(q_{\mu} -i\sigma_{\mu\nu}q^{\nu} \right)u(q)\\
+\overline{u}(k)\gamma_{\mu} &= \frac{1}{m}\overline{u}(k)\left(k_{\mu} -i\sigma_{\mu\nu}k^{\nu} \right)
+\end{aligned}
+\end{equation} 
+
+y con esto llegar a la expresión
+
+\begin{equation}\label{aux9}
+\begin{aligned}
+\overline{u}(k) \gamma_{\mu}u(q) &= \frac{1}{2} \overline{u}(k) \left(\gamma_{\mu} u(q)\right) + \frac{1}{2} \left(\overline{u}(k) \gamma_{\mu}\right) u(q)\\
+&=\frac{1}{2m}\overline{u}(k)\left[\left(q_{\mu} + k_{\mu}\right) + i\sigma_{\mu\nu} \left(q^{\nu} - k^{\nu}\right)\right]u(q)
+\end{aligned}
+\end{equation}
+
+donde $ \left(q_{\mu} - k_{\mu}\right) $  recordamos que corresponde al momento del fotón saliente. A su vez, es necesario recordar la definición de momento magnético para una partícula
+
+\begin{equation}\label{key}
+\mu = \frac{ge}{2m}S = \frac{g e }{4m} \sigma
+\end{equation}
+
+donde tenemos el \textbf{factor giromagnético} $ g $ que resulta ser para el caso relativista $ g=2 $, este número es uno de los grande triunfos de la ecuación de Dirac, que no podía describirse de forma clásica. Este factor es el mismo que aparece en  \ref{aux9} acompañando a $ \sigma_{\mu\nu} $. Y he aquí donde entra la corrección dada por el nuevo vértice a orden $ \alpha $, ahora en lugar de calcular $ \overline{u}(k) \gamma_{\mu}u(q) $, lo correcto es buscar
+
+\begin{equation}\label{key}
+\overline{u}(k) \Gamma_{\mu}u(q) = \overline{u}(k) \left(\gamma_{\mu} + \Lambda_{\mu}\right)u(q)
+\end{equation}
+
+en donde podemos utilizar que la parte divergente de $ \Lambda_{\mu} $ que adeudamos resolver tiene la forma $ \gamma_{\mu}\Lambda $ y podemos agruparla junto con $ B \gamma_{\mu} $ en una nueva constante (con divergencias infrarrojas) multiplicando al vértice de orden 0. Dicho esto, podemos utilizar \ref{aux9} y la \ref{lambdaconver} para obtener
+
+\begin{equation}\label{key}
+\begin{aligned}
+\overline{u}(k) \Gamma_{\mu}u(q) &= \frac{1}{2m} \overline{u}(k) \left[\left(q_{\mu} + k_{\mu}\right) + i\sigma_{\mu\nu}  \left(q^{\nu} - k^{\nu}\right)\right]u(q) - \frac{\alpha}{4m\pi} \overline{u}(k) \left( q_{\mu} + k_{\mu}\right) u(q) + D\overline{u}(k) \gamma_{\mu} u(q)=\\
+&= \frac{1}{2m} \overline{u}(k) \left[\left(q_{\mu} + k_{\mu}\right) + i\sigma_{\mu\nu}  \left(q^{\nu} - k^{\nu}\right)\right]u(q) - \frac{\alpha}{4m\pi} \overline{u}(k) \left[ 2m \gamma_{\mu} -i\sigma_{\mu\nu} \left(q^{\nu} - k^{\nu}\right)\right]u(q) + D\overline{u}(k) \gamma_{\mu} u(q)\\
+&= \frac{1}{2m} \overline{u}(k)  \left[\left(q_{\mu} + k_{\mu}\right) + \left(1 + \frac{\alpha}{2\pi}\right)i\sigma_{\mu\nu}\left(q^{\nu} - k^{\nu}\right)\right]u(q)
+\end{aligned}
+\end{equation}
+
+donde puede demostrarse que todos los términos con $ \gamma_{\mu} $ se terminan cancelando (esta cuenta no la hacemos ya que deberíamos considerar todos los términos con $ \gamma_{\mu} $ incluyendo los que debemos curar de divergencias ultravioletas e infrarrojas). Aceptado esto, lo importante esta en el paréntesis junto a $ \sigma_{\mu\nu} $, nuestro cálculo predice una correción al factor giromagnético!
+
+\begin{boxquation}
+\begin{equation}\label{g}
+g = 2 + \frac{\alpha}{\pi}
+\end{equation}
+\end{boxquation}
+
+Esta predicción coincide perfectamente con la experiencia, siendo una de las magnitudes con mayor acuerdo entre teoría y experimento. Ahora que recuperamos un poco el autoestima, pasemos a lo que dejamos pendiente.
 
 
 \subsection{Renormalización}
@@ -1619,30 +1761,30 @@ Para el propagador del fotón la situación es muy parecida, en este caso tenemo
 Ahora bien, para poder utilizar nuevamente el truquito de expresar todo como una seria geométrica, podemos observar que \ref{piregular} se puede expresar de la forma
 
 \begin{equation}\label{pimunu}
-i\Pi_{\mu\nu}(k) =i\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left(-\Pi(k)\right)
+i\Pi_{\mu\nu}(k) =i\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \Pi(k)
 \end{equation}
 
 Si bien este es el caso particular de orden $ \alpha $, pidiendo covarianza, un tensor que depende de $ q $ solo puede depender de $ g_{\mu\nu} $ y la combinación $ q_{\mu\nu} $. A su vez existen unas igualdades conocidas como \textbf{identidades de Ward} que demandan $ q^{\mu}\Pi_{\mu\nu}=0 $ y esto hace que la combinación \ref{pimunu} sea la única posible, por lo que vale a cualquier orden!. Con esta aclaración ahora podemos expresar todos los ordenes de la misma forma y reagrupando tenemos
 
 \begin{equation}\label{key}
 \begin{aligned}
-\widetilde{G}(k)_{\mu\nu} &= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \frac{g_{\sigma\nu}}{k^2} \left(-\Pi(k)\right) + \dots\\
-&=\frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[ -\Pi(q) + \left(-\Pi\right)^2(q) + \dots \right]\\
-&= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[\frac{1}{1 + \Pi(k)} -1 \right]\\
-&= \frac{-i}{k^2\left(1+\Pi(k)\right)} \left[g_{\mu\nu} - \frac{k_{\mu}k_{\nu}}{k^2}\right] - \frac{ik_{\mu}k_{\nu}}{k^4}
+\widetilde{G}(k)_{\mu\nu} &= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \frac{g_{\sigma\nu}}{k^2} \Pi(k) + \dots\\
+&=\frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[ \Pi(q) + \Pi^2(q) + \dots \right]\\
+&= \frac{-i g_{\mu\nu}}{k^2} + \frac{-i g_{\mu\rho}}{k^2}\left(\frac{\delta^{\rho}_{\nu} - k^{\rho}k_{\nu}}{k^2} \right) \left[\frac{1}{1 - \Pi(k)} -1 \right]\\
+&= \frac{-i}{k^2\left(1-\Pi(k)\right)} \left[g_{\mu\nu} - \frac{k_{\mu}k_{\nu}}{k^2}\right] - \frac{ik_{\mu}k_{\nu}}{k^4}
 \end{aligned}
 \end{equation}
 
 Donde podemos volver a utilizar las identidades de Ward para dejar de considerar los términos con $ k_{\mu} $ y similares. Con ello obtenemos
 
 \begin{equation}\label{key}
-\widetilde{G}(k)_{\mu\nu} = \frac{-ig_{\mu\nu}}{k^2\left(1+\Pi(k)\right)}
+\widetilde{G}(k)_{\mu\nu} = \frac{-ig_{\mu\nu}}{k^2\left(1-\Pi(k)\right)}
 \end{equation}
 
 El cual es un resultado análogo al caso electrónico pero con una salvedad muy importante, la interacción no modifica el valor del polo, lo que quiere decir que el fotón sigue teniendo masa nula a todo orden!. Esto es consecuencia directa de que este término no posee divergencias infrarrojas. Sin embargo, se modifica el valor del residuo con un factor
 
 \begin{equation}\label{z3}
-Z_3 \equiv \frac{1}{\left(1+\Pi(k)\right)_{k=0}}
+Z_3 \equiv \frac{1}{\left. 1-\Pi(k)\right|_{k=0}}
 \end{equation}
 
 donde debemos evaluar en el polo ($ k=0 $).\\
@@ -1673,7 +1815,7 @@ Donde vemos que esto es exactamente una corrección al vértice de interacción!
 
 que tomando solo la parte divergente regularizada \ref{vertexregular} vemos que la corrección podemos escribirla como
 
-\begin{equation}\label{key}
+\begin{equation}\label{lambdamunu}
 \Lambda^{(1)}_{\mu}(q,k) = \gamma_{\mu} \Lambda(q,k)
 \end{equation}
 
@@ -1683,7 +1825,13 @@ omitiendo el supraindice $ (1) $ por comodidad. Lo que sugiere un nuevo factor d
 Z^{-1}_1\left(-e \gamma_{\mu}\right)
 \end{equation}
 
-con $ Z^{-1}_1 $ igual a uno para el orden cero, en donde se recupera la interacción sin correcciones.\\
+donde
+
+\begin{equation}\label{z1}
+Z^{-1}_1 \equiv 1 + \Lambda(m,m)
+\end{equation}
+
+donde, al igual que todos los demás residuos, debe estar evaluada en los polos, osea las masas de las partículas. A orden cero vemos que $ Z^{-1}_1 $ iguala a uno en donde se recupera la interacción sin correcciones.\\
 
 Ahora bien, muy lindo todo, vemos que lo calculado hasta ahora tiene influencias directas en todos los aspectos físicos del Lagrangiano, las interacciones modifican residuos, polos y vértices pero seguimos ocultando los problemas en la definición de $ Z_{1,2,3} $, nuestras amplitudes siguen siendo infinitas, bueno, aquí es donde viene la magia, un milagro está a punto de ocurrir.\\
 
@@ -1720,13 +1868,13 @@ construido mediante el producto de dos variables divergentes pero cuyo valor es 
 
 \begin{equation}\label{lqedb2}
 \mathscr{L}_{QED}=Z_2\overline{\psi}\left(\frac{i}{2}
-\overleftrightarrow{\cancel{\partial}}-m_B\right)\psi-\frac{Z_3}{4}F_{ \mu\nu}F^{\mu\nu}-e_B\frac{Z_2 \sqrt{Z_3}}{z_1}\overline{\psi}\cancel{A}\psi
+\overleftrightarrow{\cancel{\partial}}-m_B\right)\psi-\frac{Z_3}{4}F_{ \mu\nu}F^{\mu\nu}-e_B\frac{Z_2 \sqrt{Z_3}}{Z_1}\overline{\psi}\cancel{A}\psi
 \end{equation}
 
 donde agregamos la corrección dada por el vértice \ref{vertexz1}. Ahora, así como hicimos con la masa, podemos redefinir la carga eléctrica como
 
-\begin{equation}\label{key}
-e \equiv e_B\frac{Z_2 \sqrt{Z_3}}{z_1}
+\begin{equation}\label{e}
+e \equiv e_B\frac{Z_2 \sqrt{Z_3}}{Z_1}
 \end{equation}
 
 cuyo resultado será finito. Con esto, resulta conveniente desglosar \ref{lqedb2}
@@ -1762,7 +1910,7 @@ En donde vemos que el contratérmino para el propagador electrónico contiene un
 Con estos nuevos diagramas ahora tenemos una versión renormalizada de la función de Green generalizada a orden 1. Mirando la parte de la Self-energy, tenemos
 
 \begin{equation}\label{aux8}
--i \Sigma_R(q) = -i \Sigma(q) + i\cancel{q}\left(Z_2 -1\right) -\delta m
+-i \Sigma_R(q) = -i \Sigma(q) + i\cancel{q}\left(Z_2 -1\right) -i\delta m
 \end{equation}
 
 
@@ -1782,265 +1930,175 @@ Luego reemplazamos esto en \ref{aux8} y tenemos
 
 \begin{equation}\label{key}
 \begin{aligned}
--i \Sigma_R(q) &= -i\Sigma(q) + \left(i\cancel{q} - m\right)\left(Z_2 -1\right) - \Sigma(m)\\
-&= -i\Sigma(q) + \left(i\cancel{q} - m\right)\left(\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right)_{\cancel{q}=m} - \Sigma(m)
+-i \Sigma_R(q) &= -i\Sigma(q) + i\left(\cancel{q} - m\right)\left(Z_2 -1\right) + i\Sigma(m)\\
+&= -i\Sigma(q) + i\left(\cancel{q} - m\right)\left.\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right|_{\cancel{q}=m} + i\Sigma(m)
 \end{aligned}
 \end{equation}
 
-Para obtener la expresión final renormalizada, derivamos \ref{sigmaregular}
+Para obtener la expresión final renormalizada, derivamos \ref{sigmaregular} utilizando $ m $ en lugar de $ m_B $ ya que su diferencia es de orden $ \alpha $
 
 \begin{equation}\label{key}
-\frac{\mathrm{d}\Sigma}{\mathrm{d}\cancel{q}} = 
+\left.\frac{\mathrm{d}\Sigma(\cancel{q})}{d\cancel{q}}\right|_{\cancel{q}=m} = -\frac{\alpha}{4\pi \epsilon} + \left.\frac{\mathrm{d}F(q,m,\mu,\xi)}{\mathrm{d}\cancel{q}}\right|_{\cancel{q}=m}
 \end{equation}
+
+y usamos
 
 \begin{equation}\label{key}
-\frac{\alpha \left(4m - \cancel{q}\right)}{4\pi \epsilon} + F(q,m,\mu,\xi)
+\Sigma(m) =  \frac{3m \alpha}{4\pi \epsilon} + F(m,m,\mu,\xi)
 \end{equation}
 
+y lo introducimos para obtener de una vez por todas
 
+\begin{equation*}
+\Sigma_R(q)= \frac{\alpha (4m -\cancel{q})}{4\pi \epsilon} + F + \left(m -\cancel{q}\right)\left( -\frac{\alpha}{4\pi \epsilon} + \left.\frac{\mathrm{d}F}{\mathrm{d}\cancel{q}}\right|_m \right) - \frac{3m\alpha}{4\pi\epsilon} - F(m)
+\end{equation*}
 
+\begin{boxquation}
+\begin{equation}\label{sigmarenormal}
+\Sigma_R(q) = F-F(m) + \left(m -\cancel{q}\right) \left.\frac{\mathrm{d}F}{\mathrm{d}\cancel{q}}\right|_m 
+\end{equation}
+\end{boxquation}
 
+que es un resultado finito!. De todas formas esto sigue involucrando divergencias infrarrojas que deben ser eliminadas introduciendo más diagramas de Feynman que emitan fotones. A su vez, el parámetro arbitrario $ \xi $ sigue ahí dentro lo cual curaremos luego en la siguiente sección.\\
 
-\subsection{Función Beta y momento magnético anómalo}
-Tratemos la única integral convergente del trabajo para subirnos un poco el autoestima y veamos que nos predice el único cálculo (por el momento) con un valor contrastable con la experiencia\\
-
-Para ello, retomemos la parte convergente de \ref{lambda} sin ninguna regularización
+Este procedimiento tan sistemático de agregar nuevos términos para eliminar las divergencias sirve para todas las magnitudes divergentes! veamos ahora el caso del propagador fotónico utilizando \ref{pimunu}
 
 \begin{equation}\label{key}
 \begin{aligned}
-\Lambda^{(2)}_{\mu}(q,k)&=-ie^22\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \int \frac{\mathrm{d^4}p}{(2\pi)^4}\\
-& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[p^2 + k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]^3} \right\}
+i \Pi_R^{\mu\nu}(k)&= i \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \Pi(k) -i \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left( Z_3 -1\right)\\
+&= -i \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left[ -\Pi(k) + Z_3 -1\right]\\
+&=-i \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left[ -\Pi(k) + \Pi(0)\right]
 \end{aligned}
 \end{equation}
 
-donde vemos que la integral en el momento es exactamente \ref{idvertex}.
+donde para la última igualdad utilizamos la definición de $ Z_3 $, \ref{z3} y tiramos términos de orden superior. Finalmente introduciendo \ref{piregular} evaluado en $ k $ y $ m $ obtenemos nuestro elemento regularizado
 
-
-\begin{equation}\label{aux7}
+\begin{boxquation}
+\begin{equation}\label{pirenormal}
 \begin{aligned}
-\Lambda^{(2)}_{\mu}(q,k)&=-\frac{e^2}{16 \pi^2}\int_0^1\mathrm{d}x\int_0^{1-x}\mathrm{d}y \\
-& \times \left\{ \frac{  \gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}}{\left[k^2x(1-x) +q^2y(1-y) -2kqxy -m'^2(x+y) -\mu'^2(1-x-y)\right]} \right\}\\
+i\Pi_R^{\mu\nu}(k)&=  i \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) \left[ G(k) - G(0)\right]\\
+\Pi(k) &= \left[ G(k) - G(0)\right]
 \end{aligned}
 \end{equation}
+\end{boxquation}
+ 
+donde definimos $ G $ como todo el factor multiplicativo a $ \left(k^2g^{\mu\nu} - k^{\mu}k^{\nu}\right) $ de $ G^{\mu\nu} $. Este resultado nuevamente es finito y lo mejor de todo es que la parte dependiente de $ \xi $ se termina cancelando por lo que no depende de ninguna constante arbitraria.\\
 
-Ahora podemos aprovechar la herramienta de que esta corrección al vértice estará ensanguchada por los spinores $ \overline{u}(k) $ por izquierda y $ u(q) $ por derecha en la fórmula de reducción, y con ello hacer uso de la la solución de Dirac
+Finalmente para el caso del vértice vemos que solo debemos considerar la parte divergente, que es la proporcional a $ \gamma_{\mu} $ (obviamente el término que quedo pendiente de $ \Lambda^{(2)}_{\mu} $ también debería considerarse). Recordando \ref{lambdamunu}, nuestro vértice renormalizado adquiere la contribución del contratérmino mediante
+
+\begin{equation}\label{key}
+-ie\Lambda_{R\mu}(q,k) = -ie\gamma_{\mu}\left[ \Lambda(q,k) + Z_1 - 1\right]
+\end{equation}
+
+relación en la cual podemos reemplazar $ Z_1 $ invirtiendo  \ref{z1} y despreciando ordenes $ \alpha^2 $. De esta forma obtenemos
+
+\begin{equation*}
+-ie\Lambda_{R\mu}(q,k) = -ie\gamma_{\mu}\left[ \Lambda(q,k) -\Lambda(m,m)\right]
+\end{equation*} 
+
+\begin{boxquation}
+\begin{equation}
+-ie\Lambda_{R\mu}(q,k)=-ie\gamma_{\mu} \left[ -H(q,k) + H(m,m)\right]
+\end{equation}
+\end{boxquation}
+
+donde para la última igualdad utilizamos \ref{vertexregular} definiendo $ H $ como la parte que queda se sacarle $ -ie\gamma_{\mu} $ a $ H_{\mu} $. Lo importante de esto es que nuevamente el resultado es finito y con esto concluimos el cálculo de los 3 diagramas primitivamente divergentes!
+
+
+Si bien renormalizar nos permitió quedarnos con resultados finitos, trajo algunas consecuencias físicas con él, estas son la variación de la masa y la carga. La masa simplemente se desplaza y no conlleva más física nueva. Distinto es el caso de la carga eléctrica que podemos pensar su variación de la siguiente forma, recordando la versión renormalizada del propagador del fotón
+
+\begin{equation}\label{key}
+\widetilde{G}_{\mu\nu} = \frac{-ig_{\mu\nu}}{k^2} \frac{e^2}{1-\Pi_R}
+\end{equation}
+
+donde recuperamos las cargas que antes no poníamos por simplicidad, podemos pensar esto como una modificación a la carga o equivalentemente la constante de acople. Como si ahora tuviesemos un $ \alpha_{eff} $
+
+\begin{equation}\label{key}
+\alpha_{eff} = \frac{\alpha}{1- G(k) - G(0)}
+\end{equation} 
+
+donde hicimos uso de \ref{pirenormal}. Esta correción a la carga tiene importantes consecuencias para el potencial Coulombiano, este se ve modificado por un nuevo término que lo hace mucho más fuerte a distancias chicas que lo que sería clásicamente!. Hoy en día se puede medir este efecto en el átomo de hidrógeno lo que da correcciones a los niveles energéticos. A su vez, para distancias más alejadas la correción hace un efecto de apantallamiento lo que se debe a que ahora el vacío que lo rodea, no es del todo vacío sino que existen pares $ e^{-}e^{+} $ que se crean y aniquilan haciendo que el medio se comporte más como un dieléctrico, este es la famosa polarización del vacío!
+
+
+\subsection{Función Beta}
+
+Como dijimos reiteradas veces, parecería ser que todos nuestros términos finitos contienen una escala de energía no física $ \xi $. Esto se puede arreglar un poco ''hechandole la culpa'' a la constante de acople, lo que podemos pensar es que en lugar de introducir $ \xi $ en los cálculos de $ \Sigma, \Pi $ y $ \Lambda $ lo que hacemos es agruparlo con todo lo que le metimos a la carga desnuda luego de renormalizar. Esto es, en realidad la relación \ref{e} escrita de forma correcta sería
+
+\begin{equation}\label{exi}
+e \equiv \xi^{-2\epsilon} e_B\frac{Z_2 \sqrt{Z_3}}{Z_1}
+\end{equation}
+
+Donde podemos reemplazar las ya familiares fórmulas
 
 \begin{equation}\label{key}
 \begin{aligned}
-\overline{u}(k) \cancel{k}&=m\overline{u}(k)\\
-\cancel{q} u(q)&= m u(q)
+Z_1 &= 1- \Lambda(m,m) = 1 -\frac{\alpha}{4\pi \epsilon} + \dots\\
+Z_2 &= \left[1 + \left.\frac{\mathrm{d}}{\mathrm{d\Sigma(\cancel{q})}\cancel{q}}\right|_m \right] = 1 -\frac{\alpha}{4\pi \epsilon} + \dots\\
+\sqrt{Z_3} &= \left[1 - \Pi(0)\right]^{-\frac{1}{2}} = 1 -\frac{\alpha}{6\pi \epsilon} + \dots
 \end{aligned}
-\end{equation}  
-
-y a su vez utilizar
-
-\begin{equation}\label{key}
-\gamma^{\alpha}\cancel{k}=\gamma^{\alpha}\gamma^{\beta} k_{\beta} = \left( 2g^{\alpha\beta} - \gamma^{\beta}\gamma^{\alpha}\right)k_{\beta}= 2k^{\beta} - \cancel{k}\gamma^{\alpha}
 \end{equation}
 
-donde recurrimos a la propiedad de anti-conmutación de las matrices gamma. Con estas igualdades podemos reescribir el numerador de \ref{aux7} como
+donde tiramos ordenes superiores y los puntos $ \dots $ representan los términos finitos que no vamos a tener en cuenta por simplicidad. De estas igualdades vemos que $ Z_1=Z_2 $ y nos deja la relación \ref{exi} como
+
+\begin{equation}\label{exi2}
+e_B = e\xi^{2\epsilon}Z_3^{-\frac{1}{2}}  = \xi^{2\epsilon}\left(e +\frac{e^3}{24\pi^2 \epsilon}\right)
+\end{equation}
+
+
+Lo importante de esta relación es que como $ \xi $ fue agregado como un parametro externo a la carga desnuda, esta no depende de dicha escala. Pero lo que vemos de \ref{exi} es que  la renormalización hizo que la carga física sí depende de dicha escala!. Utilizando \ref{exi2} podemos encontrar la forma en la que depende $ e(\xi) $ derivando ambos miembros
 
 \begin{equation}\label{key}
 \begin{aligned}
-\overline{u}(k) \ N \ u(q) &= \overline{u}(k) \left[\gamma^{\nu}\left(\cancel{k}(1-x) -\cancel{q}y+m'\right)\gamma_{\mu}\left( \cancel{q}(1-y) -\cancel{k}x +m'\right)\gamma_{\nu}\right] u(q)\\
-&=
+\frac{\partial e_B}{\partial \xi} = 0 &= 2\epsilon\frac{\xi^{2\epsilon}}{\xi} \left(e +\frac{e^3}{24\pi^2 \epsilon}\right) +  \xi^{2\epsilon} \left(1 + \frac{e^2}{8 \pi^2 \epsilon}\right)\frac{\partial e}{\partial \xi}\\
+& \iff\\
+\xi \frac{\partial e}{\partial \xi} &= -\frac{2\epsilon\left(e +\frac{e^3}{24\pi^2 \epsilon}\right)}{\left(1 + \frac{e^2}{8 \pi^2 \epsilon}\right)} = -\left(2e\epsilon +\frac{e^3}{12\pi^2}\right)\left(1 - \frac{e^2}{8 \pi^2 \epsilon}\right)\\
+&=-e2\epsilon + \frac{e^3}{6\pi^2} + \frac{e^5}{96\pi^4 \epsilon}
 \end{aligned}
 \end{equation}
+ 
+ luego, el último término solo es importante si consideramos las contribuciones de loops de orden más alto, para nuestro caso nos quedamos con los dos primeros y tomamos el limite de $ \epsilon $ yendo a cero
+ 
+\begin{boxquation}
+\begin{equation}\label{beta}
+\beta(e) \equiv \xi \frac{\partial e(\xi)}{\partial \xi} =  \frac{e^3}{6\pi^2}
+\end{equation}
+\end{boxquation}
 
-para reemplazar el numerador por 
+Esta magnitud se conoce como la \textbf{función beta del grupo de renormalización} la cual nos brinda la información de como evoluciona la constante de acople con la escala de energía.  Esto sugiere que el valor de $ \alpha= \frac{1}{137}=Cte $ es solo válido en regímenes de bajas energías, cuando tenemos en cuenta las interacciones cuanticas, este valor escaléa con la energía y recibe el nombre de \textbf{Running coupling constant}. En este caso particular al ser $ \beta(e)>0 $, tenemos una teoría que crece para energías más altas o equivalentemente distancias más pequeñas. Esto es un problema ya que recordando el papel que juega la constante de acople en teoría de perturbaciones, tenemos que para algún dado valor $ \alpha(\xi)>1  $ y nuestros cálculos perturbativos dejan de tener validez. Otro aspecto interesante es que nuevamente la idea de que crezca la carga a menores distancias, nos habla del vacío polarizado que rodea a la misma, estos pares que se crean y aniquilan realizan un efecto de apantallamiento haciendo que de lejos (energías bajas) veamos una carga efectiva $ \alpha =\frac{1}{137} $ pero luego cuando nos acercamos (energías altas) comenzamos a ver la contribución de todos estos intrusos. Para finalizar podemos resolver la ecuación \ref{beta} introduciendo una escala $ \xi_0 $ a modo de condición inicial
 
+\begin{equation}\label{key}
+\begin{aligned}
+\frac{\mathrm{d}\xi}{\xi} &= \mathrm{d}e\frac{6\pi^2}{e^3}\\
+\log\left(\frac{\xi}{\xi_0}\right) &= -3\pi^2 \left( \frac{1}{e^2(\xi)} - \frac{1}{e^2(\xi_0)}\right)
+\end{aligned}
+\end{equation}
+lo que resulta en la solución
 
+\begin{boxquation}
+\begin{equation}
+e^2(\xi) = \frac{e(\xi_0)}{1 -\frac{e(\xi_0)}{3\pi^2}\log\left(\frac{\xi}{\xi_0}\right)}
+\end{equation}
+\end{boxquation}
 
 \begin{thebibliography}{9}
 	
 	\bibitem{Itzqui}
 	Claude Itzykson \& Jean-Bernard Zuber,
 	\textit{Quantum Field Theory},
-	Capítulos 3.2 y 3.3. (¿como cito bien?)
+	Capítulos 3.2 y 3.3.
+	
+	\bibitem{Itzqui}
+	Lewis H.Ryder,
+	\textit{Quantum Field Theory},
+	Capítulo 9.
+	
+	\bibitem{Itzqui}
+	Michael E. Peskin \& Daniel V. Schoeder,
+	\textit{An introduction to Quantum Field Theory},
+	Capítulos 6, 7 y 10.
 	
 \end{thebibliography}	
 	
 	
 \end{document}
-\begin{equation}\label{key}
-\int\frac{\mathrm{\mathrm{d^4}p}}{(2\pi)^{4}} \frac{\cancel{p}}{f(p^2)}
-\end{equation}
 
-con $ f(p^2) $ una función par en $ p $ con respecto al volumen de integración, se anula por ser el cociente entre una función impar y otra par. 
-
-Siguiendo, notamos que el numerador no depende de $ p $ por lo que analizamos por separado el denominador
-
-\begin{equation}
-\begin{aligned}
-\int\frac{\mathrm{d^{3}p}}{(2\pi)^{4}}&\int_{-\infty}^{+\infty}\mathrm{dp_{0}}\frac{1}{\left[p_{0}^{2}-\overline{p}\cdot\overline{p}+(1-x)xq^{2}-x(m-i\epsilon)^{2}-(\mu^{2}-i\epsilon)(1-x)\right]^{2}}=\\
-\int\frac{\mathrm{d^{3}p}}{(2\pi)^{4}}&\int_{-\infty}^{+\infty}\mathrm{dp_{0}}\frac{1}{\left[p_{0}^{2}-R^{2}(x)+i\delta(x)\right]^{2}}
-\end{aligned}
-\end{equation}
-
-Donde agrupamos toda la parte real en una función $R^{2}(x) \equiv \overline{p}\cdot\overline{p}+(x-1)xq^{2} + x m^{2} + \mu^{2}(1-x) $
-y todo lo que sea imaginario en $\delta(x) \equiv 2mx\epsilon_1 + (1-x)\epsilon_2$, donde por única vez diferenciamos ambos prescript para recordar que no tienen porque ser iguales (uno viene de correr el eje real para $ m $ y el otro para la integral del fotón). De todas formas lo importante de este término es que sigue siendo infinitesimal y también es un desplazamiento
-fuera del eje real. Si bien este ultimo es positivo, el signo de $R^{2}$
-depende de los valores de las masas y momentos que, en particular, si consideramos que las partículas interactuantes están On-shell $(q^2=m^2)  $, $ R^2 $ es estrictamente positivo, de todas formas, para contemplar cualquier escenario, mantengamos el momento $ q $ sin especificar su naturaleza. Luego, notando que estamos integrando en todo $p_{0}$, la integral tendrá polos en
-$p_{0}=\pm\sqrt{\overline{p}\cdot\overline{p}+(x-1)xq^{2} + x m^{2} + \mu^{2}(1-x)-i\delta}$, dado esto, podemos hacer un cambio de variables muy astuto conocido
-como \textbf{Rotación de Wick}, en la cual cambiamos $p_{0}\rightarrow ip_{0}$, lo cual se identifica como una rotación en el plano complejo, pasando a integrar ahora sobre  el eje imaginario como se muestra en la figura xx, en donde asumimos
-que $R^{2}(x)>0$\\
-
-(PREGUNTAR: en caso contrario los polos están del
-otro lado del eje real, es decir, el derecho arriba e izquierdo abajo
-y debería hacer la rotación inversa $p'_{0}\rightarrow ip'_{0}$,
-¿es así?¿importa?).\\
-
-De esta forma ''esquivamos'' los polos por lo que podemos tirar los corrimientos
-imaginarios $i\delta$ que ya no juegan ningún papel. Por otro lado
-observamos que dicha rotación nos lleva a 
-\begin{equation}
-p^{2}=p_{0}^{2}-\overline{p}\cdot\overline{p}\rightarrow-\left(p_{0}^{2}+\overline{p}\cdot\overline{p}\right)=\left. -p^{2}\right|_{euclideo}
-\end{equation}
-
-Es decir, con esta rotación, pasamos del espacio Minkowskyano a uno
-Euclideo!. De esta forma, ahora estamos integrando en $\mathbb{R}^{4}$
-\begin{equation}\label{parteeuclidea}
-i\int_{\mathbb{R}^{4}}\frac{\mathrm{\mathrm{d^4}p}}{(2\pi)^{4}}\frac{1}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}
-\end{equation}
-
-El factor i sale del Jacobiano y recordamos que ahora el momento cuadrado corresponde al
-euclideo. Aprovechando la simetría de la integral, podemos pasar a esféricas
-en 4-D y notar que nada depende de las coordenadas angulares, por lo que dicha contribución se integra trivialmente obteniendo así el ángulo sólido correspondiente a la 3-esfera. 
-\begin{equation}
-\frac{i\Omega_{3}}{(2\pi)^{4}}\int_{-\infty}^{+\infty}\mathrm{dp}\frac{p^{3}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}
-\end{equation}
-
-Donde nos queda la integral radial para nada trivial, de hecho de esta forma se puede visualizar rapidamente su caracter divergente que tanto veníamos anticipando. Para valores grandes del momento, vemos que esta integral se comporta como
-\begin{equation}
-\int^{+\infty}\mathrm{dp}\frac{p^{3}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}\ \thicksim\ lim_{\Lambda\rightarrow+\infty}\log(\Lambda)
-\end{equation}
-
-Ese algo que tenemos que hacer se llama \textbf{Regularización} y consiste en eliminar de forma consistente la parte divergente del cálculo. Existen varias maneras de regularizar una integral,
-introducir un Cut-off que suavice el integrando para que converja
-en los bordes es una. Otro método conocido como Pauli-Villard introduce un acople
-con otra partícula ficticia de masa $ M $ muy grande. Por último, el método de \textbf{Regularización Dimensional} cambia levemente la dimensión del espacio de integración.
-En todos ellos, al finalizar los cálculos se deben tomar los limites
-correspondientes. 
-
-Para nuestro caso particular utilizaremos el método
-de regularización dimensional, el cual consiste en realizar los cálculos en un espacio-tiempo de dimensión arbitraria $ D $. Para ello, volvamos unos pasos atrás quedándonos con la integral sobre $ \mathbb{R}^4 $ de \ref{parteeuclidea} pero ahora considerando D dimensiones e introduzcamos esto en donde corresponde de \ref{aux1} para definir la versión regularizada de $ \Sigma(q) $
-
-\begin{equation}\label{aux2}
-\begin{aligned}
--i\Sigma(q)&:=\xi^{4-D}i(-ie)^{2}\gamma^{\mu}\int_{_{0}}^{^{1}}\mathrm{dx}\int_{\mathbb{R}^{D}}\frac{\mathrm{d^{D}p}}{(2\pi)^{D}}\frac{\left(\cancel{q}(1-x)+m\right)}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}} \gamma_{\mu}=\\
-&=\xi^{4-D} i(-ie)^{2}\int_{_{0}}^{^{1}}\mathrm{dx}\underset{\textbf{A}}{\underbrace{\gamma^{\mu}\left(\cancel{q}(1-x)+m\right) \gamma_{\mu}}}\frac{\Omega_D}{(2\pi)^{D}}\underset{\textbf{B}}{\underbrace{\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}}}}
-\end{aligned}
-\end{equation}
-
-Donde introducimos un factor $ \xi $ con unidades de masa para que el cálculo tenga las unidades correctas en cualquier dimensión!. A su vez, tenemos la extensión del ángulo sólido para valores continuos de la dimensión
-
-\begin{equation}\label{angulosolido}
-\Omega_D = \frac{2 \pi^{\frac{D}{2}}}{\Gamma (\frac{D}{2})}
-\end{equation}
-
-donde se definió la \textbf{función Gamma} que está definida para valores no negativos de su argumento por lo que la dimensión $ D $ esta acotada por debajo tal que $ D>0 $. Por otro lado, analizando nuevamente la parte radial del cálculo, observamos que para valores grandes del momento la integral converge si
-
-\begin{equation}\label{key}
-\frac{p^{D-1}}{p^4} = p^{\lambda} \ \ \lambda<1 \ \ \iff D < 4
-\end{equation}
-
-Es decir, que para el espacio físico en $ D=4 $, la integral no converge, como ya habíamos demostrado. Ahora bien, teniendo la restricción $ 0<D<4 $, la manera de regularizar esto es hacer una extensión analítica a $ D= 4 -2\epsilon $ y finalizado los cálculos tomar el límite para $ \epsilon $ yendo a $ 0 $. Manteniendo por comodidad $ D $ sin especificar, veamos el término $ \textbf{A} $ de la ecuación \ref{aux2}. Utilizamos las propiedades para las matrices gamma en $ D $ dimensiones
-
-\begin{equation}
-\begin{aligned}
-\left\{\gamma_{\mu},\gamma_{\nu}\right\} &= 2 g_{\mu\nu}
-\gamma_{\mu}\gamma^{\mu}&=D
-\end{aligned}
-\end{equation}
-
-con $ g_{\mu\nu} $ la métrica en D dimensiones, y con ellas se deduce
-
-\begin{equation}\label{key}
-\gamma_{\mu}\gamma_{\nu}\gamma^{\mu}=\gamma_{\nu}(2-D)
-\end{equation}
-
-Recordando que $ \cancel{q}=\gamma_{\nu}q^{\nu} $, se verifica facilmente que el término $ \textbf{A} $ queda
-
-\begin{equation}\label{A}
-\gamma^{\mu}\left(\cancel{q}(1-x)+m\right) \gamma_{\mu} = (2-D)\cancel{q}(1-x)+Dm
-\end{equation}
-
-Ahora bien, para la parte $ \textbf{B} $ de \ref{aux2} podemos renombrar 
-
-\begin{equation}\label{key}
-f(x,q) \equiv -(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)
-\end{equation}
-
-que suponemos positivo por simplicidad, obteniendo
-
-\begin{equation}\label{key}
-\begin{aligned}
-\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2}-(1-x)xq^{2} + x m^{2} + \mu^{2}(1-x)\right]^{2}} &= \int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[p^{2} + f(x,q)\right]^2}= \frac{1}{f(x,q)^2}\int_{-\infty}^{\infty}\mathrm{dp}\frac{p^{D-1}}{\left[\frac{p^{2}}{f(x,q)} + 1\right]^2} =\\
-&= f(x,q)^{\left(\frac{D-4}{2}\right)} \int_0^{\infty}\mathrm{dz}\frac{z^{\left(\frac{D-2}{2}\right)}}{\left(z + 1\right)^2}
-\end{aligned}
-\end{equation}
-
-donde para pasar a la última igualdad utilizamos el cambio de variables $ p \longrightarrow \left(zf(x,q)\right)^{\frac{1}{2}} $ y la paridad de la integral. Esta última es conocida como la \textbf{función beta} o \textbf{integral de Euler}, definida como
-
-
-donde identificamos para nuestro caso particular $ x= \frac{D}{2} $ e $ y= \frac{4-D}{2} $ (ambos mayores a cero en virtud de haber tomado la extensión analítica $ D=4-2\epsilon $). A su vez, la función beta se relaciona con la función gamma mediante la igualdad
-
-\begin{equation}\label{key}
-B(x,y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
-\end{equation}
-
-Viendo que en nuestro caso se reduce todo a
-
-\begin{equation}\label{B}
-f(x,q)^{\left(\frac{D-4}{2}\right)} \int_0^{\infty}\mathrm{dz}\frac{z^{\left(\frac{D-2}{2}\right)}}{\left(z + 1\right)^2} = f(x,q)^{\left(\frac{D-4}{2}\right)} \frac{\Gamma(\frac{D}{2}) \Gamma(\frac{4-D}{2})}{\Gamma(2)}
-\end{equation}
-
-Ahora si, analizados los términos $ \textbf{A} $ y $ \textbf{B} $, introducimos \ref{A} y \ref{B} en \ref{aux2} para obtener
-
-
-\begin{equation}
-\Sigma(q)=\xi^{4-D} e^{2}\frac{2\pi^{\frac{D}{2}}}{(2\pi)^{D}} \Gamma\left(\frac{4-D}{2}\right)\int_{_{0}}^{^{1}}\mathrm{dx} \left[(2-D)\cancel{q}(1-x)+Dm \right] f(x,q)^{\left(\frac{D-4}{2}\right)}
-\end{equation}
-
-donde utilizamos \ref{angulosolido} para tener todo en término de las funciones gamma y $ \Gamma(2)=1 $. Ahora si, especificando el valor de la dimensión, tenemos
-
-\begin{equation}\label{aux3}
-\Sigma(q)= \frac{\alpha}{4\pi}\Gamma(\epsilon)\int_{_{0}}^{^{1}}\mathrm{dx} \left[2(\epsilon-1)\cancel{q}(1-x)+(4-2\epsilon)m \right] \left[\frac{\xi^2 4\pi}{f(x,q)}\right]^{\epsilon}
-\end{equation}
-
-habiendo definido a la constante de estructura fina $ \alpha\equiv \frac{e^2}{4\pi} $. Ahora bien, como lo que queremos es tirar el límite de $ \epsilon $ yendo a cero, nos conviene desarrollar en serie los términos en potencias del mismo. Para ello, tenemos el desarrollo de Laurent para la función Gamma
-
-\begin{equation}\label{desarrollogamma}
-\Gamma(z)=\frac{1}{z} - \gamma + O(z)
-\end{equation}
-
-donde $ \gamma = 0.577... $ se conoce como la \textbf{constante de Euler}.
-
-A su vez, podemos desarrollar
-
-\begin{equation}\label{desarrolloexponente}
-\left[\frac{\xi^2 4\pi}{f(x,q)}\right]^{\epsilon} = e^{\epsilon \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right]} = 1 + \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right] \epsilon + O(\epsilon^2)
-\end{equation}
-
-Ahora si, introducimos los desarrollos \ref{desarrollogamma} y \ref{desarrolloexponente} en \ref{aux3} para obtener
-
-\begin{equation}\label{aux4}
-\begin{aligned}
-\Sigma(q)&=\frac{\alpha}{4\pi}\left[\frac{1}{\epsilon} - \gamma + O(\epsilon) \right] \int_{_{0}}^{^{1}}\mathrm{dx} \left[2(\epsilon-1)\cancel{q}(1-x)+(4-2\epsilon)m \right] \left[1 + \log\left[\frac{\xi^2 4\pi}{f(x,q)}\right] \epsilon + O(\epsilon^2)\right]=\\
-&=\frac{\alpha}{4\pi} \left\{\frac{1}{\epsilon} \left[\int_0^1 \mathrm{dx} \left( 4m - 2\cancel{q}(1-x)\right)\right] \right. + \\
-&+ \left. \left[ \int_{_{0}}^{^{1}}\mathrm{dx} \  2\cancel{q}(1-x)-2m + \left( 4m - 2\cancel{q}(1-x)\right) \log \left(\frac{\xi^2 4\pi}{f(x,q)}\right) - \gamma \left( 4m - 2\cancel{q}(1-x)\right)\right]  + O(\epsilon)\right\} 
-\end{aligned}
-\end{equation}
-
-donde nos quedamos solo a orden $ \epsilon^0 $ porque los demás términos no contribuyen al tomar el limite. Dicho orden podemos notarlo como $ I_0 $  y efectuar las integrales en $ x $ de la forma
-
-\begin{equation}\label{key}
-\begin{aligned}
-I_0 &= \cancel{q}(1-\gamma) -2m(1 +2\gamma) + \int_{0}^{1} \mathrm{dx} \left[ 4m - 2\cancel{q}(1-x)\right]\left[ \log(4\pi \xi^2) - \log\left(f(x,q)\right)\right] =\\
-&= \cancel{q}(1-\gamma) -2m(1 +2\gamma) + \left(\cancel{q}+4m\right)\log(4\pi \xi^2) - \int_{0}^{1} \mathrm{dx} \left[ 4m - 2\cancel{q}(1-x)\right]\log \left(f(x,q)\right) 
-\end{aligned}
-\end{equation}
-
-
-
-Por otro lado, el primer corchete de \ref{aux4} se integra trivialmente obteniendo $ \cancel{q} + 4m $. Luego, introduciendo esto y xxx en \ref{aux4} llegamos a la expresión final
