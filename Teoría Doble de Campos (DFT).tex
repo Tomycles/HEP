@@ -1,0 +1,543 @@
+\documentclass{article}
+
+%Packages
+
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=25mm}
+\usepackage{tcolorbox}
+\usepackage{bookman} % font
+\usepackage{marvosym}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\setlength\parindent{0pt} % elimina sangría de todos los parrafos
+
+
+\usepackage{lettrine} % letra capital}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{7pt}
+\setlength{\DefaultNindent}{0pt}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+\renewcommand{\DefaultLoversize}{-0.70}
+
+%Primero se declara el paquete lettrine y el numero de renglones que debe abarcar la inicial. En seguida DefaultFindent, la distancia de la inicial a la letra siguiente en el primer renglón y DefaultNindent, la distancia que se desplaza a la derecha del inicio del primer renglón, los renglones subsecuentes que abarca la capitular.Después se declara la font a utilizar, en este caso yinit, con unos parámetros que la describen, y ﬁnalmente el tamaño de la letra.
+
+\usepackage{yfonts}
+
+
+%Pagestyle
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{{\color{brown!60!black}\Large\Coffeecup}}
+\lhead{\textit{Capítulo 2}}
+\fancyfoot{}
+\lfoot{\tiny{Octubre 2017 - v1.0}}
+\rfoot{\thepage}
+
+%Title
+\title{\vspace{-35pt}\huge{\textbf{\textcolor{teal}{DFT:}}} \\ \vspace{0.1cm} \large{\textbf{Nociones básicas}}}
+\date{\vspace{-20pt}}
+\author{\textit{Tomás Codina}}
+
+%%%---%%%
+
+%Document
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\newtcolorbox{boxumen}{colback=white,colframe=teal,boxrule=1pt}
+\newtcolorbox{boxquation}{colback=white,colframe=black,boxrule=1pt}
+
+
+
+
+
+La teoría de cuerdas posee, entre otras, una simetría extra conocida como T-dualidad que no se encuentra presente en teorías que describen objetos puntuales. La acción de bajas energías para el sector de Neveu-Schwarz de la cuerda bosónica cerrada define una teoría de campos de partículas de dimensión $ 0 $ que analizamos en el capítulo anterior bajo el nombre de Supergravedad y como tal, no posee la T-dualidad como simetría. Si quisiesemos (por alguna razón que desconozco) incorporar dicha simetría a nuestra teoría, nos vemos obligados a extender la geometría Pseudo-Riemanniana en $ D=10 $ a una \textbf{geometría generalizada} covariante con respecto a T-dualidad. De esta forma, al dotar nuestra teoría con un principio de acción mínima, obtendremos nuestro modelo de forma manifiestamente covariante frente al grupo de T-dualidad.
+
+\rule{\textwidth}{0.4pt}
+
+\section{\textcolor{teal}{Preliminares}}\label{sec_preliminares}
+
+Puede demostrarse que la simetría de T-dualidad forma un grupo de Lie denominado split orthogonal $ O(D,D) $ donde $ D $ es la dimensión del espacio, en nuestro caso $ D=10 $. Dicho grupo cuenta una representación lineal cuyos elementos se definen como matrices $ \textbf{h} $ de $ 2D \times 2D $ que dejan invariante la métrica
+
+\begin{equation}\label{key}
+\eta_{MN} = \begin{pmatrix}
+0 & \delta^{\mu}_{ \ \nu} \\
+\delta_{\mu}^{ \ \nu} & 0 
+\end{pmatrix}
+\end{equation}
+
+es decir,
+
+\begin{equation}\label{key}
+\textbf{h}^t \pmb{\eta} \textbf{h} = \pmb{\eta}
+\end{equation}
+
+donde los indices en $ M,N $ corren de $ 0 $ a $ 2D-1 $. Esta métrica se encargará de subir o bajar los indices de los objetos covariantes frente al grupo que la preserva.
+
+Si queremos una teoría invariante ante dicho grupo, lo que conviene hacer es expresar todos los objetos de la teoría como multipletes de $ O(D,D) $, por ejemplo, los momentos cuantizados $ p^{\mu} $ correspondientes a los duales de Fourier de las coordenadas $ x^{\mu} $ de las dimensiones compactificadas, pueden agruparse con los momentos de enrrollamiento $ \omega_{\mu} $ en un elemento
+
+\begin{equation}\label{key}
+P^M= \begin{pmatrix}
+\omega_{\mu} \\
+p^{\mu}
+\end{pmatrix}
+\end{equation}
+
+que transforma en la representación fundamental de $ O(D,D) $
+
+\begin{equation}\label{key}
+P'^M=h_{\ N}^M P^N
+\end{equation}
+
+De esta forma, al haber dos momentos en pie de igualdad y solo $ D $ coordenadas, nos vemos obligados a extender la dimensión del espacio a $ 2D $ con coordenadas $ \widetilde{x}_{\mu} $ tales que sean los duales de Fourier de los modos de enrolllamiento y así agruparlos en el elemento covariante
+
+\begin{equation}\label{key}
+X^M= \begin{pmatrix}
+\widetilde{x}_{\mu}\\
+x^{\mu}
+\end{pmatrix}
+\end{equation}
+
+Lo cual permite definir la derivada generalizada como
+
+\begin{equation}\label{key}
+\partial_M= 
+\begin{pmatrix}
+\widetilde{\partial}^{\mu} \\
+\partial_ {\mu}
+\end{pmatrix}
+\end{equation}
+
+En esta teoría, los campos fundamentales $ g_{\mu\nu},b_{\mu\nu} $ y $ \phi $ no transforman como elementos del grupo de dualidad, por lo que debemos tomar combinaciones de ellos para formar objetos con las propiedades de transformación requeridas. Para ello se define la noción de \textbf{métrica generalizada} cuyas componentes vienen dadas por
+
+\begin{equation}\label{key}
+\mathcal{H}_{MN}=
+\begin{pmatrix}
+g^{\mu\nu} & -g^{\mu\rho}b_{\rho\nu}\\
+b_{\mu\rho}g^{\rho\nu} & g_{\mu\nu} -b_{\mu\alpha}g^{\alpha\beta}b_{\beta\nu} 
+\end{pmatrix}
+\end{equation}
+
+la cual transforma como un tensor $ \binom{0}{2} $ de $ O(D,D) $, es de traza nula, es decir
+
+\begin{equation}\label{prop1}
+\eta^{MN}\mathcal{H}_{MN}=0
+\end{equation}
+
+donde $ \eta^{MN} $ es la inversa de la métrica invariante, tal que cumple
+
+\begin{equation}\label{key}
+\eta^{MP} \eta_{PN} = \eta_{MP} \eta^{PN} = \delta^M_{\ N} = 
+\begin{pmatrix}
+\delta_{\mu}^{ \ \nu} & 0 \\
+0 & \delta^{\mu}_{ \ \nu} 
+\end{pmatrix}
+\end{equation}
+
+y a su vez es un elemento del grupo ya que
+
+\begin{equation}\label{prop2}
+\mathcal{H}_M^{\ P}\eta_{PQ}\mathcal{H}^Q_{\ N} = \eta_{MN}
+\end{equation}
+
+
+Las propiedades \ref{prop1} y \ref{prop2} se pueden demostrar sencillamente. Para la primera de ellas notamos que
+
+\begin{equation}\label{key}
+\eta^{MN}\mathcal{H}_{NM} = \mathcal{H}^M_{\ M} = \mathcal{H}^1_{\ 1} + \mathcal{H}^2_{\ 2}
+\end{equation}
+
+donde explicatamos la suma en $ M $. Por lo visto lo único que debemos calcular son estos términos, para ello simplemente hacemos el producto de la inversa de $ \pmb{\eta} $ y la métrica generalizada
+
+\begin{equation}\label{Hcruzado}
+\mathcal{H}^M_{\ P} = \eta^{MN}\mathcal{H}_{NP} = \begin{pmatrix}
+0 & \delta_{\mu}^{ \ \nu} \\
+\delta^{\mu}_{ \ \nu} & 0 
+\end{pmatrix}  
+\begin{pmatrix}
+g^{\nu\pi} & -g^{\nu\rho}b_{\rho\pi}\\
+b_{\nu\rho}g^{\rho\pi} & g_{\nu\pi} -b_{\nu\alpha}g^{\alpha\beta}b_{\beta\pi}
+\end{pmatrix} =  
+\begin{pmatrix}
+b_{\mu\rho}g^{\rho\pi} & g_{\mu\pi} -b_{\mu\alpha}g^{\alpha\beta}b_{\beta\pi}\\
+g^{\mu\pi} & -g^{\mu\rho}b_{\rho\pi}
+\end{pmatrix}
+\end{equation}
+
+lo cual fue simplemente intercambiar las columnas de $ \pmb{\mathcal{H}} $. De esta forma vemos que al tomar los elementos de la diagonal con $ M=P $ $ (\mu=\pi) $ ambos términos de la diagonal se anulan por contracción de la métrica con una 2-forma.\\
+
+Para probar \ref{prop2} bajamos los indices de la primer métrica generalizada y luego utilizamos el resultado anterior \ref{Hcruzado}
+
+\begin{equation}\label{key}
+\mathcal{H}_M^{\ P}\eta_{PQ}\mathcal{H}^Q_{\ N} = \mathcal{H}_{MQ}\mathcal{H}^Q_{\ N} = 
+\begin{pmatrix}
+g^{\mu\rho} & -g^{\nu\rho}b_{\rho\pi}\\
+b_{\nu\rho}g^{\rho\pi} & g_{\nu\pi} -b_{\nu\alpha}g^{\alpha\beta}b_{\beta\pi}
+\end{pmatrix}
+\begin{pmatrix}
+b_{\rho\alpha}g^{\alpha\nu} & g_{\rho\nu} -b_{\rho\alpha}g^{\alpha\beta}b_{\beta\nu}\\
+g^{\rho\nu} & -g^{\rho\alpha}b_{\alpha\nu}
+\end{pmatrix} =
+\begin{pmatrix}
+0 & \delta^{\mu}_{ \ \nu} \\
+\delta_{\mu}^{ \ \nu} & 0 
+\end{pmatrix} = \eta_{MN}
+\end{equation}
+
+Que es lo que queríamos probar.
+
+Por otro lado, el dilatón se combina con el determinante de la métrica para formar el \textbf{dilatón generalizado}
+
+\begin{equation}\label{dilatongeneralizado}
+e^{-2d}= \sqrt{-g}e^{-2\phi}
+\end{equation}
+
+el cual transforma como un escalar de la nueva teoría.
+
+De esta forma, en lugar de describir nuestra teoría con $ \textbf{g},\textbf{b} $ y $ \pmb{\phi} $ ahora tendremos los nuevos campos fundamentales $ \pmb{\mathcal{H}} $ y $ \pmb{d} $. Con esta construcción, lo que vemos es que la teoría constará de 2 métricas. Por un lado la métrica constante $\pmb{\eta} $ la cual se encarga de subir y bajar los indices generalizados y por el otro $ \pmb{\mathcal{H}} $ que se encarga de incorporar la dinámica de los campos.
+
+Finalmente, notamos que si queremos recuperar los resultados de supergravedad, debemos, de alguna forma, eliminar la dependencia en las nuevas coordenadas $ \tilde{x}_{\mu} $. Para ello se utiliza la condición de level-matching de teoría de cuerdas 
+
+\begin{equation}\label{key}
+\partial_M\eta^{MN}\partial_N= \partial_M\partial^M = 0
+\end{equation}
+
+la cual impone que todos los campos, parámetros o productos de ellos deben ser aniquilados por dicho operador, osea
+
+\begin{equation}\label{key}
+\partial_M\partial^M \dots = 0
+\end{equation}
+
+A su vez, en DFT se pide también 
+
+\begin{equation}\label{SC2}
+\partial_M\dots\partial^M \dots = 0
+\end{equation}
+
+Esto se conoce como \textbf{Vínculo fuerte} y es importante notar que es invariante ante transformaciones del grupo ortogonal. La solución más sencilla de este vínculo es pedir que nada depende de las variables duales 
+
+\begin{equation}\label{SC3}
+\widetilde{\partial}^{\mu} \dots =0
+\end{equation}
+
+y es la que adoptaremos a lo largo del trabajo.
+
+
+\section{\textcolor{teal}{Geometría generalizada}}\label{sec_geometriageneralizada}
+
+Recordando las simetrías locales de supergravedad, la acción presentaba invarianza ante difeomorfismos parametrizados con $ \xi^{\mu} $ y también frente a transformaciones de Gauge de la 2-forma generadas por $ \lambda_{\mu} $. Luego, como la teoría doble de campos mezcla $ g_{\mu\nu} $ y $ b_{\mu\nu} $, debemos unificar los parámetros de ambas transformaciones en un objeto que transforme en la fundamental de $ O(D,D) $
+
+\begin{equation}\label{key}
+\xi^M=
+\begin{pmatrix}
+\lambda_{\mu}\\
+\xi^{\mu}
+\end{pmatrix}
+\end{equation} 
+
+Esto nos lleva inevitablemente a una derivada de Lie generalizada $ \hat{\mathcal{L}}_{\xi} $ con un generador $ \xi^M $. Dicha derivada actúa sobre objetos de $ O(D,D) $ mediante
+
+\begin{equation}\label{Lie}
+\hat{\mathcal{L}}_{\xi} T^N_{\ M} = \xi^P\partial_P T^N_{\ M} + \left(\partial^N \xi_P - \partial_P\xi^N\right)T^P_{\ M} + \left(\partial_M \xi^P - \partial^P\xi_M\right)T^N_{\ P}
+\end{equation}
+
+Esta derivada de Lie cumple varias propiedades, entre ellas la regla de Leibniz.
+
+Lo que se puede demostrar es que esta derivada generalizada, junto con el vínculo fuerte (\ref{SC}), reproduce las derivadas de Lie usuales para los campos fundamentales de supergravedad! Para ver esto, utilizamos \ref{Lie} para derivar la métrica generalizada
+
+
+\begin{equation}\label{key}
+\hat{\mathcal{L}}_{\xi} \mathcal{H}_{MN} = \xi^P\partial_P \mathcal{H}_{MN} + \left(\partial_M \xi^P - \partial^P\xi_M\right)\mathcal{H}_{PN} + \left(\partial_N \xi^P - \partial^P\xi_N\right)\mathcal{H}_{MP}
+\end{equation}
+
+Relación que vale para todas las componentes de $ \pmb{\mathcal{H}} $. En particular, podemos estudiar
+
+\begin{equation}\label{key}
+\begin{aligned}
+\hat{\mathcal{L}}_{\xi} \mathcal{H}^{\mu\nu}= \hat{\mathcal{L}}_{\xi} g^{\mu\nu} &= \xi^P\partial_P g^{\mu\nu} + \left(\widetilde{\partial}^{\mu} \xi^P - \partial^P\xi^{\mu}\right)\mathcal{H}_P^{\ \nu} + \left(\widetilde{\partial}^{\nu} \xi^P - \partial^P\xi^{\nu}\right)\mathcal{H}^{\mu}_{\ P}\\
+&= \xi^{\rho}\partial_{\rho} g^{\mu\nu} - \partial_{\rho}\xi^{\mu}\mathcal{H}^{\rho\nu} -\partial_{\rho}\xi^{\nu}\mathcal{H}^{\mu\rho}\\
+&=\xi^{\rho}\partial_{\rho} g^{\mu\nu} - \partial_{\rho}\xi^{\mu}g^{\rho\nu} -\partial_{\rho}\xi^{\nu}g^{\mu\rho} = \mathcal{L}_{\xi}g^{\mu\nu}
+\end{aligned}
+\end{equation}
+
+donde para llegar a la segunda linea utilizamos el vínculo fuerte. De esta forma vemos que recuperamos la derivada de Lie usual para la métrica de supergravedad. Luego podemos tomar otra componente y utilizar la regla de Leibniz
+
+\begin{equation}\label{segundacomponente}
+\hat{\mathcal{L}}_{\xi} \mathcal{H}_{\mu}^{\ \nu} = \hat{\mathcal{L}}_{\xi} \left(b_{\mu\alpha}g^{\alpha\nu}\right) =  g^{\alpha \nu}  \hat{\mathcal{L}}_{\xi} b_{\mu\alpha} + b_{\mu\alpha} \mathcal{L}_{\xi} g^{\alpha \nu} 
+\end{equation}
+
+y de ella despejar $ g^{\alpha \nu}  \hat{\mathcal{L}}_{\xi} b_{\mu\alpha} $. Para ello calculamos
+
+\begin{equation}\label{key}
+\begin{aligned}
+\hat{\mathcal{L}}_{\xi} \mathcal{H}_{\mu}^{\ \nu} &= \xi^P\partial_P \left(b_{\mu\alpha}g^{\alpha\nu}\right) + \left(\partial_{\mu} \xi^P - \partial^P\lambda_{\mu}\right)\mathcal{H}_P^{\ \nu} + \left(\widetilde{\partial}^{\nu} \xi^P - \partial^P\xi^{\nu}\right)\mathcal{H}_{\mu P}=\\
+&=g^{\alpha\nu} \xi^{\rho}\partial_{\rho} b_{\mu\alpha} + b_{\mu\alpha} \xi^{\rho}\partial_{\rho}g^{\alpha\nu} +\partial_{\mu} \xi^{\rho}b_{\rho\alpha}g^{\alpha\nu} +\partial_{\mu} \lambda_{\rho}g^{\rho\nu} - \partial_{\rho}\lambda_{\mu}g^{\rho\nu} - \partial_{\rho}\xi^{\nu}b_{\mu\alpha}g^{\alpha\rho}\\
+&= g^{\alpha\nu} \left( \xi^{\rho}\partial_{\rho} b_{\mu\alpha} + b_{\rho\alpha} \partial_{\mu} \xi^{\rho} + 2\partial_{\left[\mu\right.}\lambda_{\left.\alpha\right]} \right) + b_{\mu\alpha} \left( \xi^{\rho}\partial_{\rho}g^{\alpha\nu} -g^{\alpha\rho}\partial_{\rho}\xi^{\nu} \right)\\
+&= g^{\alpha\nu}\left(\mathcal{L}_{\xi}b_{\mu\alpha} + 2\partial_{\left[\mu\right.}\lambda_{\left.\alpha\right]}\right) + b_{\mu\alpha} \mathcal{L}_{\xi} g^{\alpha\nu}
+\end{aligned}
+\end{equation}
+
+donde para llegar a la última igualdad sumamos y restamos $ b_{\mu\alpha} g^{\rho\nu}\partial_{\rho}\xi^{\alpha} $ y renombramos indices. Metiendo este resultado en \ref{segundacomponente} obtenemos
+
+\begin{equation}\label{key}
+\hat{\mathcal{L}}_{\xi} b_{\mu\alpha} = \mathcal{L}_{\xi}b_{\mu\alpha} + 2\partial_{\left[\mu\right.}\lambda_{\left.\alpha\right]}
+\end{equation}
+
+Lo cual sorprendentemente no solo reproduce las transformaciones ante difeomorfismos de la 2-forma sino también la de Gauge!.\\
+
+Finalmente, para recuperar la transformación del dilatón como un campo escalar de supergravedad, utilizamos Leibniz en la expresión \ref{dilatongeneralizado}
+
+\begin{equation}\label{hatd1}
+\hat{\mathcal{L}}_{\xi} e^{-2d} = e^{-2\phi} \hat{\mathcal{L}}_{\xi}\sqrt{-g} + \sqrt{-g}\hat{\mathcal{L}}_{\xi} e^{-2\phi}
+\end{equation}
+
+Y la información de que dicha entidad transforma como una densidad escalar de $ O(D,D) $ junto con el vínculo fuerte
+
+\begin{equation}\label{hatd2}
+\begin{aligned}
+\hat{\mathcal{L}}_{\xi} e^{-2d} &= \partial_P \left( \xi^P\sqrt{g}e^{-2\phi}\right) = e^{-2\phi} \partial_{\rho} \left(\xi^{\rho}\sqrt{g}\right) + \sqrt{g} \left(\xi^{\rho}\partial_{\rho}e^{-2\phi}\right)\\
+&= e^{-2} \mathcal{L}_{\xi}\sqrt{g} + \sqrt{g} \mathcal{L}_{\xi}e^{-2\phi}
+\end{aligned}
+\end{equation}
+
+Luego, se puede demostrar que como $ \hat{\mathcal{L}}_{\xi} $ actúa como la derivada usual en la métrica, entonces también lo hace con su determinante. Combinando esto último con \ref{hatd1} y \ref{hatd2} obtenemos lo que buscábamos
+
+\begin{equation}\label{key}
+\hat{\mathcal{L}}_{\xi} e^{-2\phi} = \mathcal{L}_{\xi} e^{-2\phi}
+\end{equation}
+
+\section{\textcolor{teal}{Acción y ecuaciones de movimiento}}
+
+Como toda teoría de campos, DFT cuenta con una acción de la cual se obtienen las ecuaciones de movimiento mediante el principio de mínima acción. Dicha funcional se define como
+
+\begin{equation}\label{S}
+S = \int \mathrm{d}x\mathrm{d}\widetilde{x} \ e^{-2d} \mathcal{R}
+\end{equation}
+
+donde se define el \textbf{escalar de Ricci generalizado}
+
+\begin{equation}\label{Rhat}
+\begin{aligned}
+\mathcal{R} &\equiv 4\mathcal{H}^{MN}\partial_M\partial_N d - \partial_M\partial_M\mathcal{H}^{MN}\\
+& - 4\mathcal{H}^{MN}\partial_M d\partial_N d + 4\partial_M\mathcal{H}^{MN}\partial_N d\\
+& + \frac{1}{8} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N \mathcal{H}_{KL} - \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}
+\end{aligned}
+\end{equation} 
+
+y es importante aclarar que en \ref{S} ahora estamos integrando sobre el espacio doble y el factor $ e^{-2d} $ juega el papel de medida de integración. Habiendo definido la acción, es importante demostrar que es invariante frente difeomorfismos generalizados. Utilizando el mismo de supergravedad, veamos que el escalar de Ricci transforma efectivamente como un escalar, de esta forma al estar multiplicado por una densidad la acción transformada diferirá de la original en un término de borde.\\
+
+Para ver esto, dada una transformación de coordenadas $ \delta_{\xi} $, vamos a definir la falla de un operador de transformar covariantemente ante difeomorfismos como
+
+\begin{equation}\label{key}
+\Delta_{\xi} \textbf{T} \equiv = \delta_{\xi} \textbf{T} - \hat{\mathcal{L}}_{\xi} \textbf{T}
+\end{equation}
+
+donde puede ver facilmente que se cumple Leibniz
+
+\begin{equation}\label{key}
+\Delta_{\xi} \left(\textbf{T}\textbf{W}\right) = \textbf{W}\Delta_{\xi} \textbf{T} + \textbf{T}\Delta_{\xi} \textbf{W}
+\end{equation}
+
+Con esta herramiento, observando \ref{Rhat} vemos que necesitaremos las magnitudes
+
+\begin{equation}\label{key}
+\begin{aligned}
+ (\textbf{A}) \ \Delta_{\xi}\left(\partial_M d \right) \ \ &  (\textbf{B}) \ \Delta_{\xi}\left(\partial_M \partial_N d \right) \ \ \\
+(\textbf{C}) \ \Delta_{\xi}\left(\partial_M \mathcal{H}^{KL} \right) \ \ &  (\textbf{D}) \ \Delta_{\xi}\left(\partial_M\partial_N \mathcal{H}^{KL} \right) \ \
+\end{aligned}
+\end{equation}
+
+Para encontrar $ (\textbf{A}) $ notamos que la transformación de \ref{dilatongeneralizado} como una densidad escalar implica
+
+\begin{equation}\label{key}
+\delta_{\xi} d = \hat{\mathcal{L}}_{\xi} d = \xi^P \partial_P d - \frac{1}{2}\partial_P\xi^P
+\end{equation}
+
+Utilizando esto vemos que 
+
+\begin{equation}\label{key}
+\begin{aligned}
+\delta_{\xi} \left(\partial_M d \right) &= \partial_M \left( \xi^P \partial_P d - \frac{1}{2}\partial_P\xi^P\right) = \xi^P \partial_P\partial_M d + \left(\partial_M \xi^P - \partial^P \xi_M\right) \partial_P d  - \frac{1}{2}\partial_P\xi^P \\
+&=\hat{\mathcal{L}}_{\xi}\left(\partial_M d\right) - \frac{1}{2}\partial_M\partial_P\xi^P
+\end{aligned}
+\end{equation}
+
+donde para la segunda igualdad agregamos el término $ - \partial^P \xi_M\partial_P d $ para completar la derivada de Lie, ya que por \ref{SC2} es cero. De esta forma, obtenemos la falla
+
+\begin{equation}\label{falla1}
+\Delta_{\xi}\left(\partial_M d \right) = - \frac{1}{2}\partial_M\partial_P\xi^P
+\end{equation}
+
+Pasando ahora al caso $ (\textbf{B}) $, utilizamos el mismo truco de agregar términos nulos por el vínculo fuerte para completar derivadas y obtenemos
+
+\begin{equation}\label{key}
+\delta_{\xi} \left(\partial_M\partial_N d \right) = \partial_M \left[ \xi^P \partial_P\partial_M d + \left(\partial_M \xi^P - \partial^P \xi_M\right) \partial_P d  - \frac{1}{2}\partial_P\xi^P \right]=  \hat{\mathcal{L}}_{\xi}\left(\partial_M \partial_N d\right) + \partial_M \partial_N \xi^P\partial_P d - \frac{1}{2}\partial_M\partial_N\partial_P\xi^P
+\end{equation}
+
+por lo que obtenemos
+
+\begin{equation}\label{falla2}
+\Delta_{\xi}\left(\partial_M \partial_Nd \right) = \partial_M \partial_N \xi^P\partial_P d - \frac{1}{2}\partial_M\partial_N\partial_P\xi^P
+\end{equation}
+
+La falla $ (\textbf{C}) $ se obtiene observando la variación
+
+\begin{equation}\label{key}
+\begin{aligned}
+\delta_{\xi} \left( \partial_M \mathcal{H}^{KL}\right) &= \partial_M \left[ \xi^P\partial_P \mathcal{H}^{KL} + \left(\partial^K \xi_P - \partial_P\xi^K\right)\mathcal{H}^{PL} + \left(\partial^L \xi_P - \partial_P\xi^L\right)\mathcal{H}^{KP} \right]\\
+&= \xi^P\partial_P \partial_M \mathcal{H}^{KL} + \left( \partial_M \xi^P - \partial^P \xi_M \right)\partial_P \mathcal{H}^{KL} +  \left(\partial^K \xi_P - \partial_P\xi^K\right)\partial_M\mathcal{H}^{PL} + \left(\partial^L \xi_P - \partial_P\xi^L\right)\partial_M\mathcal{H}^{KP}\\
+&+ \partial_M\left(\partial^K \xi_P - \partial_P\xi^K\right)\mathcal{H}^{PL} + \partial_M \left(\partial^L \xi_P - \partial_P\xi^L\right)\mathcal{H}^{KP}\\
+&= \hat{\mathcal{L}}\left( \partial_M \mathcal{H}^{KL} \right) - 2\partial_M \partial_P \xi^{\left(K\right.} \mathcal{H}^{\left.PL\right)} + 2\partial_M \partial^{\left(K\right.}\xi_P \mathcal{H}^{\left.PL\right)} 
+\end{aligned}
+\end{equation}
+
+de donde identificamos la tercer falla
+
+\begin{equation}\label{falla3}
+\Delta_{\xi} \left( \partial_M \mathcal{H}^{KL}\right) = - 2\partial_M \partial_P \xi^{\left(K\right.} \mathcal{H}^{\left.PL\right)} + 2\partial_M \partial^{\left(K\right.}\xi_P \mathcal{H}^{\left.PL\right)} 
+\end{equation}
+
+Luego, contrayendo dos indices un término se nos va y obtenemos
+
+\begin{equation}\label{falla4}
+\Delta_{\xi} \left( \partial_M \mathcal{H}^{MN}\right) = - 2\partial_M \partial_P \xi^{\left(M\right.} \mathcal{H}^{\left.PN\right)} + \partial_M \partial^{N}\xi_P \mathcal{H}^{MP}
+\end{equation}
+
+
+
+A su vez, utilizando que la métrica invariante tiene falla 0 por transformar de forma tensorial, podemos bajar los indices de \ref{falla3} para encontrar otra falla que nos será útil
+
+\begin{equation}\label{falla5}
+\Delta_{\xi} \left( \partial_M \mathcal{H}_{KL}\right) = - 2\partial_M \partial_P \xi_{\left(K\right.} \mathcal{H}_{\left.PL\right)} + 2\partial_M \partial_{\left(K\right.}\xi^P \mathcal{H}_{\left.PL\right)} 
+\end{equation}
+
+Finalmente vayamos al caso $ (\textbf{D}) $ 
+
+\begin{equation}\label{auxfalla6}
+\begin{aligned}
+\delta_{\xi} \left( \partial_M\partial_N \mathcal{H}^{MN}\right) &= \partial_M \partial_N \left[ \xi^P\partial_P \mathcal{H}^{MN} + \left(\partial^M \xi_P - \partial_P\xi^M\right)\mathcal{H}^{PN} + \left(\partial^N \xi_P - \partial_P\xi^N\right)\mathcal{H}^{MP} \right]\\
+&= \partial_M \left[\hat{\mathcal{L}}\left( \partial_N \mathcal{H}^{MN} \right) - 2\partial_N \partial_P \xi^{\left(M\right.} \mathcal{H}^{\left.PN\right)} + 2\partial_N \partial^{\left(M\right.}\xi_P \mathcal{H}^{\left.PN\right)} \right]\\
+&=\partial_M \hat{\mathcal{L}}\left( \partial_N \mathcal{H}^{MN} \right) -2 \partial_M \partial_N \partial_P \xi^M \mathcal{H}^{PN} -\partial_N \partial_P \xi^M \partial_M \mathcal{H}^{PN} - \partial_N \partial_P \xi^N \partial_M \mathcal{H}^{PM}
+\end{aligned}
+\end{equation}
+
+luego, reescribimos
+
+\begin{equation}\label{key}
+\begin{aligned}
+\partial_M \left( \hat{\mathcal{L}}\partial_N \mathcal{H}^{MN} \right) &= \partial_M \left[\xi^P\partial_P \partial_M \mathcal{H}^{KL} + \left( \partial_M \xi^P - \partial^P \xi_M \right)\partial_P \mathcal{H}^{KL} +  \left(\partial^K \xi_P - \partial_P\xi^K\right)\partial_M\mathcal{H}^{PL} + \left(\partial^L \xi_P - \partial_P\xi^L\right)\partial_M\mathcal{H}^{KP}\right]\\
+&= \hat{\mathcal{L}}\left(\partial_M\partial_N \mathcal{H}^{MN}\right) - \partial_M \partial_P \xi^M \partial_N \mathcal{H}^{PN}
+\end{aligned}
+\end{equation} 
+
+e introduciendo esto en \ref{auxfalla6} obtenemos finalmente la falla 
+
+\begin{equation}\label{falla6}
+\Delta_{\xi}\left( \partial_M\partial_N \mathcal{H}^{MN}\right) = -2 \partial_M \partial_N \partial_P \xi^M \mathcal{H}^{PN} -2 \partial_N \partial_P \xi^N \partial_M \mathcal{H}^{PM} - \partial_M \partial_P \xi^M \partial_M \mathcal{H}^{PN}
+\end{equation}
+
+Y ahora si, con todos estos elementos, estamos en condiciones de calcular la falla de $ \mathcal{R} $ de transformar como un escalar. Comenzamos estudiando los dos términos de la primer linea de \ref{Rhat}
+
+\begin{equation}\label{key}
+\Delta_1 \equiv \Delta_{\xi} \left(4\mathcal{H}^{MN}\partial_M\partial_N d - \partial_M\partial_M\mathcal{H}^{MN}\right) = 4\mathcal{H}^{MN} \Delta_{\xi}\left( \partial_M\partial_N d\right) -\Delta_{\xi}\left(\partial_M\partial_M\mathcal{H}^{MN}\right)
+\end{equation}
+
+donde reemplazando lo obtenido en \ref{falla2} y \ref{falla6} llegamos a la expresión
+
+\begin{equation}\label{Delta1}
+\Delta_1 = 4\mathcal{H}^{MN}\partial_M\partial_N\xi^P\partial_P d + 2\partial_M \partial_P\xi^P \partial_N \mathcal{H}^{MN} + \partial_M \partial_N\xi^P \partial_P \mathcal{H}^{MN}
+\end{equation}
+
+Siguiendo con los dos términos de la segunda linea de \ref{Rhat}, nuevamente utilizamos la regla de Leibniz de la falla
+
+\begin{equation}\label{key}
+\begin{aligned}
+\Delta_2 &\equiv \Delta_{\xi} \left(- 4\mathcal{H}^{MN}\partial_M d\partial_N d + 4\partial_M\mathcal{H}^{MN}\partial_N d\right) \\
+&= - 4\mathcal{H}^{MN} \left[ \Delta_{\xi}\left(\partial_M d\right)\partial_N d + \partial_M d\Delta_{\xi}\left(\partial_N d\right) \right] + 4\Delta_{\xi}\left(\partial_M\mathcal{H}^{MN}\right)\partial_N d +4\partial_M\mathcal{H}^{MN}\Delta_{\xi}\left(\partial_N d\right)
+\end{aligned}
+\end{equation}
+
+y reemplazando \ref{falla1} y \ref{falla4} donde corresponda, puede verse que varios términos se cancelan entre sí y otros se van por la condición de vínculo. Al final de cuentas nos queda
+
+\begin{equation}\label{Delta2}
+\Delta_2=-4\mathcal{H}^{PM}\partial_M\partial_P\xi^N\partial_N d -2\partial_N\partial_P\xi^P\partial_M\mathcal{H}^{MN}
+\end{equation}
+
+LLegado a este punto podemos sumar \ref{Delta1} y\ref{Delta2} para obtener la falla de los cuatro primeros términos
+
+\begin{equation}\label{key}
+\Delta_1 + \Delta_2 = \partial_M\partial_N\xi^P\partial_P\mathcal{H}^{MN} 
+\end{equation} 
+
+Para ver que la falla de los últimos dos términos de \ref{Rhat} cancelan exactamente esta suma, comencemos viendo
+
+\begin{equation}\label{key}
+\Delta_3 \equiv \Delta_{\xi} \left(- \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}\right) = - \frac{1}{2} \mathcal{H}^{MN} \left[\Delta_{\xi}\left( \partial_M \mathcal{H}^{KL} \right)\partial_K \mathcal{H}_{NL} + \partial_M \mathcal{H}^{KL}\Delta_{\xi}\left(\partial_K \mathcal{H}_{NL}\right)\right]
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Lie}
+
+puede definirse un corchete generalizada conocido como \textbf{D-corchete} para la derivada de Lie generalizada
+\begin{equation}\label{key}
+\mathcal{L}_X Y = \left[X,Y\right]
+\end{equation}
+
+\begin{equation}\label{key}
+\hat{\mathcal{L}}_A B \equiv \left[A,B\right]_D \equiv A \circ B
+\end{equation}  
+
+El mismo no es totalmente antisimétrico por lo que se lo suele denotar como una regla $ \circ $ en lugar de un corchete.
+
+La misma es covariante frente a T-dualidad y transforma de la misma manera que el propio tensor al que aplica. Puede demostrarse que satisface Leibnitz y que la composición cierra con respecto al \textbf{C-corchete}
+
+\begin{equation}\label{key}
+\left[\hat{\mathcal{L}}_{\xi_1},\hat{\mathcal{L}}_{\xi_2}\right] = -\hat{\mathcal{L}}_{\left[\xi_1,\xi_2\right]_C}
+\end{equation}
+
+con
+
+\begin{equation}\label{key}
+\left[\xi_1,\xi_2\right]_C=
+\end{equation}
+
+el cual transforma como un tensor de peso nulo.
+
+
+
+
+
+\end{document}
