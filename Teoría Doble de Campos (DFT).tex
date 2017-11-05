@@ -327,7 +327,7 @@ donde se define el \textbf{escalar de Ricci generalizado}
 
 \begin{equation}\label{Rhat}
 \begin{aligned}
-\mathcal{R} &\equiv 4\mathcal{H}^{MN}\partial_M\partial_N d - \partial_M\partial_M\mathcal{H}^{MN}\\
+\mathcal{R} &\equiv 4\mathcal{H}^{MN}\partial_M\partial_N d - \partial_M\partial_N\mathcal{H}^{MN}\\
 & - 4\mathcal{H}^{MN}\partial_M d\partial_N d + 4\partial_M\mathcal{H}^{MN}\partial_N d\\
 & + \frac{1}{8} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N \mathcal{H}_{KL} - \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}
 \end{aligned}
@@ -417,7 +417,7 @@ Luego, contrayendo dos indices un término se nos va y obtenemos
 A su vez, utilizando que la métrica invariante tiene falla 0 por transformar de forma tensorial, podemos bajar los indices de \ref{falla3} para encontrar otra falla que nos será útil
 
 \begin{equation}\label{falla5}
-\Delta_{\xi} \left( \partial_M \mathcal{H}_{KL}\right) = - 2\partial_M \partial_P \xi_{\left(K\right.} \mathcal{H}_{\left.PL\right)} + 2\partial_M \partial_{\left(K\right.}\xi^P \mathcal{H}_{\left.PL\right)} 
+\Delta_{\xi} \left( \partial_M \mathcal{H}_{KL}\right) = - 2\partial_M \partial^P \xi_{\left(K\right.} \mathcal{H}_{\left.PL\right)} + 2\partial_M \partial_{\left(K\right.}\xi^P \mathcal{H}_{\left.PL\right)} 
 \end{equation}
 
 Finalmente vayamos al caso $ (\textbf{D}) $ 
@@ -481,22 +481,75 @@ LLegado a este punto podemos sumar \ref{Delta1} y\ref{Delta2} para obtener la fa
 Para ver que la falla de los últimos dos términos de \ref{Rhat} cancelan exactamente esta suma, comencemos viendo
 
 \begin{equation}\label{key}
-\Delta_3 \equiv \Delta_{\xi} \left(- \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}\right) = - \frac{1}{2} \mathcal{H}^{MN} \left[\Delta_{\xi}\left( \partial_M \mathcal{H}^{KL} \right)\partial_K \mathcal{H}_{NL} + \partial_M \mathcal{H}^{KL}\Delta_{\xi}\left(\partial_K \mathcal{H}_{NL}\right)\right]
+\begin{aligned}
+\Delta_3 &\equiv \Delta_{\xi} \left(- \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}\right) = - \frac{1}{2} \mathcal{H}^{MN} \left[\Delta_{\xi}\left( \partial_M \mathcal{H}^{KL} \right)\partial_K \mathcal{H}_{NL} + \partial_M \mathcal{H}^{KL}\Delta_{\xi}\left(\partial_K \mathcal{H}_{NL}\right)\right]\\
+&= - \frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL} \left[ - 2\partial_K \partial^P \xi_{\left(N\right.} \mathcal{H}_{\left.PL\right)} + 2\partial_K \partial_{\left(N\right.}\xi^P \mathcal{H}_{\left.PL\right)}  \right]\\
+&- \frac{1}{2} \mathcal{H}^{MN}\partial_K \mathcal{H}_{NL} \left[ - 2\partial_M \partial_P \xi^{\left(K\right.} \mathcal{H}^{\left.PL\right)} + 2\partial_M \partial^{\left(K\right.}\xi_P \mathcal{H}^{\left.PL\right)}  \right]\\
+&= \partial_K \mathcal{H}^{MN}\partial_M \left( \partial^L \xi_P - \partial_P \xi^L\right) \mathcal{H}^{PK}\mathcal{H}_{NL} - \partial_K\partial_L\xi^M\partial_M\mathcal{H}^{KL}
+\end{aligned}
 \end{equation}
 
+donde para llegar a la última igualdad simplemente desglozamos todos los términos simetrizados, luego eliminamos algunos por el vínculo y otros se cancelan entre sí luego de renombrar indices. Luego, puede verse que uno de los términos dentro del paréntesis de la última igualdad se puede reescribir como
 
+\begin{equation}\label{menoselmismo}
+\begin{aligned}
+\partial_K \mathcal{H}^{MN}\mathcal{H}_{NL}\mathcal{H}^{PK}\partial_M\partial^L \xi_P &= 
+-\partial_K \mathcal{H}_{NL}\mathcal{H}^{MN}\mathcal{H}^{PK}\partial_M\partial^L \xi_P\\
+&=-\partial_K \mathcal{H}^{NL}\mathcal{H}_{MN}\mathcal{H}^{PK}\partial^M\partial_L \xi_P\\
+&=-\partial_K \mathcal{H}^{MN}\mathcal{H}_{NL}\mathcal{H}^{PK}\partial_M\partial^L \xi_P
+\end{aligned}
+\end{equation}
 
+donde para la primer igualdad utilizamos que $ \partial_K\left( \mathcal{H}^{MN}\mathcal{H}_{NL}\right) = 0 $, en la segunda bajamos y subimos indices con la métrica, y en la tercer igualdad redefinimos indices. Con todo ello podemos ver que al coincidir con su opuesto resulta ser cero. De esta forma obtenemos
 
+\begin{equation}\label{key}
+\Delta_3 = -\partial_K \mathcal{H}^{MN}\partial_M\partial_P \xi^L \mathcal{H}^{PK}\mathcal{H}_{NL} - \partial_K\partial_L\xi^M\partial_M\mathcal{H}^{KL}
+\end{equation}
 
+Por ahora tenemos
 
+\begin{equation}\label{key}
+\Delta_1 + \Delta_2 + \Delta_3 = -\partial_K \mathcal{H}^{MN}\partial_M\partial_P \xi^L \mathcal{H}^{PK}\mathcal{H}_{NL}
+\end{equation}
 
+Pasemos ahora a la última falla
 
+\begin{equation}\label{key}
+\begin{aligned}
+\Delta_4 &\equiv \Delta_{\xi} \left( \frac{1}{8} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N \mathcal{H}_{KL} \right)\\
+&= \frac{1}{8} \mathcal{H}^{MN}\partial_N \mathcal{H}_{KL} \left[ - 2\partial_M \partial_P \xi^{\left(K\right.} \mathcal{H}^{\left.PL\right)} + 2\partial_M \partial^{\left(K\right.}\xi_P \mathcal{H}^{\left.PL\right)}  \right]\\
+&+ \frac{1}{8} \mathcal{H}^{MN}\partial_N \mathcal{H}_{KL} \left[ - 2\partial_N \partial^P \xi_{\left(K\right.} \mathcal{H}_{\left.PL\right)} + 2\partial_N \partial_{\left(K\right.}\xi^P \mathcal{H}_{\left.PL\right)}  \right]\\
+&= \frac{1}{2}\mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N \left( \partial_K \xi^P - \partial^P \xi_K\right)\mathcal{H}_{PL}
+\end{aligned}
+\end{equation}
 
+Utilizando pasos muy similares a \ref{menoselmismo} se puede ver que
 
+\begin{equation}\label{key}
+ - \frac{1}{2}\mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N\partial^P \xi_K\mathcal{H}_{PL} = \frac{1}{2}\mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N\partial_K \xi^P\mathcal{H}_{PL}
+\end{equation}
 
+Y con ello obtener la última falla
 
+\begin{equation}\label{key}
+\begin{aligned}
+\Delta_4 &= \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N\partial_K \xi^P\mathcal{H}_{PL}\\
+&= \partial_K \mathcal{H}^{MN}\partial_M\partial_P \xi^L \mathcal{H}^{PK}\mathcal{H}_{NL}\\
+&= - \left( \Delta_1 + \Delta_2 + \Delta_3\right)
+\end{aligned}
+\end{equation}
 
+Y por la última igualdad concluimos que 
 
+\begin{boxquation}
+\begin{equation}\label{key}
+\Delta_{\xi} \mathcal{R} = 0
+\end{equation}
+\end{boxquation}
+
+Por consiguiente, nuestra acción es invariante ante difeomorfismos generalizados!\\
+
+Otro cálculo interesante es obtener las ecuaciones de movimiento de la nueva teoría. Luego, con ellas podemos ver que al imponer el vínculo fuerte recuperamos las ecuaciones de supergravedad para los campos fundamentales.
 
 
 
