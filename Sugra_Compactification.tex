@@ -1,0 +1,706 @@
+\documentclass{article}
+
+%%Packages
+
+
+%Básicos
+
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+
+%Geometría de página
+
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=25mm}
+\setlength\parindent{0pt} % elimina sangría de todos los parrafos
+
+%Matemática
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+
+
+
+%Colores, fuentes y demás
+
+\usepackage{tcolorbox}
+\usepackage{bookman} % font
+\usepackage{marvosym}
+\usepackage{fancyhdr}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{contour}
+\usepackage{lettrine} % letra capital}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{7pt}
+\setlength{\DefaultNindent}{0pt}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+\renewcommand{\DefaultLoversize}{-0.70}
+%Primero se declara el paquete lettrine y el numero de renglones que debe abarcar la inicial. En seguida DefaultFindent, la distancia de la inicial a la letra siguiente en el primer renglón y DefaultNindent, la distancia que se desplaza a la derecha del inicio del primer renglón, los renglones subsecuentes que abarca la capitular.Después se declara la font a utilizar, en este caso yinit, con unos parámetros que la describen, y ﬁnalmente el tamaño de la letra.
+\usepackage{yfonts}
+
+%Pagestyle
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{{\color{brown!60!black}\Large\Coffeecup}}
+\lhead{\textit{Capítulo 2}}
+\fancyfoot{}
+\lfoot{\tiny{Octubre 2017 - v1.0}}
+\rfoot{\thepage}
+
+%Title
+\title{\vspace{-35pt}\huge{\textbf{\textcolor{teal}{Supergravedad:}}} \\ \vspace{0.1cm} \large{\textbf{Compactificación de Scherk-Schwarz}}}
+\date{\vspace{-20pt}}
+\author{\textit{Tomás Codina}}
+
+
+%%Document
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\newtcolorbox{boxumen}{colback=white,colframe=teal,boxrule=1pt}
+\newtcolorbox{boxquation}{colback=white,colframe=black,boxrule=1pt}
+
+
+
+
+
+Dado que el sector de Neveu-Schwarz de supergravedad vive en un espacio tiempo de $ D=10 $ dimensiones, para hacer contacto con la física observable contemporánea es necesario bajar a $ d=4 $ extrayendo información de las dimensiones extra, dicho  mecanismo se conoce como \textbf{compactificación}. Existen numerosas formas de realizar una compactificación o reducción dimensional, en nuestro caso particular trataremos el escenario más sencillo de todos, donde suponemos que las dimensiones extra se encuentran ''enrolladas'' en un N-Toro. Esto dará lugar a un Ansatz en donde ningún campo depende del espacio interno, obtieniendo así una ungauged supergravity como teoría efectiva. Luego, nos proponemos gauger la teoría, lo que corresponde a promover una simetría global a local, introduciendo derivadas covariantes de la mano del embedding tensor, esto último da lugar a una gauged supergravity. 
+
+\rule{\textwidth}{0.4pt}
+
+\section{\textcolor{teal}{Campos de la teoría efectiva}}\label{sec_preliminares}
+
+La reducción dimensional que llevaremos a cabo es un caso particular de lo que se conoce como \textbf{compactificación de Scherk-Schwarz} la cual preserva todas las supersimetrías de la teoría padre y se basa en la idea original de Kaluza-Klein.\\
+
+[\textcolor{red}{¿Que es estrictamente una compactificación de Scherk-Schwarz?}]\\
+
+Para ello se comienza dividiendo a las $ D=10 $ coordenadas $ x^{i} $, en
+
+\begin{equation}
+x^i = (x^{\mu},y^m)
+\end{equation}
+
+donde las coordenadas $ i,j,k,... $ van de $ 0 $ a $ D $ y corresponden a la \textbf{teoría padre}, $\mu,\nu,\rho,\sigma...=1,...,d $ son las coordenadas de la teoría efectiva de dimensión d, o \textbf{espacio externo}, y $ m,n,o,p=1,...,N $ corresponden al \textbf{espacio interno}.
+
+De aquí, surge naturalmente la necesidad de separar los campos originales en componentes siendo para la métrica y 2-forma
+
+\begin{equation}
+\begin{aligned}
+G_{i j} &= 
+\begin{pmatrix}
+G_{\mu \nu} && G_{\mu n}\\
+G_{m \nu} && G_{m n}
+\end{pmatrix}\\
+B_{i j} &= 
+\begin{pmatrix}
+B_{\mu \nu} && B_{\mu n}\\
+B_{m \nu} && B_{m n}
+\end{pmatrix}
+\end{aligned}
+\end{equation}
+
+Si bien esta manera de escribir las componentes es la más sencilla, por motivos que quedarán claro luego, resulta conveniente parametrizarlas de una forma distinta explotando los grados de libertad del problema. Dado que $ G_{i j} $ tiene $ D\frac{\left(D+1\right)}{2} $ componentes independientes, podemos reescribirlo en término de $ d $ y $ N $
+
+\begin{equation}
+D\frac{\left(D+1\right)}{2} = d\frac{\left(d+1\right)}{2} + N\frac{\left(N+1\right)}{2} +d N
+\end{equation}
+
+donde el primer y segundo término corresponden a los grados de libertad de un tensor $ \binom{0}{2} $ simétrico en el espacio externo e interno respectivamente, mientras que $ d n $ lo podemos acomodar en $ N $ vectores de la teoría efectiva, estos suelen notarse como $ g_{\mu \nu} $, $ G_{m n} $ y $ A^m_{\nu} $ respectivamente. La misma historia para la 2-forma, donde tendremos un tensor $ \binom{0}{2} $ antisimétrico para el espacio externo, $ b_{\mu \nu} $, y otro para el interno, $ B_{m n} $ y N vectores $ V_{m \nu} $. Una posible manera de parametrizar a $ G_{i j} $ y $ B_{i j} $ utilizando los nuevos campos se escribe como
+
+\begin{subequations}
+\begin{align}
+\label{Gdown}
+G_{i j}&= 
+\begin{pmatrix}
+g_{\mu \nu} + G_{o p} A^o_{\ \mu} A^p_{\ \nu} && A^p_{\ \mu} G_{p n}\\
+G_{m p} A^p_{\ \nu}  && G_{m n}
+\end{pmatrix}\\
+\label{Gup}
+G^{i j} &=
+\begin{pmatrix}
+g^{\mu \nu}  &&  - g^{\mu \nu} A^n_{\ \nu} \\
+- A^m_{\ \mu} g^{\mu \nu}  && G^{m n} + A^m_{\ \mu} A^n_{\ \nu} g_{\mu \nu}
+\end{pmatrix}\\
+\label{B}
+B_{i j} &=
+\begin{pmatrix}
+b_{\mu \nu} - A^p_{\ \left[\mu \right.} V_{\left. p \nu \right]} + A^p_{\ \mu}A^q_{\ \nu} B_{p q} && V_{n \mu} - B_{n p} A^p_{\ \mu}\\
+-V_{m \nu} - B_{m p} A^p_{\ \nu}  && B_{m n}
+\end{pmatrix}
+\end{align}
+\end{subequations}
+
+Para la parametrización de $ G^{i j} $ se utilizó un abuso de notación en donde $ G^{m n} $ no corresponde a la componente $ m, n $ de métrica inversa. Luego, por consistencia con la invertibilidad de la métric $ G_{i k} G^{k j} = \delta^i_j $, se necesita que $ g_{\mu \rho} g^{\rho \nu} = \delta^{\mu}_{\nu} $ y $ G_{m p} G^{p n} = \delta^m_n $.\\
+
+\begin{equation}\label{inversas}
+\begin{aligned}
+g_{\mu \rho} g^{\rho \nu} &= \delta^{\mu}_{\nu}\\
+G_{m p} G^{p n} &= \delta^m_n
+\end{aligned}
+\end{equation}
+
+Ahora bien, el desdoblamiento de los indices no tiene nada que ver con la dependencia de los nuevos campos sobre las coordenadas, el proceso de reducción dimensional nos da la libertad de decidir dicha dependencia lo que se relaciona con la variedad en la cual se compactifica. En otras palabras todavía debemos especificar la geometría del espacio interno lo que nos lleva a escoger un \textbf{Ansatz de reducción}. En nuestro caso particular supondremos que la variedad padre es un producto del espacio externo y un toro N
+
+\begin{equation}\label{toro}
+\mathcal{M}_D = \mathcal{M}_d \otimes T^N = \mathcal{M}_d \otimes \underbrace{S^1 \dots \otimes S^1}_{N}
+\end{equation}
+
+Para analizar la dependencia en $ y $, tomaremos por simplicidad una sola dirección $ m_1 $ y un campo bosónico genérico $ \mathcal{B} $. Como vemos de \ref{toro}, la coordenada interna vive en un círculo, lo que nos permite afirmar $ 0\leq y^{m_1} \leq 2\pi R_{m_1}  $ donde $ R_{m1} $ representa el radio del circulo. Luego, al ser un espacio compacto y periódico, podemos desarrollar la dependencia de los campos en coeficientes de Fourier\footnote{[\textcolor{red}{Entender esto! $ --> $ '' la dependencia en $ y $ de los campos admite un desarrollo en \textbf{la base de auto-funciones del operador Laplaciano de la variedad interna''} }]}
+
+\begin{equation}
+\mathcal{B} (x,y^{m_1},y^{m_2},...,y^{m_N}) = \sum_{n=-\infty}^{\infty} \mathcal{B}^{(n)}(x, y^{m_2},...,y^{m_N}) e^{i n y^{m_1}/ R_{m_1}}
+\end{equation}
+	
+donde los coeficientes del desarrolo $ \mathcal{B}^{(n)} $ son infinitos campos conocidos como \textbf{torre de estados de Kaluza-Klein}. Resulta ser que dichos modos poseen masas que crecen con potencias de $ \frac{n}{R} $, lo que da lugar a estados muy masivos si pensamos que las dimensiones extra poseen tamaños del orden de la escala de Planck. A modo ilustrativo se puede demostrar sencillamente el caso de un campo bosónico escalar no masivo en una dimensión compacta, de él obtenemos
+
+\begin{equation}
+\begin{aligned}
+\partial_k \partial^k \phi (x,y) &= \partial_p \partial^p \left( \sum_{n=-\infty}^{\infty} \phi^{(n)}(x) e^{i n y / R} \right)\\
+&= \partial_{\mu} \partial^{\mu}  \left( \sum_{n=-\infty}^{\infty} \phi^{(n)}(x) e^{i n y / R} \right) + \partial_p \partial^p  \left( \sum_{n=-\infty}^{\infty} \phi^{(n)}(x) e^{i n y / R} \right)\\
+&= \sum_{n=-\infty}^{\infty} \left[ \partial_{\mu} \partial^{\mu} \phi^{(n)}(x) + \left(\frac{i^2 n^2}{R^2}\right) \phi^{(n)}(x) \right] e^{i n y / R} = 0
+\end{aligned}
+\end{equation}
+
+donde por completitud de la base, cada coeficiente debe anularse por separado. Desde el punto de vista de la teoría efectiva, esto nos lleva a infinitas ecuaciones de Klein-Gordon para campos escalares con masas $ m^{(n)} = \frac{n}{R} $
+
+\begin{equation}
+\left[\Box - (m^{(n)})^2 \right] \phi^{(n)}(x) = 0 \ \ \ n=0,1,\dots
+\end{equation} 
+
+siendo el modo cero el único no masivo.
+
+Sencillamente, el argumento puede extenderse al caso N dimensional para campos escalares y utilizando otras herramientas se puede demostrar también para vectores y tensores. Lo relevante de todo esto es que trabajando en el límite de bajas energías en teoría de cuerdas, solo debemos conservar aquellos modos no masivos, lo que corresponde a adoptar un Ansatz en donde ningún campo depende de las coordenadas internas! Ahora claro está porque compactificar en un Toro representa el escenario más sencillo.\\
+
+
+El siguiente paso en la construcción de una teoría efectiva es identificar la naturaleza de los nuevos campos. Para ello, la mejor manera es estudiar sus propiedades de transformación ante difeomorfismos y Gauge, las cuales podemos agrupar en
+
+\begin{subequations}
+	\begin{align}
+	\label{deltag}
+	\delta G_{i j} &= \mathcal{L}_{\xi}G_{i j} = \xi^{k} \partial_k G_{i j} + \partial_i \xi^k G_{k j} + \partial_j \xi^k G_{i k}\\ 
+	\label{deltab}
+	\delta B_{i j} &= \mathcal{L}_{\xi}B_{i j} = \xi^{k} \partial_k B_{i j} + \partial_i \xi^k B_{k j} + \partial_j \xi^k B_{i k} + 2 \partial_{\left[ i \right.} \lambda_{\left. j \right]}\\
+	\label{deltafi} 
+	\delta \phi &= \mathcal{L}_{\xi} \phi = \xi^{k} \partial_k \phi
+	\end{align}
+\end{subequations} 
+
+Luego, desdoblando indices podemos ver las propiedades de transformación heredadas para los campos $ G_{m n}, B_{m n}, A^m_{\nu}, V_{m \nu}, g_{\mu \nu} $ y $ b_{\mu \nu} $. Para los primeros de ellos obtenemos
+
+
+\begin{equation*}
+\delta G_{m n} = \xi^{\rho} \partial_{\rho} G_{m n} + \xi^p \partial_p G_{m n} + \partial_m \xi^{\rho} G_{\rho n} + \partial_m \xi^p G_{p n} + \partial_n \xi^{\rho} G_{m \rho} + \partial_n \xi^p G_{m p}
+\end{equation*}
+\begin{boxquation}
+\begin{equation}\label{GyBscalars}
+\begin{aligned}
+\delta G_{m n} &= \xi^{\rho} \partial_{\rho} G_{m n} = \mathcal{L}_{\xi} G_{m n}\\
+\delta B_{m n} &= \xi^{\rho} \partial_{\rho} B_{m n} = \mathcal{L}_{\xi} B_{m n}
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+donde se utilizó el ansatz en donde la derivada de cualquier campo con respecto a coordenadas internas es cero. De aquí vemos, desde el punto de vista de la teoría efectiva, $ G_{m n} $ y $ B_{m n} $ son campos escales! Con esto se sigue trivialmente que $ G^{m n} $ también transforma como tal.
+
+Luego, podemos invertir la coordenadas $ G_{p \nu} $ para obtener
+
+\begin{equation}
+A^m_{\nu} = G^{m p} G_{p \nu}
+\end{equation}
+
+de donde podemos deducir la regla de transformación 
+
+\begin{equation*}
+\begin{aligned}
+\delta A^m_{\nu} &= \delta G^{m p} G_{p \nu} + G^{m p} \delta G_{p \nu} = \mathcal{L}_{\xi} G^{m p} G_{p \nu} + G^{m p} \left( \xi^{\rho} \partial_{\rho} G_{p \nu} + \partial_{\nu} \xi^{\rho} G_{p \rho} + \partial_{\nu} \xi^{o} G_{p o} \right)\\
+&=\mathcal{L}_{\xi} G^{m p} G_{p \nu} + G^{m p} \mathcal{L}_{\xi} G_{p \nu} + \partial_{\nu} \xi^{o} G^{m p} G_{p o}\\
+\end{aligned}
+\end{equation*}
+
+\begin{boxquation}
+	\begin{equation}\label{A}
+	\delta A^m_{\nu}= \mathcal{L}_{\xi} A^m_{\nu} + \partial_{\nu} \xi^m
+	\end{equation}
+\end{boxquation}
+
+habiendo utilizado \ref{inversas} y la regla de Leibniz para la última igualdad. Esto nos dice que desde el punto de vista de la teoría efectiva, nuestro campo A se comporta como un vector de Gauge con parámetro $ \xi^m $! 
+
+Luego, invirtiendo la coordenada $ B_{\mu n} $ de \ref{B} e introduciendo las reglas de transformación de $ B_{m n} $ y A, \ref{GyBscalars} y \ref{A}, podemos obtener 
+
+
+\begin{equation*}
+\begin{aligned}
+\delta V_{n \nu} &= \delta B_	{\mu n}  + \delta \left( B_{n p} A^p_{\mu} \right)\\
+&= \xi^{\rho} \partial_{\rho} B_{\mu n} + \partial_{\mu} \xi^{\rho} B_{\rho n} + \partial_{\mu} \xi^{p} B_{p n} + \partial_{\mu} \lambda_n + \mathcal{L}_{\xi} \left( B_{n p} A^p_{\mu} \right) + B_{n p} \partial_{\mu} \xi^p\\
+&=\mathcal{L}_{\xi} \left( B_	{\mu n} +  B_{n p} A^p_{\mu} \right) + \partial_{\mu} \xi^p \left( B_{p n} + B_{n p}\right) + \partial_{\mu} \lambda_n
+\end{aligned}
+\end{equation*}
+
+\begin{boxquation}
+	\begin{equation}\label{V}
+	\delta V_{n \mu}= \mathcal{L}_{\xi} V_{n \mu} + \partial_{\mu} \lambda_n
+	\end{equation}
+\end{boxquation}
+
+Que nuevamente corresponde a un vector de Gauge con parámetro $ \lambda_n $.
+
+Las ecuaciones \ref{A} y \ref{V} corresponden a las transformaciones para vectores de Gauge \textbf{Abelianos}, caracterizadas por un grupo de Lie $ U \equiv \underbrace{U(1) \otimes U(1) \otimes \dots \otimes U(1)}_{2N} \equiv U(1)^{2N} $ donde $ \xi^n $ y $ \lambda_n $ juegan el papel de coeficientes en el álgebra de dicho grupo. La aparición de este grupo abeliano no es un dato menor, el mismo se encuentra relacionado con las simetrías del espacio interno en donde se realizó la compactificación. En nuestro caso, el N-toro es una variedad plana cuyos vectores de Killing corresponden simplemente al conjunto ortogonal de vectores $ \left\{ \partial_m  \right\} \ m=1,...,N$ que generan un álgebra con constantes de estructura $ f_{m n}^{\ \ \ o} = 0 $ para todos los conmutadores, de esto se sigue que el grupo de isometrías es ni más ni menos que el grupo abeliano $ U(1)^N $!. Las teorías de supergravedad con vectores de gauge abelianos reciben el nombre de \textbf{Ungauged Supergravity}\\
+
+[\textcolor{red}{Corroborar esto y extender ¿como es el caso general no abeliano?¿El grupo de isometrías siempre es el grupo de gauge de la teoría efectiva?}  Según Martin Weidner en '' Gauged Supergravities in Various
+Spacetime Dimensions '' (arXiv:hep-th/0702084v1), usualmente el grupo de isometrías del espacio interno aparece dentro del grupo de gauge de la teoría efectiva.]\\
+
+Pasando ahora a $ g_{\mu \nu} $, de \ref{Gdown} se sigue que
+
+\begin{equation}
+\begin{aligned}
+\delta g_{\mu \nu} &= \delta G_{\mu \nu} - \delta \left( G_{o p} A^o_\mu A^p_{\nu} \right)\\
+&= \mathcal{L}_{\xi} G_{\mu \nu} + \partial_{\mu} \xi^p G_{p \nu} + \partial_{\nu} \xi^p G_{\mu p} - \mathcal{L}_{\xi} \left( G_{o p} A^o_{\mu} A^p_{\nu}\right) -  \partial_{\mu} \xi^o G_{o p} A^p_{\nu} - \partial_{\nu} \xi^p G_{o p}A^o_{\mu}\\
+&= \mathcal{L}_{\xi} g_{\mu \nu} + \partial_{\mu} \xi^p G_{p o} A^o_{\nu} + \partial_{\nu} \xi^p G_{o p} A^o_\mu -  \partial_{\mu} \xi^o G_{o p} A^p_{\nu} - \partial_{\nu} \xi^p G_{o p}A^o_{\mu}
+\end{aligned}
+\end{equation}
+
+\begin{boxquation}\label{g}
+	\begin{equation}
+	\delta g_{\mu \nu}= \mathcal{L}_{\xi} g_{\mu \nu}
+	\end{equation}
+\end{boxquation}
+
+Lo que nos lleva a interpretar a $ g_{\mu \nu} $ como un objeto tensorial $ \binom{0}{2} $ simétrico, que no es otra cosa que la métrica en la teoría efectiva!.
+
+Por último, la transformación de $ b_{\mu \nu} $ la hacemos por partes para mayor prolijidad. En primer lugar, de \ref{B} vemos que 
+
+\begin{equation}\label{aux0}
+b_{\mu \nu} = B_{\mu \nu} + A^p_{\ \left[\mu \right.} V_{\left. p \nu \right]} - A^p_{\ \mu}A^q_{\ \nu} B_{p q}
+\end{equation}
+
+donde al transformar las componentes obtenemos
+
+\begin{equation}\label{aux1}
+\begin{aligned}
+\delta B_{\mu \nu} &= \mathcal{L}_{\xi} B_{\mu \nu} + \partial_{\mu} \xi^p B_{p \nu} + \partial_{\nu} \xi^p B_{p \mu} + \partial_{\mu} \lambda_{\nu} - \partial_{\nu} \lambda_{\mu}\\
+&= \mathcal{L}_{\xi} B_{\mu \nu} - 2 \partial_{\left[\mu \right.} \xi^p V_{\left. \nu \right] p} + 2 B_{p o} \partial_{\left[\mu \right.} \xi^p A_{\left. \nu \right]}^{\ o} + 2 \partial_{\left[\mu \right.} \lambda_{\left. \nu \right]}
+\end{aligned}
+\end{equation}\\
+
+\begin{equation}\label{aux2}
+\delta \left( A^p_{\ \left[ \mu\right.} V_{\left.\nu \right] p}\right) = \mathcal{L}_{\xi} \left( A^p_{\ \left[ \mu\right.} V_{\left.\nu \right] p}\right) - \partial_{\left[\mu \right.} \lambda_p A_{\left. \nu \right]}^{\ p} + \partial_{\left[\mu \right.} \xi^p V_{\left. \nu \right] p}
+\end{equation}\\
+
+
+\begin{equation}\label{aux3}
+\begin{aligned}
+\delta \left( A^o_{\mu} A^p_{\nu} B_{o p} \right) &= \mathcal{L}_{\xi} \left( A^o_{\mu} A^p_{\nu} B_{o p} \right) + B_{o p} \left( \partial_{\nu} \xi^p A^o_{\ \mu} + \partial_{\mu} \xi^o A^p_{\ \nu}  \right)\\
+&= \mathcal{L}_{\xi} \left( A^o_{\mu} A^p_{\nu} B_{o p} \right) + B_{p o} \left( \partial_{\mu} \xi^p A^o_{\ \nu} - \partial_{\nu} \xi^p A^o_{\ \nu}  \right)\\
+&= \mathcal{L}_{\xi} \left( A^o_{\mu} A^p_{\nu} B_{o p} \right) + 2 B_{p o} \partial_{\left[\mu \right.} \xi^p A_{\left. \nu \right]}^{\ o}
+\end{aligned}
+\end{equation}
+ 
+
+finalmente, itroduciendo \ref{aux1}, \ref{aux2} y \ref{aux3} en la variación de \ref{aux0} vemos que
+
+\begin{equation*}
+\delta b_{\mu \nu} = \mathcal{L}_{\xi} b_{\mu \nu}+ 2 \partial_{\left[\mu \right.} \lambda_{\left. \nu \right]} - \partial_{\left[\mu \right.} \xi^a V_{\left. \nu \right] a} - \partial_{\left[\mu \right.} \lambda_a A_{\left. \nu \right]}^{\ a} 
+\end{equation*}\\
+
+\begin{boxquation}
+	\begin{equation}\label{b}
+	\delta b_{\mu \nu} = \mathcal{L}_{\xi} b_{\mu \nu} + 2 \partial_{\left[\mu \right.} \lambda_{\left. \nu \right]} - \partial_{\left[\mu \right.} \Lambda_A A^{\ A}_{\left. \nu \right]}
+	\end{equation}
+\end{boxquation}
+
+en donde definimos dos objetos que serán explicados en mayor detalle en la siguiente sección
+
+\begin{equation}\label{ADFT}
+\begin{aligned}
+\Lambda_A &\equiv \left( \xi^a, \lambda_a \right)\\
+A_{\ \mu}^{A} &\equiv \left( V_{a \mu}, A_{\ \mu}^{ a} \right)
+\end{aligned}
+\end{equation}
+
+Concentrandonos en \ref{b}, si no fuese por el último término extra, $ b_{\mu \nu} $ se correspondería con un tensor $ \binom{0}{2} $ antisimetrico con transformación de Gauge parametrizada por $ \lambda_{\mu} $ lo que podríamos identificar con el campo de Kalb-Ramond de la teoría efectiva. Estos términos sobrantes se conocen como...\\
+
+\textcolor{red}{¿Como se llaman, que son, porque estan ahí y que implicancia tiene? ¿porque sigo pudiendo identificarlo con el campo de Kalb-Ramond? }.
+\section{\textcolor{teal}{Acción de Ungauged Supergravity}}
+
+
+Una vez identificados los campos del espacio externo, el siguiente y último paso en la reducción dimensional consiste en obtener la acción de la teoría efectiva de la cual se desprenderán las ecuaciones de movimiento correspondientes y con ello toda la física involucrada. Dado que compactificamos en una variedad con curvatura nula, la transformación de gauge para los vectores corresponde a un grupo abeliano y esto define una ungauged supergravity como teoría efectiva. 
+
+Para lograr esto, debemos introducir el ansatz propuesto en la acción de supergravedad
+
+\begin{equation}\label{S}
+S=\int\mathrm{dx^D} \sqrt{-G} \ e^{-2\phi}\left[R + 4 \partial_{\mu}\phi\partial^{\mu} \phi - \frac{1}{12} H_{\mu \nu \alpha}H^{\mu \nu \alpha}\right]  
+\end{equation}
+
+descomponiendo todos los términos en indices griegos y los propios del espacio interno. Observando sin demasiado detenimiento la definición del escalar de Ricci, el término del tensor de esfuerzos para la 2-forma y las parametrizaciones propuestas en \ref{Gdown}, \ref{Gup} y \ref{B}, se ve claramente que el desdoble de indices no es para nada trivial y la cantidad de términos finales en la teoría efectiva crece de manera significativa con cada reemplazo. De todas formas, veremos en instantes que muchos de estos términos se cancelan entre sí y otros pueden agruparse en estructuras que obedecen leyes de transformación con respecto a un dado grupo global.\\ 
+	
+Antes de comenzar con los reemplazos es recomendable saber de antemano los términos que esperamos encontrar una vez compactificada la teoría, esto simplifica enormemente el trabajo.\\
+
+
+[\textcolor{red}{Verificar: Yo estoy compactificando sin romper supersimetrías de D=10 con $ \mathcal{N}=1 $ a d=4 con $ \mathcal{N}=4 $, un caso particular de Half-maximal ungauged supergravity. ¿Estas teorías son únicas?. A menos de dualidades y simetrías, ¿Sus acciones dan siempre la misma física?} Según Martin Weidner en '' Gauged Supergravities in Various
+Spacetime Dimensions '' (arXiv:hep-th/0702084v1) Dado que estas teorías ungauged son muy rígidas por tener un gran número de supersimetrías, la teoría resulta ser única siempre y cuando se especifiquen los campos presentes. Por ejemplo, para las maximal supergravities en $ d<10 $ existe una única ungauged, mientras que para las half-maximal supergravities debe especificarse el número de multipletes de vectores (¿tiene que ver con tener $ O(6,6+n) $ en lugar de $ O(6,6) $?). Las únicas deformaciones posibles de estas teorías que preservan supersimetría son los \textbf{Gaugings}, esto permite afirmar que cualquier compactificación en una variedad que preserve supersimetría da lugar a una deformación de la ungauged que puede identificarse con un gauging particular!]\\  
+
+Como mencionamos anteriormente la teoría padre de la cual partimos, corresponde al sector bosónico de supergravedad con D=10 y $ \mathcal{N}=1 $ supersimetrías (16 supercargas ). Al utilizar la reducción dimensional de Scherk-Schwarz preservamos el número de supercargas por lo que en $ d=4 $ obtenemos una teoría con $ \mathcal{N}=4 $ supersimetrias, la mitad del máximo posible, lo que lleva el nombre de \textbf{Half-maximal ungauged supergravity}. Para este caso particular ($ d=4, \mathcal{N}=4 $), vimos que los campos involucrados consisten de una métrica $ g_{\mu \nu} $, una 2-forma
+\footnote{En estas teorías de supergravedad existe una dualidad al nivel de las ecuaciones de movimiento (simetría on-shell) que nos permite intercambiar p-formas y (d-p-2)-formas sin alterar la física del problema. En particular, para d=4, obtenemos que el campo de Kalb-Ramond puede dualizarse a un escalar utilizando el operador de Hodge $ (\star) $, mientras que los vectores son tensores auto-duales. Esto nos permitiría dejar a la teoría solo con la métrica, vectores y escalares!}
+$ b_{\mu \nu} $, 12 vectores $ A_{\ \mu}^A $ (ver \ref{ADFT}) y 37 escalares $ G_{m n}, B_{m n} $ y $ \phi $. Para la métrica, la propuesta más sencilla de introducir un término cinético en la nueva acción es mediante el escalar de curvatura $ R $. Por otro lado, al igual que en otras teorías de gauge, esperamos que los campos vectoriales aparezcan en la acción por medio de tensores de esfuerzo en estructuras de Yang-Mills, las cuales coinciden con la acción de Maxwell para el caso abeliano $ \mathcal{F}_{a \mu \nu} \mathcal{F}_b^{\ \mu \nu} $ y $ \mathcal{F}^a_{\ \mu \nu} \mathcal{F}^{b \mu \nu} $ para V y A respectivamente o de forma más compacta $ \mathcal{F}^{A \mu \nu} \mathcal{F}^B_{\ \mu \nu} $ con
+
+\begin{equation}\label{F}
+\mathcal{F}^A_{\ \mu \nu} \equiv 2 \partial_{\left[\mu\right.}A^A_{\ \left.\nu\right]}
+\end{equation}
+
+Donde al dejar los indices $ A $ y $ B $ sin contraer entre sí, estamos proponiendo un caso más general en donde aparecerán términos cuadráticos en derivadas de A, otros cuadráticos en derivadas de V y unos terceros mixtos. Dicho esto, es necesario contraer estos términos libres con algún objeto escalar de Lorentz (debido a que no existen indices griegos con los cuales contraer) simétrico en $ A, B $, que no tiene porqué ser constante, una posibilidad es introducir el objeto $ M_{A B} (\phi,G_{m n}, B_{m n}) $ donde la dependencia en las coordenadas vendrá dada por los escalares ya presentes en la teoría. Una posible parametrización sería
+
+\begin{equation}\label{M}
+M_{A B} \equiv \begin{pmatrix}
+G^{a b} & - G^{a c} B_{c b}\\
+B_{a c} G^{c b} & G_{a b} - B_{a c} G^{c d} B_{d b}
+\end{pmatrix}
+\end{equation}
+
+
+Luego, es posible utilizar la misma matriz para reproducir el término cinético de los escalares, siendo a menos de un factor multiplicativo, $ D_{\mu} M_{A B} D^{\mu} M^{A B} = \partial_{\mu} M_{A B} \partial^{\mu} M^{A B}  $. Esto se ve motivado por un hecho bien sabido en teorías de supergravedad, en las cuales los escalares siempre se ubican en modelos sigma no lineales
+
+\begin{equation}
+	g_{a b}(\phi) \partial_{\mu} \phi^a \partial^{\mu} \phi^b
+\end{equation}
+
+donde los campos escalares $ \phi^a(x) $ pueden identificarse como coordenadas de una variedad Riemanniana no compacta denominada \textbf{variedad escalar}, cuya métrica positiva definida viene dada por $ g_{a b} (\phi) $!
+
+Por último, para la 2-forma esperamos recuperar un término cinético correspondiente a su tensor de esfuerzos pero con posibles modificaciones dadas por los nuevos términos que aparecen en su transformación ante gauge y difeomorfismos \ref{b}. Una posibilidad es introducir el término cinético
+
+\begin{equation}
+- \frac{1}{12} \mathcal{W}_{\mu \nu \rho} \mathcal{W}^{\mu \nu \rho}
+\end{equation}
+
+con
+
+\begin{equation}\label{W}
+\mathcal{W}_{\mu \nu \rho} \equiv 3\partial_{\left[\mu\right.} b_{\left.\nu \rho\right]} + 3\partial_{\left[\mu\right.}A^A_{\ \nu}A_{\left.\rho\right] A}
+\end{equation}
+
+De esta forma, agrupando todos los objetos e introduciendo los factores multiplicativos que sabemos que quedarán al final del día (esto solo es posible luego de llevar a cabo la compactificación), podemos construir la acción efectiva de la forma
+
+
+\begin{equation}\label{S_compact}
+S_{eff}=\int\mathrm{dx^d} \sqrt{-g} \ e^{-2\phi}\left[R + 4 \partial_{\mu}\phi\partial^{\mu} \phi - \frac{1}{12} \mathcal{W}_{\mu \nu \rho} \mathcal{W}^{\mu \nu \rho} -\frac{1}{4} M_{A B} \mathcal{F}^{A \mu \nu} \mathcal{F}^B_{\ \mu \nu} + \frac{1}{8} \partial_{\mu} M_{A B} \partial^{\mu} M^{A B}\right] 
+\end{equation}
+
+
+En esta acción, los indices dobles $ A,B,... $ van de 1 a 2N y se suben y bajan con la métrica.
+
+\begin{equation}\label{eta}
+\eta_{A B} = \begin{pmatrix}
+0 & \delta^a_{\ b}\\
+\delta_a^{\ b} & 0
+\end{pmatrix}
+\end{equation}
+
+la cual no es otra que la métrica invariante del grupo $ O(N,N) $, de hecho, al estar todos estos indices contraídos, es fácil ver que la teoría completa goza de una simetría global ante el grupo $ G= O(N,N) $!. Esto nos da una idea del porque de las estructuras \ref{ADFT}, \ref{F}, \ref{M} y \ref{W} involucrando objetos covariantes de $ O(N,N) $. Al escoger esta forma de escribir la acción simplemente hicimos manifiesta la simetría global de la teoría efectiva, en donde los vectores son ubicados en representaciones lineales del grupo G mientras que los escalares $ G_{m,n} $ y $ B_{m n} $ los agrupamos en un objeto que transforma en la bi-fundamental del grupo y es invariante ante un subgrupo particular de G conocido como \textbf{subgrupo máximo compacto}, $ H= O(N) \times O(N) $, de esta forma se dice que $ M_{A B} $ parametriza el grupo cociente $ G/H $.\\
+
+
+\begin{itemize}
+	\item \textcolor{red}{\textbf{¿Porque aparecen estos objetos?}}: Con la métrica y el escalar de Ricci está todo bien. La idea de los vectores en tensores de esfuerzo tipo Yang-Mills también salvo dos pequeñas dudas...¿el término propuesto $ M_{A B} F^{A} F^{B} $ es el más general? y ¿La forma de $ M_{A B} $ es simplemente una parametrización que tengo libertad de elegir?. 
+	Con respecto a los escalares ¿Porque el término cinético tiene a la misma matriz $ M_{A B} $ que aparece acoplada a los vectores, no sería más general poner una nueva? 
+	Por último, no entiendo de donde sale el término extra para la 2-forma.
+	\item \textcolor{red}{\textbf{Simetrías de la teoría efectiva}}: Vi que todo se puede agrupar en objetos covariantes de $ O(N,N) $, ¿Esto era previsible o solo uno puede saberlo habiendo compactificado?¿Dada una teoría padre con D y $ \mathcal{N} $ determinado, puedo, a partir de su grupo global de simetrías G y la geometría en la cual compactifico saber de antemano que simetría global y grupo de Gauge tendrá la teoría efectiva? ¿Si, no, en que casos?, (más general)¿Que información sobre la teoría efectiva me dan la teoría padre y la variedad en la que compactifico?
+	\item \textcolor{red}{\textbf{¿Que me fija los factores multiplicativos de 2.7?}}
+\end{itemize}
+
+Luego de haber construido la acción que esperamos obtener, resulta conveniente desglosar esta última acción para ver que esperamos encontrar en el camino. Con respecto al término cinético para los escalares, podemos ver
+
+
+\begin{equation} \label{DMDM}
+\begin{aligned}
+\frac{1}{8}\partial_{\mu} M_{A B} \partial^{\mu} M^{A B} &= \frac{1}{8} \left( \partial_{\mu} M^{a b} \partial^{\mu} M_{a b}  + \partial_{\mu} M^a_{\ b} \partial^{\mu} M_a^{\ b} + \partial_{\mu} M_a^{\ b} \partial^{\mu} M^a_{\ b} + \partial_{\mu} M_{a b} \partial^{\mu} M^{a b} \right)\\
+&= \frac{1}{4} \partial_{\mu} M^{a b} \partial^{\mu} M_{a b} + \frac{1}{4} \partial_{\mu} M^a_{\ b} \partial^{\mu} M_a^{\ b}\\
+&= \frac{1}{4} \partial_{\mu} G^{a b}\partial^{\mu} G_{a b} - \frac{1}{4}\partial_{\mu} G^{a b} \partial^{\mu} \left(B_{a c} G^{c d} B_{d b} \right) - \frac{1}{4} \partial_{\mu} \left(G^{a c} B_{c b}\right) \partial^{\mu} \left( B_{a c} G^{c b}\right)\\
+&= \frac{1}{4} \partial_{\mu} G^{a b}\partial^{\mu} G_{a b} - \frac{1}{4} G^{a b} G^{c d} \partial_{\mu} B_{a d} \partial^{\mu} B_{b c}
+\end{aligned}
+\end{equation}
+
+donde se introdujo la definición \ref{M} y para la última igualdad se aplico Leibniz y distribución. Por otro lado, el término correspondiente al tensor de esfuerzos de los nuevos campos de Gauge viene dado por
+
+\begin{equation}\label{MFF}
+\begin{aligned}
+-\frac{1}{4} M_{A B} \mathcal{F}^{A \mu \nu} \mathcal{F}^B_{\ \mu \nu} &= -\frac{1}{4} M^{a b} \mathcal{F}_a^{\ \mu \nu} \mathcal{F}_{b \mu \nu} -\frac{1}{2} M^a_{\ b} \mathcal{F}_a^{\ \mu \nu} \mathcal{F}^b_{\ \mu \nu} -\frac{1}{4} M_{a b} \mathcal{F}^{a \mu \nu} \mathcal{F}^b_{\ \mu \nu}\\
+=& - G^{a b} \ \partial_{\left[\mu\right.} V_{\left.\nu\right] a} \partial_{\left[\rho\right.} V_{\left.\sigma\right] b} \ g^{\mu \rho} g^{\nu \sigma}\\
+&+ 2 G^{a c} B_{c b} \ \partial_{\left[\mu\right.} V_{\left.\nu\right] a} \partial_{\left[\rho\right.} A_{\left.\sigma\right]}^{\ b} \ g^{\mu \rho} g^{\nu \sigma}\\
+&- G_{a b} \ \partial_{\left[\mu\right.} A_{\left.\nu\right]}^{\ a} \partial_{\left[\rho\right.} A_{\left.\sigma\right]}^{\ b} \ g^{\mu \rho} g^{\nu \sigma} + B_{a c} G^{c d} B_{c b} \ \partial_{\left[\mu\right.} A_{\left.\nu\right]}^{\ b} \partial_{\left[\rho\right.} A_{\left.\sigma\right]}^{\ b} \ g^{\mu \rho} g^{\nu \sigma}
+\end{aligned}
+\end{equation}
+
+Finalmente, el escalar de curvatura y el tensor de esfuerzos para la 2-forma lo dejaremos como está por motivos que quedarán claro más adelante.\\
+
+Con estos términos en mente, comencemos introduciendo las parametrizaciones \ref{Gdown}, \ref{Gup} y \ref{B} en \ref{S}. En primer lugar, observamos que la medida puede ser reescrita como
+
+\begin{equation}
+\sqrt{-G} = \sqrt{-g} \frac{\sqrt{-G}}{\sqrt{-g}} \equiv \sqrt{-g} D \equiv \sqrt{-g} e^{2 L(x)}
+\end{equation}
+
+donde $ 2 L(x)= \log Tr\left\{ D\right\}  $. Lo que observamos es que independientemente de la forma de L, dicho factor es una función de las coordenadas externas y dado que se obtiene como producto y suma de escalares, se comporta de igual forma. Ahora bien, observando las parametrizaciones \ref{Gdown}, \ref{Gup} y \ref{B}, vemos que estas no se ven afectadas por un factor conforme global, al costo de redefinir los campos de la teoría efectiva. Por ejemplo, podríamos haber comenzado con un desdoble de los indices totalmente equivalente
+
+\begin{equation}\label{Gconforme}
+G_{i j} =
+\Omega(x) \begin{pmatrix}
+\Omega^{-1} g_{\mu \nu} + \Omega^{-1} G_{o p} A^o_{\ \mu} A^p_{\ \nu} &&  \Omega^{-1}A^p_{\ \mu} G_{p n}\\
+\Omega^{-1} G_{m p} A^p_{\ \nu}  && \Omega^{-1} G_{m n}
+\end{pmatrix} 
+\longrightarrow 
+\begin{pmatrix}
+g'_{\mu \nu} + G'_{o p} A'^o_{\ \mu} A'^p_{\ \nu} &&  A'^p_{\ \mu} G'_{p n}\\
+G'_{m p} A'^p_{\ \nu}  && G'_{m n}
+\end{pmatrix} 
+\end{equation}
+
+lo cual nos lleva a exactamente la misma física que el caso sin primar. Este truco sencillo nos permite argumentar que el factor global de la teoría efectiva $ e^{2 L(x)} $ esta definido a menos de un factor conforme del cual podemos sacar provecho para redefinir el campo escalar $ \phi $ por medio de $ e^{2 \left(L(x) + \phi \right)} $ o incluso anularlo para pasar a un Einstein-frame. Esta aclaración nos será muy importante más adelante.\\
+
+[\textcolor{red}{Corroborar que esto sea así}]\\
+
+
+Luego del determinante, podemos seguir con el escalar de curvatura, el cual al desdoblar indices obtenemos
+
+\begin{equation}
+\begin{aligned}
+R= G^{\mu \nu} R^{\rho}\,_{\mu \rho \nu}+G^{\mu m} R^{\nu}\,_{\mu \nu m}&+G^{\mu \nu} R^{m}\,_{\mu m \nu}+G^{\mu m} R^{n}\,_{\mu n m}+G^{\mu m} R^{\nu}\,_{m \nu \mu}\\
+&+G^{m n} R^{\mu}\,_{m \mu n}+G^{\mu m} R^{n}\,_{m n \mu}+G^{m n} R^{o}\,_{m o n}
+\end{aligned}
+\end{equation}
+
+Y utilizando Cadabra obtenemos
+
+\begin{equation}\label{R}
+\begin{aligned}
+R &= - \frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g^{\mu \nu}} g^{\rho \sigma} - \frac{1}{2}\partial_{\mu}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}} g^{\mu \nu}+\partial_{\mu}{g^{\mu \rho}} \partial_{\nu}{g_{\rho \sigma}} g^{\nu \sigma} -\partial_{\mu \nu}{g_{\rho \sigma}} g^{\mu \nu} g^{\rho \sigma} +\partial_{\mu \nu}{g_{\rho \sigma}} g^{\mu \rho} g^{\nu \sigma}\\
+& +\frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \rho} g^{\sigma \nu} g^{\lambda \alpha} - \frac{1}{4}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \nu} g^{\rho \sigma} g^{\lambda \alpha} - \frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \lambda} g^{\rho \nu} g^{\sigma \alpha}+\frac{1}{4}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \nu} g^{\rho \lambda} g^{\sigma \alpha} \\
+& \color{red} - \frac{1}{2}G^{m n} \partial_{\mu}{G_{m n}} \partial_{\nu}{g^{\mu \nu}} - \frac{1}{2}\partial_{\mu}{G_{m n}} \partial_{\nu}{G^{m n}} g^{\mu \nu} -\partial_{\mu \nu}{G_{m n}} G^{m n} g^{\mu \nu} - \frac{1}{4}G^{m n} G^{o p} \partial_{\mu}{G_{m n}} \partial_{\nu}{G_{o p}} g^{\mu \nu}\\
+& \color{red} +\frac{1}{4}G^{m n} G^{o p} \partial_{\mu}{G_{m o}} \partial_{\nu}{G_{n p}} g^{\mu \nu}+\frac{1}{2}G^{m n} \partial_{\mu}{G_{m n}} \partial_{\nu}{g_{\rho \sigma}} g^{\mu \rho} g^{\nu \sigma} - \frac{1}{2}G^{m n} \partial_{\mu}{G_{m n}} \partial_{\nu}{g_{\rho \sigma}} g^{\mu \nu} g^{\rho \sigma}\\
+& \color{blue} + G_{m n} A^{m}\,_{\mu} \partial_{\rho \sigma}{A^{n}\,_{\nu}} g^{\mu \nu} g^{\rho \sigma} -G_{m n} A^{m}\,_{\mu} \partial_{\rho \sigma}{A^{n}\,_{\nu}} g^{\mu \rho} g^{\sigma \nu}+\frac{1}{2}G_{m n} \partial_{\rho}{A^{m}\,_{\mu}} \partial_{\sigma}{A^{n}\,_{\nu}} g^{\rho \nu} g^{\mu \sigma}\\
+& \color{blue} - \frac{1}{2}G_{m n} \partial_{\rho}{A^{m}\,_{\mu}} \partial_{\sigma}{A^{n}\,_{\nu}} g^{\rho \sigma} g^{\mu \nu}+G_{m n} \partial_{\rho \sigma}{A^{m}\,_{\mu}} A^{n}\,_{\nu} g^{\rho \mu} g^{\sigma \nu} -G_{m n} \partial_{\rho \sigma}{A^{m}\,_{\mu}} A^{n}\,_{\nu} g^{\rho \sigma} g^{\mu \nu}
+\end{aligned}
+\end{equation}
+
+donde los términos en negro se corresponden con la distribución completa del Ricci para la teoría efectiva, $ \mathcal{R} $! Luego, trabajando la expresión sobrante, podemos comenzar con aquellos que no poseen campos de Gauge (rojos), en los cuales intercambiando derivadas y demás, se obtiene
+
+\begin{equation}
+\textcolor{red}{R} = - \frac{1}{\sqrt{-g}} \partial_{\nu} \left( \sqrt{-g} G^{m n} \partial_{\mu}{G_{m n}} g^{\mu \nu} \right) - \frac{1}{4} G^{m n} \partial_{\mu}{G_{m n}} G^{o p} \partial_{\mu}{G_{o p}} + \frac{1}{4} \partial_{\mu}{G_{m n}}\partial^{\mu} G^{m n}
+\end{equation}
+
+donde el último término es uno de los tantos que estabamos buscando, correspondiente a \ref{DMDM}.
+Luego, fijándonos en los términos azules de \ref{R}, vemos que algunos de ellos se cancelan entre si y nos queda simplemente
+
+\begin{equation}
+\textcolor{blue}{R} = - G_{a b} \ \partial_{\left[\mu\right.} A_{\left.\nu\right]}^{\ a} \partial_{\left[\rho\right.} A_{\left.\sigma\right]}^{\ b} \ g^{\mu \rho} g^{\nu \sigma}
+\end{equation}
+
+donde vemos que se recupera uno de los términos en \ref{MFF}. En definitiva
+
+\begin{equation}
+R = \mathcal{R} - \frac{1}{\sqrt{-g}} \partial_{\nu} \left( \sqrt{-g} G^{m n} \partial_{\mu}{G_{m n}} g^{\mu \nu} \right) - \frac{1}{4} G^{m n} \partial_{\mu}{G_{m n}} G^{o p} \partial_{\mu}{G_{o p}} + \frac{1}{4} \partial_{\mu}{G_{m n}}\partial^{\mu} G^{m n} - G_{a b} \ \partial_{\left[\mu\right.} A_{\left.\nu\right]}^{\ a} \partial_{\left[\rho\right.} A_{\left.\sigma\right]}^{\ b} \ g^{\mu \rho} g^{\nu \sigma}
+\end{equation}
+
+Para el tensor de esfuerzos de la 2-forma, la situación requiere un poco más de trabajo. Para ello, la estrategia será identificar de donde pueden venir los términos que necesitamos para completar nuestros objetos covariantes de $ O(N,N) $ y luego verificar que el resto se cancela entre si. Para ello, nuevamente comenzamos desdoblando los indices en $ H_{i j k} H^{i j k} $ y agrupando aquellos que sean iguales por permutaciones de sus indices con lo que obtenemos
+
+\begin{equation}\label{H1}
+- \frac{1}{12} H_{i j k} H^{i j k} = - \frac{1}{12} H_{\mu \nu \rho} H^{\mu \nu \rho} - \frac{1}{4} H_{\mu \nu n} H^{\mu \nu n} - \frac{1}{4} H_{\mu m n} H^{\mu m n} - \frac{1}{12} H_{m n o} H^{m n o}
+\end{equation}
+
+donde el último término se anula por la definición de $ H $ y la hipótesis de no dependencia sobre coordenadas internas. Concentrandonos por un momento en el primer término, puede introducirse la parametrización \ref{B} y obtener
+
+\begin{equation}
+\begin{aligned}
+H_{\mu \nu \rho} &= 3 \partial_{\left[\mu\right. } b_{\left.\nu \rho \right]} 
+- 3 \partial_{\left[\mu\right.} \left( A^p_{\ \nu} V_{\left. \rho \right] p}\right)
++ 3 \partial_{\left[\mu\right.} \left( A^o_{\ \nu} A^p_{ \ \left. \nu \right]} B_{o p} \right)\\
+&= W_{\mu \nu \rho} -6 \partial_{\left[ \mu\right.} A^p_{\ \nu} V_{\left.\rho\right] p} + 3 \partial_{\left[\mu\right.} \left( A^o_{\ \nu} A^p_{ \ \left. \nu \right]} B_{o p} \right)
+\end{aligned}
+\end{equation}
+
+de donde vemos que $ H_{\mu \nu \rho} H^{\mu \nu \rho} $  recupera directamente el término de tensor de esfuerzos en la teoría efectiva con algunos términos extra, sin la necesidad de tener que desglosar todo e identificar cada término por separado. De esta forma, podemos reemplazar la definición de $ H $, la parametrización de $ B_{i j} $, doblar todos los indices, distribuir, etc y ver que se recuperan los términos de \ref{DMDM} de \ref{MFF} como esperabamos! Sin embargo, el resto no va a cero sino que nos queda. 
+
+\vspace{5cm}
+(CADABRA) 
+
+\begin{equation}
+\begin{aligned}
+H_{resto}&= \partial_{\rho}{b_{\lambda \alpha}} \left( g^{\mu \lambda} g^{\rho \alpha} g^{\nu \sigma} A^{m}\,_{\mu} \partial_{\rho}{V_{m \nu}} -g^{\mu \lambda} g^{\sigma \rho} g^{\nu \alpha} A^{m}_{\mu} \partial_{\sigma}{V_{m \nu}}+g^{\mu \rho} g^{\sigma \lambda} g^{\nu \alpha} A^{m}\,_{\mu} \partial_{\sigma}{V_{m \nu}} \right.\\
+& \left. +g^{\sigma \lambda} g^{\mu \alpha} g^{\nu \rho} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu} -g^{\sigma \lambda} g^{\mu \rho} g^{\nu \alpha} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu}+g^{\sigma \rho} g^{\mu \lambda} g^{\nu \alpha} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu} \right)\\
+&+\frac{1}{2} g^{\rho \nu} g^{\mu \sigma} G^{o p} B_{o n} A^{m}\,_{\mu} \partial_{\rho}{B_{p m}} \partial_{\sigma}{A^{n}\,_{\nu}} - \frac{1}{2} g^{\rho \sigma} g^{\mu \nu} G^{o p} B_{o n} A^{m}\,_{\mu} \partial_{\rho}{B_{p m}} \partial_{\sigma}{A^{n}\,_{\nu}}\\
+& +g^{\mu \nu} g^{\rho \sigma} G^{o p} B_{o n} A^{m}\,_{\mu}  \partial_{\rho}{B_{p m}} \partial_{\sigma}{A^{n}\,_{\nu}} - g^{\mu \sigma} g^{\rho \nu} G^{o p} B_{o n} A^{m}\,_{\mu}  \partial_{\rho}{B_{p m}} \partial_{\sigma}{A^{n}\,_{\nu}}\\
+&+ \frac{1}{2} g^{\rho \nu} g^{\mu \sigma} G^{o p} B_{p n} A^{m}\,_{\mu} \partial_{\rho}{B_{o m}} \partial_{\sigma}{A^{n}\,_{\nu}} - \frac{1}{2}g^{\rho \sigma} g^{\mu \nu} G^{o p} B_{p n} A^{m}\,_{\mu}  \partial_{\rho}{B_{o m}} \partial_{\sigma}{A^{n}\,_{\nu}}\\
+&- \frac{1}{2}g^{\lambda \alpha} g^{\mu \rho} g^{\nu \sigma} \partial_{\lambda}{B_{m n}} A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} B_{o p} \partial_{\alpha}{A^{p}\,_{\sigma}}+g^{\lambda \sigma} g^{\mu \rho} g^{\nu \alpha} \partial_{\lambda}{B_{m n}} A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} B_{o p} \partial_{\alpha}{A^{p}\,_{\sigma}}\\
+&- \frac{3}{2}g^{\mu \lambda} g^{\nu \alpha} g^{\rho \sigma} A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} B_{m p} \partial_{\lambda}{B_{n o}} \partial_{\alpha}{A^{p}\,_{\sigma}}+\frac{3}{2}g^{\mu \lambda} g^{\nu \alpha} g^{\rho \sigma} A^{m}\,_{\mu} A^{n}\,_{\nu} B_{m p} \partial_{\lambda}{B_{n o}} A^{o}\,_{\rho} \partial_{\alpha}{A^{p}\,_{\sigma}}\\
+& -g^{\mu \nu} g^{\lambda \alpha} g^{\rho \sigma} A^{m}\,_{\mu} A^{n}\,_{\nu} B_{m p} \partial_{\lambda}{B_{n o}} A^{o}\,_{\rho} \partial_{\alpha}{A^{p}\,_{\sigma}}+\frac{1}{2}g^{\mu \nu} g^{\lambda \sigma} g^{\rho \alpha} A^{m}\,_{\mu} A^{n}\,_{\nu} B_{m p} \partial_{\lambda}{B_{n o}} A^{o}\,_{\rho} \partial_{\alpha}{A^{p}\,_{\sigma}}\\
+&- \frac{3}{2}g^{\mu \nu} g^{\rho \alpha} g^{\lambda \sigma} A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} B_{m p} \partial_{\lambda}{B_{n o}} \partial_{\alpha}{A^{p}\,_{\sigma}}+\frac{3}{2}g^{\mu \nu} g^{\rho \sigma} g^{\lambda \alpha} A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} B_{m p} \partial_{\lambda}{B_{n o}} \partial_{\alpha}{A^{p}\,_{\sigma}}
+\end{aligned}
+\end{equation}
+
+(EN LIMPIO)
+
+\begin{equation}
+\begin{aligned}
+H_{resto}&= \partial_{\rho}{b_{\lambda \alpha}} \left( g^{\mu \lambda} g^{\sigma \alpha} g^{\nu \rho} A^{m}\,_{\mu} \partial_{\sigma}{V_{m \nu}} -g^{\mu \lambda} g^{\sigma \rho} g^{\nu \alpha} A^{m}_{\mu} \partial_{\sigma}{V_{m \nu}}+g^{\mu \rho} g^{\sigma \lambda} g^{\nu \alpha} A^{m}\,_{\mu} \partial_{\sigma}{V_{m \nu}} \right.\\
+& \left. +g^{\sigma \lambda} g^{\mu \alpha} g^{\nu \rho} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu} -g^{\sigma \lambda} g^{\mu \rho} g^{\nu \alpha} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu}+g^{\sigma \rho} g^{\mu \lambda} g^{\nu \alpha} \partial_{\sigma}{A^{m}_{\mu}} V_{m \nu} \right)\\
+& + A^{m}\,_{\mu} A^{n}\,_{\nu} A^{o}\,_{\rho} \left( g^{\mu \nu} g^{\lambda \alpha} g^{\rho \sigma}  - 2 g^{\mu \nu} g^{\lambda \sigma} g^{\rho \alpha} \right) B_{m p} \partial_{\lambda}{B_{n o}} \partial_{\alpha}{A^{p}\,_{\sigma}}
+\end{aligned}
+\end{equation}
+
+lo cual seguramente se puede reescribir de una mejor forma
+
+\section{\textcolor{teal}{Gauge Supergravity}}
+
+Aunque la compactificación en un toro resulta ser el escenario más sencillo, lamentablemente las teorías ungauged supergravity poseen diversos problemas fenomenológicos desde el comienzo que hacen necesario ''mejorarla'' de algún modo. Entre ellos se encuentra la ausencia de un potencial escalar: esto lleva a un estado de vacío completamente degenerado por lo que resulta imposible otorgarle masa a las partículas por un mecanismo de ruptura espontánea de simetría \textcolor{red}{¿Es así?}.A su vez esto no permite generar una constante cosmologica, lo que contradice experimentos actuales en donde se observa una constante muy pequeña positiva que caracteriza un universo de De Sitter. Otro problema fenomenológico que se encuentra a la vista es la aparición de una simetría de Gauge abeliana, en lugar de estructuras no conmutativas propias del modelo estándar. 
+
+La idea de mejorar la teoría viene de la mano de los \textbf{Gaugings}. Por un lado se sabe que estos objetos son las únicas deformaciones posibles que se le pueden hacer a las ungauged con la condición de preservar supersimetría. 
+A su vez, como ya hemos mencionado, estas teorías ungauged son muy rígidas por tener un gran número de supersimetrías, lo que las convierte en únicas siempre y cuando se especifiquen los campos presentes. Por ejemplo, para las maximal supergravities en $ d<10 $ existe una única ungauged, mientras que para las half-maximal supergravities debe especificarse el número de multipletes de vectores.
+Estos dos factores nos permiten afirmar que cualquier compactificación en una variedad que preserve supersimetría, por más complicada que sea, da lugar a una deformación de la ungauged que puede identificarse con un gauging particular!
+
+Cuando hablamos de gaugear la teoría nos referimos a promover un subgrupo $ G $ del grupo de simetría global de la teoría ungauged $ G_0 $, a una simetría local. Si bien la esto puede parecer un poco forzado o rebuscado, la historia nos demuestra que grandes resultados se obtienen de dicho mecanismo ya que la idea no es para nada propia de supergravedad, sino que se remonta a las métodos originales del modelo estándar para introducir las interacciones fundamentales en el lagrangiano de Dirac! Repasemos brevemente a modo de motivación la teoría de Yang-Mills.
+
+
+\subsection{Repaso de Yang-Mills}
+
+%Repasando brevemente el caso de Yang-Mills, lo que sucedía era que el Lagrangiano de Dirac para N fermiones de spín $ 1/2 $ gozaba de una simetría global $ G_0 = SU(N) $, el grupo de las matrices unitarias de NxN unimodulares que actuaba sobre el multiplete de spinores $ \Psi $, como
+%
+%\begin{equation}
+%\Psi \longrightarrow \Psi'= U \Psi
+%\end{equation}
+%
+%y sobre los spinores adjuntos $ \bar{\Psi} = \gamma^0 \Psi^{\dagger} $
+%
+%\begin{equation}
+%\bar{\Psi} \longrightarrow \bar{\Psi}'=  \bar{\Psi} U^{\dagger}
+%\end{equation}
+%
+%Luego, si uno estudiaba el comportamiento de esta transformación con parámetros locales, lo que observaba era que las derivadas en el lagrangiano de Dirac actuaban sobre los objetos de $ SU(N) $ y no permitían una invarianza local. Para solucionar esto se propone cambiar la derivada a un nuevo objeto covariante que de las propiedades de transformación deseadas 
+%A modo de motivación, repasemos brevemente dicho esquema estudiante algunos aspectos de la teoría de Yang-Mills.\\
+%
+%Dado un multiplete de N fermiones de spín $ 1/2 $ 
+%
+%\begin{equation}
+%\Psi = \begin{pmatrix}
+%\psi_1\\
+%\vdots\\
+%\psi_N
+%\end{pmatrix}
+%\end{equation}
+%
+%el lagrangiano de Dirac venía dado por
+%
+%\begin{equation}\label{L_Dirac}
+%\mathcal{L}_D = \int \mathrm{d}x \ i \bar{\Psi} \gamma^{\mu} \partial_{\mu} \Psi - m\bar{\Psi} \Psi
+%\end{equation}
+%
+%donde 
+%
+%\begin{equation}
+%\bar{\Psi} = \gamma^0 \Psi^{\dagger}
+%\end{equation}
+%
+%y aparecen las matrices de Dirac, $ \gamma^0 $ y $ \gamma^{\mu} $. Dicho lagrangiano goza de una simetría global $ G_0 = SU(N) $, el grupo de las matrices unitarias de NxN unimodulares que actua sobre los campos fermiónicos como
+%
+%\begin{equation}
+%\Psi \longrightarrow \Psi'= U \Psi
+%\end{equation}
+%
+%con $ U \in SU(N) $ y como se ve de  \ref{L_Dirac}, deja invariante ambos términos del Lagrangiano.
+
+\subsection{El embedding tensor}
+
+Para gaugear la teoría, comenzamos con el grupo de simetrías global $ G_0 $ con generadores del álgebra $ \mathcal{g}_0 $, $ t_{\alpha} \ \ \alpha=1,..., Dim(G_0)$ que ciertamente obedecen una regla de conmutación
+
+\begin{equation}
+\left[t_{\alpha}, t_{\beta}\right] = f_{\alpha \beta}^{\ \ \gamma} t_{\gamma}
+\end{equation}
+
+donde las constantes de estructura, $ f_{\alpha \beta}^{\ \ \gamma} $ son distintas de cero, por lo que definen un grupo no abeliano. En nuestro caso particular en half-maximal $ d=4 $, el grupo de simetrías global se corresponde con $ G_0=O(6,6) $ que consta de aquellos tensores que dejan invariante la métrica \ref{eta}. La invarianza de la acción puede verse facilmente de \ref{S_compact}, donde todos los indices de $ O(6,6) $ se encuentran contraídos con la métrica. Ahora bien, todos estos términos incluyen derivadas las cuales no actúan sobre los objetos de $ G_0 $ global. La situación es distinta si queremos tomar un subgrupo $ G $ e introducirle dependencia en las coordenadas a los parámetros del álgebra. Para preservar dicha simetría es necesario introducir objetos que trasformen de manera covariante ante estos grupos, la famosa derivada covariante $ D_{\mu} $. Para ello necesitamos los generadores de nuestro subgrupo y vectores de gauge que funcionen de conexión para la derivada covariante. A diferencia de lo que estábamos acostumbrados en las teorías de gauge del modelo estándar, no es necesario introducir a mano estos objetos, ya que la teoría misma viene equipada con 36 vectores $ A^A_{\ \mu} $! De esta forma, siendo $ X_M $ los generadores de $ \mathfrak{g} $, tenemos la derivada covariante
+
+\begin{equation}\label{D}
+D_{\mu} = \partial_{\mu} - q A^M_{\ \mu} X_M 
+\end{equation}
+
+donde $ q $ es la constante de acople. De \ref{D} vemos el número de generadores está limitado por el número de vectores, esto restringe la dimensión del subgrupo G a $ Dim(G) \leq 36 $! Dado que estos generadores son un subconjunto de $ t_{\alpha} $, existe una manera de relacionarlos mediante el \textbf{embedding tensor} $ \Theta_M^{\ \alpha} $ dada por
+
+\begin{equation}
+X_M = \Theta_M^{\ \alpha} t_{\alpha}
+\end{equation}
+
+
+Este objeto de indices mixtos define los posibles gaugings de la teoría ungauged, es decir contiene información sobre todas la posibles deformaciones, el mismo determina como el grupo de gauge se encuentra escondido dentro del grupo global $ G_0 $.
+
+Con estos generadores, objetos con distinto número de indices transforman de manera distinta ante una variación infinitesimal. Por ejemplo, objetos en la fundamental de $ G_0 $ varían según
+
+\begin{equation}\label{deltaindices}
+\begin{aligned}
+\delta \Lambda_A &= q \xi^M X_{M A}^{\ \ \ \ P} \Lambda_P\\
+\delta \Lambda^A &= -q \xi^M X_{M P}^{\ \ \ \ A} \Lambda^P\\
+\delta H_A^{\ B} &= q \xi^M X_{M A}^{\ \ \ \ P} H_P^{\ B} -q \xi^M X_{M P}^{\ \ \ \ B} H_A^{\ P}
+\end{aligned}
+\end{equation}
+
+donde $ \xi^M (x)  $ es el parámetro local de la transformación y se definió 
+
+\begin{equation}
+X_{M A}^{\ \ \ \ P} = \Theta_M^{\ \alpha} \left(t_{\alpha}\right)_A^{\ P}
+\end{equation}
+
+donde expresamos a los generadores de $ G_0 $ en la representación fundamental. De forma análoga las derivadas covariantes en estos objetos también actúan de forma diferente siendo 
+
+\begin{equation}\label{Dindices}
+\begin{aligned}
+D_{\mu} \phi &= \partial_{\mu} \phi\\
+D_{\mu} H_A^{\ B} &= \partial_{\mu} H_A^{\ B} -q A^M_{\ \mu} X_{M A}^{\ \ \ \ P} H_P^{\ B} + q A^M_{\ \mu} X_{M P}^{\ \ \ \ B} H_A^{\ P}
+\end{aligned}
+\end{equation}
+
+para un escalar y tensor de indices mixtos respectivamente.
+
+
+El embedding tensor nos dice como se encuentra sumergido el grupo de gauge en la simetría global, no cualquier subgrupo será válido para realizar esto debido a la necesidad de obedecer ciertas relaciones. En nuestra caso particular solo se necesitan dos vínculos para garantizar la invarianza de gauge de la teoría, uno cuadrático y otro lineal. El primero de ellos tiene que ver con la clausura de los generadores en un álgebra, esta condición coincide con pedir invarianza de los $X_{M A}^{\ \ \ \ P} $. Para ver esto...\\
+
+donde se llega a la relación 
+
+\begin{equation}\label{vinculocuadratico}
+\left[X_M, X_N\right] = X_{M N}^{\ \ \ \ P} X_P
+\end{equation}
+
+En definitiva, para tener realmente una simetría de gauge, $ X_M $ (o equivalentemente $ \Theta_M^{\ \alpha} $) debe satisfacer este vínculo cuadrático. Que \ref{vinculocuadratico} sea efectivamente un vínculo para los generadores se debe a que las constantes de estructura ya se encuentran fijas de entrada por el grupo global. Un resultado interesante es que los objetos $ X_{M N}^{\ \ \ \ P} $ no tienen porque ser antisimétricos en sus dos primeros indices, \ref{vinculocuadratico} demanda que esto se cumpla solo ante la proyección con $ X_P $.
+
+Sumado a \ref{vinculocuadratico}, es necesario un vínculo lineal para $ \Theta_M^{\ \alpha} $ dictado por supersimetría. Dado que el embedding tensor transforma en la representación $ V^{*} \otimes \mathfrak{g}_0 $  (con $ V^{*} $ la representación dual fundamental), con objeto de introducir una simetría de gauge sin romper supersimetría, es necesario quedarnos solo con un conjunto de las representaciones irreducibles de dicho producto
+
+\begin{equation}
+V* \otimes \mathfrak{g}_0 = \theta_1 \oplus \theta_2 \dots \oplus \theta_n
+\end{equation}
+
+Demandando que dicho vínculo lineal sea $G_0$-covariante, puede demostrarse que puede escribirse en la forma
+
+\begin{equation}\label{vinculolineal}
+\mathbb{P} \Theta = 0
+\end{equation} 
+
+donde $ \mathbb{P} $ es un proyector que selecciona aquellos subespacios no permitidos por la invarianza de gauge y supersimetría. Puede demostrase que en nuestro caso particular con 12 vectores de gauge y 66 generadores del grupo $ O(6,6) $, el embedding tensor transforma en la representación
+
+\begin{equation}\label{repO66}
+ 12 \otimes 66 = 12 \oplus 220 \oplus \dots
+\end{equation}
+
+y los únicos subespacios permitidos sorresponden a los primeros 2 de \ref{repO66}.\\
+
+De esta forma vemos que cualquier subgrupo cuyos generadores estén caracterizados por un embedding tensor cumpliendo \ref{vinculocuadratico} y \ref{vinculolineal}, corresponderá con una posible deformación supersimétrica de la teoría con invarianza de gauge. Lo remarcable de este método en donde utilizamos el embedding tensor como un objeto covariante del grupo global para parametrizar los generadores, es que nos permite preservar dicha simetría a lo largo de todo el proceso de gaugear supergravedad, hasta el momento en donde especificamos un subgrupo particular y rompemos la simetría global.\\
+
+Con los vínculos \ref{vinculocuadratico} y \ref{vinculolineal} en mente, pasemos ahora sí a nuestra acción \ref{S_compact} y veamos que sucede al introducir los gaugings en los diversos objetos. La mecánica resulta ser la misma para todos ellos, simplemente debemos promover las derivadas usuales a covariantes siguiendo las convenciones de \ref{Dindices}. Para el tensor de esfuerzos tenemos
+
+\begin{equation}
+\begin{aligned}
+F^A_{\ \mu \nu} &= 2 D_{\left[ \mu \right.} A^A_{\left. \nu\right]} = 
+\end{aligned}
+\end{equation}
+
+	 
+\end{document}
