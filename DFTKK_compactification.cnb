@@ -1,0 +1,1125 @@
+{
+	"cells" : 
+	[
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Comenzamos definiendo los indices de DFT (M), el espacio externo (mu) y el doble compacto (m)"
+				}
+			],
+			"hidden" : true,
+			"source" : "Comenzamos definiendo los indices de DFT (M), el espacio externo (mu) y el doble compacto (m)"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : "{M,N,O,P,Q}::Indices(DFT,position=free)\n{\\mu,\\nu,\\rho,\\sigma,\\lambda,\\alpha,\\beta,\\chi}::Indices(efectivo,position=independent,parent=DFT)\n{m,n,o,p,q}::Indices(doble interno,position=free)"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Luego definimos la metrica generalizada H, la metrica O(D,D) invariante y los campos que apareceran en la accion de Kaluza-Klein de DFT, g,b,M,phi"
+				}
+			],
+			"hidden" : true,
+			"source" : "Luego definimos la metrica generalizada H, la metrica O(D,D) invariante y los campos que apareceran en la accion de Kaluza-Klein de DFT, g,b,M,phi"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "D_{\\mu}(A??) → \\partial_{\\mu}(A??)-A_{\\mu}^{p}*\\partial_{p}(A??)"
+						}
+					],
+					"source" : "\\begin{dmath*}{}D_{\\mu}\\left(A??\\right) \\rightarrow \\partial_{\\mu}\\left(A??\\right)-A_{\\mu}\\,^{p} \\partial_{p}\\left(A??\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "\\partial{#}::PartialDerivative.\nD_{#}::Derivative.\nH_{a? b?}::Symmetric.\t\nH^{a?}_{b?}::Symmetric.\nH_{a?}^{b?}::Symmetric.\nH^{a? b?}::Symmetric.\n\\eta_{M N}::Metric.\n\\eta^{M N}::InverseMetric.\n\\eta_{m n}::Metric.\n\\eta^{m n}::InverseMetric.\nb_{\\mu \\nu}::AntiSymmetric.\ng_{\\mu \\nu}::Metric.\ng^{\\mu \\nu}::InverseMetric.\n\\delta^{a?}_{b?}::KroneckerDelta.\n\\delta_{a?}^{b?}::KroneckerDelta.\nM_{m n}::Symmetric.\nM^{m n}::Symmetric.\nDcov:= D_{\\mu}{A??} -> \\partial_{\\mu}{A??} - A_{\\mu}^{p} \\partial_{p}{A??};"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property SortOrder to~}\\left[g^{\\mu \\nu},~\\discretionary{}{}{} g_{\\mu \\nu},~\\discretionary{}{}{} \\phi,~\\discretionary{}{}{} \\partial_{\\mu}{\\phi},~\\discretionary{}{}{} \\partial_{p}{\\phi},~\\discretionary{}{}{} \\partial^{p}{\\phi},~\\discretionary{}{}{} M^{m n},~\\discretionary{}{}{} M_{m n},~\\discretionary{}{}{} b_{\\mu \\nu},~\\discretionary{}{}{} \\partial_{\\mu}{b_{\\nu \\rho}},~\\discretionary{}{}{} \\partial_{p}{b_{\\mu \\nu}},~\\discretionary{}{}{} \\partial^{p}{b_{\\mu \\nu}},~\\discretionary{}{}{} \\partial_{\\mu}{M^{m n}},~\\discretionary{}{}{} \\partial_{p}{M^{m n}},~\\discretionary{}{}{} \\partial_{\\mu}{M_{m n}},~\\discretionary{}{}{} \\partial_{p}{M_{m n}},~\\discretionary{}{}{} A_{\\mu}\\,^{n},~\\discretionary{}{}{} A_{\\mu n},~\\discretionary{}{}{} \\partial_{\\mu}{A_{\\nu}\\,^{n}},~\\discretionary{}{}{} \\partial_{p}{A_{\\mu}\\,^{n}},~\\discretionary{}{}{} \\partial_{\\mu}{A_{\\nu n}},~\\discretionary{}{}{} \\partial_{p}{A_{\\mu n}},~\\discretionary{}{}{} \\partial_{\\mu}{g^{\\nu \\rho}},~\\discretionary{}{}{} \\partial_{p}{g^{\\nu \\rho}},~\\discretionary{}{}{} \\partial_{\\mu}{g_{\\nu \\rho}},~\\discretionary{}{}{} \\partial_{p}{g_{\\nu \\rho}}\\right].\\end{dmath*}"
+				}
+			],
+			"source" : "{g^{\\mu \\nu}, g_{\\mu \\nu}, \\phi, \\partial_{\\mu}{\\phi}, \\partial_{p}{\\phi}, \\partial^{p}{\\phi}, M^{m n}, M_{m n}, b_{\\mu \\nu}, \\partial_{\\mu}{b_{\\nu \\rho}}, \\partial_{p}{b_{\\mu \\nu}}, \\partial^{p}{b_{\\mu \\nu}}, \\partial_{\\mu}{ M^{m n}}, \\partial_{p}{ M^{m n}}, \\partial_{\\mu}{ M_{m n}}, \\partial_{p}{ M_{m n}}, A_{\\mu}^{n}, A_{\\mu n}, \\partial_{\\mu}{A_{\\nu}^{n}}, \\partial_{p}{A_{\\mu}^{n}}, \\partial_{\\mu}{A_{\\nu n}}, \\partial_{p}{A_{\\mu n}}, \\partial_{\\mu}{g^{\\nu \\rho}}, \\partial_{p}{g^{\\nu \\rho}}, \\partial_{\\mu}{g_{\\nu \\rho}}, \\partial_{p}{g_{\\nu \\rho}} }::SortOrder;"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Como ya sabemos a donde esperamos llegar, vamos a desglozar los terminos del lagrangiano final para luego comparar con lo que obtengamos."
+				}
+			],
+			"hidden" : true,
+			"source" : "Como ya sabemos a donde esperamos llegar, vamos a desglozar los terminos del lagrangiano final para luego comparar con lo que obtengamos."
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "R: Escalar de Ricci covariante, con derivadas covariantes en lugar de parciales"
+				}
+			],
+			"hidden" : true,
+			"source" : "R: Escalar de Ricci covariante, con derivadas covariantes en lugar de parciales"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "R^{\\rho}_{\\mu \\sigma \\nu} → D_{\\sigma}(\\Gamma^{\\rho}_{\\mu \\nu})-D_{\\nu}(\\Gamma^{\\rho}_{\\mu \\sigma})+\\Gamma^{\\rho}_{\\sigma \\alpha}*\\Gamma^{\\alpha}_{\\mu \\nu}-\\Gamma^{\\rho}_{\\nu \\alpha}*\\Gamma^{\\alpha}_{\\mu \\sigma}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}R^{\\rho}\\,_{\\mu \\sigma \\nu} \\rightarrow D_{\\sigma}{\\Gamma^{\\rho}\\,_{\\mu \\nu}}-D_{\\nu}{\\Gamma^{\\rho}\\,_{\\mu \\sigma}}+\\Gamma^{\\rho}\\,_{\\sigma \\alpha} \\Gamma^{\\alpha}\\,_{\\mu \\nu}-\\Gamma^{\\rho}\\,_{\\nu \\alpha} \\Gamma^{\\alpha}\\,_{\\mu \\sigma}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\Gamma^{\\rho}_{\\mu \\nu} →  1/2 g^{\\rho \\alpha}*(D_{\\mu}(g_{\\alpha \\nu})+D_{\\nu}(g_{\\mu \\alpha})-D_{\\alpha}(g_{\\mu \\nu}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\Gamma^{\\rho}\\,_{\\mu \\nu} \\rightarrow \\frac{1}{2}g^{\\rho \\alpha} \\left(D_{\\mu}{g_{\\alpha \\nu}}+D_{\\nu}{g_{\\mu \\alpha}}-D_{\\alpha}{g_{\\mu \\nu}}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "g^{\\mu \\nu}*R^{\\rho}_{\\mu \\rho \\nu}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}g^{\\mu \\nu} R^{\\rho}\\,_{\\mu \\rho \\nu}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 g^{\\mu \\nu}*D_{\\mu}(g^{\\rho \\sigma})*D_{\\nu}(g_{\\rho \\sigma}) -  1/2 g^{\\rho \\sigma}*D_{\\mu}(g^{\\mu \\nu})*D_{\\nu}(g_{\\rho \\sigma})+g^{\\nu \\rho}*D_{\\mu}(g^{\\mu \\sigma})*D_{\\nu}(g_{\\rho \\sigma})+g^{\\mu \\rho}*g^{\\nu \\sigma}*D_{\\mu}(D_{\\nu}(g_{\\rho \\sigma}))-g^{\\mu \\nu}*g^{\\rho \\sigma}*D_{\\mu}(D_{\\nu}(g_{\\rho \\sigma}))+ 1/2 g^{\\mu \\rho}*g^{\\sigma \\nu}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\rho \\sigma})*D_{\\nu}(g_{\\lambda \\alpha}) -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\rho \\sigma})*D_{\\nu}(g_{\\lambda \\alpha}) -  1/2 g^{\\mu \\rho}*g^{\\sigma \\nu}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\sigma \\lambda})*D_{\\nu}(g_{\\rho \\alpha})+ 1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\rho \\lambda})*D_{\\nu}(g_{\\sigma \\alpha})"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\nu}{g_{\\rho \\sigma}} - \\frac{1}{2}g^{\\rho \\sigma} D_{\\mu}{g^{\\mu \\nu}} D_{\\nu}{g_{\\rho \\sigma}}+g^{\\nu \\rho} D_{\\mu}{g^{\\mu \\sigma}} D_{\\nu}{g_{\\rho \\sigma}}+g^{\\mu \\rho} g^{\\nu \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}}-g^{\\mu \\nu} g^{\\rho \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}}+\\frac{1}{2}g^{\\mu \\rho} g^{\\sigma \\nu} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}} - \\frac{1}{2}g^{\\mu \\rho} g^{\\sigma \\nu} g^{\\lambda \\alpha} D_{\\mu}{g_{\\sigma \\lambda}} D_{\\nu}{g_{\\rho \\alpha}}+\\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\lambda}} D_{\\nu}{g_{\\sigma \\alpha}}\\end{dmath*}"
+				}
+			],
+			"source" : "Riemann:= R^{\\rho}_{\\mu \\sigma \\nu} ->  D_{\\sigma}{ \\Gamma^{\\rho}_{\\mu \\nu} } - D_{\\nu}{ \\Gamma^{\\rho}_{\\mu \\sigma} } + \n\\Gamma^{\\rho}_{\\sigma \\alpha} \\Gamma^{\\alpha}_{\\mu \\nu} - \\Gamma^{\\rho}_{\\nu \\alpha} \\Gamma^{\\alpha}_{\\mu \\sigma};\n\nGamma:= \\Gamma^{\\rho}_{\\mu \\nu} -> \\frac{1}{2} g^{\\rho \\alpha} (D_{\\mu}{ g_{\\alpha \\nu} } + D_{\\nu}{ g_{\\mu \\alpha} } -D_{\\alpha}{ g_{\\mu \\nu} }); \n\nRicci:= g^{\\mu \\nu}  R^{\\rho}_{\\mu \\rho \\nu};\nsubstitute(_, Riemann)\ndistribute(_)\nsubstitute(_,Gamma)\nconverge(Ricci): \n\tdistribute(_) \n\tproduct_rule(_) \n\tcanonicalise(_)\nsort_product(_,repeat=True)\nsort_sum(_)\ncanonicalise(_)\nrename_dummies(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Pero en lugar de desglozar esto, uno puede reescribirlo de la forma"
+				}
+			],
+			"hidden" : true,
+			"source" : "Pero en lugar de desglozar esto, uno puede reescribirlo de la forma"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\rho \\sigma})*D_{\\nu}(g_{\\lambda \\alpha})-g^{\\mu \\nu}*g^{\\rho \\sigma}*D_{\\mu}(D_{\\nu}(g_{\\rho \\sigma}))-D_{\\mu}(D_{\\nu}(g^{\\mu \\nu}))-g^{\\rho \\sigma}*D_{\\mu}(g^{\\mu \\nu})*D_{\\nu}(g_{\\rho \\sigma}) -  3/4 g^{\\mu \\nu}*D_{\\mu}(g^{\\rho \\sigma})*D_{\\nu}(g_{\\rho \\sigma}) -  1/2 g^{\\mu \\nu}*D_{\\mu}(g^{\\rho \\sigma})*D_{\\rho}(g_{\\nu \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}}-g^{\\mu \\nu} g^{\\rho \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}}-D_{\\mu}{D_{\\nu}{g^{\\mu \\nu}}}-g^{\\rho \\sigma} D_{\\mu}{g^{\\mu \\nu}} D_{\\nu}{g_{\\rho \\sigma}} - \\frac{3}{4}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\nu}{g_{\\rho \\sigma}} - \\frac{1}{2}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\rho}{g_{\\nu \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "R:= - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}} \n- g^{\\mu \\nu} g^{\\rho \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}} - D_{\\mu}{D_{\\nu}{g^{\\mu \\nu}}}\n- g^{\\rho \\sigma} D_{\\mu}{g^{\\mu \\nu}} D_{\\nu}{g_{\\rho \\sigma}} - \\frac{3}{4}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\nu}{g_{\\rho \\sigma}} \n- \\frac{1}{2} g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\rho}{g_{\\nu \\sigma}};"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Y este si desglozarlo en 3 partes. La manera de distribuir el split se debe a que la compactificacion la realizaremos en 3 partes y los terminos que aparezcan seran justamente\naquellos que decidimos dividir."
+				}
+			],
+			"hidden" : true,
+			"source" : "Y este si desglozarlo en 3 partes. La manera de distribuir el split se debe a que la compactificacion la realizaremos en 3 partes y los terminos que aparezcan seran justamente\naquellos que decidimos dividir."
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"cells" : 
+							[
+								{
+									"cell_origin" : "server",
+									"cell_type" : "input_form",
+									"source" : " 1/8 M^{m n}*\\partial_{m}(M^{o p})*\\partial_{n}(M_{o p})+ 1/4 M^{m n}*\\partial_{m}(g^{\\mu \\nu})*\\partial_{n}(g_{\\mu \\nu})+ 1/8 g^{\\mu \\nu}*\\partial_{\\mu}(M^{m n})*\\partial_{\\nu}(M_{m n})+ 1/4 g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma}) -  1/4 g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{\\nu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\rho \\sigma}) -  1/4 g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma}) -  1/4 g^{\\mu \\nu}*\\partial_{\\mu}(M^{m n})*\\partial^{o}(M_{m n})*A_{\\nu o} -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial_{\\lambda}(b_{\\nu \\sigma})+ 1/4 g^{\\mu \\nu}*A_{\\mu}^{m}*A_{\\nu}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\rho \\sigma}) -  1/2 g^{\\mu \\nu}*M^{m n}*M^{o p}*\\partial_{m}(A_{\\mu o})*\\partial_{n}(A_{\\nu p})+ 1/8 g^{\\mu \\nu}*\\partial^{m}(M^{n o})*\\partial^{p}(M_{n o})*A_{\\mu m}*A_{\\nu p} -  1/2 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\nu}(A_{\\sigma n}) -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*\\partial_{m}(b_{\\mu \\rho})*\\partial_{n}(b_{\\nu \\sigma})+ 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\lambda}(A_{\\sigma m})+ 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial^{m}(b_{\\nu \\sigma})*A_{\\lambda m}+g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{o}(A_{\\sigma n})+ 1/2 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*\\partial_{m}(b_{\\mu \\rho})*A_{\\nu}^{o}*\\partial_{n}(A_{\\sigma o}) -  1/8 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\nu}(A_{\\sigma n})+ 1/8 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\rho}(A_{\\lambda n})*\\partial_{\\sigma}(A_{\\nu m}) -  1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*\\partial_{\\sigma}(A_{\\nu n}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(b_{\\alpha \\mu})*\\partial^{n}(b_{\\lambda \\nu})*A_{\\rho m}*A_{\\sigma n} -  1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*A_{\\nu}^{n}*\\partial_{m}(A_{\\sigma n}) -  1/2 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{o}(A_{\\rho m})*\\partial_{p}(A_{\\sigma n}) -  1/8 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{n}(A_{\\sigma p})+ 1/8 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{n}(A_{\\sigma o})+ 1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{o}(A_{\\sigma n}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\mu}^{n}*A_{\\rho}^{o}*\\partial_{\\lambda}(A_{\\nu o})*\\partial_{m}(A_{\\sigma n})+ 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*A_{\\sigma}^{o}*\\partial_{o}(A_{\\nu n}) -  1/8 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{n}(A_{\\sigma p})+ 1/8 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{n}(A_{\\sigma o})"
+								}
+							],
+							"source" : "R1 →  -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*\\partial_{\\mu}(g_{\\rho \\sigma})*\\partial_{\\nu}(g_{\\lambda \\alpha})-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu \\nu}(g_{\\rho \\sigma})-\\partial_{\\mu \\nu}(g^{\\mu \\nu})-g^{\\rho \\sigma}*\\partial_{\\mu}(g^{\\mu \\nu})*\\partial_{\\nu}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}R1 \\rightarrow  - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} \\partial_{\\mu}{g_{\\rho \\sigma}} \\partial_{\\nu}{g_{\\lambda \\alpha}}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu \\nu}{g_{\\rho \\sigma}}-\\partial_{\\mu \\nu}{g^{\\mu \\nu}}-g^{\\rho \\sigma} \\partial_{\\mu}{g^{\\mu \\nu}} \\partial_{\\nu}{g_{\\rho \\sigma}}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "R2 →  -  3/4 g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}R2 \\rightarrow  - \\frac{3}{4}g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "R3 →  -  1/2 g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma})"
+						},
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/4 g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})+g^{\\mu \\nu}*( -  1/4 A_{\\mu}^{m}*\\partial_{\\nu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\rho \\sigma}) -  1/4 A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})+ 1/4 A_{\\mu}^{m}*A_{\\nu}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\rho \\sigma})) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial_{\\lambda}(b_{\\nu \\sigma})+g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*( 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\lambda}(A_{\\sigma m})+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*\\partial^{m}(b_{\\nu \\sigma})*A_{\\lambda m} -  1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\nu}(A_{\\sigma n})+ 1/8 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\rho}(A_{\\lambda n})*\\partial_{\\sigma}(A_{\\nu m}) -  1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*\\partial_{\\sigma}(A_{\\nu n}) -  1/4 \\partial^{m}(b_{\\alpha \\mu})*\\partial^{n}(b_{\\lambda \\nu})*A_{\\rho m}*A_{\\sigma n} -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*A_{\\nu}^{n}*\\partial_{m}(A_{\\sigma n})+ 1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{o}(A_{\\sigma n}) -  1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*A_{\\rho}^{o}*\\partial_{\\lambda}(A_{\\nu o})*\\partial_{m}(A_{\\sigma n})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*A_{\\sigma}^{o}*\\partial_{o}(A_{\\nu n}) -  1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{n}(A_{\\sigma p})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{n}(A_{\\sigma o}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}R3 \\rightarrow  - \\frac{1}{2}g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "Rtog1:= R1 -> - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} \\partial_{\\mu}{g_{\\rho \\sigma}} \\partial_{\\nu}{g_{\\lambda \\alpha}} \n- g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{\\partial_{\\nu}{g_{\\rho \\sigma}}} - \\partial_{\\mu}{\\partial_{\\nu}{g^{\\mu \\nu}}}\n- g^{\\rho \\sigma} \\partial_{\\mu}{g^{\\mu \\nu}} \\partial_{\\nu}{g_{\\rho \\sigma}};\nRtog2:= R2 -> - \\frac{3}{4}g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}};\nRtog3:= R3 -> - \\frac{1}{2} g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}};"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Con estas sustituciones ahora veremos los terminos con A necesarios para covariantizar el Ricci, parte por parte."
+				}
+			],
+			"hidden" : true,
+			"source" : "Con estas sustituciones ahora veremos los terminos con A necesarios para covariantizar el Ricci, parte por parte."
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*D_{\\mu}(g_{\\rho \\sigma})*D_{\\nu}(g_{\\lambda \\alpha})-g^{\\mu \\nu}*g^{\\rho \\sigma}*D_{\\mu}(D_{\\nu}(g_{\\rho \\sigma}))-D_{\\mu}(D_{\\nu}(g^{\\mu \\nu}))-g^{\\rho \\sigma}*D_{\\mu}(g^{\\mu \\nu})*D_{\\nu}(g_{\\rho \\sigma})-R1"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}}-g^{\\mu \\nu} g^{\\rho \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}}-D_{\\mu}{D_{\\nu}{g^{\\mu \\nu}}}-g^{\\rho \\sigma} D_{\\mu}{g^{\\mu \\nu}} D_{\\nu}{g_{\\rho \\sigma}}-R1\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*g^{\\lambda \\alpha}*(\\partial_{\\mu}(g_{\\rho \\sigma})-A_{\\mu}^{p}*\\partial_{p}(g_{\\rho \\sigma}))*(\\partial_{\\nu}(g_{\\lambda \\alpha})-A_{\\nu}^{m}*\\partial_{m}(g_{\\lambda \\alpha}))-g^{\\mu \\nu}*g^{\\rho \\sigma}*(\\partial_{\\mu}((\\partial_{\\nu}(g_{\\rho \\sigma})-A_{\\nu}^{p}*\\partial_{p}(g_{\\rho \\sigma})))-A_{\\mu}^{m}*\\partial_{m}((\\partial_{\\nu}(g_{\\rho \\sigma})-A_{\\nu}^{p}*\\partial_{p}(g_{\\rho \\sigma}))))-\\partial_{\\mu}((\\partial_{\\nu}(g^{\\mu \\nu})-A_{\\nu}^{p}*\\partial_{p}(g^{\\mu \\nu})))+A_{\\mu}^{m}*\\partial_{m}((\\partial_{\\nu}(g^{\\mu \\nu})-A_{\\nu}^{p}*\\partial_{p}(g^{\\mu \\nu})))-g^{\\rho \\sigma}*(\\partial_{\\mu}(g^{\\mu \\nu})-A_{\\mu}^{p}*\\partial_{p}(g^{\\mu \\nu}))*(\\partial_{\\nu}(g_{\\rho \\sigma})-A_{\\nu}^{m}*\\partial_{m}(g_{\\rho \\sigma}))-R1"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} \\left(\\partial_{\\mu}{g_{\\rho \\sigma}}-A_{\\mu}\\,^{p} \\partial_{p}{g_{\\rho \\sigma}}\\right) \\left(\\partial_{\\nu}{g_{\\lambda \\alpha}}-A_{\\nu}\\,^{m} \\partial_{m}{g_{\\lambda \\alpha}}\\right)-g^{\\mu \\nu} g^{\\rho \\sigma} \\left(\\partial_{\\mu}\\left(\\partial_{\\nu}{g_{\\rho \\sigma}}-A_{\\nu}\\,^{p} \\partial_{p}{g_{\\rho \\sigma}}\\right)-A_{\\mu}\\,^{m} \\partial_{m}\\left(\\partial_{\\nu}{g_{\\rho \\sigma}}-A_{\\nu}\\,^{p} \\partial_{p}{g_{\\rho \\sigma}}\\right)\\right)-\\partial_{\\mu}\\left(\\partial_{\\nu}{g^{\\mu \\nu}}-A_{\\nu}\\,^{p} \\partial_{p}{g^{\\mu \\nu}}\\right)+A_{\\mu}\\,^{m} \\partial_{m}\\left(\\partial_{\\nu}{g^{\\mu \\nu}}-A_{\\nu}\\,^{p} \\partial_{p}{g^{\\mu \\nu}}\\right)-g^{\\rho \\sigma} \\left(\\partial_{\\mu}{g^{\\mu \\nu}}-A_{\\mu}\\,^{p} \\partial_{p}{g^{\\mu \\nu}}\\right) \\left(\\partial_{\\nu}{g_{\\rho \\sigma}}-A_{\\nu}\\,^{m} \\partial_{m}{g_{\\rho \\sigma}}\\right)-R1\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*\\partial_{\\lambda}(g_{\\mu \\nu})*\\partial_{m}(g_{\\rho \\sigma}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{m}(g_{\\mu \\nu})*\\partial_{n}(g_{\\rho \\sigma})+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}^{m}(g_{\\rho \\sigma})*A_{\\nu m}-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m n}(g_{\\mu \\nu})*A_{\\rho m}*A_{\\sigma n}+\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g^{\\mu \\nu})+2\\partial_{\\mu}^{m}(g^{\\mu \\nu})*A_{\\nu m}-A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g^{\\mu \\nu})-\\partial^{m n}(g^{\\mu \\nu})*A_{\\mu m}*A_{\\nu n}+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{\\sigma}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\mu \\nu})+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\sigma}(g_{\\mu \\nu})-g^{\\mu \\nu}*A_{\\rho}^{m}*A_{\\sigma}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\mu \\nu})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} \\partial_{\\lambda}{g_{\\mu \\nu}} \\partial_{m}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{m}{g_{\\mu \\nu}} \\partial_{n}{g_{\\rho \\sigma}}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g_{\\rho \\sigma}}+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}\\,^{m}{g_{\\rho \\sigma}} A_{\\nu m}-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m n}{g_{\\mu \\nu}} A_{\\rho m} A_{\\sigma n}+\\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g^{\\mu \\nu}}+2\\partial_{\\mu}\\,^{m}{g^{\\mu \\nu}} A_{\\nu m}-A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g^{\\mu \\nu}}-\\partial^{m n}{g^{\\mu \\nu}} A_{\\mu m} A_{\\nu n}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{\\sigma}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\mu \\nu}}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\sigma}{g_{\\mu \\nu}}-g^{\\mu \\nu} A_{\\rho}\\,^{m} A_{\\sigma}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\mu \\nu}}\\end{dmath*}"
+				}
+			],
+			"source" : "FallaRicci1:= - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} g^{\\lambda \\alpha} D_{\\mu}{g_{\\rho \\sigma}} D_{\\nu}{g_{\\lambda \\alpha}} \n- g^{\\mu \\nu} g^{\\rho \\sigma} D_{\\mu}{D_{\\nu}{g_{\\rho \\sigma}}} - D_{\\mu}{D_{\\nu}{g^{\\mu \\nu}}}\n- g^{\\rho \\sigma} D_{\\mu}{g^{\\mu \\nu}} D_{\\nu}{g_{\\rho \\sigma}} - R1;\nsubstitute(_, Dcov);\nsubstitute(_, Rtog1)\nconverge(FallaRicci1): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  3/4 g^{\\mu \\nu}*D_{\\mu}(g^{\\rho \\sigma})*D_{\\nu}(g_{\\rho \\sigma})-R2"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{3}{4}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\nu}{g_{\\rho \\sigma}}-R2\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  3/4 g^{\\mu \\nu}*(\\partial_{\\mu}(g^{\\rho \\sigma})-A_{\\mu}^{p}*\\partial_{p}(g^{\\rho \\sigma}))*(\\partial_{\\nu}(g_{\\rho \\sigma})-A_{\\nu}^{m}*\\partial_{m}(g_{\\rho \\sigma}))-R2"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{3}{4}g^{\\mu \\nu} \\left(\\partial_{\\mu}{g^{\\rho \\sigma}}-A_{\\mu}\\,^{p} \\partial_{p}{g^{\\rho \\sigma}}\\right) \\left(\\partial_{\\nu}{g_{\\rho \\sigma}}-A_{\\nu}\\,^{m} \\partial_{m}{g_{\\rho \\sigma}}\\right)-R2\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 3/4 g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{\\nu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\rho \\sigma})+ 3/4 g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma}) -  3/4 g^{\\mu \\nu}*A_{\\mu}^{m}*A_{\\nu}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{3}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{\\nu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\rho \\sigma}}+\\frac{3}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}} - \\frac{3}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\rho \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "FallaRicci2:= - \\frac{3}{4}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\nu}{g_{\\rho \\sigma}} - R2;\nsubstitute(_, Dcov);\nsubstitute(_, Rtog2)\nconverge(FallaRicci2): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 g^{\\mu \\nu}*D_{\\mu}(g^{\\rho \\sigma})*D_{\\rho}(g_{\\nu \\sigma})-R3"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\rho}{g_{\\nu \\sigma}}-R3\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 g^{\\mu \\nu}*(\\partial_{\\mu}(g^{\\rho \\sigma})-A_{\\mu}^{p}*\\partial_{p}(g^{\\rho \\sigma}))*(\\partial_{\\rho}(g_{\\nu \\sigma})-A_{\\rho}^{m}*\\partial_{m}(g_{\\nu \\sigma}))-R3"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}g^{\\mu \\nu} \\left(\\partial_{\\mu}{g^{\\rho \\sigma}}-A_{\\mu}\\,^{p} \\partial_{p}{g^{\\rho \\sigma}}\\right) \\left(\\partial_{\\rho}{g_{\\nu \\sigma}}-A_{\\rho}\\,^{m} \\partial_{m}{g_{\\nu \\sigma}}\\right)-R3\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/2 g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\nu \\sigma})+ 1/2 g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma}) -  1/2 g^{\\mu \\nu}*A_{\\mu}^{m}*A_{\\rho}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\nu \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{1}{2}g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\nu \\sigma}}+\\frac{1}{2}g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}} - \\frac{1}{2}g^{\\mu \\nu} A_{\\mu}\\,^{m} A_{\\rho}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\nu \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "FallaRicci3:= - \\frac{1}{2} g^{\\mu \\nu} D_{\\mu}{g^{\\rho \\sigma}} D_{\\rho}{g_{\\nu \\sigma}} - R3;\nsubstitute(_, Dcov);\nsubstitute(_, Rtog3)\nconverge(FallaRicci3): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "D(phi)D(phi): Modelo sigma para el dilaton"
+				}
+			],
+			"hidden" : true,
+			"source" : "D(phi)D(phi): Modelo sigma para el dilaton"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "-4g^{\\mu \\nu}*(\\partial_{\\mu}(\\phi)-A_{\\mu}^{p}*\\partial_{p}(\\phi)+ 1/2 \\partial_{p}(A_{\\mu}^{p}))*(\\partial_{\\nu}(\\phi)-A_{\\nu}^{o}*\\partial_{o}(\\phi)+ 1/2 \\partial_{o}(A_{\\nu}^{o}))+4\\partial_{\\mu}(g^{\\mu \\nu}*(\\partial_{\\nu}(\\phi)-A_{\\nu}^{p}*\\partial_{p}(\\phi)+ 1/2 \\partial_{p}(A_{\\nu}^{p})))-4A_{\\mu}^{o}*\\partial_{o}(g^{\\mu \\nu}*(\\partial_{\\nu}(\\phi)-A_{\\nu}^{p}*\\partial_{p}(\\phi)+ 1/2 \\partial_{p}(A_{\\nu}^{p})))+4\\Gamma^{\\mu}_{\\mu \\rho}*g^{\\rho \\nu}*(\\partial_{\\nu}(\\phi)-A_{\\nu}^{p}*\\partial_{p}(\\phi)+ 1/2 \\partial_{p}(A_{\\nu}^{p}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}-4g^{\\mu \\nu} \\left(\\partial_{\\mu}{\\phi}-A_{\\mu}\\,^{p} \\partial_{p}{\\phi}+\\frac{1}{2}\\partial_{p}{A_{\\mu}\\,^{p}}\\right) \\left(\\partial_{\\nu}{\\phi}-A_{\\nu}\\,^{o} \\partial_{o}{\\phi}+\\frac{1}{2}\\partial_{o}{A_{\\nu}\\,^{o}}\\right)+4\\partial_{\\mu}\\left(g^{\\mu \\nu} \\left(\\partial_{\\nu}{\\phi}-A_{\\nu}\\,^{p} \\partial_{p}{\\phi}+\\frac{1}{2}\\partial_{p}{A_{\\nu}\\,^{p}}\\right)\\right)-4A_{\\mu}\\,^{o} \\partial_{o}\\left(g^{\\mu \\nu} \\left(\\partial_{\\nu}{\\phi}-A_{\\nu}\\,^{p} \\partial_{p}{\\phi}+\\frac{1}{2}\\partial_{p}{A_{\\nu}\\,^{p}}\\right)\\right)+4\\Gamma^{\\mu}\\,_{\\mu \\rho} g^{\\rho \\nu} \\left(\\partial_{\\nu}{\\phi}-A_{\\nu}\\,^{p} \\partial_{p}{\\phi}+\\frac{1}{2}\\partial_{p}{A_{\\nu}\\,^{p}}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "2\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g^{\\mu \\nu})+4\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(g^{\\mu \\nu})+2g^{\\mu \\nu}*\\partial_{\\mu}^{m}(A_{\\nu m})+4g^{\\mu \\nu}*\\partial_{\\mu \\nu}(\\phi)-2A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g^{\\mu \\nu})-4\\partial_{\\mu}(\\phi)*A_{\\nu}^{m}*\\partial_{m}(g^{\\mu \\nu})-4\\partial^{m}(\\phi)*A_{\\mu m}*\\partial_{\\nu}(g^{\\mu \\nu})-2g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}^{n}(A_{\\nu n})-g^{\\mu \\nu}*\\partial^{m}(A_{\\mu m})*\\partial^{n}(A_{\\nu n})-4g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial^{m}(A_{\\nu m})-4g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(\\phi)-4g^{\\mu \\nu}*\\partial^{m}(\\phi)*\\partial_{\\mu}(A_{\\nu m})-8g^{\\mu \\nu}*\\partial_{\\mu}^{m}(\\phi)*A_{\\nu m}+4\\partial^{m}(\\phi)*A_{\\mu m}*A_{\\nu}^{n}*\\partial_{n}(g^{\\mu \\nu})+8g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial^{m}(\\phi)*A_{\\nu m}+4g^{\\mu \\nu}*\\partial^{m}(\\phi)*A_{\\mu m}*\\partial^{n}(A_{\\nu n})+4g^{\\mu \\nu}*\\partial^{m}(\\phi)*A_{\\mu}^{n}*\\partial_{n}(A_{\\nu m})+4g^{\\mu \\nu}*\\partial^{m n}(\\phi)*A_{\\mu m}*A_{\\nu n}+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(g_{\\rho \\sigma})-4g^{\\mu \\nu}*\\partial^{m}(\\phi)*\\partial^{n}(\\phi)*A_{\\mu m}*A_{\\nu n}-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g_{\\rho \\sigma})-2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(\\phi)*A_{\\nu}^{m}*\\partial_{m}(g_{\\rho \\sigma})-2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(\\phi)*A_{\\mu m}*\\partial_{\\nu}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(\\phi)*A_{\\mu m}*A_{\\nu}^{n}*\\partial_{n}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}2\\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g^{\\mu \\nu}}+4\\partial_{\\mu}{\\phi} \\partial_{\\nu}{g^{\\mu \\nu}}+2g^{\\mu \\nu} \\partial_{\\mu}\\,^{m}{A_{\\nu m}}+4g^{\\mu \\nu} \\partial_{\\mu \\nu}{\\phi}-2A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g^{\\mu \\nu}}-4\\partial_{\\mu}{\\phi} A_{\\nu}\\,^{m} \\partial_{m}{g^{\\mu \\nu}}-4\\partial^{m}{\\phi} A_{\\mu m} \\partial_{\\nu}{g^{\\mu \\nu}}-2g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}\\,^{n}{A_{\\nu n}}-g^{\\mu \\nu} \\partial^{m}{A_{\\mu m}} \\partial^{n}{A_{\\nu n}}-4g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial^{m}{A_{\\nu m}}-4g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial_{\\nu}{\\phi}-4g^{\\mu \\nu} \\partial^{m}{\\phi} \\partial_{\\mu}{A_{\\nu m}}-8g^{\\mu \\nu} \\partial_{\\mu}\\,^{m}{\\phi} A_{\\nu m}+4\\partial^{m}{\\phi} A_{\\mu m} A_{\\nu}\\,^{n} \\partial_{n}{g^{\\mu \\nu}}+8g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial^{m}{\\phi} A_{\\nu m}+4g^{\\mu \\nu} \\partial^{m}{\\phi} A_{\\mu m} \\partial^{n}{A_{\\nu n}}+4g^{\\mu \\nu} \\partial^{m}{\\phi} A_{\\mu}\\,^{n} \\partial_{n}{A_{\\nu m}}+4g^{\\mu \\nu} \\partial^{m n}{\\phi} A_{\\mu m} A_{\\nu n}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g_{\\rho \\sigma}}%\n+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{\\phi} \\partial_{\\nu}{g_{\\rho \\sigma}}-4g^{\\mu \\nu} \\partial^{m}{\\phi} \\partial^{n}{\\phi} A_{\\mu m} A_{\\nu n}-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g_{\\rho \\sigma}}-2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{\\phi} A_{\\nu}\\,^{m} \\partial_{m}{g_{\\rho \\sigma}}-2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{\\phi} A_{\\mu m} \\partial_{\\nu}{g_{\\rho \\sigma}}+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{\\phi} A_{\\mu m} A_{\\nu}\\,^{n} \\partial_{n}{g_{\\rho \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "sigmadilaton:= -4g^{\\mu \\nu} (\\partial_{\\mu}{\\phi} - A_{\\mu}^{p} \\partial_{p}{\\phi} + \\frac{1}{2} \\partial_{p}{A_{\\mu}^{p}}) \n(\\partial_{\\nu}{\\phi} - A_{\\nu}^{o} \\partial_{o}{\\phi} + \\frac{1}{2} \\partial_{o}{A_{\\nu}^{o}})\n+ 4 \\partial_{\\mu}{g^{\\mu \\nu} (\\partial_{\\nu}{\\phi} - A_{\\nu}^{p} \\partial_{p}{\\phi} + \\frac{1}{2} \\partial_{p}{A_{\\nu}^{p}})} \n- 4 A_{\\mu}^{o} \\partial_{o}{g^{\\mu \\nu} (\\partial_{\\nu}{\\phi} - A_{\\nu}^{p} \\partial_{p}{\\phi} + \\frac{1}{2} \\partial_{p}{A_{\\nu}^{p}} )}\n+ 4 \\Gamma^{\\mu}_{\\mu \\rho} g^{\\rho \\nu} (\\partial_{\\nu}{\\phi} - A_{\\nu}^{p} \\partial_{p}{\\phi} + \\frac{1}{2} \\partial_{p}{A_{\\nu}^{p}});\nsubstitute(_, Gamma)\nsubstitute(_, Dcov)\nconverge(sigmadilaton): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_sum(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "DMDM: Modelo sigma para la matriz escalar"
+				}
+			],
+			"hidden" : true,
+			"source" : "DMDM: Modelo sigma para la matriz escalar"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/8 g^{\\mu \\nu}*(\\partial_{\\mu}(M^{m n})-A_{\\mu}^{p}*\\partial_{p}(M^{m n})-(\\partial^{m}(A_{\\mu p})-\\partial_{p}(A_{\\mu}^{m}))*M^{p n}-(\\partial^{n}(A_{\\mu p})-\\partial_{p}(A_{\\mu}^{n}))*M^{m p})*(\\partial_{\\nu}(M_{m n})-A_{\\nu}^{o}*\\partial_{o}(M_{m n})-(\\partial_{m}(A_{\\nu}^{o})-\\partial^{o}(A_{\\nu m}))*M_{o n}-(\\partial_{n}(A_{\\nu}^{o})-\\partial^{o}(A_{\\nu n}))*M_{m o})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{1}{8}g^{\\mu \\nu} \\left(\\partial_{\\mu}{M^{m n}}-A_{\\mu}\\,^{p} \\partial_{p}{M^{m n}}-\\left(\\partial^{m}{A_{\\mu p}}-\\partial_{p}{A_{\\mu}\\,^{m}}\\right) M^{p n}-\\left(\\partial^{n}{A_{\\mu p}}-\\partial_{p}{A_{\\mu}\\,^{n}}\\right) M^{m p}\\right) \\left(\\partial_{\\nu}{M_{m n}}-A_{\\nu}\\,^{o} \\partial_{o}{M_{m n}}-\\left(\\partial_{m}{A_{\\nu}\\,^{o}}-\\partial^{o}{A_{\\nu m}}\\right) M_{o n}-\\left(\\partial_{n}{A_{\\nu}\\,^{o}}-\\partial^{o}{A_{\\nu n}}\\right) M_{m o}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "g^{\\mu \\nu}*( 1/8 \\partial_{\\mu}(M^{m n})*\\partial_{\\nu}(M_{m n}) -  1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{o}(A_{\\nu n})+ 1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{n}(A_{\\nu o}) -  1/4 \\partial_{\\mu}(M^{m n})*\\partial^{o}(M_{m n})*A_{\\nu o} -  1/2 M^{m n}*M_{m}^{o}*\\partial_{n}(A_{\\mu}^{p})*\\partial_{p}(A_{\\nu o})+ 1/4 M^{m n}*M_{m}^{o}*\\partial_{n}(A_{\\mu}^{p})*\\partial_{o}(A_{\\nu p})+ 1/4 M^{m n}*M_{m}^{o}*\\partial^{p}(A_{\\mu n})*\\partial_{p}(A_{\\nu o})+ 1/2 M^{m n}*M^{o p}*\\partial_{m}(A_{\\mu o})*\\partial_{p}(A_{\\nu n}) -  1/2 M^{m n}*M^{o p}*\\partial_{m}(A_{\\mu o})*\\partial_{n}(A_{\\nu p})+ 1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{p}(A_{\\nu n}) -  1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{n}(A_{\\nu p})+ 1/8 \\partial^{m}(M^{n o})*\\partial^{p}(M_{n o})*A_{\\mu m}*A_{\\nu p})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}g^{\\mu \\nu} \\left(\\frac{1}{8}\\partial_{\\mu}{M^{m n}} \\partial_{\\nu}{M_{m n}} - \\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{o}{A_{\\nu n}}+\\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{n}{A_{\\nu o}} - \\frac{1}{4}\\partial_{\\mu}{M^{m n}} \\partial^{o}{M_{m n}} A_{\\nu o} - \\frac{1}{2}M^{m n} M_{m}\\,^{o} \\partial_{n}{A_{\\mu}\\,^{p}} \\partial_{p}{A_{\\nu o}}+\\frac{1}{4}M^{m n} M_{m}\\,^{o} \\partial_{n}{A_{\\mu}\\,^{p}} \\partial_{o}{A_{\\nu p}}+\\frac{1}{4}M^{m n} M_{m}\\,^{o} \\partial^{p}{A_{\\mu n}} \\partial_{p}{A_{\\nu o}}+\\frac{1}{2}M^{m n} M^{o p} \\partial_{m}{A_{\\mu o}} \\partial_{p}{A_{\\nu n}} - \\frac{1}{2}M^{m n} M^{o p} \\partial_{m}{A_{\\mu o}} \\partial_{n}{A_{\\nu p}}+\\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{p}{A_{\\nu n}} - \\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{n}{A_{\\nu p}}+\\frac{1}{8}\\partial^{m}{M^{n o}} \\partial^{p}{M_{n o}} A_{\\mu m} A_{\\nu p}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "sigmaM:= \\frac{1}{8}g^{\\mu \\nu} (\\partial_{\\mu}{M^{m n}} - A_{\\mu}^{p} \\partial_{p}{M^{m n}} - (\\partial^{m}{A_{\\mu p}} - \\partial_{p}{A_{\\mu}^{m}}) M^{p n} - (\\partial^{n}{A_{\\mu p}} - \\partial_{p}{A_{\\mu}^{n}}) M^{m p}) (\\partial_{\\nu}{M_{m n}} - A_{\\nu}^{o} \\partial_{o}{M_{m n}} - (\\partial_{m}{A_{\\nu}^{o}} - \\partial^{o}{A_{\\nu m}}) M_{o n} - (\\partial_{n}{A_{\\nu}^{o}} - \\partial^{o}{A_{\\nu n}}) M_{m o});\ndistribute(_)\nsort_product(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_product(_)\nsort_sum(_)\ncanonicalise(_)\nfactor_out(_,$g^{\\mu \\nu}$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "MFF: Termino cinetico del campo de gauge"
+				}
+			],
+			"hidden" : true,
+			"source" : "MFF: Termino cinetico del campo de gauge"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/4 g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*(2\\partial_{\\mu}(A_{\\rho m})-2A_{\\mu}^{p}*\\partial_{p}(A_{\\rho m})+A_{\\mu}^{p}*\\partial_{m}(A_{\\rho p})-\\partial_{m}(b_{\\mu \\rho}))*(\\partial_{\\nu}(A_{\\sigma n})-\\partial_{\\sigma}(A_{\\nu n})-A_{\\nu}^{o}*\\partial_{o}(A_{\\sigma n})+A_{\\sigma}^{o}*\\partial_{o}(A_{\\nu n})+ 1/2 A_{\\nu}^{o}*\\partial_{n}(A_{\\sigma o}) -  1/2 A_{\\sigma}^{o}*\\partial_{n}(A_{\\nu o})-\\partial_{n}(b_{\\nu \\sigma}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} \\left(2\\partial_{\\mu}{A_{\\rho m}}-2A_{\\mu}\\,^{p} \\partial_{p}{A_{\\rho m}}+A_{\\mu}\\,^{p} \\partial_{m}{A_{\\rho p}}-\\partial_{m}{b_{\\mu \\rho}}\\right) \\left(\\partial_{\\nu}{A_{\\sigma n}}-\\partial_{\\sigma}{A_{\\nu n}}-A_{\\nu}\\,^{o} \\partial_{o}{A_{\\sigma n}}+A_{\\sigma}\\,^{o} \\partial_{o}{A_{\\nu n}}+\\frac{1}{2}A_{\\nu}\\,^{o} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{2}A_{\\sigma}\\,^{o} \\partial_{n}{A_{\\nu o}}-\\partial_{n}{b_{\\nu \\sigma}}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "g^{\\mu \\nu}*g^{\\rho \\sigma}*M^{m n}*( -  1/2 \\partial_{\\mu}(A_{\\rho m})*\\partial_{\\nu}(A_{\\sigma n})+\\partial_{m}(b_{\\mu \\rho})*\\partial_{\\nu}(A_{\\sigma n}) -  1/4 \\partial_{m}(b_{\\mu \\rho})*\\partial_{n}(b_{\\nu \\sigma})-A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{o}(A_{\\sigma n})+ 1/2 A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{n}(A_{\\sigma o})+A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{o}(A_{\\sigma n}) -  1/2 A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{n}(A_{\\sigma o})-\\partial_{m}(b_{\\mu \\rho})*A_{\\nu}^{o}*\\partial_{o}(A_{\\sigma n})+ 1/2 \\partial_{m}(b_{\\mu \\rho})*A_{\\nu}^{o}*\\partial_{n}(A_{\\sigma o}) -  1/2 A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{o}(A_{\\rho m})*\\partial_{p}(A_{\\sigma n})+ 1/2 A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{p}(A_{\\sigma n}) -  1/8 A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{n}(A_{\\sigma p}) -  1/2 A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{o}(A_{\\sigma n})+ 1/8 A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{n}(A_{\\sigma o})+ 1/2 A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{o}(A_{\\sigma m})*\\partial_{p}(A_{\\nu n}))+ 1/2 M^{m n}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\sigma}(A_{\\nu n})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} \\left( - \\frac{1}{2}\\partial_{\\mu}{A_{\\rho m}} \\partial_{\\nu}{A_{\\sigma n}}+\\partial_{m}{b_{\\mu \\rho}} \\partial_{\\nu}{A_{\\sigma n}} - \\frac{1}{4}\\partial_{m}{b_{\\mu \\rho}} \\partial_{n}{b_{\\nu \\sigma}}-A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{2}A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{n}{A_{\\sigma o}}+A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{2}A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{n}{A_{\\sigma o}}-\\partial_{m}{b_{\\mu \\rho}} A_{\\nu}\\,^{o} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{2}\\partial_{m}{b_{\\mu \\rho}} A_{\\nu}\\,^{o} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{2}A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{o}{A_{\\rho m}} \\partial_{p}{A_{\\sigma n}}+\\frac{1}{2}A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{p}{A_{\\sigma n}} - \\frac{1}{8}A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{n}{A_{\\sigma p}} - \\frac{1}{2}A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{8}A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{2}A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{o}{A_{\\sigma m}} \\partial_{p}{A_{\\nu n}}\\right)+\\frac{1}{2}M^{m n} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\sigma}{A_{\\nu n}}\\end{dmath*}"
+				}
+			],
+			"source" : "MFF:=  -\\frac{1}{4} g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} (\\partial_{\\mu}{ 2 A_{\\rho m}} -2 A_{\\mu}^{p} \\partial_{p}{A_{\\rho m}} + A_{\\mu}^{p} \\partial_{m}{A_{\\rho p}} - \\partial_{m}{b_{\\mu \\rho}}) \n(\\partial_{\\nu}{ A_{\\sigma n}} - \\partial_{\\sigma}{ A_{\\nu n}} - A_{\\nu}^{o} \\partial_{o}{A_{\\sigma n}} + A_{\\sigma}^{o} \\partial_{o}{A_{\\nu n}} + \\frac{1}{2} A_{\\nu}^{o} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{2} A_{\\sigma}^{o} \\partial_{n}{A_{\\nu o}} - \\partial_{n}{b_{\\nu \\sigma}});\nconverge(MFF): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_product(_)\nsort_sum(_)\ncanonicalise(_)\nfactor_out(_, $g^{\\mu \\nu}$)\nfactor_out(_, $M^{m n}$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "WW: Termino cinetico de la 2-forma"
+				}
+			],
+			"hidden" : true,
+			"source" : "WW: Termino cinetico de la 2-forma"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/12 g^{\\mu \\sigma}*g^{\\nu \\alpha}*g^{\\rho \\beta}*( 1/2 \\partial_{\\mu}(b_{\\nu \\rho}) -  1/2 \\partial_{\\mu}(b_{\\rho \\nu}) -  1/2 \\partial_{\\nu}(b_{\\mu \\rho})+ 1/2 \\partial_{\\nu}(b_{\\rho \\mu})+ 1/2 \\partial_{\\rho}(b_{\\mu \\nu}) -  1/2 \\partial_{\\rho}(b_{\\nu \\mu})+ 1/2 A_{\\mu}^{p}*\\partial_{\\nu}(A_{\\rho p}) -  1/2 A_{\\mu}^{p}*\\partial_{\\rho}(A_{\\nu p}) -  1/2 A_{\\nu}^{p}*\\partial_{\\mu}(A_{\\rho p})+ 1/2 A_{\\nu}^{p}*\\partial_{\\rho}(A_{\\mu p})+ 1/2 A_{\\rho}^{p}*\\partial_{\\mu}(A_{\\nu p}) -  1/2 A_{\\rho}^{p}*\\partial_{\\nu}(A_{\\mu p}) -  1/2 A_{\\mu}^{p}*\\partial_{p}(b_{\\nu \\rho})+ 1/2 A_{\\mu}^{p}*\\partial_{p}(b_{\\rho \\nu})+ 1/2 A_{\\nu}^{p}*\\partial_{p}(b_{\\mu \\rho}) -  1/2 A_{\\nu}^{p}*\\partial_{p}(b_{\\rho \\mu}) -  1/2 A_{\\rho}^{p}*\\partial_{p}(b_{\\mu \\nu})+ 1/2 A_{\\rho}^{p}*\\partial_{p}(b_{\\nu \\mu}) -  1/3 A_{\\mu}^{p}*A_{\\nu}^{o}*\\partial_{o}(A_{\\rho p})+ 1/3 A_{\\mu}^{p}*A_{\\rho}^{o}*\\partial_{o}(A_{\\nu p})+ 1/3 A_{\\nu}^{p}*A_{\\mu}^{o}*\\partial_{o}(A_{\\rho p}) -  1/3 A_{\\nu}^{p}*A_{\\rho}^{o}*\\partial_{o}(A_{\\mu p}) -  1/3 A_{\\rho}^{p}*A_{\\mu}^{o}*\\partial_{o}(A_{\\nu p})+ 1/3 A_{\\rho}^{p}*A_{\\nu}^{o}*\\partial_{o}(A_{\\mu p})+ 1/6 A_{\\mu}^{p}*A_{\\nu}^{o}*\\partial_{p}(A_{\\rho o}) -  1/6 A_{\\mu}^{p}*A_{\\rho}^{o}*\\partial_{p}(A_{\\nu o}) -  1/6 A_{\\nu}^{p}*A_{\\mu}^{o}*\\partial_{p}(A_{\\rho o})+ 1/6 A_{\\nu}^{p}*A_{\\rho}^{o}*\\partial_{p}(A_{\\mu o})+ 1/6 A_{\\rho}^{p}*A_{\\mu}^{o}*\\partial_{p}(A_{\\nu o}) -  1/6 A_{\\rho}^{p}*A_{\\nu}^{o}*\\partial_{p}(A_{\\mu o}))*(3\\partial_{\\sigma}(b_{\\alpha \\beta})+3A_{\\sigma}^{m}*\\partial_{\\alpha}(A_{\\beta m})-3A_{\\sigma}^{m}*\\partial_{m}(b_{\\alpha \\beta})-2A_{\\sigma}^{m}*A_{\\alpha}^{n}*\\partial_{n}(A_{\\beta m})+A_{\\sigma}^{m}*A_{\\alpha}^{n}*\\partial_{m}(A_{\\beta n}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{12}g^{\\mu \\sigma} g^{\\nu \\alpha} g^{\\rho \\beta} \\left(\\frac{1}{2}\\partial_{\\mu}{b_{\\nu \\rho}} - \\frac{1}{2}\\partial_{\\mu}{b_{\\rho \\nu}} - \\frac{1}{2}\\partial_{\\nu}{b_{\\mu \\rho}}+\\frac{1}{2}\\partial_{\\nu}{b_{\\rho \\mu}}+\\frac{1}{2}\\partial_{\\rho}{b_{\\mu \\nu}} - \\frac{1}{2}\\partial_{\\rho}{b_{\\nu \\mu}}+\\frac{1}{2}A_{\\mu}\\,^{p} \\partial_{\\nu}{A_{\\rho p}} - \\frac{1}{2}A_{\\mu}\\,^{p} \\partial_{\\rho}{A_{\\nu p}} - \\frac{1}{2}A_{\\nu}\\,^{p} \\partial_{\\mu}{A_{\\rho p}}+\\frac{1}{2}A_{\\nu}\\,^{p} \\partial_{\\rho}{A_{\\mu p}}+\\frac{1}{2}A_{\\rho}\\,^{p} \\partial_{\\mu}{A_{\\nu p}} - \\frac{1}{2}A_{\\rho}\\,^{p} \\partial_{\\nu}{A_{\\mu p}} - \\frac{1}{2}A_{\\mu}\\,^{p} \\partial_{p}{b_{\\nu \\rho}}+\\frac{1}{2}A_{\\mu}\\,^{p} \\partial_{p}{b_{\\rho \\nu}}+\\frac{1}{2}A_{\\nu}\\,^{p} \\partial_{p}{b_{\\mu \\rho}} - \\frac{1}{2}A_{\\nu}\\,^{p} \\partial_{p}{b_{\\rho \\mu}} - \\frac{1}{2}A_{\\rho}\\,^{p} \\partial_{p}{b_{\\mu \\nu}}+\\frac{1}{2}A_{\\rho}\\,^{p} \\partial_{p}{b_{\\nu \\mu}} - \\frac{1}{3}A_{\\mu}\\,^{p} A_{\\nu}\\,^{o} \\partial_{o}{A_{\\rho p}}%\n+\\frac{1}{3}A_{\\mu}\\,^{p} A_{\\rho}\\,^{o} \\partial_{o}{A_{\\nu p}}+\\frac{1}{3}A_{\\nu}\\,^{p} A_{\\mu}\\,^{o} \\partial_{o}{A_{\\rho p}} - \\frac{1}{3}A_{\\nu}\\,^{p} A_{\\rho}\\,^{o} \\partial_{o}{A_{\\mu p}} - \\frac{1}{3}A_{\\rho}\\,^{p} A_{\\mu}\\,^{o} \\partial_{o}{A_{\\nu p}}+\\frac{1}{3}A_{\\rho}\\,^{p} A_{\\nu}\\,^{o} \\partial_{o}{A_{\\mu p}}+\\frac{1}{6}A_{\\mu}\\,^{p} A_{\\nu}\\,^{o} \\partial_{p}{A_{\\rho o}} - \\frac{1}{6}A_{\\mu}\\,^{p} A_{\\rho}\\,^{o} \\partial_{p}{A_{\\nu o}} - \\frac{1}{6}A_{\\nu}\\,^{p} A_{\\mu}\\,^{o} \\partial_{p}{A_{\\rho o}}+\\frac{1}{6}A_{\\nu}\\,^{p} A_{\\rho}\\,^{o} \\partial_{p}{A_{\\mu o}}+\\frac{1}{6}A_{\\rho}\\,^{p} A_{\\mu}\\,^{o} \\partial_{p}{A_{\\nu o}} - \\frac{1}{6}A_{\\rho}\\,^{p} A_{\\nu}\\,^{o} \\partial_{p}{A_{\\mu o}}\\right) \\left(3\\partial_{\\sigma}{b_{\\alpha \\beta}}+3A_{\\sigma}\\,^{m} \\partial_{\\alpha}{A_{\\beta m}}-3A_{\\sigma}\\,^{m} \\partial_{m}{b_{\\alpha \\beta}}-2A_{\\sigma}\\,^{m} A_{\\alpha}\\,^{n} \\partial_{n}{A_{\\beta m}}+A_{\\sigma}\\,^{m} A_{\\alpha}\\,^{n} \\partial_{m}{A_{\\beta n}}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/2 g^{\\mu \\nu}*g^{\\alpha \\lambda}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial_{\\nu}(b_{\\lambda \\sigma})+g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*( -  1/4 \\partial_{\\alpha}(b_{\\mu \\rho})*\\partial_{\\lambda}(b_{\\nu \\sigma}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*\\partial_{\\nu}(A_{\\sigma m}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\sigma}(A_{\\lambda m})+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\lambda}(A_{\\sigma m})+\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial^{m}(b_{\\lambda \\nu})*A_{\\sigma m}+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*\\partial^{m}(b_{\\nu \\sigma})*A_{\\lambda m}+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\sigma}(A_{\\nu n}) -  1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\nu}(A_{\\sigma n})+ 1/8 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\rho}(A_{\\lambda n})*\\partial_{\\sigma}(A_{\\nu m}) -  1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\lambda}(A_{\\rho n})*\\partial_{\\sigma}(A_{\\nu m})+ 1/8 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\lambda}(A_{\\rho n})*\\partial_{\\nu}(A_{\\sigma m}) -  1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*\\partial_{\\sigma}(A_{\\nu n})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*\\partial_{\\nu}(A_{\\sigma n})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\rho m}*A_{\\sigma}^{n}*\\partial_{\\lambda}(A_{\\nu n}) -  1/4 \\partial^{m}(b_{\\alpha \\mu})*\\partial^{n}(b_{\\lambda \\nu})*A_{\\rho m}*A_{\\sigma n}+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*\\partial^{n}(b_{\\lambda \\rho})*A_{\\nu n}*A_{\\sigma m}+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*A_{\\nu}^{n}*\\partial_{n}(A_{\\sigma m}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*A_{\\nu}^{n}*\\partial_{m}(A_{\\sigma n}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*A_{\\sigma}^{n}*\\partial_{m}(A_{\\lambda n}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{o}(A_{\\sigma n})+ 1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{n}(A_{\\sigma o})+ 1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{o}(A_{\\sigma n}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{n}(A_{\\sigma o})+ 1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*A_{\\rho}^{o}*\\partial_{\\lambda}(A_{\\nu o})*\\partial_{n}(A_{\\sigma m}) -  1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*A_{\\rho}^{o}*\\partial_{\\lambda}(A_{\\nu o})*\\partial_{m}(A_{\\sigma n})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\nu}^{o}*A_{\\rho m}*\\partial_{n}(A_{\\sigma o})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*A_{\\sigma}^{o}*\\partial_{o}(A_{\\nu n}) -  1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*A_{\\sigma}^{o}*\\partial_{n}(A_{\\nu o})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{p}(A_{\\sigma n}) -  1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{n}(A_{\\sigma p}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{o}(A_{\\sigma n})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{n}(A_{\\sigma o})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{o}(A_{\\sigma m})*\\partial_{p}(A_{\\nu n}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{1}{2}g^{\\mu \\nu} g^{\\alpha \\lambda} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} \\partial_{\\nu}{b_{\\lambda \\sigma}}+g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\left( - \\frac{1}{4}\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial_{\\lambda}{b_{\\nu \\sigma}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} \\partial_{\\nu}{A_{\\sigma m}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\sigma}{A_{\\lambda m}}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\lambda}{A_{\\sigma m}}+\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial^{m}{b_{\\lambda \\nu}} A_{\\sigma m}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial^{m}{b_{\\nu \\sigma}} A_{\\lambda m}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\sigma}{A_{\\nu n}} - \\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\nu}{A_{\\sigma n}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\rho}{A_{\\lambda n}} \\partial_{\\sigma}{A_{\\nu m}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\lambda}{A_{\\rho n}} \\partial_{\\sigma}{A_{\\nu m}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\lambda}{A_{\\rho n}} \\partial_{\\nu}{A_{\\sigma m}} - \\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} \\partial_{\\sigma}{A_{\\nu n}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} \\partial_{\\nu}{A_{\\sigma n}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\rho m} A_{\\sigma}\\,^{n} \\partial_{\\lambda}{A_{\\nu n}} - \\frac{1}{4}\\partial^{m}{b_{\\alpha \\mu}} \\partial^{n}{b_{\\lambda \\nu}} A_{\\rho m} A_{\\sigma n}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} \\partial^{n}{b_{\\lambda \\rho}} A_{\\nu n} A_{\\sigma m}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} A_{\\nu}\\,^{n} \\partial_{n}{A_{\\sigma m}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{A_{\\sigma n}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} A_{\\sigma}\\,^{n} \\partial_{m}{A_{\\lambda n}}%\n - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} A_{\\rho}\\,^{o} \\partial_{\\lambda}{A_{\\nu o}} \\partial_{n}{A_{\\sigma m}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} A_{\\rho}\\,^{o} \\partial_{\\lambda}{A_{\\nu o}} \\partial_{m}{A_{\\sigma n}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\nu}\\,^{o} A_{\\rho m} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} A_{\\sigma}\\,^{o} \\partial_{o}{A_{\\nu n}} - \\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} A_{\\sigma}\\,^{o} \\partial_{n}{A_{\\nu o}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{p}{A_{\\sigma n}} - \\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{n}{A_{\\sigma p}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{o}{A_{\\sigma m}} \\partial_{p}{A_{\\nu n}}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "asym( $3 \\partial_{\\mu}{b_{\\nu \\rho}} + 3 A_{\\mu}^{p} \\partial_{\\nu}{A_{\\rho p}} - 3 A_{\\mu}^{p} \\partial_{p}{ b_{\\nu \\rho} } + 2A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{o}{A_{\\rho p}} - A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{p}{A_{\\rho o}}$, $_{\\mu}, _{\\nu}, _{\\rho}$)\nantisym:= \\frac{1}{2}\\partial_{\\mu}{b_{\\nu \\rho}} - \\frac{1}{2}\\partial_{\\mu}{b_{\\rho \\nu}} - \\frac{1}{2}\\partial_{\\nu}{b_{\\mu \\rho}}+\\frac{1}{2}\\partial_{\\nu}{b_{\\rho \\mu}}+\\frac{1}{2}\\partial_{\\rho}{b_{\\mu \\nu}} - \\frac{1}{2}\\partial_{\\rho}{b_{\\nu \\mu}} \n+ \\frac{1}{2}A_{\\mu}^{p} \\partial_{\\nu}{A_{\\rho p}} - \\frac{1}{2}A_{\\mu}^{p} \\partial_{\\rho}{A_{\\nu p}} - \\frac{1}{2}A_{\\nu}^{p} \\partial_{\\mu}{A_{\\rho p}}+\\frac{1}{2}A_{\\nu}^{p} \\partial_{\\rho}{A_{\\mu p}}+\\frac{1}{2}A_{\\rho}^{p} \\partial_{\\mu}{A_{\\nu p}} - \\frac{1}{2}A_{\\rho}^{p} \\partial_{\\nu}{A_{\\mu p}} - \\frac{1}{2}A_{\\mu}^{p} \\partial_{p}{b_{\\nu \\rho}}+\\frac{1}{2}A_{\\mu}^{p} \\partial_{p}{b_{\\rho \\nu}}+\\frac{1}{2}A_{\\nu}^{p} \\partial_{p}{b_{\\mu \\rho}} - \\frac{1}{2}A_{\\nu}^{p} \\partial_{p}{b_{\\rho \\mu}} - \\frac{1}{2}A_{\\rho}^{p} \\partial_{p}{b_{\\mu \\nu}}+\\frac{1}{2}A_{\\rho}^{p} \\partial_{p}{b_{\\nu \\mu}}\n+\\frac{1}{3}A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{o}{A_{\\rho p}} - \\frac{1}{3}A_{\\mu}^{p} A_{\\rho}^{o} \\partial_{o}{A_{\\nu p}} - \\frac{1}{3}A_{\\nu}^{p} A_{\\mu}^{o} \\partial_{o}{A_{\\rho p}}+\\frac{1}{3}A_{\\nu}^{p} A_{\\rho}^{o} \\partial_{o}{A_{\\mu p}}+\\frac{1}{3}A_{\\rho}^{p} A_{\\mu}^{o} \\partial_{o}{A_{\\nu p}} - \\frac{1}{3}A_{\\rho}^{p} A_{\\nu}^{o} \\partial_{o}{A_{\\mu p}}\n- \\frac{1}{6}A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{p}{A_{\\rho o}}+\\frac{1}{6}A_{\\mu}^{p} A_{\\rho}^{o} \\partial_{p}{A_{\\nu o}}+\\frac{1}{6}A_{\\nu}^{p} A_{\\mu}^{o} \\partial_{p}{A_{\\rho o}} - \\frac{1}{6}A_{\\nu}^{p} A_{\\rho}^{o} \\partial_{p}{A_{\\mu o}} - \\frac{1}{6}A_{\\rho}^{p} A_{\\mu}^{o} \\partial_{p}{A_{\\nu o}}+\\frac{1}{6}A_{\\rho}^{p} A_{\\nu}^{o} \\partial_{p}{A_{\\mu o}}.\n\n\nWW:= -\\frac{1}{12}g^{\\mu \\sigma} g^{\\nu \\alpha} g^{\\rho \\beta} (\\frac{1}{2}\\partial_{\\mu}{b_{\\nu \\rho}} - \\frac{1}{2}\\partial_{\\mu}{b_{\\rho \\nu}} - \\frac{1}{2}\\partial_{\\nu}{b_{\\mu \\rho}}+\\frac{1}{2}\\partial_{\\nu}{b_{\\rho \\mu}}+\\frac{1}{2}\\partial_{\\rho}{b_{\\mu \\nu}} - \\frac{1}{2}\\partial_{\\rho}{b_{\\nu \\mu}} \n+ \\frac{1}{2}A_{\\mu}^{p} \\partial_{\\nu}{A_{\\rho p}} - \\frac{1}{2}A_{\\mu}^{p} \\partial_{\\rho}{A_{\\nu p}} - \\frac{1}{2}A_{\\nu}^{p} \\partial_{\\mu}{A_{\\rho p}}+\\frac{1}{2}A_{\\nu}^{p} \\partial_{\\rho}{A_{\\mu p}}+\\frac{1}{2}A_{\\rho}^{p} \\partial_{\\mu}{A_{\\nu p}} - \\frac{1}{2}A_{\\rho}^{p} \\partial_{\\nu}{A_{\\mu p}} - \\frac{1}{2}A_{\\mu}^{p} \\partial_{p}{b_{\\nu \\rho}}+\\frac{1}{2}A_{\\mu}^{p} \\partial_{p}{b_{\\rho \\nu}}+\\frac{1}{2}A_{\\nu}^{p} \\partial_{p}{b_{\\mu \\rho}} - \\frac{1}{2}A_{\\nu}^{p} \\partial_{p}{b_{\\rho \\mu}} - \\frac{1}{2}A_{\\rho}^{p} \\partial_{p}{b_{\\mu \\nu}}+\\frac{1}{2}A_{\\rho}^{p} \\partial_{p}{b_{\\nu \\mu}}\n-( \\frac{1}{3}A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{o}{A_{\\rho p}} - \\frac{1}{3}A_{\\mu}^{p} A_{\\rho}^{o} \\partial_{o}{A_{\\nu p}} - \\frac{1}{3}A_{\\nu}^{p} A_{\\mu}^{o} \\partial_{o}{A_{\\rho p}}+\\frac{1}{3}A_{\\nu}^{p} A_{\\rho}^{o} \\partial_{o}{A_{\\mu p}}+\\frac{1}{3}A_{\\rho}^{p} A_{\\mu}^{o} \\partial_{o}{A_{\\nu p}} - \\frac{1}{3}A_{\\rho}^{p} A_{\\nu}^{o} \\partial_{o}{A_{\\mu p}}\n- \\frac{1}{6}A_{\\mu}^{p} A_{\\nu}^{o} \\partial_{p}{A_{\\rho o}}+\\frac{1}{6}A_{\\mu}^{p} A_{\\rho}^{o} \\partial_{p}{A_{\\nu o}}+\\frac{1}{6}A_{\\nu}^{p} A_{\\mu}^{o} \\partial_{p}{A_{\\rho o}} - \\frac{1}{6}A_{\\nu}^{p} A_{\\rho}^{o} \\partial_{p}{A_{\\mu o}} - \\frac{1}{6}A_{\\rho}^{p} A_{\\mu}^{o} \\partial_{p}{A_{\\nu o}}+\\frac{1}{6}A_{\\rho}^{p} A_{\\nu}^{o} \\partial_{p}{A_{\\mu o}}))\n( 3 \\partial_{\\sigma}{b_{\\alpha \\beta}} + 3 A_{\\sigma}^{m} \\partial_{\\alpha}{A_{\\beta m}} - 3 A_{\\sigma}^{m} \\partial_{m}{ b_{\\alpha \\beta} } - 2A_{\\sigma}^{m} A_{\\alpha}^{n} \\partial_{n}{A_{\\beta m}} + A_{\\sigma}^{m} A_{\\alpha}^{n} \\partial_{m}{A_{\\beta n}} );\nconverge(WW): \n\tdistribute(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_product(_)\nsort_sum(_)\ncanonicalise(_)\nfactor_out(_, $g^{\\mu \\nu}$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Luego de esto, comencemos con el lagrangiano de DFT. En primer lugar escribimos la parametrizacion de la metrica generalizada \ny la definicion del dilaton generalizado d, en terminos del dilaton efectivo phi "
+				}
+			],
+			"hidden" : true,
+			"source" : "Luego de esto, comencemos con el lagrangiano de DFT. En primer lugar escribimos la parametrizacion de la metrica generalizada \ny la definicion del dilaton generalizado d, en terminos del dilaton efectivo phi "
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H^{\\mu \\nu} → g^{\\mu \\nu}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H^{\\mu \\nu} \\rightarrow g^{\\mu \\nu}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H^{\\mu}_{\\nu} → -g^{\\mu \\rho}*C_{\\nu \\rho}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H^{\\mu}\\,_{\\nu} \\rightarrow -g^{\\mu \\rho} C_{\\nu \\rho}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H_{\\mu}^{\\nu} → -g^{\\nu \\rho}*C_{\\mu \\rho}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H_{\\mu}\\,^{\\nu} \\rightarrow -g^{\\nu \\rho} C_{\\mu \\rho}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H^{\\mu n} → -g^{\\mu \\rho}*A_{\\rho}^{n}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H^{\\mu n} \\rightarrow -g^{\\mu \\rho} A_{\\rho}\\,^{n}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H^{m \\nu} → -g^{\\nu \\rho}*A_{\\rho}^{m}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H^{m \\nu} \\rightarrow -g^{\\nu \\rho} A_{\\rho}\\,^{m}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H_{\\mu \\nu} → g_{\\mu \\nu}+C_{\\mu \\rho}*g^{\\rho \\sigma}*C_{\\nu \\sigma}+M^{o p}*A_{\\mu o}*A_{\\nu p}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H_{\\mu \\nu} \\rightarrow g_{\\mu \\nu}+C_{\\mu \\rho} g^{\\rho \\sigma} C_{\\nu \\sigma}+M^{o p} A_{\\mu o} A_{\\nu p}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H_{\\mu n} → C_{\\mu \\rho}*g^{\\rho \\sigma}*A_{\\sigma n}+M_{p n}*A_{\\mu}^{p}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H_{\\mu n} \\rightarrow C_{\\mu \\rho} g^{\\rho \\sigma} A_{\\sigma n}+M_{p n} A_{\\mu}\\,^{p}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "H_{m n} → A_{\\rho m}*g^{\\rho \\sigma}*A_{\\sigma n}+M_{m n}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}H_{m n} \\rightarrow A_{\\rho m} g^{\\rho \\sigma} A_{\\sigma n}+M_{m n}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\partial_{a?}(d) →  -  1/4 g^{\\mu \\nu}*\\partial_{a?}(g_{\\mu \\nu})+\\partial_{a?}(\\phi)"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\partial_{a?}{d} \\rightarrow  - \\frac{1}{4}g^{\\mu \\nu} \\partial_{a?}{g_{\\mu \\nu}}+\\partial_{a?}{\\phi}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\partial_{b? a?}(d) → \\partial_{b?}(( -  1/4 g^{\\mu \\nu}*\\partial_{a?}(g_{\\mu \\nu})+\\partial_{a?}(\\phi)))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\partial_{b? a?}{d} \\rightarrow \\partial_{b?}\\left( - \\frac{1}{4}g^{\\mu \\nu} \\partial_{a?}{g_{\\mu \\nu}}+\\partial_{a?}{\\phi}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "C_{\\mu \\nu} → b_{\\mu \\nu}+ 1/2 A_{\\mu}^{p}*A_{\\nu p}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}C_{\\mu \\nu} \\rightarrow b_{\\mu \\nu}+\\frac{1}{2}A_{\\mu}\\,^{p} A_{\\nu p}\\end{dmath*}"
+				}
+			],
+			"source" : "H11:= H^{\\mu \\nu} -> g^{\\mu \\nu};\nH12:= H^{\\mu}_{\\nu} -> -g^{\\mu \\rho}C_{\\nu \\rho};\nH21:= H_{\\mu}^{\\nu} -> -g^{\\nu \\rho}C_{\\mu \\rho};\nH13:= H^{\\mu n} -> -g^{\\mu \\rho}A_{\\rho}^{n};\nH31:= H^{m \\nu} -> -g^{\\nu \\rho}A_{\\rho}^{m};\nH22:= H_{\\mu \\nu} -> g_{\\mu \\nu} + C_{\\mu \\rho} g^{\\rho \\sigma} C_{\\nu \\sigma} + M^{o p} A_{\\mu o} A_{\\nu p};\nH23:= H_{\\mu n} -> C_{\\mu \\rho} g^{\\rho \\sigma}A_{\\sigma n} + M_{p n} A_{\\mu}^{p};\nH33:= H_{m n} ->  A_{\\rho m} g^{\\rho \\sigma} A_{\\sigma n} + M_{m n};\npartiald:= \\partial_{a?}{d} -> -\\frac{1}{4} g^{\\mu \\nu} \\partial_{a?}{g_{\\mu \\nu}} + \\partial_{a?}{\\phi};\ndoublepartiald:= \\partial_{b?}{ \\partial_{a?}{d} } -> \\partial_{b?}{ -\\frac{1}{4} g^{\\mu \\nu} \\partial_{a?}{g_{\\mu \\nu}} + \\partial_{a?}{\\phi} };\nC:= C_{\\mu \\nu} -> b_{\\mu \\nu} + \\frac{1}{2} A_{\\mu}^{p} A_{\\nu p};"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Aqui definimos el lagrangiano de DFT. Para los terminos sin dilaton explicitamos los indices que\ncambian de posicion al splitear ya que no conozco una manera de hacerlo automaticamente en cadabra"
+				}
+			],
+			"hidden" : true,
+			"source" : "Aqui definimos el lagrangiano de DFT. Para los terminos sin dilaton explicitamos los indices que\ncambian de posicion al splitear ya que no conozco una manera de hacerlo automaticamente en cadabra"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "4H^{M N}*\\partial_{M N}(d)-\\partial_{M N}(H^{M N})-4H^{M N}*\\partial_{M}(d)*\\partial_{N}(d)+4\\partial_{M}(H^{M N})*\\partial_{N}(d)+ 1/8 H^{M N}*(\\partial_{M}(H^{O P})*\\partial_{N}(H_{O P})+\\partial_{M}(H_{\\mu}^{P})*\\partial_{N}(H^{\\mu}_{P})+\\partial_{M}(H_{\\mu \\nu})*\\partial_{N}(H^{\\mu \\nu})+\\partial_{M}(H^{O}_{\\mu})*\\partial_{N}(H_{O}^{\\mu})) -  1/2 H^{M N}*\\partial_{M}(H^{O P})*\\partial_{O}(H_{N P}) -  1/2 H^{M}_{\\nu}*\\partial_{M}(H^{O P})*\\partial_{O}(H^{\\nu}_{P}) -  1/2 H^{M}_{\\nu}*\\partial_{M}(H^{O}_{\\rho})*\\partial_{O}(H^{\\nu \\rho}) -  1/2 H^{M N}*\\partial_{M}(H^{O}_{\\rho})*\\partial_{O}(H_{N}^{\\rho})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}4H^{M N} \\partial_{M N}{d}-\\partial_{M N}{H^{M N}}-4H^{M N} \\partial_{M}{d} \\partial_{N}{d}+4\\partial_{M}{H^{M N}} \\partial_{N}{d}+\\frac{1}{8}H^{M N} \\left(\\partial_{M}{H^{O P}} \\partial_{N}{H_{O P}}+\\partial_{M}{H_{\\mu}\\,^{P}} \\partial_{N}{H^{\\mu}\\,_{P}}+\\partial_{M}{H_{\\mu \\nu}} \\partial_{N}{H^{\\mu \\nu}}+\\partial_{M}{H^{O}\\,_{\\mu}} \\partial_{N}{H_{O}\\,^{\\mu}}\\right) - \\frac{1}{2}H^{M N} \\partial_{M}{H^{O P}} \\partial_{O}{H_{N P}} - \\frac{1}{2}H^{M}\\,_{\\nu} \\partial_{M}{H^{O P}} \\partial_{O}{H^{\\nu}\\,_{P}} - \\frac{1}{2}H^{M}\\,_{\\nu} \\partial_{M}{H^{O}\\,_{\\rho}} \\partial_{O}{H^{\\nu \\rho}} - \\frac{1}{2}H^{M N} \\partial_{M}{H^{O}\\,_{\\rho}} \\partial_{O}{H_{N}\\,^{\\rho}}\\end{dmath*}"
+				}
+			],
+			"source" : "LDFT:= 4 H^{M N} \\partial_{M}{ \\partial_{N}{ d } } -  \\partial_{M}{ \\partial_{N}{ H^{M N} } }\n\t  -4 H^{M N} \\partial_{M}{ d } \\partial_{N}{ d } + 4\\partial_{M}{ H^{M N} } \\partial_{N}{ d }\n\t  + \\frac{1}{8} H^{M N} ( \\partial_{M}{ H^{O P} } \\partial_{N}{ H_{O P} } + \\partial_{M}{ H_{\\mu}^{P} } \\partial_{N}{ H^{\\mu}_{P} }\n\t  + \\partial_{M}{ H_{\\mu \\nu} } \\partial_{N}{ H^{\\mu \\nu} } + \\partial_{M}{ H^{O}_{\\mu} } \\partial_{N}{ H_{O}^{\\mu} } )\n\t  - \\frac{1}{2} ( H^{M N} \\partial_{M}{ H^{O P} } \\partial_{O}{ H_{N P} } + H^{M}_{\\nu} \\partial_{M}{ H^{O P} } \\partial_{O}{ H^{\\nu}_{P} } \n\t  + H^{M}_{\\nu} \\partial_{M}{ H^{O}_{\\rho} } \\partial_{O}{ H^{\\nu \\rho} } + H^{M N} \\partial_{M}{ H^{O}_{\\rho} } \\partial_{O}{ H_{N}^{\\rho} } );"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Parte 1: En esta parte nos proponemos analizar el fragmento de lagrangiano con dilaton generalizado"
+				}
+			],
+			"hidden" : true,
+			"source" : "Parte 1: En esta parte nos proponemos analizar el fragmento de lagrangiano con dilaton generalizado"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "4H^{M N}*\\partial_{M N}(d)-\\partial_{M N}(H^{M N})-4H^{M N}*\\partial_{M}(d)*\\partial_{N}(d)+4\\partial_{M}(H^{M N})*\\partial_{N}(d)"
+						}
+					],
+					"source" : "\\begin{dmath*}{}4H^{M N} \\partial_{M N}{d}-\\partial_{M N}{H^{M N}}-4H^{M N} \\partial_{M}{d} \\partial_{N}{d}+4\\partial_{M}{H^{M N}} \\partial_{N}{d}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "-\\partial_{\\mu \\nu}(g^{\\mu \\nu})+2\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g^{\\mu \\nu})+2\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g^{\\mu \\nu})+4\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(g^{\\mu \\nu})+2\\partial_{\\mu}^{m}(g^{\\mu \\nu})*A_{\\nu m}+2g^{\\mu \\nu}*\\partial_{\\mu}^{m}(A_{\\nu m})+4g^{\\mu \\nu}*\\partial_{\\mu \\nu}(\\phi)-2A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g^{\\mu \\nu})-2A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g^{\\mu \\nu})-4\\partial_{\\mu}(\\phi)*A_{\\nu}^{m}*\\partial_{m}(g^{\\mu \\nu})-4\\partial^{m}(\\phi)*A_{\\mu m}*\\partial_{\\nu}(g^{\\mu \\nu})-\\partial^{m n}(g^{\\mu \\nu})*A_{\\mu m}*A_{\\nu n}-g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}^{n}(A_{\\nu n})-g^{\\mu \\nu}*\\partial^{m}(A_{\\mu m})*\\partial^{n}(A_{\\nu n})-g^{\\mu \\nu}*\\partial^{m}(A_{\\mu}^{n})*\\partial_{n}(A_{\\nu m})-4g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(\\phi)-4g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial^{m}(A_{\\nu m})-4g^{\\mu \\nu}*\\partial^{m}(\\phi)*\\partial_{\\mu}(A_{\\nu m})-g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})-g^{\\mu \\nu}*\\partial^{m n}(A_{\\mu m})*A_{\\nu n}-8g^{\\mu \\nu}*\\partial_{\\mu}^{m}(\\phi)*A_{\\nu m}-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu \\nu}(g_{\\rho \\sigma})-g^{\\mu \\nu}*\\partial_{\\rho}(g^{\\rho \\sigma})*\\partial_{\\sigma}(g_{\\mu \\nu})+4\\partial^{m}(\\phi)*A_{\\mu m}*A_{\\nu}^{n}*\\partial_{n}(g^{\\mu \\nu})+g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{\\nu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\rho \\sigma})+g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})+8g^{\\mu \\nu}*\\partial_{\\mu}(\\phi)*\\partial^{m}(\\phi)*A_{\\nu m}+4g^{\\mu \\nu}*\\partial^{m}(\\phi)*A_{\\mu}^{n}*\\partial_{n}(A_{\\nu m})+4g^{\\mu \\nu}*\\partial^{m}(\\phi)*A_{\\mu m}*\\partial^{n}(A_{\\nu n})+4g^{\\mu \\nu}*\\partial^{m n}(\\phi)*A_{\\mu m}*A_{\\nu n}+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g_{\\rho \\sigma})+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(\\phi)*\\partial_{\\nu}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}^{m}(g_{\\rho \\sigma})*A_{\\nu m}+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\sigma}(g_{\\mu \\nu})+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{\\sigma}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\mu \\nu}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(g_{\\mu \\nu})*\\partial_{\\lambda}(g_{\\rho \\sigma})-g^{\\mu \\nu}*A_{\\mu}^{m}*A_{\\nu}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\rho \\sigma})-4g^{\\mu \\nu}*\\partial^{m}(\\phi)*\\partial^{n}(\\phi)*A_{\\mu m}*A_{\\nu n}-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g_{\\rho \\sigma})-2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(\\phi)*A_{\\nu}^{m}*\\partial_{m}(g_{\\rho \\sigma})-2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(\\phi)*A_{\\mu m}*\\partial_{\\nu}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m n}(g_{\\mu \\nu})*A_{\\rho m}*A_{\\sigma n}-g^{\\mu \\nu}*A_{\\rho}^{m}*A_{\\sigma}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\mu \\nu})+ 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*\\partial_{\\lambda}(g_{\\mu \\nu})*\\partial_{m}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(\\phi)*A_{\\mu m}*A_{\\nu}^{n}*\\partial_{n}(g_{\\rho \\sigma}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{m}(g_{\\mu \\nu})*\\partial_{n}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}-\\partial_{\\mu \\nu}{g^{\\mu \\nu}}+2\\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g^{\\mu \\nu}}+2\\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g^{\\mu \\nu}}+4\\partial_{\\mu}{\\phi} \\partial_{\\nu}{g^{\\mu \\nu}}+2\\partial_{\\mu}\\,^{m}{g^{\\mu \\nu}} A_{\\nu m}+2g^{\\mu \\nu} \\partial_{\\mu}\\,^{m}{A_{\\nu m}}+4g^{\\mu \\nu} \\partial_{\\mu \\nu}{\\phi}-2A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g^{\\mu \\nu}}-2A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g^{\\mu \\nu}}-4\\partial_{\\mu}{\\phi} A_{\\nu}\\,^{m} \\partial_{m}{g^{\\mu \\nu}}-4\\partial^{m}{\\phi} A_{\\mu m} \\partial_{\\nu}{g^{\\mu \\nu}}-\\partial^{m n}{g^{\\mu \\nu}} A_{\\mu m} A_{\\nu n}-g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}\\,^{n}{A_{\\nu n}}-g^{\\mu \\nu} \\partial^{m}{A_{\\mu m}} \\partial^{n}{A_{\\nu n}}-g^{\\mu \\nu} \\partial^{m}{A_{\\mu}\\,^{n}} \\partial_{n}{A_{\\nu m}}-4g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial_{\\nu}{\\phi}-4g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial^{m}{A_{\\nu m}}-4g^{\\mu \\nu} \\partial^{m}{\\phi} \\partial_{\\mu}{A_{\\nu m}}-g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}%\n-g^{\\mu \\nu} \\partial^{m n}{A_{\\mu m}} A_{\\nu n}-8g^{\\mu \\nu} \\partial_{\\mu}\\,^{m}{\\phi} A_{\\nu m}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu \\nu}{g_{\\rho \\sigma}}-g^{\\mu \\nu} \\partial_{\\rho}{g^{\\rho \\sigma}} \\partial_{\\sigma}{g_{\\mu \\nu}}+4\\partial^{m}{\\phi} A_{\\mu m} A_{\\nu}\\,^{n} \\partial_{n}{g^{\\mu \\nu}}+g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{\\nu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\rho \\sigma}}+g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}+8g^{\\mu \\nu} \\partial_{\\mu}{\\phi} \\partial^{m}{\\phi} A_{\\nu m}+4g^{\\mu \\nu} \\partial^{m}{\\phi} A_{\\mu}\\,^{n} \\partial_{n}{A_{\\nu m}}+4g^{\\mu \\nu} \\partial^{m}{\\phi} A_{\\mu m} \\partial^{n}{A_{\\nu n}}+4g^{\\mu \\nu} \\partial^{m n}{\\phi} A_{\\mu m} A_{\\nu n}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g_{\\rho \\sigma}}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g_{\\rho \\sigma}}+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{\\phi} \\partial_{\\nu}{g_{\\rho \\sigma}}+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}\\,^{m}{g_{\\rho \\sigma}} A_{\\nu m}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\sigma}{g_{\\mu \\nu}}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{\\sigma}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\mu \\nu}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{g_{\\mu \\nu}} \\partial_{\\lambda}{g_{\\rho \\sigma}}-g^{\\mu \\nu} A_{\\mu}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\rho \\sigma}}-4g^{\\mu \\nu} \\partial^{m}{\\phi} \\partial^{n}{\\phi} A_{\\mu m} A_{\\nu n}%\n-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g_{\\rho \\sigma}}-2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{\\phi} A_{\\nu}\\,^{m} \\partial_{m}{g_{\\rho \\sigma}}-2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{\\phi} A_{\\mu m} \\partial_{\\nu}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m n}{g_{\\mu \\nu}} A_{\\rho m} A_{\\sigma n}-g^{\\mu \\nu} A_{\\rho}\\,^{m} A_{\\sigma}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\mu \\nu}}+\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} \\partial_{\\lambda}{g_{\\mu \\nu}} \\partial_{m}{g_{\\rho \\sigma}}+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{\\phi} A_{\\mu m} A_{\\nu}\\,^{n} \\partial_{n}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{m}{g_{\\mu \\nu}} \\partial_{n}{g_{\\rho \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "LDFT_dilaton:= 4 H^{M N} \\partial_{M}{ \\partial_{N}{ d } } -  \\partial_{M}{ \\partial_{N}{ H^{M N} } }\n\t  -4 H^{M N} \\partial_{M}{ d } \\partial_{N}{ d } + 4\\partial_{M}{ H^{M N} } \\partial_{N}{ d };\nsplit_index(_, $M, \\mu, m$, repeat=True)\nsubstitute(_,H11)\nsubstitute(_,H33)\nsubstitute(_,H13)\nsubstitute(_,H31)\ndistribute(_)\nsubstitute(_, $ M^{m n} \\partial_{m}{ \\partial_{n}{ d } } -> 0$)\nsubstitute(_, $ \\partial^{m}{ \\partial^{n}{ M_{m n} } } -> 0$)\nsubstitute(_, $ M^{m n} \\partial_{m}{ d } \\partial_{n}{ d } -> 0$)\nsubstitute(_, $ \\partial^{m}{ M_{m}^{n} } \\partial_{n}{ d }  -> 0$)\nsubstitute(_, partiald)\nsubstitute(_, doublepartiald)\nconverge(LDFT_dilaton): \n\tdistribute(_) \n\tproduct_rule(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_product(_)\nsort_sum(_)\ncanonicalise(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "En la expresion anterior sacamos los 4 terminos correspondientes al potencial escalar, este es el escalar de curvatura de DFT con M y d en lugar de H y d.\nA su vez, la manera de escribir todo sin canonicalizar hasta luego de sustituir todo es porque, debido a nuestros reemplazos, \nimporta el orden de las derivadas dobles mixtas (m mu, mu m) sobre el dilaton generalizado, no hacer esta distincion lleva a falsos resultados."
+				}
+			],
+			"hidden" : true,
+			"source" : "En la expresion anterior sacamos los 4 terminos correspondientes al potencial escalar, este es el escalar de curvatura de DFT con M y d en lugar de H y d.\nA su vez, la manera de escribir todo sin canonicalizar hasta luego de sustituir todo es porque, debido a nuestros reemplazos, \nimporta el orden de las derivadas dobles mixtas (m mu, mu m) sobre el dilaton generalizado, no hacer esta distincion lleva a falsos resultados."
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Analizando detalladamente vemos que todos los terminos con phi corresponden al modelo sigma para el dilaton aunque faltan algunos terminos para completarlo,\nestos son aquellos que no tienen dependencia en phi por lo que esperamos recuperarlos de los siguientes terminos.\nPara seguir con el analisis de forma mas prolija, tiramos todos los terminos con dilaton"
+				}
+			],
+			"hidden" : true,
+			"source" : "Analizando detalladamente vemos que todos los terminos con phi corresponden al modelo sigma para el dilaton aunque faltan algunos terminos para completarlo,\nestos son aquellos que no tienen dependencia en phi por lo que esperamos recuperarlos de los siguientes terminos.\nPara seguir con el analisis de forma mas prolija, tiramos todos los terminos con dilaton"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "-\\partial_{\\mu \\nu}(g^{\\mu \\nu})+2\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g^{\\mu \\nu})+2\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g^{\\mu \\nu})+2\\partial_{\\mu}^{m}(g^{\\mu \\nu})*A_{\\nu m}+2g^{\\mu \\nu}*\\partial_{\\mu}^{m}(A_{\\nu m})-2A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g^{\\mu \\nu})-2A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g^{\\mu \\nu})-\\partial^{m n}(g^{\\mu \\nu})*A_{\\mu m}*A_{\\nu n}-g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}^{n}(A_{\\nu n})-g^{\\mu \\nu}*\\partial^{m}(A_{\\mu m})*\\partial^{n}(A_{\\nu n})-g^{\\mu \\nu}*\\partial^{m}(A_{\\mu}^{n})*\\partial_{n}(A_{\\nu m})-g^{\\mu \\nu}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})-g^{\\mu \\nu}*\\partial^{m n}(A_{\\mu m})*A_{\\nu n}-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu \\nu}(g_{\\rho \\sigma})-g^{\\mu \\nu}*\\partial_{\\rho}(g^{\\rho \\sigma})*\\partial_{\\sigma}(g_{\\mu \\nu})+g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{\\nu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\rho \\sigma})+g^{\\mu \\nu}*A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\nu}(g_{\\rho \\sigma})+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m}(A_{\\mu m})*\\partial_{\\nu}(g_{\\rho \\sigma})+g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}(A_{\\nu}^{m})*\\partial_{m}(g_{\\rho \\sigma})+2g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\mu}^{m}(g_{\\rho \\sigma})*A_{\\nu m}+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\sigma}(g_{\\mu \\nu})+g^{\\mu \\nu}*A_{\\rho}^{m}*\\partial_{\\sigma}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\mu \\nu}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial_{\\alpha}(g_{\\mu \\nu})*\\partial_{\\lambda}(g_{\\rho \\sigma})-g^{\\mu \\nu}*A_{\\mu}^{m}*A_{\\nu}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial_{m}(A_{\\nu}^{n})*\\partial_{n}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\mu}^{m}*\\partial^{n}(A_{\\nu n})*\\partial_{m}(g_{\\rho \\sigma})-g^{\\mu \\nu}*g^{\\rho \\sigma}*\\partial^{m n}(g_{\\mu \\nu})*A_{\\rho m}*A_{\\sigma n}-g^{\\mu \\nu}*A_{\\rho}^{m}*A_{\\sigma}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\mu \\nu})+ 1/2 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*\\partial_{\\lambda}(g_{\\mu \\nu})*\\partial_{m}(g_{\\rho \\sigma}) -  1/4 g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{m}(g_{\\mu \\nu})*\\partial_{n}(g_{\\rho \\sigma})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}-\\partial_{\\mu \\nu}{g^{\\mu \\nu}}+2\\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g^{\\mu \\nu}}+2\\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g^{\\mu \\nu}}+2\\partial_{\\mu}\\,^{m}{g^{\\mu \\nu}} A_{\\nu m}+2g^{\\mu \\nu} \\partial_{\\mu}\\,^{m}{A_{\\nu m}}-2A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g^{\\mu \\nu}}-2A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g^{\\mu \\nu}}-\\partial^{m n}{g^{\\mu \\nu}} A_{\\mu m} A_{\\nu n}-g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}\\,^{n}{A_{\\nu n}}-g^{\\mu \\nu} \\partial^{m}{A_{\\mu m}} \\partial^{n}{A_{\\nu n}}-g^{\\mu \\nu} \\partial^{m}{A_{\\mu}\\,^{n}} \\partial_{n}{A_{\\nu m}}-g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}-g^{\\mu \\nu} \\partial^{m n}{A_{\\mu m}} A_{\\nu n}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu \\nu}{g_{\\rho \\sigma}}-g^{\\mu \\nu} \\partial_{\\rho}{g^{\\rho \\sigma}} \\partial_{\\sigma}{g_{\\mu \\nu}}+g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{\\nu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\rho \\sigma}}+g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{A_{\\mu m}} \\partial_{\\nu}{g_{\\rho \\sigma}}+g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}{A_{\\nu}\\,^{m}} \\partial_{m}{g_{\\rho \\sigma}}%\n+2g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\mu}\\,^{m}{g_{\\rho \\sigma}} A_{\\nu m}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\sigma}{g_{\\mu \\nu}}+g^{\\mu \\nu} A_{\\rho}\\,^{m} \\partial_{\\sigma}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\mu \\nu}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{g_{\\mu \\nu}} \\partial_{\\lambda}{g_{\\rho \\sigma}}-g^{\\mu \\nu} A_{\\mu}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial_{m}{A_{\\nu}\\,^{n}} \\partial_{n}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\mu}\\,^{m} \\partial^{n}{A_{\\nu n}} \\partial_{m}{g_{\\rho \\sigma}}-g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m n}{g_{\\mu \\nu}} A_{\\rho m} A_{\\sigma n}-g^{\\mu \\nu} A_{\\rho}\\,^{m} A_{\\sigma}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\mu \\nu}}+\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} \\partial_{\\lambda}{g_{\\mu \\nu}} \\partial_{m}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{m}{g_{\\mu \\nu}} \\partial_{n}{g_{\\rho \\sigma}}\\end{dmath*}"
+				}
+			],
+			"source" : "substitute(_, $\\phi -> 0$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "De aqí vemos que se recupera una gran parte del ricci covariante mientras que otros contrubuyen a los temrinos del modelo sigma para el dilaton\nque no tienen dependencia en phi. A final de todo sobran35 terminos que debemos ubicar lueg.u"
+				}
+			],
+			"hidden" : true,
+			"source" : "De aqí vemos que se recupera una gran parte del ricci covariante mientras que otros contrubuyen a los temrinos del modelo sigma para el dilaton\nque no tienen dependencia en phi. A final de todo sobran35 terminos que debemos ubicar lueg.u"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Parte 2: Pasemos ahora al lagrangiano sin dilaton, analizando el primer termino obtenemos"
+				}
+			],
+			"hidden" : true,
+			"source" : "Parte 2: Pasemos ahora al lagrangiano sin dilaton, analizando el primer termino obtenemos"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " 1/8 H^{M N}*(\\partial_{M}(H^{O P})*\\partial_{N}(H_{O P})+\\partial_{M}(H_{\\mu}^{P})*\\partial_{N}(H^{\\mu}_{P})+\\partial_{M}(H_{\\mu \\nu})*\\partial_{N}(H^{\\mu \\nu})+\\partial_{M}(H^{O}_{\\mu})*\\partial_{N}(H_{O}^{\\mu}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\frac{1}{8}H^{M N} \\left(\\partial_{M}{H^{O P}} \\partial_{N}{H_{O P}}+\\partial_{M}{H_{\\mu}\\,^{P}} \\partial_{N}{H^{\\mu}\\,_{P}}+\\partial_{M}{H_{\\mu \\nu}} \\partial_{N}{H^{\\mu \\nu}}+\\partial_{M}{H^{O}\\,_{\\mu}} \\partial_{N}{H_{O}\\,^{\\mu}}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\frac{1}{8}M^{m n} \\partial_{m}{M^{o p}} \\partial_{n}{M_{o p}}+\\frac{1}{4}M^{m n} \\partial_{m}{g^{\\mu \\nu}} \\partial_{n}{g_{\\mu \\nu}}+\\frac{1}{8}g^{\\mu \\nu} \\partial_{\\mu}{M^{m n}} \\partial_{\\nu}{M_{m n}}+\\frac{1}{4}g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{\\nu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}} - \\frac{1}{4}g^{\\mu \\nu} \\partial_{\\mu}{M^{m n}} \\partial^{o}{M_{m n}} A_{\\nu o} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} \\partial_{\\lambda}{b_{\\nu \\sigma}}+\\frac{1}{4}g^{\\mu \\nu} A_{\\mu}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\rho \\sigma}} - \\frac{1}{2}g^{\\mu \\nu} M^{m n} M^{o p} \\partial_{m}{A_{\\mu o}} \\partial_{n}{A_{\\nu p}}+\\frac{1}{8}g^{\\mu \\nu} \\partial^{m}{M^{n o}} \\partial^{p}{M_{n o}} A_{\\mu m} A_{\\nu p} - \\frac{1}{2}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\nu}{A_{\\sigma n}} - \\frac{1}{4}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} \\partial_{m}{b_{\\mu \\rho}} \\partial_{n}{b_{\\nu \\sigma}}+\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\lambda}{A_{\\sigma m}}+\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} \\partial^{m}{b_{\\nu \\sigma}} A_{\\lambda m}+g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{2}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} \\partial_{m}{b_{\\mu \\rho}} A_{\\nu}\\,^{o} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{8}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\nu}{A_{\\sigma n}}+\\frac{1}{8}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\rho}{A_{\\lambda n}} \\partial_{\\sigma}{A_{\\nu m}}%\n - \\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} \\partial_{\\sigma}{A_{\\nu n}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{b_{\\alpha \\mu}} \\partial^{n}{b_{\\lambda \\nu}} A_{\\rho m} A_{\\sigma n} - \\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{A_{\\sigma n}} - \\frac{1}{2}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{o}{A_{\\rho m}} \\partial_{p}{A_{\\sigma n}} - \\frac{1}{8}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{n}{A_{\\sigma p}}+\\frac{1}{8}g^{\\mu \\nu} g^{\\rho \\sigma} M^{m n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} A_{\\rho}\\,^{o} \\partial_{\\lambda}{A_{\\nu o}} \\partial_{m}{A_{\\sigma n}}+\\frac{1}{2}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} A_{\\sigma}\\,^{o} \\partial_{o}{A_{\\nu n}} - \\frac{1}{8}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{n}{A_{\\sigma p}}+\\frac{1}{8}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{n}{A_{\\sigma o}}\\end{dmath*}"
+				}
+			],
+			"source" : "LDFT_nodilaton1:= \\frac{1}{8} H^{M N} ( \\partial_{M}{ H^{O P} } \\partial_{N}{ H_{O P} } + \\partial_{M}{ H_{\\mu}^{P} } \\partial_{N}{ H^{\\mu}_{P} }\n\t  + \\partial_{M}{ H_{\\mu \\nu} } \\partial_{N}{ H^{\\mu \\nu} } + \\partial_{M}{ H^{O}_{\\mu} } \\partial_{N}{ H_{O}^{\\mu} } );\nsplit_index(_, $M, \\mu, m$,repeat=True)\nconverge(LDFT_nodilaton1): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nsubstitute(_,$ D?? \\partial_{a?}{H_{\\nu \\rho} } -> \\partial_{a?}{H_{\\nu \\rho} } D?? $)\ncanonicalise(_)\nrename_dummies(_)\nsubstitute(_,H11)\nsubstitute(_,H12)\nsubstitute(_,H21)\nsubstitute(_,H13)\nsubstitute(_,H22)\nsubstitute(_,H23)\nsubstitute(_,H33)\nrename_dummies(_)\nsubstitute(_,C)\nconverge(LDFT_nodilaton1): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nrename_dummies(_)\ncanonicalise(_)\nsort_product(_)\nsort_sum(_)\ncanonicalise(_);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "M: De aqui podemos obtener todos los terminos con M. Existen algunos sin A ni b, que contribui�an al potencial escalar y una parte del modelos sigma de M,\nluego, existen terminos lineales en M ques contribuira\na el termino cinetico de los campos de gauge mientras que los de orden cuadratico apareceran nl el modelo sigma de M.\n Un analisis sencillo muestra que todos\nestos terminos son utilies y pasamos ahora a analizar todo lo que qued, es decir, M=0.a"
+				}
+			],
+			"hidden" : true,
+			"source" : "M: De aqui podemos obtener todos los terminos con M. Existen algunos sin A ni b, que contribui�an al potencial escalar y una parte del modelos sigma de M,\nluego, existen terminos lineales en M ques contribuira\na el termino cinetico de los campos de gauge mientras que los de orden cuadratico apareceran nl el modelo sigma de M.\n Un analisis sencillo muestra que todos\nestos terminos son utilies y pasamos ahora a analizar todo lo que qued, es decir, M=0.a"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\frac{1}{4}g^{\\mu \\nu} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}+g^{\\mu \\nu} \\left( - \\frac{1}{4}A_{\\mu}\\,^{m} \\partial_{\\nu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\rho \\sigma}} - \\frac{1}{4}A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\nu}{g_{\\rho \\sigma}}+\\frac{1}{4}A_{\\mu}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\rho \\sigma}}\\right) - \\frac{1}{4}g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} \\partial_{\\lambda}{b_{\\nu \\sigma}}+g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\left(\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\lambda}{A_{\\sigma m}}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial^{m}{b_{\\nu \\sigma}} A_{\\lambda m} - \\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\nu}{A_{\\sigma n}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\rho}{A_{\\lambda n}} \\partial_{\\sigma}{A_{\\nu m}} - \\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} \\partial_{\\sigma}{A_{\\nu n}} - \\frac{1}{4}\\partial^{m}{b_{\\alpha \\mu}} \\partial^{n}{b_{\\lambda \\nu}} A_{\\rho m} A_{\\sigma n} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} A_{\\nu}\\,^{n} \\partial_{m}{A_{\\sigma n}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} A_{\\rho}\\,^{o} \\partial_{\\lambda}{A_{\\nu o}} \\partial_{m}{A_{\\sigma n}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} A_{\\sigma}\\,^{o} \\partial_{o}{A_{\\nu n}} - \\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{n}{A_{\\sigma p}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{n}{A_{\\sigma o}}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "substitute(_, $M_{m n} -> 0$)\nsubstitute(_, $M^{m n} -> 0$)\nfactor_out(_, $ g^{\\alpha \\lambda}$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Donde podemos identificar 3 tipos de terminos. Los primeros 4 corresponde al escalar de ricci covariante. \nPor ultimo, los terminos con 3 metricas corresponden a los terminos de H cuadrado. De esta forma, quedan todos los terminos analizados!"
+				}
+			],
+			"hidden" : true,
+			"source" : "Donde podemos identificar 3 tipos de terminos. Los primeros 4 corresponde al escalar de ricci covariante. \nPor ultimo, los terminos con 3 metricas corresponden a los terminos de H cuadrado. De esta forma, quedan todos los terminos analizados!"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Parte 3: Pasemos ahora al ultimo termino del lagrangiano de DFT"
+				}
+			],
+			"hidden" : true,
+			"source" : "Parte 3: Pasemos ahora al ultimo termino del lagrangiano de DFT"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 H^{M N}*\\partial_{M}(H^{O P})*\\partial_{O}(H_{N P}) -  1/2 H^{M}_{\\nu}*\\partial_{M}(H^{O P})*\\partial_{O}(H^{\\nu}_{P}) -  1/2 H^{M}_{\\nu}*\\partial_{M}(H^{O}_{\\rho})*\\partial_{O}(H^{\\nu \\rho}) -  1/2 H^{M N}*\\partial_{M}(H^{O}_{\\rho})*\\partial_{O}(H_{N}^{\\rho})"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}H^{M N} \\partial_{M}{H^{O P}} \\partial_{O}{H_{N P}} - \\frac{1}{2}H^{M}\\,_{\\nu} \\partial_{M}{H^{O P}} \\partial_{O}{H^{\\nu}\\,_{P}} - \\frac{1}{2}H^{M}\\,_{\\nu} \\partial_{M}{H^{O}\\,_{\\rho}} \\partial_{O}{H^{\\nu \\rho}} - \\frac{1}{2}H^{M N} \\partial_{M}{H^{O}\\,_{\\rho}} \\partial_{O}{H_{N}\\,^{\\rho}}\\end{dmath*}"
+				},
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 M^{m n}*M_{m}^{o}*\\partial_{\\mu}(A_{\\nu n})*\\partial_{o}(g^{\\mu \\nu})+ 1/2 M^{m n}*M_{m}^{o}*A_{\\mu}^{p}*\\partial_{p}(A_{\\nu n})*\\partial_{o}(g^{\\mu \\nu}) -  1/2 M^{m n}*\\partial_{m}(M^{o p})*\\partial_{o}(M_{n p})+g^{\\mu \\nu}*( -  1/2 \\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma}) -  1/2 g^{\\alpha \\lambda}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\sigma}(A_{\\lambda m})+ 1/2 A_{\\rho}^{m}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\nu \\sigma}) -  1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{o}(A_{\\nu n})+ 1/2 A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma}) -  1/2 A_{\\mu}^{m}*A_{\\rho}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\nu \\sigma})+ 1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{p}(A_{\\nu n})+ 1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{n}(A_{\\nu o})+ 1/2 M^{m n}*M_{m}^{o}*\\partial_{n}(A_{\\mu}^{p})*\\partial_{p}(A_{\\nu o}) -  1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{n}(A_{\\nu p})+ 1/2 M^{m n}*M^{o p}*\\partial_{m}(A_{\\mu o})*\\partial_{p}(A_{\\nu n}))+g^{\\alpha \\lambda}*g^{\\mu \\nu}*g^{\\rho \\sigma}*( 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\sigma}(A_{\\nu n}) -  1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\lambda}(A_{\\rho n})*\\partial_{\\sigma}(A_{\\nu m})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*\\partial_{\\nu}(A_{\\sigma n}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{o}(A_{\\sigma n})+ 1/4 A_{\\alpha}^{m}*A_{\\mu}^{n}*A_{\\rho}^{o}*\\partial_{\\lambda}(A_{\\nu o})*\\partial_{n}(A_{\\sigma m}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*A_{\\sigma}^{n}*\\partial_{m}(A_{\\lambda n})+ 1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{n}(A_{\\sigma o})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\nu}^{o}*A_{\\rho m}*\\partial_{n}(A_{\\sigma o})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{o}(A_{\\sigma m})*\\partial_{p}(A_{\\nu n})+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*\\partial_{\\nu}(b_{\\lambda \\sigma}) -  1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*\\partial_{\\nu}(A_{\\sigma m})+ 1/8 A_{\\alpha}^{m}*A_{\\mu}^{n}*\\partial_{\\lambda}(A_{\\rho n})*\\partial_{\\nu}(A_{\\sigma m})+\\partial_{\\alpha}(b_{\\mu \\rho})*\\partial^{m}(b_{\\lambda \\nu})*A_{\\sigma m}+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\rho m}*A_{\\sigma}^{n}*\\partial_{\\lambda}(A_{\\nu n}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{n}(A_{\\sigma o})+ 1/2 \\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\lambda}^{m}*A_{\\nu}^{n}*\\partial_{n}(A_{\\sigma m})+ 1/2 \\partial^{m}(b_{\\alpha \\mu})*\\partial^{n}(b_{\\lambda \\rho})*A_{\\nu n}*A_{\\sigma m} -  1/2 \\partial^{m}(b_{\\alpha \\mu})*A_{\\lambda}^{n}*A_{\\rho m}*A_{\\sigma}^{o}*\\partial_{n}(A_{\\nu o}) -  1/4 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{o}(A_{\\sigma n})+ 1/8 A_{\\alpha}^{m}*A_{\\lambda}^{n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{p}(A_{\\sigma n}))+g^{\\mu \\nu}*g^{\\rho \\sigma}*( 1/2 M^{m n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\sigma}(A_{\\nu n})+ 1/2 \\partial_{\\mu}(A_{\\rho}^{m})*\\partial_{m}(g_{\\nu \\sigma})-M^{m n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{o}(A_{\\sigma n}) -  1/2 A_{\\mu}^{m}*\\partial_{m}(A_{\\rho}^{n})*\\partial_{n}(g_{\\nu \\sigma})+ 1/2 M^{m n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{o}(A_{\\sigma m})*\\partial_{p}(A_{\\nu n})+ 1/2 M^{m n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{n}(A_{\\sigma o}) -  1/2 M^{m n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{o}(A_{\\sigma n})+M^{m n}*\\partial_{m}(b_{\\mu \\rho})*\\partial_{\\nu}(A_{\\sigma n}) -  1/2 M^{m n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{n}(A_{\\sigma o})-M^{m n}*\\partial_{m}(b_{\\mu \\rho})*A_{\\nu}^{o}*\\partial_{o}(A_{\\sigma n})+ 1/2 M^{m n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{p}(A_{\\sigma n}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}M^{m n} M_{m}\\,^{o} \\partial_{\\mu}{A_{\\nu n}} \\partial_{o}{g^{\\mu \\nu}}+\\frac{1}{2}M^{m n} M_{m}\\,^{o} A_{\\mu}\\,^{p} \\partial_{p}{A_{\\nu n}} \\partial_{o}{g^{\\mu \\nu}} - \\frac{1}{2}M^{m n} \\partial_{m}{M^{o p}} \\partial_{o}{M_{n p}}+g^{\\mu \\nu} \\left( - \\frac{1}{2}\\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}} - \\frac{1}{2}g^{\\alpha \\lambda} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\sigma}{A_{\\lambda m}}+\\frac{1}{2}A_{\\rho}\\,^{m} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\nu \\sigma}} - \\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{o}{A_{\\nu n}}+\\frac{1}{2}A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}} - \\frac{1}{2}A_{\\mu}\\,^{m} A_{\\rho}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\nu \\sigma}}+\\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{p}{A_{\\nu n}}+\\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{n}{A_{\\nu o}}+\\frac{1}{2}M^{m n} M_{m}\\,^{o} \\partial_{n}{A_{\\mu}\\,^{p}} \\partial_{p}{A_{\\nu o}} - \\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{n}{A_{\\nu p}}+\\frac{1}{2}M^{m n} M^{o p} \\partial_{m}{A_{\\mu o}} \\partial_{p}{A_{\\nu n}}\\right)+g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} \\left(\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\sigma}{A_{\\nu n}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\lambda}{A_{\\rho n}} \\partial_{\\sigma}{A_{\\nu m}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} \\partial_{\\nu}{A_{\\sigma n}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} A_{\\rho}\\,^{o} \\partial_{\\lambda}{A_{\\nu o}} \\partial_{n}{A_{\\sigma m}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} A_{\\sigma}\\,^{n} \\partial_{m}{A_{\\lambda n}}+\\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\nu}\\,^{o} A_{\\rho m} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{o}{A_{\\sigma m}} \\partial_{p}{A_{\\nu n}}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial_{\\nu}{b_{\\lambda \\sigma}} - \\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} \\partial_{\\nu}{A_{\\sigma m}}+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\mu}\\,^{n} \\partial_{\\lambda}{A_{\\rho n}} \\partial_{\\nu}{A_{\\sigma m}}+\\partial_{\\alpha}{b_{\\mu \\rho}} \\partial^{m}{b_{\\lambda \\nu}} A_{\\sigma m}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\rho m} A_{\\sigma}\\,^{n} \\partial_{\\lambda}{A_{\\nu n}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{n}{A_{\\sigma o}}+\\frac{1}{2}\\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\lambda}\\,^{m} A_{\\nu}\\,^{n} \\partial_{n}{A_{\\sigma m}}+\\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} \\partial^{n}{b_{\\lambda \\rho}} A_{\\nu n} A_{\\sigma m} - \\frac{1}{2}\\partial^{m}{b_{\\alpha \\mu}} A_{\\lambda}\\,^{n} A_{\\rho m} A_{\\sigma}\\,^{o} \\partial_{n}{A_{\\nu o}} - \\frac{1}{4}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{o}{A_{\\sigma n}}%\n+\\frac{1}{8}A_{\\alpha}\\,^{m} A_{\\lambda}\\,^{n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{p}{A_{\\sigma n}}\\right)+g^{\\mu \\nu} g^{\\rho \\sigma} \\left(\\frac{1}{2}M^{m n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\sigma}{A_{\\nu n}}+\\frac{1}{2}\\partial_{\\mu}{A_{\\rho}\\,^{m}} \\partial_{m}{g_{\\nu \\sigma}}-M^{m n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{2}A_{\\mu}\\,^{m} \\partial_{m}{A_{\\rho}\\,^{n}} \\partial_{n}{g_{\\nu \\sigma}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{o}{A_{\\sigma m}} \\partial_{p}{A_{\\nu n}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{o}{A_{\\sigma n}}+M^{m n} \\partial_{m}{b_{\\mu \\rho}} \\partial_{\\nu}{A_{\\sigma n}} - \\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{n}{A_{\\sigma o}}-M^{m n} \\partial_{m}{b_{\\mu \\rho}} A_{\\nu}\\,^{o} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{p}{A_{\\sigma n}}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "LDFT_nodilaton2:= - \\frac{1}{2} ( H^{M N} \\partial_{M}{ H^{O P} } \\partial_{O}{ H_{N P} } + H^{M}_{\\nu} \\partial_{M}{ H^{O P} } \\partial_{O}{ H^{\\nu}_{P} } \n\t  + H^{M}_{\\nu} \\partial_{M}{ H^{O}_{\\rho} } \\partial_{O}{ H^{\\nu \\rho} } + H^{M N} \\partial_{M}{ H^{O}_{\\rho} } \\partial_{O}{ H_{N}^{\\rho} } );\nsplit_index(_, $M, \\mu, m$,repeat=True)\nconverge(LDFT_nodilaton2): \n\tdistribute(_) \n\tproduct_rule(_)\n\tsort_product(_) \n\tcanonicalise(_)\nsubstitute(_,H11)\nsubstitute(_,H12)\nsubstitute(_,H21)\nsubstitute(_,H13)\nsubstitute(_,H22)\nsubstitute(_,H23)\nsubstitute(_,H33)\nrename_dummies(_)\nsubstitute(_,C)\nfor i in range(2):\n\tdistribute(_) \n\tproduct_rule(_)\nfor i in range(2):\n\tsort_product(_) \n\tcanonicalise(_)\n\trename_dummies(_)\ncanonicalise(_)\nfactor_out(_,$g^{\\mu \\nu}$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "En primer lugar, uno puede corroborar que los 21 terminos con 3 metricas corresponden a lo que faltaba para completa el modelo de la 2-forma.\nPara seguir con el analisis mas prolijo tiramos estos terminos."
+				}
+			],
+			"hidden" : true,
+			"source" : "En primer lugar, uno puede corroborar que los 21 terminos con 3 metricas corresponden a lo que faltaba para completa el modelo de la 2-forma.\nPara seguir con el analisis mas prolijo tiramos estos terminos."
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 M^{m n}*M_{m}^{o}*\\partial_{\\mu}(A_{\\nu n})*\\partial_{o}(g^{\\mu \\nu})+ 1/2 M^{m n}*M_{m}^{o}*A_{\\mu}^{p}*\\partial_{p}(A_{\\nu n})*\\partial_{o}(g^{\\mu \\nu}) -  1/2 M^{m n}*\\partial_{m}(M^{o p})*\\partial_{o}(M_{n p})+g^{\\mu \\nu}*( -  1/2 \\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma}) -  1/2 g^{\\alpha \\lambda}*g^{\\rho \\sigma}*\\partial_{\\alpha}(b_{\\mu \\rho})*A_{\\nu}^{m}*\\partial_{\\sigma}(A_{\\lambda m})+ 1/2 A_{\\rho}^{m}*\\partial_{\\mu}(g^{\\rho \\sigma})*\\partial_{m}(g_{\\nu \\sigma}) -  1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{o}(A_{\\nu n})+ 1/2 A_{\\mu}^{m}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{\\rho}(g_{\\nu \\sigma}) -  1/2 A_{\\mu}^{m}*A_{\\rho}^{n}*\\partial_{m}(g^{\\rho \\sigma})*\\partial_{n}(g_{\\nu \\sigma})+ 1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{p}(A_{\\nu n})+ 1/2 M^{m n}*\\partial_{\\mu}(M_{m}^{o})*\\partial_{n}(A_{\\nu o})+ 1/2 M^{m n}*M_{m}^{o}*\\partial_{n}(A_{\\mu}^{p})*\\partial_{p}(A_{\\nu o}) -  1/2 M^{m n}*\\partial^{o}(M_{m}^{p})*A_{\\mu o}*\\partial_{n}(A_{\\nu p})+ 1/2 M^{m n}*M^{o p}*\\partial_{m}(A_{\\mu o})*\\partial_{p}(A_{\\nu n}))+g^{\\mu \\nu}*g^{\\rho \\sigma}*( 1/2 M^{m n}*\\partial_{\\mu}(A_{\\rho m})*\\partial_{\\sigma}(A_{\\nu n})+ 1/2 \\partial_{\\mu}(A_{\\rho}^{m})*\\partial_{m}(g_{\\nu \\sigma})-M^{m n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{o}(A_{\\sigma n}) -  1/2 A_{\\mu}^{m}*\\partial_{m}(A_{\\rho}^{n})*\\partial_{n}(g_{\\nu \\sigma})+ 1/2 M^{m n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{o}(A_{\\sigma m})*\\partial_{p}(A_{\\nu n})+ 1/2 M^{m n}*A_{\\mu}^{o}*\\partial_{\\rho}(A_{\\nu m})*\\partial_{n}(A_{\\sigma o}) -  1/2 M^{m n}*A_{\\mu}^{o}*A_{\\rho}^{p}*\\partial_{m}(A_{\\nu p})*\\partial_{o}(A_{\\sigma n})+M^{m n}*\\partial_{m}(b_{\\mu \\rho})*\\partial_{\\nu}(A_{\\sigma n}) -  1/2 M^{m n}*A_{\\mu}^{o}*\\partial_{\\nu}(A_{\\rho m})*\\partial_{n}(A_{\\sigma o})-M^{m n}*\\partial_{m}(b_{\\mu \\rho})*A_{\\nu}^{o}*\\partial_{o}(A_{\\sigma n})+ 1/2 M^{m n}*A_{\\mu}^{o}*A_{\\nu}^{p}*\\partial_{m}(A_{\\rho o})*\\partial_{p}(A_{\\sigma n}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}M^{m n} M_{m}\\,^{o} \\partial_{\\mu}{A_{\\nu n}} \\partial_{o}{g^{\\mu \\nu}}+\\frac{1}{2}M^{m n} M_{m}\\,^{o} A_{\\mu}\\,^{p} \\partial_{p}{A_{\\nu n}} \\partial_{o}{g^{\\mu \\nu}} - \\frac{1}{2}M^{m n} \\partial_{m}{M^{o p}} \\partial_{o}{M_{n p}}+g^{\\mu \\nu} \\left( - \\frac{1}{2}\\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}} - \\frac{1}{2}g^{\\alpha \\lambda} g^{\\rho \\sigma} \\partial_{\\alpha}{b_{\\mu \\rho}} A_{\\nu}\\,^{m} \\partial_{\\sigma}{A_{\\lambda m}}+\\frac{1}{2}A_{\\rho}\\,^{m} \\partial_{\\mu}{g^{\\rho \\sigma}} \\partial_{m}{g_{\\nu \\sigma}} - \\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{o}{A_{\\nu n}}+\\frac{1}{2}A_{\\mu}\\,^{m} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{\\rho}{g_{\\nu \\sigma}} - \\frac{1}{2}A_{\\mu}\\,^{m} A_{\\rho}\\,^{n} \\partial_{m}{g^{\\rho \\sigma}} \\partial_{n}{g_{\\nu \\sigma}}+\\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{p}{A_{\\nu n}}+\\frac{1}{2}M^{m n} \\partial_{\\mu}{M_{m}\\,^{o}} \\partial_{n}{A_{\\nu o}}+\\frac{1}{2}M^{m n} M_{m}\\,^{o} \\partial_{n}{A_{\\mu}\\,^{p}} \\partial_{p}{A_{\\nu o}} - \\frac{1}{2}M^{m n} \\partial^{o}{M_{m}\\,^{p}} A_{\\mu o} \\partial_{n}{A_{\\nu p}}+\\frac{1}{2}M^{m n} M^{o p} \\partial_{m}{A_{\\mu o}} \\partial_{p}{A_{\\nu n}}\\right)+g^{\\mu \\nu} g^{\\rho \\sigma} \\left(\\frac{1}{2}M^{m n} \\partial_{\\mu}{A_{\\rho m}} \\partial_{\\sigma}{A_{\\nu n}}+\\frac{1}{2}\\partial_{\\mu}{A_{\\rho}\\,^{m}} \\partial_{m}{g_{\\nu \\sigma}}-M^{m n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{o}{A_{\\sigma n}} - \\frac{1}{2}A_{\\mu}\\,^{m} \\partial_{m}{A_{\\rho}\\,^{n}} \\partial_{n}{g_{\\nu \\sigma}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{o}{A_{\\sigma m}} \\partial_{p}{A_{\\nu n}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} \\partial_{\\rho}{A_{\\nu m}} \\partial_{n}{A_{\\sigma o}} - \\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\rho}\\,^{p} \\partial_{m}{A_{\\nu p}} \\partial_{o}{A_{\\sigma n}}+M^{m n} \\partial_{m}{b_{\\mu \\rho}} \\partial_{\\nu}{A_{\\sigma n}} - \\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} \\partial_{\\nu}{A_{\\rho m}} \\partial_{n}{A_{\\sigma o}}-M^{m n} \\partial_{m}{b_{\\mu \\rho}} A_{\\nu}\\,^{o} \\partial_{o}{A_{\\sigma n}}+\\frac{1}{2}M^{m n} A_{\\mu}\\,^{o} A_{\\nu}\\,^{p} \\partial_{m}{A_{\\rho o}} \\partial_{p}{A_{\\sigma n}}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "substitute(_, $g^{\\alpha \\lambda} g^{\\mu \\nu} g^{\\rho \\sigma} -> 0$);"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "De aqui� vemos que los9 terminos con 2 metricas y lineales en M completan el MFF. Luego los terminos con M no contraidas se suman a DMDM faltando solo un termino.\nA su vez existen 4 terminos que terminan de completar el ricci covariante y agrupando todo lo que falta vemos que sobran solo 5 terminos.\nLuego de un poco de calculo estos 5 terminos se resumen a 3.quu"
+				}
+			],
+			"hidden" : true,
+			"source" : "De aqui� vemos que los9 terminos con 2 metricas y lineales en M completan el MFF. Luego los terminos con M no contraidas se suman a DMDM faltando solo un termino.\nA su vez existen 4 terminos que terminan de completar el ricci covariante y agrupando todo lo que falta vemos que sobran solo 5 terminos.\nLuego de un poco de calculo estos 5 terminos se resumen a 3.quu"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "al final del dia vemos que estos 3 terminos se unen a los 3 que quedaron colgados del primer analisis para completar la accion efectiva y sin terminos extra. The END"
+				}
+			],
+			"source" : "al final del dia vemos que estos 3 terminos se unen a los 3 que quedaron colgados del primer analisis para completar la accion efectiva y sin terminos extra. The END"
+		},
+		{
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : ""
+		}
+	],
+	"description" : "Cadabra JSON notebook format",
+	"version" : 1
+}
