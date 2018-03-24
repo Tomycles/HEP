@@ -1,38 +1,52 @@
 \documentclass{article}
 
-%Packages
+%%Packages
+
+
+%Básicos
 
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish,es-noquoting]{babel}
+
+%Geometría de página
+
 \usepackage{geometry}
 \geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=25mm}
-\usepackage{tcolorbox}
-\usepackage{bookman} % font
-\usepackage{marvosym}
-\usepackage{fancyhdr}
+\setlength\parindent{0pt} % elimina sangría de todos los parrafos
+
+%Matemática
+
 \usepackage{amsmath}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
 \numberwithin{equation}{section}
 \usepackage{amssymb}
+
+
+
+%Colores, fuentes y demás
+
+\usepackage{tcolorbox}
+\usepackage{bookman} % font
+\usepackage{marvosym}
+\usepackage{fancyhdr}
 \usepackage{bm}
 \usepackage{color}
-\setlength\parindent{0pt} % elimina sangría de todos los parrafos
-
-
+\usepackage{contour}
 \usepackage{lettrine} % letra capital}
 \setcounter{DefaultLines}{4}
 \setlength{\DefaultFindent}{7pt}
 \setlength{\DefaultNindent}{0pt}
 \renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
 \renewcommand{\DefaultLoversize}{-0.70}
-
 %Primero se declara el paquete lettrine y el numero de renglones que debe abarcar la inicial. En seguida DefaultFindent, la distancia de la inicial a la letra siguiente en el primer renglón y DefaultNindent, la distancia que se desplaza a la derecha del inicio del primer renglón, los renglones subsecuentes que abarca la capitular.Después se declara la font a utilizar, en este caso yinit, con unos parámetros que la describen, y ﬁnalmente el tamaño de la letra.
-
 \usepackage{yfonts}
-
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{ \node[shape=circle,draw,inner sep=2pt] (char) {#1};}} % Crea comandos circled para poner numeros dentro de circulos
+\newcommand\f[1]{\mathopen{\hphantom{#1}}} % comando phantom de rapido acceso, crea texto invisible pero que ocupa lugar dentro del modo matematico
 
 %Pagestyle
+
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{{\color{brown!60!black}\Large\Coffeecup}}
@@ -42,13 +56,14 @@
 \rfoot{\thepage}
 
 %Title
-\title{\vspace{-35pt}\huge{\textbf{\textcolor{teal}{DFT:}}} \\ \vspace{0.1cm} \large{\textbf{Nociones básicas}}}
+\title{\vspace{-35pt} \huge{\textbf{\textcolor{teal}{DFT:}}} \\ \vspace{0.1cm} \large{\textbf{Nociones básicas}}}
 \date{\vspace{-20pt}}
 \author{\textit{Tomás Codina}}
 
-%%%---%%%
 
-%Document
+%%Document
+
+
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
@@ -60,8 +75,7 @@
 
 
 
-La teoría de cuerdas posee, entre otras, una simetría extra conocida como T-dualidad que no se encuentra presente en teorías que describen objetos puntuales. La acción de bajas energías para el sector de Neveu-Schwarz de la cuerda bosónica cerrada define una teoría de campos de partículas de dimensión $ 0 $ que analizamos en el capítulo anterior bajo el nombre de Supergravedad y como tal, no posee la T-dualidad como simetría. Si quisiesemos (por alguna razón que desconozco) incorporar dicha simetría a nuestra teoría, nos vemos obligados a extender la geometría Pseudo-Riemanniana en $ D=10 $ a una \textbf{geometría generalizada} covariante con respecto a T-dualidad. De esta forma, al dotar nuestra teoría con un principio de acción mínima, obtendremos nuestro modelo de forma manifiestamente covariante frente al grupo de T-dualidad.
-
+La teoría de cuerdas posee, entre otras, una simetría conocida como T-dualidad propia de tener a las partículas como objetos extensos. La acción de bajas energías para el sector de Neveu-Schwarz de la cuerda bosónica cerrada que analizamos en el capítulo anterior bajo el nombre de Supergravedad, define una teoría de campos sobre objetos puntuales y como tal, no posee la T-dualidad como simetría. La idea en teoría doble de campos (DFT), es incorporar dicha simetría a nuestra teoría a costa de extender la geometría Pseudo-Riemanniana en $ D=10 $ a una \textbf{geometría generalizada} con objetos covariantes con respecto al grupo de T-dualidad $ O(D,D) $. Una consecuencia de este modelo es la necesidad de doblar el número de coordenadas del espacio-tiempo. En este capítulo nos proponemos presentar las nociones básicas de DFT, tanto los nuevos campos fundamentales y transformaciones generalizadas como la acción de la teoría, bla bla bla
 \rule{\textwidth}{0.4pt}
 
 \section{\textcolor{teal}{Preliminares}}\label{sec_preliminares}
@@ -119,7 +133,7 @@ Lo cual permite definir la derivada generalizada como
 
 En esta teoría, los campos fundamentales $ g_{\mu\nu},b_{\mu\nu} $ y $ \phi $ no transforman como elementos del grupo de dualidad, por lo que debemos tomar combinaciones de ellos para formar objetos con las propiedades de transformación requeridas. Para ello se define la noción de \textbf{métrica generalizada} cuyas componentes vienen dadas por
 
-\begin{equation}\label{key}
+\begin{equation}\label{HdeG}
 \mathcal{H}_{MN}=
 \begin{pmatrix}
 g^{\mu\nu} & -g^{\mu\rho}b_{\rho\nu}\\
@@ -255,7 +269,7 @@ Esta derivada de Lie cumple varias propiedades, entre ellas la regla de Leibniz.
 Lo que se puede demostrar es que esta derivada generalizada, junto con el vínculo fuerte (\ref{SC}), reproduce las derivadas de Lie usuales para los campos fundamentales de supergravedad! Para ver esto, utilizamos \ref{Lie} para derivar la métrica generalizada
 
 
-\begin{equation}\label{key}
+\begin{equation}\label{Htransformation}
 \hat{\mathcal{L}}_{\xi} \mathcal{H}_{MN} = \xi^P\partial_P \mathcal{H}_{MN} + \left(\partial_M \xi^P - \partial^P\xi_M\right)\mathcal{H}_{PN} + \left(\partial_N \xi^P - \partial^P\xi_N\right)\mathcal{H}_{MP}
 \end{equation}
 
@@ -553,44 +567,1388 @@ Otro cálculo interesante es obtener las ecuaciones de movimiento de la nueva te
 
 
 
+\section{\textcolor{teal}{Descomposición de Kaluza-Klein}}\label{sec_DFTKK}
 
+En esta sección nos proponemos reescribir la acción de DFT en la forma de una teoría de Kaluza-Klein donde las 2D coordenadas de la teoría padre las dividimos en dos espacios dobles, uno externo y otro compacto. Utilizando el strong constrain en el espacio externo podemos eliminar la dependiencia en las coordenadas efectivas duales mientras que al mantener el espacio interno intacto de dimension N, obtenemos una especie de supergravedad gaugeada en 4D con simetría global $ O(N,N) $.
 
+\subsection{\textcolor{teal!60!white}{Ansatz de reducción}}\label{sec_ansatz}
 
+Lo que haremos a continuación no es una compactificación propiamente dicha, sino una reescritura de la acción original de la cual partimos \ref{S} en términos de la métrica generalizada $ \mathcal{H}_{MN} $ y el dilatón generalizado $ d $. En \ref{S} estamos integrando en el espacio doble con coordenadas $ X^M=(\widetilde{x}_i, x^i) $  con $ i=0,...,D-1 $. Fijado el punto de partida, podemos tomas las coordenadas y hacer un desdoblamiento de los indices en cuatro grupos
 
-
-
-
-
-
-\section{Lie}
-
-puede definirse un corchete generalizada conocido como \textbf{D-corchete} para la derivada de Lie generalizada
-\begin{equation}\label{key}
-\mathcal{L}_X Y = \left[X,Y\right]
+\begin{equation}
+X^M=(\widetilde{x}_{\mu}, \widetilde{y}_{m'}, x^{\mu}, y^{m'})
 \end{equation}
 
-\begin{equation}\label{key}
-\hat{\mathcal{L}}_A B \equiv \left[A,B\right]_D \equiv A \circ B
-\end{equation}  
+donde $ x^{\mu} $ pertenece al espacio externo y $ \widetilde{x}_{\mu} $ a su dual con $ \mu=0,...,d-1 $, mientras que las coordenadas $ y^{m'} $ y $ \widetilde{y}_{m'} $ corresponden al espacio interno con $ m'=1,...,N $. Otra forma de reescribir las coordenadas es agrupando las coordenadas compactas en un único objeto de indices dobles internos $ Y^m=(y^{m'}, \widetilde{y}_{m'}) $ con $ m= 1,..,2N $ y desdoblar 
 
-El mismo no es totalmente antisimétrico por lo que se lo suele denotar como una regla $ \circ $ en lugar de un corchete.
+\begin{equation}
+X^M=(x^{\mu}, \widetilde{x}_{\mu}, Y^m)
+\end{equation}
 
-La misma es covariante frente a T-dualidad y transforma de la misma manera que el propio tensor al que aplica. Puede demostrarse que satisface Leibnitz y que la composición cierra con respecto al \textbf{C-corchete}
+y
 
-\begin{equation}\label{key}
-\left[\hat{\mathcal{L}}_{\xi_1},\hat{\mathcal{L}}_{\xi_2}\right] = -\hat{\mathcal{L}}_{\left[\xi_1,\xi_2\right]_C}
+\begin{equation}
+\partial_M = (\widetilde{\partial}^{\mu}, \partial_{\mu}, \partial_m)
+\end{equation}
+
+El proposito de reecribir de esta forma las coordenadas es porque supondremos que en la redefinición de DFT ningún campo dependerá de los duales del espacio externo $ \widetilde{x}_{\mu} $. Por otro lado, las coordenadas internas las dejaremos de forma explícitamente covariante ante $ O(N,N) $.
+
+Hecho el desdoblamiento, continuamos del mismo modo que lo haríamos en cualquier problema de reducción dimensional, necesitamos especificar un Ansatz. Recordando la parametrización de la métrica generalizada en términos de los campos de supergravedad en $ D=10 $, \ref{HdeG}, ahora debemos hacer algo similar pero con una estructura de indices diferentes. Inspirandonos en la compactificación de supergravedad, podemos agrupar los grados de libertad en 5 campos fundamentales $ \left\{ g_{\mu \nu}, b_{\mu \nu}, A_{\mu}^m, M_{m n}, \phi \right\} $, siendo respectivamente la métrica efectiva, la 2-forma efectiva, los campos de gauge y los 36 escalares repartidos en una matriz de $ N \times N $ y el dilatón, todos ellos con dependencia en $ x^{\mu} $ e $ Y^m $. Con estos campos una posible parametrización es
+
+\begin{equation}\label{HKK}
+\mathcal{H}_{MN}=
+\begin{pmatrix}
+\mathcal{H}^{\mu \nu} & \mathcal{H}^{\mu}_{\nu} & \mathcal{H}^{\mu}_n\\
+\mathcal{H}_{\mu}^{\nu} & \mathcal{H}_{\mu \nu} & \mathcal{H}_{\mu n}\\
+\mathcal{H}_{m}^{\nu} & \mathcal{H}^{m \nu} & \mathcal{H}_{m n} 
+\end{pmatrix}
+=
+\begin{pmatrix}
+g^{\mu \nu} & -g^{\mu \rho} C_{\nu \rho} & -g^{\mu \rho} A_{\rho n}\\
+-C_{\mu \rho}g^{\rho \nu }  & g_{\mu \nu} + C_{\mu \rho}g^{\rho \sigma } C_{\nu \sigma} + A_{\mu o} M^{o p} A_{\nu p}  &  C_{\mu \rho}g^{\rho \sigma } A_{\sigma n} + A_{\mu}^p M_{p n} \\
+-A_{\rho m}g^{\rho \nu } & A_{\rho m} g^{\rho \sigma} C_{\nu \sigma} + M_{m p} A_{\nu}^p  &  A_{\rho m}g^{\rho \sigma } A_{\sigma n} + M_{m n}
+\end{pmatrix}
 \end{equation}
 
 con
 
-\begin{equation}\label{key}
-\left[\xi_1,\xi_2\right]_C=
+\begin{equation}
+C_{\mu \nu} = b_{\mu \nu} + \frac{1}{2} A_{\mu}^{\ p} A_{\nu p}
 \end{equation}
 
-el cual transforma como un tensor de peso nulo.
+A su vez, definimos el dilatón $ \phi $ a partir de $ d $
+
+\begin{equation}\label{dKK}
+e^{-2 d} = \sqrt{-g}e^{-2 \phi}
+\end{equation}
+
+donde $ g $ es el determinante de la métrica efectiva.
+
+\subsection{\textcolor{teal!60!white}{Transformaciones de los campos efectivos}}\label{sec_transformaciones}
+
+Como mencionamos anteriormente, la acción de DFT goza de una simetría ante difeomorfismos generalizados dada por \ref{Htransformation} y \ref{dtransformation}. Para ver que transformaciones heredan los campos fundamentales producto de esta simetría, debemos esplitear el parámetro de gauge, al igual que hicimos con las coordenadas. Para ello notamos
+
+\begin{equation}\label{parametros}
+\xi_M(x,Y)=(\xi^{\mu}(x,Y), \lambda_{\mu}(x,Y), \Lambda_m(x,Y))
+\end{equation}
+
+donde a diferencia de una compactificación de Kaluza-Klein, los parámetros dependen también de las coordenadas internas. De aquí observamos que tendremos 3 tipos de transformaciones, difeomorfimos generados por $ \xi^{\mu}  $, shift dados por $ \lambda_{\mu} $ y transformaciones de gauge del grupo $ O(N,N) $. 
+
+Para obtener todas estas transformaciones tomamos como punto de partida \ref{Htransformation} y observamos las componentes que nos interesen.\\
+
+
+Comenzando por la métrica, la forma más directa es observar la transformación
+
+\begin{equation}
+\delta g^{\mu \nu} = \delta H^{\mu \nu} = \xi^{\rho} \partial_{\rho} g^{\mu \nu}  + \Lambda^p \partial_p g^{\mu \nu} - \partial_{\rho} \xi^{\mu} \mathcal{H}^{\rho \nu} - \partial^p \xi^{\mu} \mathcal{H}_{p}^{\ \nu} - \partial_{\rho} \xi^{\nu} \mathcal{H}^{\mu \rho} - \partial^p \xi^{\nu} \mathcal{H}_{p}^{\ \mu}
+\end{equation}
+
+donde utilizamos que $ \widetilde{\partial}^{\mu} \left( \dots \right)  = 0$. Introduciendo el ansatz de reducción \ref{HKK} y agrupando los términos de manera conveniente llegamos a la expresión
+
+\begin{equation}
+\begin{aligned}
+\delta g^{\mu \nu} &=  \left( \Lambda^p + \xi^{\rho} A_{\rho}^{\ p}\right)\partial_p g^{\mu \nu}\\
+& + \xi^{\rho} \left( \partial_{\rho} - A_{\rho}^{\ p} \partial_p \right) g^{\mu \nu} - \left( \partial_{\rho} - A_{\rho}^{\ p} \partial_p \right) \xi^{\mu} g^{\rho \nu}  - \left( \partial_{\rho} - A_{\rho}^{\ p} \partial_p \right) \xi^{\nu} g^{\rho \mu}
+\end{aligned}
+\end{equation}
+
+Donde podemos detenernos un momento a analizar la situación. En primer lugar vemos que no aparece el parámetro $ \lambda_{\mu} $ por lo que $ g^{\mu \nu} $ no transforma ante el shift. En segundo lugar, vemos que notando un nuevo parámetro de gauge dependiente de los campos
+
+\begin{equation}
+\widetilde{\Lambda}^{p} \equiv \Lambda^p + \xi^{\rho} A_{\rho}^{\ p}
+\end{equation}
+
+identificamos a la métrica como un escalar ante gauges internos!
+
+\begin{equation}
+\delta_{\widetilde{\Lambda}} g^{\mu \nu} = \widetilde{\Lambda}^{p} \partial_p g^{\mu \nu} = \hat{\mathcal{L}}_{\widetilde{\Lambda}} g^{\mu \nu}
+\end{equation}
+
+Finalmente, los términos restantes podrían identificarse como la transformación ante difeomorfismos externos para un tensor $ \binom{0}{2} $, sino fuese porque todas las derivadas ahora tienen un término extra. Esto sugiere la introducción de una nueva derivada covariante
+
+\begin{equation}\label{Dcov}
+D_{\mu} \equiv \partial_{\mu} - \hat{\mathcal{L}}_{A_{\mu}}
+\end{equation}
+
+la cual aplicada sobre un objeto escalar ante gauges internos $ \Omega $, como lo es $ g^{\mu \nu} $ o $ \xi^{\mu} $, trabaja según
+
+\begin{equation}
+D_{\mu} \Omega = \left( \partial_{\rho} - A_{\rho}^{\ p} \partial_p \right) \Omega
+\end{equation}
+
+exactamente como tenemos en la transformación de la métrica! Ahora bien, todo muy lindo pero ¿Porque aparecen estas nuevas estructuras en las transformaciones de gauge? La respuesta es sencilla observando la dependencia en las coordenadas de los parámetros locales $ \xi^{\mu}(x,Y) $, a diferencia de lo que estabamos acostumbrados, ahora estos parámetros dependen de las coordenadas internas y por ello una contribución $ \partial_p \xi^{\mu} $ no se anula. Esto da lugar a una versión ''Covariante'' de los difeomorfismos que se reducen a los usuales para el caso en donde no hay dependencia en Y! Para entender porque llamamos a estas transformaciones difeomorfismos covariantes debemos esperar hasta la siguiente sección.
+
+En definitiva, notando a la transformación infinitesimal ante difeomorfismos covariantes como $ \mathcal{L}_{\xi}^{D} $ obtenemos 
+
+\begin{boxquation}
+\begin{equation}\label{deltag}
+\delta g^{\mu \nu} = \delta_{\widetilde{\Lambda}} g^{\mu \nu} + \delta_{\xi} g^{\mu \nu} = 
+\hat{\mathcal{L}}_{\widetilde{\Lambda}} g^{\mu \nu} + \mathcal{L}_{\xi}^{D}  g^{\mu \nu}
+\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+Siguiendo con los campos fundamentales, podemos concentrarnos en la componente $ \mathcal{H}^{\mu}_{\ n} = -g^{\mu \rho} A_{\rho n}$ para obtener la transformación del campo de gauge. Para ello podemos utilizar \ref{deltag} en
+
+\begin{equation}\label{auxA}
+\delta \mathcal{H}^{\mu}_{\ n} = -\delta g^{\mu \rho} A_{\rho n} -g^{\mu \rho} \delta A_{\rho n}
+\end{equation}
+
+para despejar $ \delta A_{\rho n} $. Nuevamente para ello calculamos el lado izquierdo de \ref{auxA} e introducimos el ansatz para las componentes de $ \mathcal{H} $ que aparezcan. Reordenando, cancelando y sumando y restando terminos iguales podemos identificar una estructura análoga al lado derecho de \ref{auxA}. De esta forma, al final del día se obtiene
+
+\begin{equation}
+\begin{aligned}\label{deltaA0}
+\delta A_{\mu}^{\ n} &= \partial_{\mu} \Lambda^n + \left[ \Lambda, A_{\mu}\right]_{(D)}^n - \partial^n \lambda_{\mu}\\
+&+ \xi^{\rho} \partial_{\rho} A_{\mu}^{\ n} +  \partial_{\mu} \xi^{\rho} A_{\rho}^{\ n} - A_{\mu}^{\ p} \partial_p \xi^{\rho} A_{\rho}^{\ n} +  \partial^n \xi^{\rho} C_{\rho \mu} + M^{n p} g_{\mu \rho} \partial_p \xi^{\rho}
+\end{aligned}
+\end{equation}
+
+De esta estructura podemos reconocer parte del primer renglón como la transformación de un campo de gauge no abeliano en donde, en lugar de tener el conmutador de Lie usual, tenemos el correspondiente al grupo de simetrías del espacio interno, el D-bracket. Dicha transformación se puede escribir de una forma más familiar\\
+
+[\textcolor{red}{ENTENDER MEJOR ESTO, CASO MÁS GENERAL POSIBLE, ¿DADO UN GRUPO DE SIMETRÍAS G, QUE BRACKET APARECEN EN ESTAS TRANSFORMACIONES? Relación entre variedad del grupo, su espacio tangente, algebra de Lie, generadores, conexiones y sus transformaciones.}]\\
+
+
+\begin{equation}\label{deltaAlambda}
+\delta_{\Lambda} A_{\mu}^{\ n} = \partial_{\mu} \Lambda^n + \left[ \Lambda, A_{\mu}\right]_{(D)}^n = \partial_{\mu} \Lambda^n - \left[A_{\mu}, \Lambda \right]_{(D)}^n + \partial^n \left( \Lambda^p A_{\mu p} \right) = D_{\mu}\Lambda^n + \partial^n \left( \Lambda^p A_{\mu p} \right)
+\end{equation}
+
+donde el último término puede eliminarse sencillamente con la transformación de gauge residual que tenemos también en el primer renglón de \ref{deltaA0}, de él vemos que $ A_{\mu}^{\ n} $ también transforma ante shifts y podemos utilizar dicha redundancia para eliminar el término extra de \ref{deltaAlambda} simplemente haciendo un desplazamiento de parámetro $ \lambda_{\mu} = \Lambda^p A_{\mu p}  $!
+
+Con respecto a la transformación ante difeomorfismos, esperamos recuperla de la segunda linea de \ref{deltaA0} pero luego de reordenar los términos un poco. Para ello es recomendable introducir la curvatura de los campos de gauge, la cual podemos proponer como primer intento de la forma
+
+\begin{equation}\label{F}
+F_{\mu \nu}^{\ \ m} = 2 \partial_{\left[\mu\right.} A_{\left. \nu\right]}^{\ m} - \left[A_{\mu}, A_{\nu} \right]_{(C)}^m 
+\end{equation} 
+
+por analogía con la teoría clásica de Yang-Mills pero con la estructura algebraica covariante de $ O(N,N) $ y antisimétrica, es decir, el C-bracket! De todas formas, en este caso la intuición falla dado que el tensor de esfuerzos no resulta $\Lambda$-covariante sino que
+
+\begin{equation}\label{fallaF}
+\delta_{\Lambda} F_{\mu \nu}^{\ \ m} = \hat{\mathcal{L}}_{\Lambda} F_{\mu \nu}^{\ \ m} + \partial^m \left( \partial_{\left[\mu\right.} \Lambda^p A_{\left. \nu\right] p} \right)
+\end{equation} 
+
+Esto se debe a que ahora estamos tratando un álgebra con Jacobiator distinto de cero\footnote{[\textcolor{red}{ENTENDER MUCHO MEJOR ESTO, LEER BIEN , diferencia entre algebras que cierran, las que no y las que lo hacen a menos de una ''homotopia'' }]}. De esta forma, podemos tomar prestada la idea del fenómeno bien conocido de \textbf{Jerarquía de tensores}, en donde se introducen tensores de un orden más alto en las curvaturas de aquellos tensores originales para salvar la covarianza ante cierta transformación. Con ello, proponemos un nuevo tensor de esfuerzos para los campos de gauge
+
+\begin{equation}\label{Fcovariante}
+\mathcal{F}_{\mu \nu}^{\ \ m} =  F_{\mu \nu}^{\ \ m} - \partial^m b_{\mu \nu} 
+\end{equation} 
+
+donde en lugar de introducir un nuevo objeto, utilizamos lo que ya teníamos a nuestra disposición, la 2-forma del espacio externo! De todas formas, la cuestión no se resuelve simplemente introduciendo un campo extra sino que su transformación ante $ \Lambda $ debe ser tal que cancele la falla de \ref{fallaF}. Esto en principio podría ser un problema ya que, en nuestro caso particular, al utilizar un campo ya presente en la teoría, no tenemos la libertad de imponer sobre $ b_{\mu \nu} $ ninguna transformación, sino que ella viene dada por herencia de los difeomorfismos generalizados! Dicho esto, decimos que para cancelar la falla, la 2-forma debería transformar según
+
+\begin{equation}\label{deltab}
+\delta_{\Lambda} b_{\mu \nu} = \Lambda^p \partial_p b_{\mu \nu} + \left( \partial_{\left[\mu\right.} \Lambda^p A_{\left. \nu\right] p} \right)
+\end{equation} 
+
+Que es exactamente la transformación de un $\Lambda$-escalar con los términos adicionales de Green-Schwartz usuales en el campo de Kalb-Ramond! Uno puede probar que efectivamente, si encontrasemos que $ b_{\mu \nu} $ transforma como tal, obtendríamos
+
+\begin{equation}\label{deltaF}
+\begin{aligned}
+\delta_{\Lambda} \mathcal{F}_{\mu \nu}^{\ \ m} &= \hat{\mathcal{L}}_{\Lambda}F_{\mu \nu}^{\ \ m} - \partial^m \left( \Lambda^p \partial_p b_{\mu \nu} \right)\\
+&= \hat{\mathcal{L}}_{\Lambda}F_{\mu \nu}^{\ \ m} - \Lambda^p \partial_p \left( \partial^m b_{\mu \nu} \right) - \left( \partial^m \Lambda_p - \partial_p \Lambda^m\right) \partial_p b_{\mu \nu}\\
+&= \hat{\mathcal{L}}_{\Lambda} \mathcal{F}_{\mu \nu}^{\ \ m}
+\end{aligned}
+\end{equation}
+
+donde utilizamos el strong contrain sobre las coordenadas internas para agregar el término necesario para formar $ \hat{\mathcal{L}}_{\Lambda} \partial^m b_{\mu \nu}$.
+
+Hecha la anterior disgresión ahora si estamos en condiciones de reescribir la segunda linea de \ref{deltaA0} de una forma más conveniente que nos será útil luego, para ello simplemente tomamos los términos e intentamos hacer aparecer el tensor de esfuerzos $ \mathcal{F} $ sumando y restando términos. Luego de trabajar la expresión y agrupar de manera conveniente uno obtiene
+
+\begin{equation}
+\begin{aligned}
+\xi^{\rho} \partial_{\rho} A_{\mu}^{\ n} +  \partial_{\mu} \xi^{\rho} A_{\rho}^{\ n} &- A_{\mu}^{\ p} \partial_p \xi^{\rho} A_{\rho}^{\ n} +  \partial^n \xi^{\rho} C_{\rho \mu} + M^{n p} g_{\mu \rho} \partial_p \xi^{\rho}\\
+&= \xi^{\rho} \mathcal{F}_{\rho \mu}^{\ \ n} + M^{n p} g_{\mu \rho} \partial_p \xi^{\rho}  - \partial^n \left(\xi^{\rho} C_{\mu \rho}\right) +  \partial_{\mu} \left(\xi^{\rho} A_{\rho}^{\ n} \right) + \left[ \left(\xi^{\rho} A_{\rho} \right), A_{\mu}\right]_{(D)}^n
+\end{aligned}
+\end{equation}
+
+Luego, introduciendo esta reescritrua en \ref{deltaA0} puede verse que aparece de forma natural el mismo parámetro dependiente de los campos $ \widetilde{\Lambda}^n = \lambda^n +  \xi^{\rho} A_{\rho}^{\ n} $ para formar la estructura \ref{deltaAlambda} y a su vez obtenemos el análogo para los shifts definiendo $ \widetilde{\lambda}_{\mu} \equiv \lambda_{\mu} + \xi^{\rho} C_{\mu \rho} $. En definitiva obtenemos la transformación completa para el campo de gauge
+
+\begin{boxquation}
+\begin{equation}
+\begin{aligned}
+\delta A_{\mu}^{\ n} &= \delta_{\widetilde{\Lambda}} A_{\mu}^{\ n} + \delta_{\widetilde{\lambda}} A_{\mu}^{\ n} + \delta_{\xi} A_{\mu}^{\ n}\\
+&=\partial_{\mu} \widetilde{\Lambda}^n + \left[ \widetilde{\Lambda}, A_{\mu}\right]_{(D)}^n - \partial^n \widetilde{\lambda}_{\mu} + \xi^{\rho} \mathcal{F}_{\rho \mu}^{\ \ n} + M^{n p} g_{\mu \rho} \partial_p \xi^{\rho} 
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+Del mismo modo ahora podemos utilizar los resultados anteriores para analizar la transformación $ \delta \mathcal{H}_{m n}= \delta \left( A_{\sigma m }g^{\sigma \rho} A_{\rho n} \right) + \delta M_{m n}$ y obtener así la transformación de la matriz escalar. Realizando los mismos pasos que hasta entonces, luego de un cálculo explícito se llega a la transformación
+
+\begin{boxquation}
+\begin{equation}
+\begin{aligned}
+\delta M_{m n} &= \delta_{\widetilde{\Lambda}} M_{m n} + \delta_{\xi} M_{m n}\\
+&= \widetilde{\Lambda}^p \partial_p M_{m n} + \left(\partial_m \widetilde{\Lambda}^p - \partial_p \widetilde{\Lambda}_m\right) M_{p n} + \left(\partial_n \widetilde{\Lambda}^p - \partial_p \widetilde{\Lambda}_n\right) M_{m p} + \xi^{\rho} D_{\rho} M_{m n}\\
+&= \hat{\mathcal{L}}_{\widetilde{\Lambda}} M_{m n} + \mathcal{L}_{\xi}^D M_{m n}
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+La cual tiene la forma deseada!\\
+
+Para la 2-forma podemos buscar otro tipo de transformación en lugar de la variación usual $ \delta b_{\mu \nu} $, que notaremos $ \Delta b_{\mu \nu} $ y llamaremos variación covariante. La motivación para definir dicha magnitud se origina al recordar la teoría de Yang-mills en donde teníamos
+
+\begin{equation}
+\delta F_{\mu \nu} = 2 D_{\left[\mu \right.} A_{\left.\nu \right]} 
+\end{equation}
+
+mientras que ahora para nuestro caso encontramos
+
+\begin{equation}\begin{aligned}
+\delta \mathcal{F}_{\mu \nu}^{\ \ m} &= 2 D_{\left[\mu \right.} \delta A_{\left.\nu \right]}^{\ m } + \partial^m \left( A_{\left[\mu m \right.} \delta A_{\left.\nu \right]}\right) - \partial^m \delta b_{\mu \nu}\\
+&= 2 D_{\left[\mu \right.} \delta A_{\left.\nu \right]}^{\ m } - \partial^m \Delta b_{\mu \nu}
+\end{aligned}
+\end{equation}
+
+donde definimos la variación covariante
+
+\begin{equation}\label{variacioncovariante}
+\Delta b_{\mu \nu} \equiv \delta b_{\mu \nu} - A_{\left[\mu \right.}^{\ p} \delta A_{\left.\nu \right] p}
+\end{equation}
+
+Esta manera de reescribir las variaciones tiene su análogo en el fenómeno ya mencionado de jerarquía de tensores. De esta forma ahora podemos comenzar a buscar las transformaciones de la 2-forma con la esperanza de que aparezca naturalmente la transformación necesaria para cancelar la falla de $ F_{\mu \nu}^{\ \ m} $ ante $ \widetilde{\Lambda} $, \ref{deltab} o análogamente, su versión covariante que puede calcularse explícitamente tomando las transformaciones $ \delta_{\widetilde{\Lambda}} A_{\mu}^{\ m} $ y $\delta_{\widetilde{\Lambda}} b_{\mu \nu} $  e ntroduciendolas en \ref{variacioncovariante} para obtener
+	
+\begin{equation}\label{salvafalla}
+\Delta_{\widetilde{\Lambda}}b_{\mu \nu} = -\widetilde{\Lambda}^p \mathcal{F}_{\mu \nu p} + 2 D_{\left[ \mu \right.} \left( \widetilde{\Lambda}^p A_{\left.\nu\right] p} \right)
+\end{equation}
+
+
+Dicho esto, comenzamos calculando la variación de la componente
+
+\begin{equation}
+\delta \mathcal{H}^{\mu}_{\ \nu} = - \delta g^{\mu \rho} C_{\nu \rho} - g^{\mu \rho} \delta C_{\nu \rho}
+\end{equation}
+
+donde al utilizar la variación de la métrica obtenemos
+
+\begin{equation}\label{deltaC}
+\begin{aligned}
+\delta C_{\mu \nu} &= \Lambda^p \partial_p C_{\mu \nu} + \partial_{\mu} \Lambda^p A_{\nu p}\\
+&-2 \partial_{\left[\mu \right.} \lambda_{\left. \nu \right]} - \partial^p \lambda_{\mu} A_{\nu p}\\
+& D_{\nu} \xi^{\rho} C_{\mu \rho} + \xi^{\rho} \partial_{\rho} C_{\mu \nu} + \partial_{\mu} \xi^{\rho} C_{\rho \mu} + A_{\mu p}M^{p n} g_{\nu \rho} \partial_n \xi^{\rho}  
+\end{aligned}
+\end{equation}
+
+Luego, observando la relación con $ \Delta b_{\mu \nu} $
+
+\begin{equation}\label{bdeC}
+\Delta b_{\mu \nu} = \delta C_{\mu \nu} - A_{\mu}^{\ p} \delta A_{\nu p}
+\end{equation}
+
+podemos extraer de \ref{deltaC} todo lo necesario. Para $ \Lambda $ (mirando de momento el parámetro independiente de los campos) podemos tomar la primer linea de \ref{deltaC} y la variación correspondiente del campo de gauge
+
+\begin{equation}
+\Delta_{\Lambda} b_{\mu \nu} = \Lambda^p \partial_p C_{\mu \nu} + \partial_{\mu} \Lambda^p A_{\nu p} - A_{\mu p } \left[ \partial_{\nu} \Lambda^p - \left[A_{\mu}, \Lambda \right]_{(D)}^p + \partial^p \left( \Lambda^m A_{\mu m} \right) \right]
+\end{equation} 
+
+y deglozando todo encontrar que efectivamente $ b_{\mu \nu} $ transforma de la forma necesaria \ref{salvafalla} para $ \Lambda $. Del mismo modo se puede utilizar la segunda linea de \ref{deltaC}
+con la variación ante shifts $ \lambda $ de los vectores de gauge para obtener
+
+\begin{equation}
+\Delta_{\lambda} b_{\mu \nu } = - 2 D_{\left[\mu \right.} \lambda_{\left.\nu \right]} 
+\end{equation}
+
+Luego, si quisiésemos la versiones completas con $ \widetilde{\Lambda} $ y $ \widetilde{\lambda} $, $ \Delta_{\Lambda} b_{\mu \nu } $ y $ \Delta_{\lambda} b_{\mu \nu } $  deberíamos introducir en \ref{bdeC} las variaciones de $ A_{\mu p} $ con los parámetros dependientes de los campos pero esto no bastaría ya que las primeras dos lineas de \ref{deltaC} tienen solo los parámetros $ \Lambda $ y $ \lambda $. Para ello es necesario sumar y restar términos de la forma
+
+\begin{equation}\label{termino1}
+\xi^{\rho} A_{\rho}^{\ p} \partial_p C_{\mu \nu} + \partial_{\mu} \left(\xi^{\rho} A_{\rho}^{\ p} \right) A_{\nu p}
+\end{equation}
+
+y
+
+\begin{equation}\label{termino2}
+-2 \partial_{\left[\mu \right.} \left( \xi^{\rho} C_{\left. \nu \right] \rho} \right) - \partial^p \left(\xi^{\rho} C_{\nu \rho}\right) A_{\nu p}
+\end{equation}
+
+para completar $ \Delta_{\widetilde{\Lambda}}b_{\mu \nu} $ y $ \Delta_{\widetilde{\lambda}}b_{\mu \nu} $ respectivamente, luego, los términos sobrantes, \ref{termino1} y \ref{termino2} con el signo opuesto, se sumarán a la tercer linea de \ref{deltaC} para generar la variación ante difeomorfismos covariantes que analizamos a continuación.
+
+Para las transformaciones ante $ \xi $, al igual que para el campo anterior, resulta conveniente introducir la curvatura de la 2-forma. Para ello el camino más directo es observar que el tensor $ F_{\mu \nu}^{\ \ m} $, no satisface la identidad de Bianchi debido a que el C-bracket no cierra el álgebra y por ello se obtiene la falla
+
+\begin{equation}
+D_{\left[ \mu \right.} F_{\left. \nu \rho \right]}^{\ \ m} = - \partial^m \left( A_{\left[ \mu\right.}^{\ p} \partial_{\nu} A_{\left. \rho \right] p } - \frac{1}{3} A_{\left[ \mu p \right.} \left[A_{\nu}, A_{\left.\rho\right]} \right]_{(C)}^p \right)
+\end{equation}
+
+la cual puede introducirse en $ D_{\left[ \mu \right.} \mathcal{F}_{\left. \nu \rho \right]}^{\ \ m} $ y obtener una versión modificada de la indentidad de Bianchi
+
+\begin{equation}
+3 D_{\left[ \mu \right.} \mathcal{F}_{\left. \nu \rho \right]}^{\ \ m} + \partial^m \mathcal{W}_{\mu \nu \rho} = 0
+\end{equation}
+
+Donde se definió el tensor
+
+\begin{equation}\label{W}
+\mathcal{W}_{\mu \nu \rho} \equiv 3 \left( D_{\left[ \mu \right.} b_{\left. \nu \rho \right]} + A_{\left[ \mu\right.}^{\ p} \partial_{\nu} A_{\left. \rho \right] p } - \frac{1}{3} A_{\left[ \mu p \right.} \left[A_{\nu}, A_{\left.\rho\right]} \right]_{(C)}^p\right)
+\end{equation}
+
+El cual, por analogía con jerarquía de tensores, se corresponde con la curvatura de la 2-forma\footnote{[\textcolor{red}{ Encontrar otra manera de introducir curvaturas: Dada una conexión/tensor/lo que sea con cualquier estructura de indices, ¿Que representa y como se construye una curvatura en el caso mas general?}]}! Dicho esto, al igual que hicimos con el campo de gauge, podemos tomar la última linea que nos quedo analizar de \ref{deltaC} y junto con $ A_{\mu}^{\ p} \delta_{\xi} A_{\nu p} $ empezar a agrupar términos hasta formar el tensor de esfuerzos correspondiente. Haciendo todo este trabajo, al final del día uno obtiene
+
+\begin{equation}
+\Delta_{\xi} b_{\mu \nu} = \xi^{\rho} \mathcal{W}_{\mu \nu \rho}
+\end{equation}
+
+que podemos unir con las anteriores transformaciones y completar nuestra búsqueda de la variación covariante de $ b_{\mu \nu} $
+
+\begin{boxquation}
+\begin{equation}
+\begin{aligned}
+\Delta b_{\mu \nu} &= \Delta_{\widetilde{\Lambda}} b_{\mu \nu} + \Delta_{\widetilde{\lambda}} b_{\mu \nu} + \Delta_{\xi} b_{\mu \nu}\\
+&= -\widetilde{\Lambda}^p \mathcal{F}_{\mu \nu p} + 2 D_{\left[ \mu \right.} \left( \widetilde{\Lambda}^p A_{\left.\nu\right] p} \right) - 2 D_{\left[\mu \right.} \widetilde{\lambda}_{\left.\nu \right]} + \xi^{\rho} \mathcal{W}_{\mu \nu \rho}
+\end{aligned}
+\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+Por último, resta analizar la transformación de la medida ante los parámetros efectivos. El camino más directo es splitear las componentes de la transformación sobre la medida de DFT ante difeomorfismos generalizados
+
+\begin{equation}
+\begin{aligned}
+\delta e^{-2 d} = \partial_P \left( \xi^P e^{-2 d}\right) &= \partial_{\mu} \left( \xi^{\mu} e^{-2 d}\right) + \partial_p \left( \Lambda^p e^{-2 d}\right)\\
+&= \left(\partial_{\mu} - A_{\mu}^{\ p} \partial_p \right)\left( \xi^{\mu} e^{-2 d}\right) -\xi^{\mu} e^{-2 d} \partial_p A_{\mu}^{\ p}\\
+&+ A_{\mu}^{\ p} \partial_p\left( \xi^{\mu} e^{-2 d}\right) + \xi^{\mu} e^{-2 d} \partial_p A_{\mu}^{\ p} + \partial_p \left( \Lambda^p e^{-2 d}\right)\\
+&= D_{\mu}\left( \xi^{\mu} e^{-2 d}\right) + \partial_p \left( \widetilde{\Lambda}^p e^{-2 d}\right) 
+\end{aligned}
+\end{equation}
+
+donde en la segunda igualdad simplemente sumamos y restamos términos para hacer aparecer la derivada covariante aplicada sobre tensores de peso 1 ante $ \Lambda $
+
+\begin{equation}\label{Dcovdensidad}
+D_{\mu} e^{-2d} \equiv \partial_{\mu}e^{-2d} - \partial_p \left( A_{\mu}^{\ p} e^{-2d} \right) 
+\end{equation}
+
+y a su vez hacer aparecer el parámetro $ \widetilde{\Lambda} $. De esta forma, como $ \xi^{\mu} $ es un $ \Lambda$-escalar, obtenemos que $ e^{-2d}=\sqrt{-g}e^{-2\phi} $ se comporta como una densidad para ambas transformaciones e invariante ante shifts
+
+\begin{boxquation}
+\begin{equation}\label{deltamedida}
+\delta \left( \sqrt{-g} e^{-2\phi}\right) = \delta_{\xi} \left( \sqrt{-g} e^{-2\phi}\right) + \delta_{\widetilde{\Lambda}} \left( \sqrt{-g} e^{-2\phi}\right) = D_{\mu}\left( \xi^{\mu} \sqrt{-g} e^{-2 \phi}\right) + \partial_p \left( \widetilde{\Lambda}^p \sqrt{-g} e^{-2 \phi}\right) 
+\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+Luego, podemos utilizar lo obtenido recientemente para deducir la transformación de $ \phi $. Para ello buscaremos como transforma $ e^{-2\phi} $ y de él la transformación del dilatón. Comenzamos observando como transforma la raíz del determinante de la métrica utilizando la fórmula
+ 
+\begin{equation}
+\delta \sqrt{-g} = \frac{\sqrt{-g}}{2} g^{\mu \nu} \delta g_{\mu \nu}
+\end{equation}
+ 
+e introduciendo \ref{deltag} obtenemos
+ 
+\begin{equation}
+\delta_{\widetilde{\Lambda}} \sqrt{-g} = \widetilde{\Lambda}^p \partial_p \sqrt{-g} 
+\end{equation}
+ 
+para los gauges dobles y
+ 
+\begin{equation}
+\delta_{\xi} \sqrt{-g} = D_{\rho} \left( \xi^{\rho} \sqrt{-g} \right) 
+\end{equation}
+ 
+ante difeomorfimos covariantes. Por otro lado, al igual que la métrica, no transforma ante shifts. Con esto vemos que resulta sera un $ \Lambda$-escalar y una densidad ante difeomorfismos. Luego, podemos utilizar la regla de Leibniz 
+
+\begin{equation}\label{medidaauxiliar2}
+\delta e^{-2 d} = \delta \sqrt{-g} e^{-2 \phi} + \sqrt{-g} \delta e^{-2 \phi}
+\end{equation}
+
+e introducir las transformaciones del determinante de la métrica en \ref{deltamedida} para leer de allí como transforma $ e^{-2 \phi} $. Un simple cálculo nos muestra
+
+\begin{equation}\label{ephilambda}
+\delta_{\widetilde{\Lambda}} e^{-2 \phi} = \partial_p \left( \widetilde{\Lambda}^p e^{-2 \phi}\right)
+\end{equation}
+
+mientras que ante $ \xi $ tenemos
+
+\begin{equation}\label{ephichi}
+\delta_{\xi} e^{-2 \phi} = \xi^{\rho} D_{\rho} e^{-2 \phi}
+\end{equation}
+
+donde la derivada covariante se aplica como en \ref{Dcovdensidad} ya que $ e^{-2\phi} $ resulta ser un tensor de peso 1 ante $ \widetilde{\Lambda} $ (ver \ref{ephilambda}). Llegado a este punto, obtener la transformación del dilatón es inmediato, simplemente aplicamos la regla de la cadena en \ref{ephilambda} y \ref{ephichi} y obtenemos
+
+\begin{boxquation}
+\begin{equation}\label{deltaphi}
+\begin{aligned}
+\delta \phi &= \delta_{\widetilde{\Lambda}} \phi + \delta_{\xi} \phi\\
+&= \widetilde{\Lambda}^p \partial_p \phi - \frac{1}{2} \partial_p \widetilde{\Lambda}^p + \xi^{\mu} D_{\mu} \phi 
+\end{aligned}
+\end{equation}
+\end{boxquation}
+ 
+donde así como la derivada covariante actúa sobre tensores y densidades de distinta forma, en \ref{deltaphi}, definimos que $ D_{\mu} $ actúa sobre $ \phi $ de una manera poco convencional pero que nos será útil luego
+
+\begin{equation}\label{Dcovphi}
+D_{\mu} \phi = \partial_{\mu} \phi - A_{\mu}^p \partial_p \phi + \frac{1}{2} \partial_p A_{\mu}^{\ p}
+\end{equation}
+
+De esto vemos que debido a $ - \frac{1}{2} \partial_p \widetilde{\Lambda}^p $ en $ \delta_{\widetilde{\Lambda}} \phi $ y $ \frac{1}{2} \partial_p A_{\mu}^{\ p} $ en $ \delta_{\xi} \phi $ el dilatón claramente no transforma como un escalar ante gauge ni difeomorfismos, de hecho no transforma de ninguna manera tensorial!\footnote{\textcolor{red}{Preguntar que clase de objeto es este, no es un tensor ni una densidad...}} Si bien esto podría parecer una complicación a la hora de organizar nuestros objetos en estructuras covariantes dentro de la acción efectiva, veremos que haciendo uso de la derivada \ref{Dcovphi}, el modelo sigma que esperamos obtener será efectivamente $ \widetilde{\Lambda}$-escalar. 
 
 
 
+\subsection{\textcolor{teal!60!white}{Objetos covariantes y Acción}}\label{accion}
+
+Con las transformaciones de los campos efectivos en nuestro poder, podemos construir los objetos covariantes que aparecerán en la acción efectiva. De momento nos concentraremos en la invarianza de la acción ante $ \Lambda $ y los shifts, dejando de lado la simetría frente a difeomorfismos hasta luego de la compactificación ya que dicha simetría se manifiesta una vez encontrados los coeficientes que acompañan a cada uno de los términos de la acción efectiva.
+
+\subsubsection{Derivada covariante}
+
+Podemos comenzar nuestro análisis notando que al estar en presencia de transformaciones de gauge locales, las derivadas usuales sobre tensores no transforman como tal. Por suerte, en el camino nos encontramos naturalmente con el objeto \ref{Dcov}, el cual actúa distinto para tensores, densidades y $ \phi $. Proponiendo un tensor de $ O(N,N) $ de prueba $ T $, veamos que efectivamente la derivada covariante hace honor a su nombre\footnote{La demostración se realiza para un parámetro de gauge genérico $ \Lambda $ pero no quiere decir que sea independiente de los campos, de hecho uno puedo corroborar que ningún paso de la cuenta discrimina entre uno u otro caso}
+
+\begin{equation}\label{Dcovdeduction}
+\begin{aligned}
+\delta_{\Lambda} \left( D_{\mu} T \right) &= D_{\mu} \left( \hat{\mathcal{L}}_{\Lambda} T\right) + \delta_{\Lambda} D_{\mu} T\\
+&=\partial_{\mu} \left( \hat{\mathcal{L}}_{\Lambda} T \right) - \hat{\mathcal{L}}_{ A_{\mu}}\left( \hat{\mathcal{L}}_{\Lambda} T\right) - \hat{\mathcal{L}}_{\delta A_{\mu}} T\\
+&= \partial_{\mu} \left( \hat{\mathcal{L}}_{\Lambda} T \right) - \hat{\mathcal{L}}_{\partial_{\mu} 
+\Lambda + \left[ \Lambda, A_{\mu}\right]_{(C)} + \frac{1}{2} \partial \left(\Lambda^p A_{\mu p} \right)}T - \hat{\mathcal{L}}_{ A_{\mu}}\left( \hat{\mathcal{L}}_{\Lambda} T\right)\\
+&= \hat{\mathcal{L}}_{\partial_{\mu} \Lambda} T + \hat{\mathcal{L}}_{\Lambda} \left(\partial_{\mu}T\right) - \hat{\mathcal{L}}_{\partial_{\mu}\Lambda}T - \hat{\mathcal{L}}_{\left[ \Lambda, A_{\mu}\right]_{(C)}}T -\hat{\mathcal{L}}_{\frac{1}{2} \partial \left(\Lambda^p A_{\mu p} \right)}T- \hat{\mathcal{L}}_{ A_{\mu}}\left( \hat{\mathcal{L}}_{\Lambda} T\right)\\
+&= \hat{\mathcal{L}}_{\Lambda} \left(\partial_{\mu}T\right) - \left[\hat{\mathcal{L}}_{\Lambda}, \hat{\mathcal{L}}_{A_{\mu}}\right] T - \hat{\mathcal{L}}_{ A_{\mu}}\left( \hat{\mathcal{L}}_{\Lambda} T\right) -\hat{\mathcal{L}}_{\frac{1}{2} \partial \left(\Lambda^p A_{\mu p} \right)}T\\
+&= \hat{\mathcal{L}}_{\Lambda} \left( D_{\mu} T \right) -\hat{\mathcal{L}}_{\partial \chi}T
+\end{aligned}
+\end{equation}
+
+donde entre otras cosas usamos la linealidad de la derivada de Lie generalizada, la transformación del campo de gauge expresada en términos del C-bracket mediante la relación
+
+\begin{equation}
+\left[V,W\right]_{(D)}^{m} = \left[V,W\right]_{(C)}^{m} + \frac{1}{2} \partial^m \left(V^p W_p\right) 
+\end{equation}
+
+y la clausura del corchete de Lie en el C-bracket
+
+\begin{equation}
+\left[\hat{\mathcal{L}}_{\Lambda_1}, \hat{\mathcal{L}}_{\Lambda_2} \right] = \hat{\mathcal{L}}_{ \left[\Lambda_1, \Lambda_2\right]_{(C)}}
+\end{equation}
+
+Por último, notamos $ \chi \equiv \frac{1}{2} \Lambda^p A_{\mu p} $ ya que puede demostrase sencillamente que cualquier transformación de gauge de la forma $ \hat{\mathcal{L}}_{\partial \chi} $ se anula debido al strong constrain. Este tipo de transformaciones triviales conocidas como \textbf{gauge residuales} nos permiten tirar el último término de \ref{Dcovdeduction} para obtener\\
+
+\begin{boxquation}
+	\begin{equation}
+	\delta_{\Lambda} \left( D_{\mu} T \right) = \hat{\mathcal{L}}_{\Lambda} \left( D_{\mu} T \right)
+	\end{equation}
+\end{boxquation}
+
+
+para cualquier $ \Lambda$-tensor. A su vez puede verse sencillamente que para tensores con $ \delta_{\lambda} T = 0 $ los shifts sobre $ D_{\mu} T $ se comportan como gauge triviales y por consiguiente resulta invariante frente a los mismos! 
+
+Ahora bien, como vimos recientemente la derivada covariante sobre el dilatón actúa de una manera poco natural y a su vez este no transforma de manera tensorial, por lo que el razonamiento anterior no es válido. Sin embargo, al calcular la variación de \ref{Dcovphi} y utilizar la variación del dilatón \ref{deltaphi} vemos que 
+
+\begin{equation}
+\begin{aligned}
+\delta_{\Lambda} \left( D_{\mu} \phi\right) &= \delta_{\Lambda} \left( \partial_{\mu} - A_{\mu}^{\ p} \partial_p \right)\phi + \left( \partial_{\mu} - A_{\mu}^{\ p} \partial_p \right)\delta_{\Lambda} \phi + \frac{1}{2} \partial_p \left( \delta_{\Lambda} A_{\mu}^{\ p} \right)\\
+&=\delta_{\Lambda} \left( \partial_{\mu} - A_{\mu}^{\ p} \partial_p \right)\phi + \left( \partial_{\mu} - A_{\mu}^{\ p} \partial_p \right)\Lambda^m \partial_m \phi\\
+&-\frac{1}{2}\left( \partial_{\mu} - A_{\mu}^{\ p} \partial_p \right) \partial_m \Lambda^m + \frac{1}{2} \partial_p \left(\partial_{\mu} \Lambda^p + \left[\Lambda, A_{\mu}\right]_{(D)}^p\right) 
+\end{aligned}
+\end{equation}
+
+donde la primer linea de la segunda igualdad es la variación de la derivada covariante usual sobre un tensor $ \binom{0}{0} $ por lo que aplica lo obtenido recientemente en \ref{Dcovdeduction}. A su vez desarrollando el D-bracket, distribuyendo y utilizando el strong constrain vemos que la última linea se anula completamente, dando lugar al resultado\\
+
+\begin{boxquation}
+	\begin{equation}\label{Dphiescalar}
+	\delta_{\Lambda} \left( D_{\mu} \phi \right) = \hat{\mathcal{L}}_{\Lambda} \left( D_{\mu} \phi \right)
+	\end{equation}
+\end{boxquation}
+
+
+Pero ahora con \ref{Dcovphi} y \ref{dKK}. Luego, utilizando el strong constrain y que $ \delta_{\lambda} \phi = 0 $ puede demostrarse que $ D_{\mu} \phi $ también se comporta como un $ \lambda$-invariante.
+
+Esto concluye el análisis sobre la derivada covariante justificando el nombre con el cual bautizamos previamente a $ D_{\mu} $.\\
+
+\subsubsection{Lagrangiano}
+
+Ahora si con esta herramienta en nuestro poder, intentemos deducir los términos que aparecerán en la acción efectiva de DFT. Para ello en primer lugar notamos que gracias a la transformación \ref{deltamedida}, podemos proponer como medida de nuestra teoría efectiva $ \sqrt{-g}e^{-2\phi} $, una densidad ante $ \Lambda $ y $ \xi $ e invariante ante $ \lambda $. Esto nos sugiere agrupar todos los objetos siguientes en un Lagrangiano escalar ante difeomorfismos y gauge e invariante sobre shifts para obtener una acción invariante a menos de términos de borde.\\
+
+
+\textbf{R:} Comenzando por la métrica, el primer objeto dinámico que se nos viene a la mente es el escalar de Ricci. De todas formas, como ahora los difeomorfimos externos poseen dependencia en el espacio interno, es necesario que nuestro escalar de curvatura se construya con derivadas covariantes en lugar de parciales
+
+\begin{equation}\label{riccig}
+R_D \equiv 2 g^{\mu \nu} D_{\left[ \rho \right.} \Gamma^{\rho}_{\left. \nu \right] \mu} +   2g^{\mu \nu}\Gamma^{\sigma}_{\mu \left[ \nu \right.}\Gamma^{\rho}_{ \left. \rho \right] \sigma}
+\end{equation} 
+
+donde ahora tenemos la conexión de Levi-Civita $ \Lambda-$covariante dada por 
+
+\begin{equation}\label{levicovariante}
+\Gamma^{\rho}_{\mu \nu} = \frac{1}{2} g^{\rho \sigma}\left[ D_{\mu} g_{\sigma \nu} + D_{\nu} g_{\mu \sigma} - D_{\sigma} g_{\mu \nu}\right]
+\end{equation}
+
+Esto introducirá acoplamientos entre la métrica y los campos de gauge y desglozandolo podemos ver que términos esperamos obtener al compactificar, luego de introducir \ref{levicovariante} en \ref{riccig}, reordenar e intercambiar derivadas covariantes obtenemos\footnote{ Un paso clave en este desarrollo es que, si bien las derivadas covariantes no conmutan , al estar siempre contraídas con métricas, esta contribución antisimétrica se anula}
+
+
+\begin{equation}\label{Rcov}
+\begin{aligned}
+R_D&= - \frac{1}{4}g^{\mu \nu} g^{\rho \sigma} g^{\lambda \alpha} D_{\mu}{g_{\rho \sigma}} D_{\nu}{g_{\lambda \alpha}} -g^{\mu \nu} g^{\rho \sigma} D_{\mu \nu}{g_{\rho \sigma}} - D_{\mu \nu} g^{\mu \nu} - g^{\mu \nu} D_{\rho}{g^{\rho \sigma}} D_{\sigma}{g_{\mu \nu}}\\
+&-\frac{3}{4}g^{\mu \nu} \partial_{\mu}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}} - \frac{1}{2} g^{\mu \nu}D_{\mu}{g^{\rho \sigma}} D_{\rho}{g_{\nu \sigma}} 
+\end{aligned}
+\end{equation}
+
+el cual se reduce al Ricci usual cuando cambiamos derivadas covariantes por parciales. Dicho objeto es, por construcción, manifiestamente covariante ante los gauges.\\
+ 
+%\begin{equation}\label{riccig}
+%\begin{aligned}
+%R&= - \frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g^{\mu \nu}} g^{\rho \sigma} - \frac{1}{2}\partial_{\mu}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}} g^{\mu \nu} + \partial_{\mu}{g^{\mu \rho}} \partial_{\nu}{g_{\rho \sigma}} g^{\nu \sigma}\\
+%& -\partial_{\mu \nu}{g_{\rho \sigma}} g^{\mu \nu} g^{\rho \sigma} +\partial_{\mu \nu}{g_{\rho \sigma}} g^{\mu \rho} g^{\nu \sigma} + \frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \rho} g^{\sigma \nu} g^{\lambda \alpha}\\
+%&- \frac{1}{4}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \nu} g^{\rho \sigma} g^{\lambda \alpha} - \frac{1}{2}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \lambda} g^{\rho \nu} g^{\sigma \alpha} + \frac{1}{4}\partial_{\mu}{g_{\rho \sigma}} \partial_{\nu}{g_{\lambda \alpha}} g^{\mu \nu} g^{\rho \lambda} g^{\sigma \alpha}\\
+%R& = - \frac{1}{4}g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} \partial_{\alpha}{g_{\mu \nu}} \partial_{\lambda}{g_{\rho \sigma}} - g^{\mu \nu} g^{\rho \sigma} \partial_{\mu \nu}{g_{\rho \sigma}} -\partial_{\mu \nu}{g^{\mu \nu}}\\
+%&- g^{\mu \nu} \partial_{\rho}{g^{\rho \sigma}} \partial_{\sigma}{g_{\mu \nu}} - \frac{1}{2} g^{\mu \nu}\partial_{\mu}{g^{\rho \sigma}} \partial_{\rho}{g_{\nu \sigma}}  - \frac{3}{4} g^{\mu \nu} \partial_{\mu}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}} 
+%\end{aligned}
+%\end{equation}
+
+$ \pmb{\phi:} $ Con respecto al dilatón, haciendo uso de la derivada covariante \ref{Dcovphi} esperamos recuperar un modelo sigma análogo a los presentes en supergravedad pero con posibles modificaciones debido a los difeomorfismos covariantes involucrados, este es
+
+\begin{equation}\label{DphiDphi}
+-4g^{\mu \nu} D_{\mu} \phi D_{\nu} \phi + 4 \nabla_{\mu} \left(g^{\mu \nu} D_{\nu} \phi\right)
+\end{equation}
+
+donde la derivada covariante sobre $ \phi $ corresponde a \ref{Dcovphi} y se introdujo la derivada
+
+\begin{equation}
+\nabla_{\mu} \equiv D_{\mu} + \pmb{\Gamma}_{\mu}
+\end{equation}
+
+con $ \Gamma_{\mu} $ de \ref{levicovariante} tal que se aplica sobre $ g^{\mu \nu}D_{\nu} \phi $ como si fuese un escalar ante $ \Lambda $ y vector ante difeomorfismos. De esta construcción, utilizando que $ D_{\mu} \phi $ transforma como un escalar (ver \ref{Dphiescalar}) y $ g^{\mu \nu} $ también, es inmediato verificar que el modelo es un escalar ante el gauge doble e invariante $ \lambda $.\\
+
+\textbf{M:} Del mismo modo, esperamos obtener un modelo sigma para la matriz escalar análogo al estudiado previamente en gauged supergravity pero ahora con derivadas covariantes. Dicho término se desgloza en 8 sumandos
+
+\begin{equation}\label{DMDM}
+\begin{aligned}
+\frac{1}{8} g^{\mu \nu} D_{\mu} M^{m n} D_{\nu} M_{m n}&= \frac{1}{8}g^{\mu \nu} (\partial_{\mu}{M^{m n}} - A_{\mu}^{p} \partial_{p}{M^{m n}} - (\partial^{m}{A_{\mu p}} - \partial_{p}{A_{\mu}^{m}}) M^{p n} - (\partial^{n}{A_{\mu p}} - \partial_{p}{A_{\mu}^{n}}) M^{m p})\\
+& \times (\partial_{\nu}{M_{m n}} - A_{\nu}^{o} \partial_{o}{M_{m n}} - (\partial_{m}{A_{\nu}^{o}} - \partial^{o}{A_{\nu m}}) M_{o n} - (\partial_{n}{A_{\nu}^{o}} - \partial^{o}{A_{\nu n}}) M_{m o})\\
+&= g^{\mu \nu} \left(+\frac{1}{8} \partial_{\mu}{M^{m n}} \partial_{\nu}{M_{m n}} - \frac{1}{4} \partial_{\mu}{M^{m n}} \partial^{o}{M_{m n}} A_{\nu o} \right.\\
+&- \frac{1}{2} M^{m n} M^{o p} \partial_{m}{A_{\mu o}} \partial_{n}{A_{\nu p}}+\frac{1}{8} \partial^{m}{M^{n o}} \partial^{p}{M_{n o}} A_{\mu m} A_{\nu p}\\
+& + M^{m n} \partial_{\mu}{M_{m p}} \partial_{n}{A_{\nu}^{\ p}}  + M_{m n} \partial_{p}{M^{m o}} A_{\mu}^{\ p} \partial_{o}{A_{\nu}^{\ n}} +\frac{1}{2}M^{m n} M^{o p} \partial_{m}{A_{\mu o}} \partial_{p}{A_{\nu n}}\\
+& \left.  - \frac{1}{2} \partial_m A_{\mu}^{\ p} \partial_p A_{\nu}^{\ m} \right)
+\end{aligned}
+\end{equation}
+
+donde utilizamos el strong constrain para eliminar dos términos y la relación 
+
+\begin{equation}
+M^{m p} M_{p n} = \delta^{m}_{\ p}
+\end{equation}
+
+para agrupar otros. Dado que $ M^{m n} $ se comporta de forma tensorial, $ D_{\mu}M^{m n} $ también lo hace y por consiguiente el modelo es un $ \Lambda-$escalar.\\
+
+\textbf{A:} Para construir el término cinético de los campos de gauge podemos proponer la misma forma que teníamos en teorías de supergravedad gaugeadas utilizando el tensor de energía impulso presentado previamente $ \mathcal{F}_{\mu \nu}^{\ \ m} $, que tal como demostramos (ver \ref{deltaF}) se comporta de forma vectorial ante $ \Lambda $. Con él, proponemos el modelo
+
+\begin{equation}\label{MFF}
+\begin{aligned}
+- \frac{1}{4}g^{\mu \nu} g^{\rho \sigma} M^{m n} \mathcal{F}_{\mu \rho m} \mathcal{F}_{\nu \sigma n} &=
+g^{\mu \nu} g^{\rho \sigma} M^{m n} \left( - \frac{1}{2}\partial_{\mu}A_{\rho m} \partial_{\nu}A_{\sigma n}+\partial_{m}b_{\mu \rho} \partial_{\nu}A_{\sigma n} - \frac{1}{4}\partial_{m}b_{\mu \rho} \partial_{n}b_{\nu \sigma}-A_{\mu}\,^{o} \partial_{\rho}A_{\nu m} \partial_{o}A_{\sigma n} \right.\\
+&+\frac{1}{2}A_{\mu}\,^{o} \partial_{\rho}A_{\nu m} \partial_{n}A_{\sigma o}+A_{\mu}\,^{o} \partial_{\nu}A_{\rho m} \partial_{o}A_{\sigma n} - \frac{1}{2}A_{\mu}\,^{o} \partial_{\nu}A_{\rho m} \partial_{n}A_{\sigma o}-\partial_{m}b_{\mu \rho} A_{\nu}\,^{o} \partial_{o}A_{\sigma n}\\
+&+\frac{1}{2}\partial_{m}b_{\mu \rho} A_{\nu}\,^{o} \partial_{n}A_{\sigma o} - \frac{1}{2}A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{o}A_{\rho m} \partial_{p}A_{\sigma n} +\frac{1}{2}A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}A_{\rho o} \partial_{p}A_{\sigma n}\\
+&- \frac{1}{8}A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}A_{\rho o} \partial_{n}A_{\sigma p} - \frac{1}{2}A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}A_{\nu p} \partial_{o}A_{\sigma n}+\frac{1}{8}A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}A_{\nu p} \partial_{n}A_{\sigma o}\\
+& \left. +\frac{1}{2}A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{o}A_{\sigma m} \partial_{p}A_{\nu n} +\frac{1}{2} \partial_{\mu}A_{\rho m} \partial_{\sigma}A_{\nu n} \right)
+\end{aligned}
+\end{equation}
+
+que nuevamente por simple contracción de indices resulta ser un $ \Lambda-$escalar. Luego, podemos observar que ante shifts
+
+\begin{equation}
+\delta_{\lambda} \mathcal{F}_{\mu \nu}^{\ m} = 2 D_{\left[\mu \right.} \delta_{\lambda} A_{\left.\nu \right]}^{\ m } - \partial^m \Delta_{\lambda} b_{\mu \nu} = -2 D_{\left[\mu \right.} \left(\partial^m \lambda_{\left.\nu \right]}\right) + 2 \partial^m \left(D_{\left[\mu \right.}  \lambda_{\left.\nu \right]} \right) = 0 
+\end{equation}
+
+resulta ser invariante gracias a que el conmutador entre la derivada parcial y $ D_{\mu} $ aplicado sobre escalares se anula debido al strong constrain.\\
+
+\textbf{b:} Para la 2-forma nuevamente nos apoyamos en gauged supergravity para proponer el término
+
+\begin{equation}\label{WW}
+\begin{aligned}
+- \frac{1}{12} g^{\mu \nu} g^{\alpha \lambda} g^{\rho \sigma} \mathcal{W}_{\mu \alpha \rho} \mathcal{W}_{\nu \lambda \sigma} &=
+g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} \left( \frac{1}{2} \partial_{\alpha}b_{\mu \rho} \partial_{\nu}b_{\lambda \sigma} - \frac{1}{4}\partial_{\alpha}b_{\mu \rho} \partial_{\lambda}b_{\nu \sigma} - \frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\lambda}\,^{m} \partial_{\nu}A_{\sigma m} \right.\\
+&- \frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\nu}\,^{m} \partial_{\sigma}A_{\lambda m}+\frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\nu}\,^{m} \partial_{\lambda}A_{\sigma m}+\partial_{\alpha}b_{\mu \rho} \partial^{m}b_{\lambda \nu} A_{\sigma m}\\
+&+\frac{1}{2}\partial_{\alpha}b_{\mu \rho} \partial^{m}b_{\nu \sigma} A_{\lambda m}+\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} \partial_{\mu}A_{\rho m} \partial_{\sigma}A_{\nu n} - \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} \partial_{\mu}A_{\rho m} \partial_{\nu}A_{\sigma n}\\
+&+\frac{1}{8}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\rho}A_{\lambda n} \partial_{\sigma}A_{\nu m} - \frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\lambda}A_{\rho n} \partial_{\sigma}A_{\nu m}+\frac{1}{8}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\lambda}A_{\rho n} \partial_{\nu}A_{\sigma m}\\
+&- \frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\lambda}\,^{n} A_{\rho m} \partial_{\sigma}A_{\nu n}+\frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\lambda}\,^{n} A_{\rho m} \partial_{\nu}A_{\sigma n}+\frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\rho m} A_{\sigma}\,^{n} \partial_{\lambda}A_{\nu n}\\
+&- \frac{1}{4}\partial^{m}b_{\alpha \mu} \partial^{n}b_{\lambda \nu} A_{\rho m} A_{\sigma n}+\frac{1}{2}\partial^{m}b_{\alpha \mu} \partial^{n}b_{\lambda \rho} A_{\nu n} A_{\sigma m} - \frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\lambda}\,^{m} A_{\nu}\,^{n} \partial_{n}A_{\sigma m}\\
+&+\frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\lambda}\,^{m} A_{\nu}\,^{n} \partial_{m}A_{\sigma n}+\frac{1}{2}\partial_{\alpha}b_{\mu \rho} A_{\nu}\,^{m} A_{\sigma}\,^{n} \partial_{m}A_{\lambda n} +\frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\rho}A_{\nu m} \partial_{o}A_{\sigma n}\\
+&- \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\rho}A_{\nu m} \partial_{n}A_{\sigma o} - \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\nu}A_{\rho m} \partial_{o}A_{\sigma n}+\frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\nu}A_{\rho m} \partial_{n}A_{\sigma o}\\
+&- \frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} A_{\rho}\,^{o} \partial_{\lambda}A_{\nu o} \partial_{n}A_{\sigma m}+\frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} A_{\rho}\,^{o} \partial_{\lambda}A_{\nu o} \partial_{m}A_{\sigma n} - \frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\lambda}\,^{n} A_{\nu}\,^{o} A_{\rho m} \partial_{n}A_{\sigma o}\\
+&- \frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\lambda}\,^{n} A_{\rho m} A_{\sigma}\,^{o} \partial_{o}A_{\nu n}+\frac{1}{2}\partial^{m}b_{\alpha \mu} A_{\lambda}\,^{n} A_{\rho m} A_{\sigma}\,^{o} \partial_{n}A_{\nu o}+\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}A_{\rho o} \partial_{p}A_{\sigma n}\\
+&- \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}A_{\rho o} \partial_{n}A_{\sigma p} - \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}A_{\nu p} \partial_{o}A_{\sigma n}\\
+& \left.+\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}A_{\nu p} \partial_{n}A_{\sigma o} +\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{o}A_{\sigma m} \partial_{p} A_{\nu n} \right)
+\end{aligned}
+\end{equation}
+
+El cual se comporta como un escalar ya que
+
+\begin{equation}
+\delta_{\Lambda} \mathcal{W}_{\mu \nu \rho}  = \Lambda^p \partial_p \mathcal{W}_{\mu \nu \rho} 
+\end{equation}
+
+A su vez, puede demostrarse que se comporta de manera invariante ante shifts.\\
+
+\textbf{V:} Finalmente, las componentes internas de los campos de la teoría padre suelen agruparse en una estructura conocido como \textbf{potencial escalar}. En nuestro caso particular, lo que encontraremos al final de los cálculos es una estructura de la forma
+
+\begin{equation}\label{V}
+-V[M,d,g] \equiv \mathcal{R}[M,d] + \frac{1}{4} M^{m n} \partial_m g^{\mu \nu} \partial_n g_{\mu \nu}
+\end{equation}
+
+donde $ \mathcal{R}[M,d] $ corresponde al escalar de curvatura de DFT, \ref{Rhat} con $ M^{m n} $ en lugar de $ H^{M N} $. De esta forma, vemos que la cuenta sobre $ \mathcal{R} $ para verificar su naturaleza escalar ante $ O(N,N) $ es la misma que hicimos para DFT, por lo que podemos confirmar que si bien sus componentes por separado no son escalares, las fallas de todos ellos se terminan cancelando y se comporta de manera escalar. De todas formas, todavía cabe analizar el término extra que nos aparece en \ref{V}. Para ello, recordamos que si bien derivadas parciales internas sobre tensores no corresponden a tensores de un orden mayor, para campos escalares como $ g^{\mu \nu} $, gracias al strong constrain, $ \partial_m g^{\mu \nu} $ si se comporta como un vector de $ O(N,N) $. De esta forma, al estar todos los indices contraidos, concluimos que el término extra es un escalar por separado.\\
+
+\subsubsection{Acción efectiva}
+
+Analizado los posibles objetos de la acción efectiva, para obtener la misma basta reemplazar el ansatz \ref{HKK} en la acción de DFT y reordenar los términos. Para ello, vamos a realizar dicho procedimiento de forma ordenada comenzando con los 4 primeros términos que serán los único con contribución del dilatón, utilizando un script de Cadabra realizamos la sustitución de forma automática y obtenemos
+
+\begin{equation}
+\begin{aligned}
+&4\mathcal{H}^{MN}\partial_M\partial_N d - \partial_M\partial_N\mathcal{H}^{MN} - 4\mathcal{H}^{MN}\partial_M d\partial_N d + 4\partial_M\mathcal{H}^{MN}\partial_N d = 
+\end{aligned}
+\end{equation}
+\begin{equation*}
+\begin{split}
+\begin{rcases} 
+&4M^{m n}\partial_m\partial_n d - \partial_m\partial_n M^{m n} - 4M^{m n} \partial_m d \partial_n d + 4 \partial_m M^{m n} \partial_n d
+\end{rcases}
+\quad \circled{V}
+\end{split}
+\end{equation*}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
+&-4g^{\mu \nu} \partial_{\mu}{\phi} \partial_{\nu}{\phi} + 8g^{\mu \nu} \partial_{\mu}{\phi} \partial^{m}{\phi} A_{\nu m} -4g^{\mu \nu} \partial^{m}{\phi} \partial^{n}{\phi} A_{\mu m} A_{\nu n}\\
+&+4g^{\mu \nu} \partial_{\mu \nu}{\phi} + 4\partial_{\mu}{\phi} \partial_{\nu}{g^{\mu \nu}} -4\partial_{\mu}{\phi} A_{\nu}\,^{m} \partial_{m}{g^{\mu \nu}}-4\partial^{m}{\phi} A_{\mu m} \partial_{\nu}{g^{\mu \nu}}\\
+&-4g^{\mu \nu} \partial^{m}{\phi} \partial_{\mu}{A_{\nu m}}-8g^{\mu \nu} \partial_{\mu}\,^{m}{\phi} A_{\nu m}+4\partial^{m}{\phi} A_{\mu m} A_{\nu}\,^{n} \partial_{n}{g^{\mu \nu}}\\
+&+ 4g^{\mu \nu} \partial^{m}{\phi} A_{\mu m} \partial^{n}{A_{\nu n}} +4g^{\mu \nu} \partial^{m}{\phi} A_{\mu}\,^{n} \partial_{n}{A_{\nu m}}+4g^{\mu \nu} \partial^{m n}{\phi} A_{\mu m} A_{\nu n}\\
+&+g^{\mu \nu} g^{\rho \sigma} \partial^{m}{A_{\mu m}} \partial_{\nu}{g_{\rho \sigma}} +2g^{\mu \nu} g^{\rho \sigma} \partial_{\mu}{\phi} \partial_{\nu}{g_{\rho \sigma}}\\
+&-g^{\mu \nu} g^{\rho \sigma} A_{\mu}\,^{m} \partial^{n}{A_{\nu n}} \partial_{m}{g_{\rho \sigma}}\\
+&-2g^{\mu \nu} g^{\rho \sigma} \partial_{\mu}{\phi} A_{\nu}\,^{m} \partial_{m}{g_{\rho \sigma}}-2g^{\mu \nu} g^{\rho \sigma} \partial^{m}{\phi} A_{\mu m} \partial_{\nu}{g_{\rho \sigma}}\\
+&+2g^{\mu \nu} g^{\rho \sigma} \partial^{m}{\phi} A_{\mu m} A_{\nu}\,^{n} \partial_{n}{g_{\rho \sigma}}\\
+&+ 2\partial^{m}{A_{\mu m}} \partial_{\nu}{g^{\mu \nu}}+2g^{\mu \nu} \partial_{\mu}\,^{m}{A_{\nu m}}\\
+&  -2A_{\mu}\,^{m} \partial^{n}{A_{\nu n}} \partial_{m}{g^{\mu \nu}}-2g^{\mu \nu} A_{\mu}\,^{m} \partial_{m}\,^{n}{A_{\nu n}}\\
+&-g^{\mu \nu} \partial^{m}{A_{\mu m}} \partial^{n}{A_{\nu n}}-4g^{\mu \nu} \partial_{\mu}{\phi} \partial^{m}{A_{\nu m}}
+%- 4g^{\mu \nu} D_{\mu}{\phi} D_{\nu}{\phi} + 4 g^{\mu \nu} \nabla_{\mu} D_{\nu} \phi
+\end{rcases}
+\quad \circled{$ \phi $}
+\end{split}
+\end{equation}
+\begin{equation*}
+\begin{split}
+\begin{rcases}
+&- \frac{1}{4}g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} \partial_{\alpha}{g_{\mu \nu}} \partial_{\lambda}{g_{\rho \sigma}} - g^{\mu \nu} g^{\rho \sigma} \partial_{\mu \nu}{g_{\rho \sigma}} -\partial_{\mu \nu}{g^{\mu \nu}} - g^{\mu \nu} \partial_{\rho}{g^{\rho \sigma}} \partial_{\sigma}{g_{\mu \nu}} -g^{\mu \nu} \partial_{\mu}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}}\\
+& - \frac{1}{4}g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} A_{\alpha}\,^{m} A_{\lambda}\,^{n} \partial_{m}{g_{\mu \nu}} \partial_{n}{g_{\rho \sigma}} + \frac{1}{2}g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} A_{\alpha}\,^{m} \partial_{\lambda}{g_{\mu \nu}} \partial_{m}{g_{\rho \sigma}}\\
+& +g^{\mu \nu} g^{\rho \sigma} \partial_{\mu}{A_{\nu}\,^{m}} \partial_{m}{g_{\rho \sigma}} + 2 g^{\mu \nu} g^{\rho \sigma} \partial_{\mu}\,^{m}{g_{\rho \sigma}} A_{\nu m} -g^{\mu \nu} g^{\rho \sigma} A_{\mu}\,^{m} \partial_{m}{A_{\nu}\,^{n}} \partial_{n}{g_{\rho \sigma}}\\
+&- g^{\mu \nu} g^{\rho \sigma} \partial^{m n}{g_{\mu \nu}} A_{\rho m} A_{\sigma n} + \partial_{\mu}{A_{\nu}\,^{m}} \partial_{m}{g^{\mu \nu}} + 2\partial_{\mu}\,^{m}{g^{\mu \nu}} A_{\nu m} - A_{\mu}\,^{m} \partial_{m}{A_{\nu}\,^{n}} \partial_{n}{g^{\mu \nu}}\\
+&- \partial^{m n}{g^{\mu \nu}} A_{\mu m} A_{\nu n} + g^{\mu \nu} A_{\rho}\,^{m} \partial_{\sigma}{g^{\rho \sigma}} \partial_{m}{g_{\mu \nu}} +g^{\mu \nu} A_{\rho}\,^{m} \partial_{m}{g^{\rho \sigma}} \partial_{\sigma}{g_{\mu \nu}} - g^{\mu \nu} A_{\rho}\,^{m} A_{\sigma}\,^{n} \partial_{m}{g^{\rho \sigma}} \partial_{n}{g_{\mu \nu}}\\
+&+ g^{\mu \nu} A_{\mu}\,^{m} \partial_{\nu}{g^{\rho \sigma}} \partial_{m}{g_{\rho \sigma}}  + g^{\mu \nu} A_{\mu}\,^{m} \partial_{m}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}} -g^{\mu \nu} A_{\mu}\,^{m} A_{\nu}\,^{n} \partial_{m}{g^{\rho \sigma}} \partial_{n}{g_{\rho \sigma}}
+\end{rcases}
+\quad \circled{$ R $}
+\end{split}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+\begin{rcases}
+&\partial_{\mu}{A_{\nu}\,^{m}} \partial_{m}{g^{\mu \nu}} - A_{\mu}\,^{m} \partial_{m}{A_{\nu}\,^{n}} \partial_{n}{g^{\mu \nu}} - g^{\mu \nu} \partial^{m}{A_{\mu}\,^{n}} \partial_{n}{A_{\nu m}}
+\end{rcases}
+\quad \circled{$ ? $}
+\end{split}
+\end{equation*}\\
+ 
+Luego, para el siguiente término de DFT obtenemos
+
+\begin{equation}
+\frac{1}{8} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_N \mathcal{H}_{KL}=
+\end{equation}
+\begin{equation*}
+\begin{split}
+\begin{rcases} 
+&+ \frac{1}{8} M^{m n} \partial_m M^{o p} \partial_n M_{o p} + \frac{1}{4} M^{m n} \partial_m g_{\mu \nu} \partial_n g^{\mu \nu}\\
+\end{rcases}
+\quad \circled{V}
+\end{split}
+\end{equation*}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
+& \frac{1}{4} g^{\mu \nu} \partial_{\mu} g^{\rho \sigma} \partial_{\nu} g_{\rho \sigma}\\
+& + g^{\mu \nu} \left( - \frac{1}{4}A_{\mu}\,^{m} \partial_{\nu}{g^{\rho \sigma}} \partial_{m}{g_{\rho \sigma}} - \frac{1}{4}A_{\mu}\,^{m} \partial_{m}{g^{\rho \sigma}} \partial_{\nu}{g_{\rho \sigma}}+\frac{1}{4}A_{\mu}\,^{m} A_{\nu}\,^{n} \partial_{m}{g^{\rho \sigma}} \partial_{n}{g_{\rho \sigma}} \right)
+\end{rcases}
+\quad \circled{$ R $}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
+&g^{\mu \nu} \left(+\frac{1}{8} \partial_{\mu}{M^{m n}} \partial_{\nu}{M_{m n}} - \frac{1}{4} \partial_{\mu}{M^{m n}} \partial^{o}{M_{m n}} A_{\nu o} \right.\\
+& \left.- \frac{1}{2} M^{m n} M^{o p} \partial_{m}{A_{\mu o}} \partial_{n}{A_{\nu p}}+\frac{1}{8} \partial^{m}{M^{n o}} \partial^{p}{M_{n o}} A_{\mu m} A_{\nu p}\right)
+\end{rcases}
+\quad \circled{M}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
++ g^{\mu \nu} g^{\rho \sigma} M^{m n} &\left(- \frac{1}{2} \partial_{\mu}{A_{\rho m}} \partial_{\nu}{A_{\sigma n}} - \frac{1}{4} \partial_{m}{b_{\mu \rho}} \partial_{n}{b_{\nu \sigma}} + A_{\mu}\,^{o} \partial_{\nu}{A_{\rho m}} \partial_{o}{A_{\sigma n}}\right.\\
+&+\frac{1}{2} \partial_{m}{b_{\mu \rho}} A_{\nu}\,^{o} \partial_{n}{A_{\sigma o}} - \frac{1}{2} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{o}{A_{\rho m}} \partial_{p}{A_{\sigma n}}\\
+& \left. - \frac{1}{8} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}{A_{\rho o}} \partial_{n}{A_{\sigma p}} +\frac{1}{8}A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}{A_{\nu p}} \partial_{n}{A_{\sigma o}}\right)
+\end{rcases}
+\quad \circled{A}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
++ g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} & \left( - \frac{1}{4} \partial_{\alpha}{b_{\mu \rho}} \partial_{\lambda}{b_{\nu \sigma}} + \frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} A_{\nu}\,^{m} \partial_{\lambda}{A_{\sigma m}}+\frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} \partial^{m}{b_{\nu \sigma}} A_{\lambda m} \right.\\
+&- \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} \partial_{\mu}{A_{\rho m}} \partial_{\nu}{A_{\sigma n}}+\frac{1}{8}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\rho}{A_{\lambda n}} \partial_{\sigma}{A_{\nu m}}\\
+&- \frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\lambda}\,^{n} A_{\rho m} \partial_{\sigma}{A_{\nu n}}- \frac{1}{4}\partial^{m}{b_{\alpha \mu}} \partial^{n}{b_{\lambda \nu}} A_{\rho m} A_{\sigma n}\\
+&- \frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} A_{\lambda}\,^{m} A_{\nu}\,^{n} \partial_{m}{A_{\sigma n}}+\frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\nu}{A_{\rho m}} \partial_{o}{A_{\sigma n}}\\
+&- \frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} A_{\rho}\,^{o} \partial_{\lambda}{A_{\nu o}} \partial_{m}{A_{\sigma n}}+\frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\lambda}\,^{n} A_{\rho m} A_{\sigma}\,^{o} \partial_{o}{A_{\nu n}}\\
+& \left. - \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}{A_{\rho o}} \partial_{n}{A_{\sigma p}} +\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}{A_{\nu p}} \partial_{n}{A_{\sigma o}} \right)
+\end{rcases}
+\quad \circled{b}
+\end{split}
+\end{equation}\\
+
+
+Por último, del sexto término de \ref{R} adquirimos el siguiente resultado
+
+\begin{equation}
+-\frac{1}{2} \mathcal{H}^{MN}\partial_M \mathcal{H}^{KL}\partial_K \mathcal{H}_{NL}=
+\end{equation}
+\begin{equation*}
+\begin{split}
+\begin{rcases} 
+- \frac{1}{2}M^{m n} \partial_{m}{M^{o p}} \partial_{o}{M_{n p}}
+\end{rcases}
+\quad \circled{V}
+\end{split}
+\end{equation*}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
+&- \frac{1}{2} g^{\mu \nu}\partial_{\mu}{g^{\rho \sigma}} \partial_{\rho}{g_{\nu \sigma}}\\
+&+ g^{\mu \nu} \left(  \frac{1}{2}  A_{\rho}\,^{m} \partial_{\mu}{g^{\rho \sigma}} \partial_{m}{g_{\nu \sigma}} +\frac{1}{2}A_{\mu}\,^{m} \partial_{m}{g^{\rho \sigma}} \partial_{\rho}{g_{\nu \sigma}} - \frac{1}{2}A_{\mu}\,^{m} A_{\rho}\,^{n} \partial_{m}{g^{\rho \sigma}} \partial_{n}{g_{\nu \sigma}} \right)
+\end{rcases}
+\quad \circled{R}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
+&+ g^{\mu \nu} \left(  M^{m n} \partial^{o}{M_{m}\,^{p}} A_{\mu o} \partial_{p}{A_{\nu n}} + M^{m n} \partial_{\mu}{M_{m}\,^{o}} \partial_{n}{A_{\nu o}} + \frac{1}{2}M^{m n} M^{o p} \partial_{m}{A_{\mu o}} \partial_{p}{A_{\nu n}}\right)
+\end{rcases}
+\quad \circled{M}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
++g^{\mu \nu} g^{\rho \sigma} M^{m n} &\left( \frac{1}{2} \partial_{\mu}{A_{\rho m}} \partial_{\sigma}{A_{\nu n}}- A_{\mu}\,^{o} \partial_{\rho}{A_{\nu m}} \partial_{o}{A_{\sigma n}} \right.\\
+& + \frac{1}{2} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{o}{A_{\sigma m}} \partial_{p}{A_{\nu n}}+\frac{1}{2} A_{\mu}\,^{o} \partial_{\rho}{A_{\nu m}} \partial_{n}{A_{\sigma o}}\\
+&- \frac{1}{2} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}{A_{\nu p}} \partial_{o}{A_{\sigma n}}+ \partial_{m}{b_{\mu \rho}} \partial_{\nu}{A_{\sigma n}} - \frac{1}{2} A_{\mu}\,^{o} \partial_{\nu}{A_{\rho m}} \partial_{n}{A_{\sigma o}}\\
+& \left. - \partial_{m}{b_{\mu \rho}} A_{\nu}\,^{o} \partial_{o}{A_{\sigma n}} +\frac{1}{2} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}{A_{\rho o}} \partial_{p}{A_{\sigma n}} \right)
+\end{rcases}
+\quad \circled{A}
+\end{split}
+\end{equation}
+\begin{equation}\label{R}
+\begin{split}
+\begin{rcases}
++g^{\alpha \lambda} g^{\mu \nu} g^{\rho \sigma} &\left( - \frac{1}{2} \partial_{\alpha}{b_{\mu \rho}} A_{\nu}\,^{m} \partial_{\sigma}{A_{\lambda m}} + \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} \partial_{\mu}{A_{\rho m}} \partial_{\sigma}{A_{\nu n}} - \frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\lambda}{A_{\rho n}} \partial_{\sigma}{A_{\nu m}} \right.\\
+&+\frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\lambda}\,^{n} A_{\rho m} \partial_{\nu}{A_{\sigma n}} - \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\rho}{A_{\nu m}} \partial_{o}{A_{\sigma n}}+\frac{1}{4}A_{\alpha}\,^{m} A_{\mu}\,^{n} A_{\rho}\,^{o} \partial_{\lambda}{A_{\nu o}} \partial_{n}{A_{\sigma m}}\\
+&- \frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} A_{\nu}\,^{m} A_{\sigma}\,^{n} \partial_{m}{A_{\lambda n}}+\frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\rho}{A_{\nu m}} \partial_{n}{A_{\sigma o}}+\frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\lambda}\,^{n} A_{\nu}\,^{o} A_{\rho m} \partial_{n}{A_{\sigma o}}\\
+&+\frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{o}{A_{\sigma m}} \partial_{p}{A_{\nu n}}+\frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} \partial_{\nu}{b_{\lambda \sigma}} - \frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} A_{\lambda}\,^{m} \partial_{\nu}{A_{\sigma m}}\\
+&+\frac{1}{8}A_{\alpha}\,^{m} A_{\mu}\,^{n} \partial_{\lambda}{A_{\rho n}} \partial_{\nu}{A_{\sigma m}}+\partial_{\alpha}{b_{\mu \rho}} \partial^{m}{b_{\lambda \nu}} A_{\sigma m}+\frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\rho m} A_{\sigma}\,^{n} \partial_{\lambda}{A_{\nu n}}\\
+&- \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} \partial_{\nu}{A_{\rho m}} \partial_{n}{A_{\sigma o}} +\frac{1}{2}\partial_{\alpha}{b_{\mu \rho}} A_{\lambda}\,^{m} A_{\nu}\,^{n} \partial_{n}{A_{\sigma m}}\\
+&+\frac{1}{2}\partial^{m}{b_{\alpha \mu}} \partial^{n}{b_{\lambda \rho}} A_{\nu n} A_{\sigma m} - \frac{1}{2}\partial^{m}{b_{\alpha \mu}} A_{\lambda}\,^{n} A_{\rho m} A_{\sigma}\,^{o} \partial_{n}{A_{\nu o}}\\
+& \left. - \frac{1}{4}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\rho}\,^{p} \partial_{m}{A_{\nu p}} \partial_{o}{A_{\sigma n}} + \frac{1}{8}A_{\alpha}\,^{m} A_{\lambda}\,^{n} A_{\mu}\,^{o} A_{\nu}\,^{p} \partial_{m}{A_{\rho o}} \partial_{p}{A_{\sigma n}} \right)
+\end{rcases}
+\quad \circled{b}
+\end{split}
+\end{equation}
+\begin{equation*}
+\begin{split}
+\begin{rcases}
+&- \partial_{\mu}{A_{\nu}\,^{m}} \partial_{m}{g^{\mu \nu}} + A_{\mu}\,^{m} \partial_{m}{A_{\nu}\,^{n}} \partial_{n}{g^{\mu \nu}} + \frac{1}{2} g^{\mu \nu} \partial^{m}{A_{\mu}\,^{n}} \partial_{n}{A_{\nu m}}
+\end{rcases}
+\quad \circled{$ ? $}
+\end{split}
+\end{equation*}\\
+
+De esta forma, veamos que todos los términos nos permiten recuperar la acción efectiva deseada.
+
+En primer lugar, los términos \circled{V} no son otra cosa más que el potencial escalar antes mencionado, \ref{V}.
+
+
+Luego, un desarrollo explícito de \ref{DphiDphi} nos permite identificar \circled{$ \phi $} como el modelo sigma del dilatón.
+
+
+Luego, los términos \circled{R}, \circled{A} y \circled{b} corresponden a los modelos completos del Ricci covariante \ref{Rcov}, y los términos cinéticos \ref{MFF} y \ref{WW}, respectivamente. Por último uno puede verificar que al sumar los dos conjuntos \circled{?} solo sobrevive el término $ - \frac{1}{2} g^{\mu \nu} \partial^{m}{A_{\mu}\,^{n}} \partial_{n}{A_{\nu m}} $ el cual se suma a los otros 7 términos de \circled{M} para completar satisfactoriamente el modelo sigma de la matriz escalar \ref{DMDM}.\\
+
+De esta forma, finalmente obtenemos la tan ansiada acción efectiva de DFT en la forma de una teoría de Kaluza-Klein!\\
+
+\begin{boxquation}
+	\begin{equation}\label{DFTKKaction}
+	\begin{aligned}
+	S = \int \mathrm{d}^d x \ \mathrm{d}^{2N} Y \sqrt{-g}e^{-2 \phi} \left[ R_D -4g^{\mu \nu} D_{\mu} \phi D_{\nu} \phi + 4 \nabla_{\mu} \left(g^{\mu \nu} D_{\nu} \phi\right) - \frac{1}{4} M^{m n} \mathcal{F}_{\mu \nu m} \mathcal{F}^{\mu \nu}_{\ \ n} \right.\\
+	\left. + \frac{1}{8} g^{\mu \nu} D_{\mu} M^{m n} D_{\nu} M_{m n}  - \frac{1}{12}\mathcal{W}_{\mu \nu \rho}\mathcal{W}^{\mu \nu \rho} - V[M,d,g] \right]
+	\end{aligned}
+	\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+que por lo analizado previamente es invariante ante gauge dobles y shifts.
+
+\subsubsection{Invarianza ante difeomorfismos}\label{sec_difeoinvariance}
+
+Como mencionamos previamente la simetría de la acción efectiva ante difeomorfismos covariantes queda manifiesta unicamente luego de saber los coeficientes que acompañan a cada uno de los términos de la acción. Esto se debe a que cada término por separado no se comporta como un $ \xi-$escalar sino que posee fallas que deben ser compensadas entre sí. Esto debe ser así necesariamente ya que la acción de la cual partimos, \ref{S}, era invariante ante difeomorfismos generalizados y al splitear todos los indices y reagrupar sin tirar términos de borde, lo único que hicimos fue una reescritura de la misma acción, es decir que esta ''nueva'' teoría efectiva también debe ser invariante ante los difeomorfismos generalizados que ahora reescribimos como 3 simetrías por separado. Luego, al haber demostrado que la misma es invariante ante $ \Lambda $ y $ \lambda $, para obtener una falla total nula, la única posibilidad es que la falla de la simetría restante también se anule, dando lugar a una acción invariante ante los difeomorfismos generalizados!
+
+\vspace{.8cm}
+
+\begin{boxumen}
+	
+	En esta sección logramos reescribir la acción de DFT en términos de los campos efectivos $ g_{\mu \nu}, b_{\mu \nu}, M_{m n}, A_{\mu}^{\ m}$ y $ \phi $ a través del Ansatz \ref{HKK} y \ref{dKK} para la métrica generalizada y dilatón generalizado respectivamente llegando a la forma
+	
+	\begin{equation}
+	\begin{aligned}
+	S = \int \mathrm{d}^d x \ \mathrm{d}^{2N} Y \sqrt{-g}e^{-2 \phi} \left[ R_D -4g^{\mu \nu} D_{\mu} \phi D_{\nu} \phi + 4 \nabla_{\mu} \left(g^{\mu \nu} D_{\nu} \phi\right) - \frac{1}{4} M^{m n} \mathcal{F}_{\mu \nu m} \mathcal{F}^{\mu \nu}_{\ \ n} \right.\\
+	\left. + \frac{1}{8} g^{\mu \nu} D_{\mu} M^{m n} D_{\nu} M_{m n}  - \frac{1}{12}\mathcal{W}_{\mu \nu \rho}\mathcal{W}^{\mu \nu \rho} - V[M,d,g] \right]
+	\end{aligned}
+	\end{equation}
+	
+	con 
+	
+	\begin{equation}
+	\begin{aligned}
+	\mathcal{F}_{\mu \nu}^{\ \ m} &= 2 \partial_{\left[\mu\right.} A_{\left. \nu\right]}^{\ m} - \left[A_{\mu}, A_{\nu} \right]_{(C)}^m - \partial^m b_{\mu \nu}\\
+	\mathcal{W}_{\mu \nu \rho} &= 3 \left( D_{\left[ \mu \right.} b_{\left. \nu \rho \right]} + A_{\left[ \mu\right.}^{\ p} \partial_{\nu} A_{\left. \rho \right] p } - \frac{1}{3} A_{\left[ \mu p \right.} \left[A_{\nu}, A_{\left.\rho\right]} \right]_{(C)}^p\right)\\
+	V[M,d,g] &= -\mathcal{R}[M,d] - \frac{1}{4} M^{m n} \partial_m g^{\mu \nu} \partial_n g_{\mu \nu}
+	\end{aligned}
+	\end{equation}
+	
+	y las derivadas covariantes
+	
+	\begin{equation}
+	\begin{aligned}
+	D_{\mu} \phi &= \partial_{\mu} \phi - A_{\mu}^p \partial_p \phi + \frac{1}{2} \partial_p A_{\mu}^{\ p}\\
+	D_{\mu}M^{m n} &= \partial_{\mu} M^{m n} - \hat{\mathcal{L}}_{A_{\mu}} M^{m n}
+	\end{aligned}
+	\end{equation} 
+	
+	Luego, descomponiendo los difeomorfismos generalizados de DFT en transformaciones de gauge, shifts y difeomorfismos covariantes, logramos demostrar la invarianza de la acción ante las transformaciones
+	
+	\begin{equation}\label{DFTKKtransformation}
+	\begin{aligned}
+	\delta g^{\mu \nu} &= \hat{\mathcal{L}}_{\widetilde{\Lambda}} g^{\mu \nu} + \mathcal{L}_{\xi}^{D}  g^{\mu \nu}\\
+	\delta M_{m n}&= \hat{\mathcal{L}}_{\widetilde{\Lambda}} M_{m n} + \mathcal{L}_{\xi}^D M_{m n}\\
+	\delta A_{\mu}^{\ n} &=\partial_{\mu} \widetilde{\Lambda}^n + \left[ \widetilde{\Lambda}, A_{\mu}\right]_{(D)}^n - \partial^n \widetilde{\lambda}_{\mu} + \xi^{\rho} \mathcal{F}_{\rho \mu}^{\ \ n} + M^{n p} g_{\mu \rho} \partial_p \xi^{\rho}\\
+	\Delta b_{\mu \nu} &= -\widetilde{\Lambda}^p \mathcal{F}_{\mu \nu p} + 2 D_{\left[ \mu \right.} \left( \widetilde{\Lambda}^p A_{\left.\nu\right] p} \right) - 2 D_{\left[\mu \right.} \widetilde{\lambda}_{\left.\nu \right]} + \xi^{\rho} \mathcal{W}_{\mu \nu \rho}\\
+	\delta \phi &= \widetilde{\Lambda}^p \partial_p \phi - \frac{1}{2} \partial_p \widetilde{\Lambda}^p + \xi^{\mu} D_{\mu} \phi 
+	\end{aligned}
+	\end{equation}
+	
+	
+\end{boxumen}
+
+
+\section{\textcolor{teal}{Gauged supergravity}}
+
+Hasta el momento lo que hicimos fue reescribir DFT en un nuevo formato en donde los campos presentes corresponden a un espacio externo de dimensión $ d $ y un espacio interno doble de dimensión $ 2N $ y ninguno de ellos depende de las coordenadas efectivas duales $ \widetilde{x}_{\mu} $. Esta acción resulta muy útil como punto de partida para obtener acciones de supergravedad en menores dimensiones y como siempre, compactificar es el procedimiento que nos permite realizar esta tarea. Como nuestra acción ya se encuentra escrita en términos de los campos efectivos que aparecerán la acción de supergravedad, el único trabajo a realizar es proponer el ansatz de reducción y, como ya mencionamos, existen diversas formas de hacerlo dependiendo de la variedad compacta que tomamos para ''esconder'' nuestras dimensiones extra. Al igual que antes, el ansatz más sencillo que uno puede proponer es imponer dependencia nula en las coordenadas internas, pero así como antes esto se identificaba con la compactificación en una variedad plana (el $ N-$toro) ahora el espacio interno corresponde a una variedad con métrica de $ O(N,N) $ lo que nos lleva a identificar a la reducción dimensional de Kaluza-Klein como la compactificación sobre un \textbf{Doble toro}. Uno puede verificar sencillamente que al imponer $ \partial_m \dots =0 $ todas las derivadas covariantes se convierten en derivadas parciales con respecto a coordenadas externas y la acción resultante es la vieja conocida teoría de ungauged supergravity para el sector de NS de la cuerda bosónica cerrada!
+
+El panorama se torna más interesante si tomamos variedades con curvatura distinta de cero realizando una compactificación de Sherk-Schwarz y de ello nos encargaremos en la presente sección.
+
+
+\subsection{\textcolor{white!60!teal}{Ansatz de Sherk-Schwarz}}
+
+Para ello lo que haremos será proponer un ansatz en donde separamos la dependencia en el espacio interno en objetos conocidos como \textbf{Twist}, para hacer esto uno simplemente reconoce simetrías globales de la teoría padre a menos de posibles factores multiplicativos y las gaugea imponiendole dependencia en las coordenadas internas. Para entender mejor que queremos decir con esto, tomemos un ejemplo: Como sabemos, la acción que obtuvimos recientemente posee una simetría global $ O(N,N) $, esto quiere decir que la acción se mantiene invariante si a los distintos objetos que viven en representaciones del grupo le efectuamos transformaciones de la forma
+
+\begin{equation}
+V_{m} \longrightarrow u_{m}^{\ p}  V_{p}
+\end{equation}
+
+En nuestro caso particular, los campos $ M_{m n} $ y $ A_{\mu}^{\ m} $ jugarían el papel de estos objetos y la acción se vería inalterada ante los cambios
+
+\begin{equation}
+\begin{aligned}
+A_{\mu}^{\ n}& \longrightarrow u^{n}_{\ p} \ A_{\mu}^{\ p}\\
+M^{m n}& \longrightarrow u^{m}_{\ p} \ u^{n}_{\ o} \ M^{p o} \ \ \ \ u^{m}_{\ p} \in O(N,N)
+\end{aligned}
+\end{equation}
+
+
+El mecanismo de Sherk-Schwarz lo que propone es introducir un ansatz de reducción utilizando estas matrices $ u^{m}_{\ p} $ como una versión local de $ O(N,N) $ para separar la dependencia en el espacio interno, concretamente en nuestro caso deberíamos proponer el ansatz
+
+
+\begin{subequations}
+\begin{align}
+A_{\mu}^{\ n}(x,Y)&= u^{n}_{\ a}(Y) \ \hat{A}_{\mu}^{\ a}(x)\\
+M^{m n}(x,Y)&= u^{m}_{\ a}(Y) \ u^{n}_{\ b}(Y) \ \hat{M}^{a b}(x)
+\end{align}
+\end{subequations}
+
+
+donde la dependencia en el espacio interno queda completamente dentro de los twist $ u^{m}_{\ a}(Y) $ y los campos de la acción efectiva dependen solo de $ x^{\mu} $ y los notamos de aquí en adelante con un gorrito. A su vez, es conveniente diferenciar entre los indices de $ O(N,N) $ que vienen de la acción original ( i.e sin haber introducido el ansatz) $ n,m,p,o,...  $ y aquellos que quedarán en la teoría final $ a,b,c,d,... $ donde ambos conjuntos corren de 1 a $ 2N $.
+
+Siguiendo con la misma idea, como los campos restantes son escalares de $ O(N,N) $ el mecanismo nos sugiere la descomposición trivial
+
+\begin{equation}
+\begin{aligned}
+g_{\mu \nu}(x,Y)&= \hat{g}_{\mu \nu}(x)\\
+b_{\mu \nu}(x,Y)&= \hat{b}_{\mu \nu}(x)\\
+\phi(x,Y)&= \hat{\phi}(x)\\
+\end{aligned}
+\end{equation}
+
+Hasta aquí queda claro el papel de los grupos de simetrías globales en el mecanismo pero todavía tenemos más posibilidades de gaugeo, estas surgen por factores multiplicativos o dilataciones que tenemos ''permitido'' agregar a la teoría. Por ejemplo, al nivel de la teoría original la acción puede cambiar en un factor multiplicativo por dos motivos: O bien por un cambio en la medida
+
+\begin{equation}
+\sqrt{g}e^{-2\phi} \longrightarrow e^{-2c} \ \sqrt{g}e^{-2\phi}
+\end{equation}
+
+o por un reescaleo del Lagrangiano
+
+\begin{equation}
+\mathcal{L}_{DFT_{KK}} \longrightarrow e^{- \gamma} \mathcal{L}_{DFT_{KK}}
+\end{equation}
+
+En ambos casos, si bien la acción no es la misma, las ecuaciones de movimiento claramente no se modifican por lo que puede considerarse una simetría global On-Shell\footnote{\textcolor{red}{Chekear esto con Diego}}. Estas simetrías nos permiten proponer el ansatz
+
+\begin{equation}\label{c y gamma}
+\begin{aligned}
+\sqrt{g}e^{-2\phi} &\longrightarrow e^{-2c(Y)} \ \sqrt{\hat{g}}e^{-2\hat{\phi}}\\
+\mathcal{L}_{DFT_{KK}} &\longrightarrow e^{- \gamma(Y)} \hat{\mathcal{L}}_{DFT_{KK}}
+\end{aligned}
+\end{equation}
+
+donde a estos nuevos twist, c y $ \gamma $, se los conoce como \textbf{shift} y \textbf{factor Warp} respectivamente y claramente los números que acompañan a cada uno en el ansatz es meramente convencional.
+
+El factor Warp sobre el Lagrangiano debe aparecer necesariamente en los campos para que cada término por separado escalee de la misma manera, por simple inspección se puede ver que el ansatz necesario para ello viene dado por\footnote{ En particular la propuesta para el dilatón es un tanto convencional ya que introducimos un factor warp en su ansatz para que cambie el Lagrangiano sin modificar la medida. Esto se debe a que si $ g_{\mu \nu}= e^{\gamma}\hat{g}_{\mu \nu} $, entonces  $ \sqrt{g}e^{-2\phi} \longrightarrow e^{ \frac{d}{2} \gamma - 2\gamma} \ \sqrt{\hat{g}}e^{-2\hat{\phi}} $ donde $ d=4 $ es la dimensión del espacio externo.}
+
+\begin{equation}
+\begin{aligned}
+g_{\mu \nu}(x,Y)&= e^{\gamma}\hat{g}_{\mu \nu}\\
+b_{\mu \nu}(x,Y)&= e^{\gamma} \hat{b}_{\mu \nu}\\
+A_{\mu}^{\ n}(x,Y)&= e^{\frac{\gamma}{2}} \hat{A}_{\mu}^{\ n}\\
+M^{m n}(x,Y)&= \hat{M}^{m n}\\
+\phi(x,Y)&= \hat{\phi} + \gamma\\
+\end{aligned}
+\end{equation} 
+
+Por otro lado, la simetría proveniente de la medida se obtiene simplemente shifteando al dilatón en un factor $ c(Y) $.
+
+Finalmente podemos estudiar un caso bastante general tratando en simultaneo las tres simetrías y proponer el Ansatz de Sherk-Shwarz\\
+
+\begin{boxquation}
+	\begin{equation}
+	\begin{aligned}
+	g_{\mu \nu}(x,Y)&= e^{\gamma(Y)}\hat{g}_{\mu \nu} \ \ \ (g^{\mu \nu} = e^{-\gamma}\hat{g}^{\mu \nu})\\
+	b_{\mu \nu}(x,Y)&= e^{\gamma(Y)} \hat{b}_{\mu \nu}\\
+	A_{\mu}^{\ n}(x,Y)&= e^{\frac{\gamma(Y)}{2}} \ u^{n}_{\ a}(Y) \ \hat{A}_{\mu}^{\ a}(x)\\
+	M^{m n}(x,Y)&= u^{m}_{\ a}(Y) \ u^{n}_{\ b}(Y) \ \hat{M}^{a b}(x)\\
+	\phi(x,Y)&= \hat{\phi} + c(Y) + \gamma(Y)\\
+	\end{aligned}
+	\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+\subsection{\textcolor{white!60!teal}{Acción efectiva}}
+
+Con lo mencionado hasta el momento, estamos en condiciones de reescribir la acción \ref{DFTKKaction}
+introduciendo el ansatz y aplicando Leibniz para las derivadas.
+
+Comenzando como siempre con el escalar de curvatura, tratamos sus componentes por separado. En primer lugar tenemos el objeto
+
+\begin{equation}
+\begin{aligned}
+D_{\mu}g_{\nu \rho} &\longrightarrow e^{\gamma} \partial_{\mu}\hat{g}_{\nu \rho} - e^{\frac{\gamma}{2}} u^{p}_{\ a} \partial_p (e^{\gamma}) \hat{A}_{\mu}^{\ a} \hat{g}_{\nu \rho}\\
+&= e^{\gamma} \left( \partial_{\mu} - e^{\frac{\gamma}{2}} u^{p}_{\ a} \partial_p \gamma \hat{A}_{\mu}^{\ a} \right) \hat{g}_{\nu \rho}\\
+&= e^{\gamma} \left( \partial_{\mu} - f_a \hat{A}_{\mu}^{\ a} \right) \hat{g}_{\nu \rho}\\
+&= e^{\gamma} \hat{D}_{\mu}\hat{g}_{\nu \rho}
+\end{aligned}
+\end{equation}
+
+donde definimos el \textbf{gauging vectorial}
+
+\begin{equation}\label{fa}
+f_a \equiv e^{\frac{\gamma}{2}} u^{p}_{\ a} \partial_p \gamma= Cte
+\end{equation}
+
+y la derivada covariante asociada a escalares de $ O(N,N) $ con subindices de Lorentz 
+
+\begin{equation}\label{Dhatg}
+\hat{D}_{\mu}\hat{g}_{\nu \rho} \equiv \left( \partial_{\mu} - f_a \hat{A}_{\mu}^{\ a} \right) \hat{g}_{\nu \rho}
+\end{equation}
+
+La introducción de los objetos $ f_a $ y el constrain de tratarlos como constantes aún cuando sus constituyentes no lo sean, no es un capricho y se debe a que, desde el punto de vista de gauged supergravity, estos objetos se corresponden con las constantes de estructura asociadas al espacio de dimensión 12 de las posibles deformaciones de la ungauged supergravity. Estos son exactamente los flujos que dejamos de lado al hacer el gaugeo unimodular de la teoría ungauged utilizando el embedding tensor!
+Dicho de otra forma, definir estos objetos así, nos permite identificar a la teoría efectiva resultante de compactificar $ S_{DFT_{KK}} $ como la half-maximal gauged supergravity en $ d=4 $ que tratamos anteriormente. Claramente esto no se ve de inspeccionar simplemente la derivada covariante sobre la métrica sino que requiere un análisis completo y hacia allí vamos.
+
+Siguiendo con el escalar de curvatura el siguiente objeto es la conexión de Levi-Civita que se modifica simplemente a 
+
+\begin{equation}\label{gammahat}
+\begin{aligned}
+\Gamma^{\sigma}_{\mu \nu} &\longrightarrow \frac{1}{2} e^{-\gamma}\hat{g}^{\rho \sigma}\left[ e^{\gamma}\hat{D}_{\mu} \hat{g}_{\sigma \nu} + e^{\gamma}\hat{D}_{\nu} \hat{g}_{\mu \sigma} - e^{\gamma}\hat{D}_{\sigma} \hat{g}_{\mu \nu}\right]\\
+&\equiv \hat{\Gamma}^{\sigma}_{\mu \nu}
+\end{aligned} 
+\end{equation}
+
+donde debido a la definición de los gaugings constantes \ref{fa}, no depende de coordenadas internas!
+
+De esta forma, en el tensor de curvatura \ref{riccig} las derivadas covariantes sobre las conexiones se transforman en derivadas parciales ordinarias y el escalar de Ricci termina siendo
+
+\begin{boxquation}
+	\begin{equation}
+	R_D \longrightarrow e^{- \gamma} \hat{R}
+	\end{equation}
+\end{boxquation}
+
+donde el factor warp se obtiene directamente de la métrica inversa que contrae al tensor de Riemann y escalea de la forma deseada (ver \ref{c y gamma}).\\
+
+Con respecto al modelo sigma para el dilatón
+
+\begin{equation}
+-4g^{\mu \nu} D_{\mu} \phi D_{\nu} \phi + 4 \nabla_{\mu} \left(g^{\mu \nu} D_{\nu} \phi\right)
+\end{equation}\\
+
+tenemos la derivada covariante sobre $ \phi $ (\ref{Dcovphi}) que al introducir el ansatz cambia de una manera interesante
+
+\begin{equation}
+\begin{aligned}
+D_{\mu} \phi =& \partial_{\mu} \phi - A_{\mu}^p \partial_p \phi + \frac{1}{2} \partial_p A_{\mu}^{\ p}\\
+\longrightarrow& \partial_{\mu} \hat{\phi} - e^{\frac{\gamma}{2}} u^{p}_{\ a} \hat{A}_{\mu}^{\ a} \partial_{p}(c + \gamma) + \frac{1}{2} \left( u^{m}_{\ a} \partial_m \gamma + \partial_m u^{m}_{\ a}\right) e^{\frac{\gamma}{2}} \hat{A}_{\mu}^{\ a}\\
+=& \partial_{\mu} \hat{\phi} + \frac{1}{4} \hat{A}_{\mu}^{\ a} \left[ -2e^{\frac{\gamma}{2}} \left( 2u^{m}_{\ a} \partial_{m}c - \partial_m u^{m}_{\ a} \right) -3 e^{\frac{\gamma}{2}} u^{m}_{\ a} \partial_m \gamma\right]
+\end{aligned}
+\end{equation}
+
+donde esta forma extraña de reescribir todo se debe a que si bien el último término se corresponde con los gaugings vectoriales \ref{fa}, la primer parte no tiene ninguna estructura conocida. De esta forma, se impone un segundo constrain demandando que existe una segunda forma de definir a los $ f_a $ dada por
+
+\begin{equation}
+f_{a} \equiv -2e^{\frac{\gamma}{2}} \left( 2u^{m}_{\ a} \partial_{m}c - \partial_m u^{m}_{\ a} \right) = Cte
+\end{equation}
+
+y con ello se obtiene
+
+\begin{equation}
+D_{\mu} \phi \longrightarrow \left( \partial_{\mu} - \frac{1}{2} \hat{A}_{\mu}^{\ a} f_{a} \right) \hat{\phi} \equiv \hat{D}\hat{\phi}
+\end{equation}
+
+donde se define una nueva derivada covariante sobre el dilatón independiente de las coordenadas internas. Con este nuevo objeto tenemos todo lo necesario para reconstruir el modelo sigma, ya que el siguiente objeto que aparece es el operador $ \nabla $ que cambia según
+
+
+\begin{equation}
+\begin{aligned}
+\nabla \left( e^{- \gamma} \hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi}\right) =& \left(D_{\mu} + \pmb{\Gamma}_{\mu}\right)\left( e^{- \gamma} \hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi}\right)\\
+\longrightarrow& e^{- \gamma}\left( \hat{D}_{\mu} + \pmb{\hat{\Gamma}}_{\mu} \right) \left(\hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi}\right) \\
+\equiv& e^{- \gamma} \hat{\nabla} \left(\hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi}\right)
+\end{aligned}
+\end{equation}
+
+donde la derivada covariante que aparece se corresponde con la inversa de la que obtuvimos en \ref{Dhatg} ya que ahora tenemos un escalar de $ O(N,N) $ con indices arriba\footnote{ Esto debe ser así por consistencia con la regla de Leibniz ya que si $ 0 = \hat{D}_{\mu} (\hat{g}^{\mu \rho} \hat{g}_{\rho \nu}) = \hat{D}_{\mu}\hat{g}^{\mu \rho} \hat{g}_{\rho \nu} + \hat{g}^{\mu \rho} \hat{D}_{\mu} \hat{g}_{\rho \nu} $ y $ \hat{D}_{\mu} \hat{g}_{\rho \nu} = \left(\partial_{\mu} - f_{a} \hat{A}_{\mu}^{\ a}\right) \hat{g}_{\rho \nu} $ entonces necesariamente $  \hat{D}_{\mu}\hat{g}^{\mu \rho} = \left(\partial_{\mu} + f_{a} \hat{A}_{\mu}^{\ a}\right)\hat{g}^{\mu \rho} $ } ( $ \hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi} $ ) y la conexión con gorrito que aparece se corresponde con \ref{gammahat}. Esto da lugar al nuevo modelo sigma, idéntico en estructura a \ref{DphiDphi} pero con todos los campos y operadores independientes del espacio compacto y un factor warp global de la forma deseada!\\
+ 
+
+Para el modelo de Yang-Mills, comenzamos viendo como se modifica el tensor de esfuerzos $ \mathcal{F}_{\mu \nu}^m $. Para ello uno comienza con la definición \ref{Fcovariante} y trata cada término por separado. En primer lugar, tenemos sencillamente
+
+\begin{equation}
+\partial_{\left[\mu\right.} A_{\left. \nu\right]}^{\ m} \longrightarrow e^{\frac{\gamma}{2}} u^m_{\ a} \partial_{\left[\mu\right.} \hat{A}_{\left. \nu\right]}^{\ a}
+\end{equation}
+
+Por otro lado, el C-bracket se compactifica en una forma más interesante
+
+\begin{equation}
+\begin{aligned}
+\left[A_{\mu}, A_{\nu} \right]_{(C)}^{m} \longrightarrow& 2 e^{\gamma} u^p_{\ a} \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b} \left( \frac{1}{2} \partial_p \gamma u^m_{\ b} + \partial_p u^m_{\ b} \right) - e^{\gamma} u^p_{\ a} \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b} \left( \frac{1}{2} \partial^m \gamma u_{p b} + \partial^m u_{p b} \right)\\
+=& e^{\frac{\gamma}{2}} u^m_{\ c} \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b} \left[ e^{\frac{\gamma}{2}} \left( u^p_{\ a} u^{n}_{\ b} u_n^{\ c} \partial_p \gamma - \frac{1}{2} u^p_{\ a} u_{p}^{\ b} u_n^{\ c} \partial^n \gamma \right) + e^{\frac{\gamma}{2}} \left(2 u_n^{\ c} u^p_{\ a} \partial_p u^n_{\ b}  - u_n^{\ c} u_{p a} \partial^n u^{p}_{\ b}\right)\right]\\
+\end{aligned}
+\end{equation}
+
+en donde utilizamos que los twist matriciales cumplen las condiciones
+
+\begin{equation}\label{uinversas}
+\begin{aligned}
+u^p_{\ a} u_p^{\ b} &=\delta_{a}^{b}\\
+u^m_{\ c} u_n^{\ c} &=\delta^{m}_{n}
+\end{aligned} 
+\end{equation}
+
+y con esta misma relación identificamos el primer paréntesis de la última linea como
+
+\begin{equation}
+e^{\frac{\gamma}{2}} \left( u^p_{\ a} u^{n}_{\ b} u_n^{\ c} \partial_p \gamma - \frac{1}{2} u^p_{\ a} u_{p}^{\ b} u_n^{\ c} \partial^n \gamma \right) = f_a \delta_b^c - \frac{1}{2} f^c \delta_a^b
+\end{equation} 
+
+donde al introducir el último término en el C-bracket, este se anula por la contracción con $ \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b} $. Finalmente para el último paréntesis definimos unos nuevos gaugings tensoriales 
+
+\begin{equation}
+\begin{aligned}
+f_{a b c} &\equiv e^{\frac{\gamma}{2}}3 u^{m}_{\left[ a\right.} \partial_m u^{p}_{\ b} u_{\left. c\right] p }\\
+&= e^{\frac{\gamma}{2}} \left(u^{m}_{ \ a} \partial_m u^{p}_{\ b} u_{ p c} + u^{m}_{ \ b} \partial_m u^{p}_{\ c} u_{ p a} + u^{m}_{ \ c} \partial_m u^{p}_{\ a} u_{ p b}\right)
+\end{aligned}
+\end{equation}
+
+completamente antisimétricos en sus indices de $ O(N,N) $. Al igual que los $ f_a $, estos gaugings también se corresponden con posibles deformaciones de la teoría ungauged supergravity, correspondientes a las constantes de estructura que parametrizan el espacio de dimensión 220 en la descomposición del ebedding tensor que vimos en la sección XXX!. Con ellos, podemos obtener finalmente
+
+\begin{equation}\label{Cbrackethat}
+\left[A_{\mu}, A_{\nu} \right]_{(C)}^{m} \longrightarrow e^{\frac{\gamma}{2}} u^m_{\ c} \left(  f_a \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ c} + f_{a b}^{\ \ \ c} \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b}\right)\\
+\end{equation}
+
+
+Por último, el término para la 2-forma cambia sencillamente a
+
+\begin{equation}
+\partial^m b_{\mu \nu} \longrightarrow e^{\gamma} \partial^{m}\gamma \hat{b}_{\mu \nu} = e^{\frac{\gamma}{2}} u^{m}_{\ c} f^c \hat{b}_{\mu \nu}
+\end{equation}
+
+Con estos tres objetos obtenemos la compactificación del tensor de esfuerzos para los campos de gauge
+
+\begin{boxquation}
+	\begin{equation}
+	\begin{aligned}
+	\mathcal{F}^{m}_{\mu \nu} \longrightarrow& e^{\frac{\gamma}{2}} u^{m}_{\ c} \left( \partial_{\left[\mu\right.} \hat{A}_{\left. \nu\right]}^{\ c} - f_a \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ c} - f_{a b}^{\ \ \ c} \hat{A}_{\left[\mu \right.}^a \hat{A}_{\left. \nu\right]}^{\ b} - f^c \hat{b}_{\mu \nu} \right)\\
+	=& e^{\frac{\gamma}{2}} u^{m}_{\ c} \hat{\mathcal{F}}^{c}_{\mu \nu}
+	\end{aligned}
+	\end{equation}
+\end{boxquation}
+
+Con este nuevo objeto e introduciendo el ansatz para $ M^{m n} $ junto con \ref{uinversas} podemos obtener el modelo de Yang-Mills modificado\\
+
+\begin{equation}
+-e^{- \gamma} \frac{1}{4} \hat{M}^{a b} \hat{\mathcal{F}}_{\mu \nu a} \hat{\mathcal{F}}^{\mu \nu}_{ \ \ \ b}
+\end{equation}
+
+Donde el factor warp que esperábamos nuevamente se obtiene gracias a las métricas inversas involucradas en el modelo.\\
+
+Del mismo modo podemos estudiar el tensor de curvatura de la 2-forma parte por parte. En primer lugar vemos sencillamente que la derivada covariante sobre $ b_{\mu \nu} $ cambia de la misma manera que lo hizo sobre la métrica con subindices en nuestro estudio del escalar de curvatura, obteniendo así
+
+\begin{equation}
+D_{\mu} b_{\nu \rho} \longrightarrow e^{\gamma} \left( \partial_{\mu} - f_a \hat{A}_{\mu}^{\ a}\right) \hat{b}_{\nu \rho} = e^{\gamma} \hat{D}_{\mu} \hat{b}_{\mu \nu}
+\end{equation}
+
+Por otro lado, el siguiente termino de \ref{W} cambia a 
+
+\begin{equation}
+A_{\mu}^{\ p} \partial_{\nu} A_{\rho p} \longrightarrow e^{\gamma} \hat{A}_{\mu}^{\ a} \partial_{\nu} \hat{A}_{\rho a}
+\end{equation}
+
+Mientras que el correspondiente al C-bracket es casi identico a \ref{Cbrackethat} salvo que el término con $ f_a $ muere por antisimetría. Juntando todo esto obtenemos la curvatura de la 2-forma efectiva\\
+
+\begin{boxquation}
+	\begin{equation}
+	\begin{aligned}
+	\mathcal{W}_{\mu \nu \rho} \longrightarrow& e^{\gamma} \left( 3\hat{D}_{\left[ \mu \right.} \hat{b}_{\left. \nu \rho \right]} + 3 \hat{A}_{\left[ \mu\right.}^{\ a} \partial_{\nu} \hat{A}_{\left. \rho \right] a } - f_{a bc} \hat{A}_{\left[ \mu \right.}^{\ a} \hat{A}_{\nu}^{\ b} \hat{A}_{\left. \rho \right]}^{\ c} \right)
+	\end{aligned}
+	\end{equation}
+\end{boxquation}
+
+y al introducir dicho objeto en el término cinético de la 2-forma obtenemos el factor warp global deseado ya que tenemos tres métricas inversas contrayendo los dos $ \mathcal{W}_{\mu \nu \rho} $.\\
+
+
+El siguiente término que podemos estudiar es el modelo sigma para la matriz escalar. Para ello vemos que la derivada covariante sobre la matriz se modifica según
+
+\begin{equation}
+\begin{aligned}
+D_{\mu} M_{m n} \longrightarrow& \frac{1}{2} u_{m}^{ \ a} u_{n}^{ \ b} \partial_{\mu} \hat{M}_{a b} - \hat{A}_{\mu}^{\ c} u^{p}_{ \ c} \partial_p u_{m}^{ \ a} u_{n}^{ \ b} \hat{M}_{a b} - \left[ \partial_m \left( e^{\frac{\gamma}{2}} u^{p}_{ \ a} \right) \hat{A}_{\mu}^{\ a} - \partial^p  \left( e^{\frac{\gamma}{2}} u_{m}^{ \ a} \right) \hat{A}_{\mu a} \right] u_{p}^{ \ b} u_{n}^{ \ c} \partial_{\mu} \hat{M}_{c b} + \left(m \leftrightarrow n\right)\\
+&= u_{m}^{ \ a} u_{n}^{ \ b} \left[ \frac{1}{2}\partial_{\mu} \hat{M}_{a b} - \frac{1}{2} e^{\frac{\gamma}{2}}  \hat{A}_{\mu}^{\ c} u^{p}_{ \ a} \partial_p \gamma \hat{M}_{c b} + \frac{1}{2} e^{\frac{\gamma}{2}} \hat{A}_{\mu}^{\ a} u^{p c} \partial_p \gamma \hat{M}_{c b} \right.\\
+&\left. + \hat{A}_{\mu}^{\ d} \hat{M}_{c b} \ e^{\frac{\gamma}{2}} \left( - u^{m}_{ \ d} \partial_m u^{p c} u_{p a} - u^{m}_{ \ a} \partial_m u^{p}_{ \ d} u_{p}^{\ c} + u^{m c} \partial_m u^{p}_{ \ d} u_{p a}\right) \right] + \left(m \leftrightarrow n\right)\\
+&=  u_{m}^{ \ a} u_{n}^{ \ b} \left( \frac{1}{2}\partial_{\mu} \hat{M}_{a b} - \frac{1}{2} f_a \hat{A}_{\mu}^{\ c} \hat{M}_{c b} + \frac{1}{2} f^c \hat{A}_{\mu a} \hat{M}_{c b} - f_{a d}^{\ \ \  c} \hat{A}_{\mu}^{\ d} \hat{M}_{c b} \right) + \left(m \leftrightarrow n\right)
+\end{aligned}
+\end{equation}
+
+donde podemos explicitar la suma cambiando $ \left(m \leftrightarrow n\right) $ que se traduce en cambiar $ \left(a \leftrightarrow b\right) $ y obtener así
+
+\begin{equation}
+\begin{aligned}
+D_{\mu} M_{m n} \longrightarrow& u_{m}^{ \ a} u_{n}^{ \ b} \left( \partial_{\mu} \hat{M}_{a b} - \hat{A}_{\mu}^{\ c} f_{\left( a \right.}\hat{M}_{\left. b\right) c} + f^c \hat{A}_{\mu \left( a\right.} \hat{M}_{\left. b\right) c} - 2 \hat{M}_{c \left( b\right.}f_{\left. a\right) d}^{\ \ \  c} \hat{A}_{\mu}^{\ d}  \right)\\
+=& u_{m}^{ \ a} u_{n}^{ \ b} \hat{D}_{\mu} \hat{M}_{a b}
+\end{aligned}
+\end{equation}
+
+Introduciendo esto en la acción, obtenemos el modelo sigma para la matriz escalar independiente de $ Y $, salvo por el factor warp deseado.\\
+
+
+Nuestro último objeto de la acción a compactificar es el potencial escalar \ref{V}, el cual consta de 7 términos de los cuales 3 poseen al dilatón generalizado como campo, es por ello que comenzamos viendo cual es su ansatz inducido por $ g_{\mu \nu} $ y $ \phi $ y como se modifican sus derivadas.
+
+\begin{equation}
+\begin{aligned}
+d = -\frac{1}{4} \log g + \phi \longrightarrow -\frac{1}{4} \log \hat{g} - \frac{d}{4} \gamma + \hat{\phi}  + c + \gamma
+\end{aligned}
+\end{equation}
+
+donde como $ g=Det\{ g_{\mu \nu}\} $, al introducir el ansatz aparece la dimensión del espacio externo $ d $. Estudiando el caso de interés, $ d=4 $ los factores warp se anulan y la dependencia en el espacio interno queda completamente determinada por $ c(Y) $. Es por ello que al tomar derivadas parciales $ \partial_m $ (tal como aparecen en el potencial escalar) obtenemos
+
+\begin{equation}
+\begin{aligned}
+\partial_m d \longrightarrow \partial_m c =& -\frac{1}{4} e^{-\frac{\gamma}{2}} u_{m}^{\ a} e^{\frac{\gamma}{2}} \left( -4  u^{n}_{\ a}\partial_n c + 2\partial_n u^{n}_{\ a}  -2\partial_n u^{n}_{\ a}\right)\\
+=& -\frac{1}{4} e^{-\frac{\gamma}{2}} u_{m}^{\ a} \left( f_a  -2 e^{\frac{\gamma}{2}} \partial_n u^{n}_{\ a}\right)
+\end{aligned}
+\end{equation} 
+
+donde utilizamos la definición de los gaugings vectoriales en término del shift del dilatón. A su vez necesitamos las derivadas segundas del dilatón generalizado, sin entrar demasiado en detalle puede verse sencillamente que
+
+\begin{equation}
+\begin{aligned}
+\partial_n \partial_m d \longrightarrow& \partial_n \left( -\frac{1}{4} e^{-\frac{\gamma}{2}} u_{m}^{\ a} f_a  + \frac{1}{2} u_{m}^{\ a} \partial_p u^{p}_{\ a} \right)\\
+=& -\frac{1}{4} e^{-\frac{\gamma}{2}} f_a \left( \partial_n u_{m}^{\ a} - \frac{1}{2} u_{m}^{\ a} \partial_n \gamma \right) + \frac{1}{2} \left( \partial_n u_{m}^{\ a} \partial_p u^{p}_{\ a} + u_{m}^{\ a} \partial_n \partial_p u^{p}_{\ a} \right)\\
+=& \frac{1}{4} e^{-\gamma}u_{m}^{\ a} u_{n}^{\ b} \left[ -f_c e^{\frac{\gamma}{2}} u_{o}^{\ b} \partial_o u_{p}^{\ c} u^{p}_{\ a} + \frac{1}{2} f_a f_c + 2 e^{\gamma} \left( u^{p}_{\ b} \partial_p u_{o}^{\ c} \partial_q u^{q}_{\ c} u^{o}_{\ a} + u_{o}^{\ b} \partial_o \partial_p u^{p}_{\ a} \right)\right]
+\end{aligned}
+\end{equation}
+
+Luego, con estos dos objetos podemos calcular como transforman las distintas componentes del potencial escalar que poseen al dilatón
+
+\begin{equation}\label{V123}
+\begin{aligned}
+-4M^{m n} \partial_m d \partial_n d \longrightarrow& -\frac{1}{4} e^{-\gamma} \hat{M}^{a b} \left( f_a f_b - 4 f_a e^{\frac{\gamma}{2}} \partial_m u^{m}_{\ b} + 4e^{\gamma} \partial_m u^{m}_{\ a} \partial_n u^{n}_{\ b} \right)\\
+4 M^{m n}\partial_m \partial_n d \longrightarrow& e^{-\gamma}\hat{M}^{a b} \left[ -f_c e^{\frac{\gamma}{2}} u_{o}^{\ b} \partial_o u_{p}^{\ c} u^{p}_{\ a} + \frac{1}{2} f_a f_c + 2 e^{\gamma} \left( u^{p}_{\ b} \partial_p u_{o}^{\ c} \partial_q u^{q}_{\ c} u^{o}_{\ a} + u_{o}^{\ b} \partial_o \partial_p u^{p}_{\ a} \right)\right]\\
+4 \partial_m M^{m n} \partial_n d \longrightarrow& -\hat{M}^{a b} \left( \partial_m u^{m}_{\ a} u^{n}_{\ b} + u^{m}_{\ a} \partial_m u^{n}_{\ b}\right) \ e^{-\frac{\gamma}{2}}  u_{n}^{\ c} \left( f_c  -2 e^{\frac{\gamma}{2}} \partial_n u^{n}_{\ c} \right)\\
+=& e^{-\gamma}\hat{M}^{a b} \left[ -e^{\frac{\gamma}{2}} \left( f_b \partial_m u^{m}_{\ a} + f_c u^{m}_{\ a} \partial_m u^{n}_{\ b} u_{n}^{\ c} \right) + 2 e^{\gamma} \left( \partial_m u^{m}_{\ a} \partial_n u^{n}_{\ b} + u^{m}_{\ a} u_{n}^{\ c} \partial_p u^{p}_{\ c} \partial_m u^{n}_{\ b} \right) \right]
+\end{aligned}
+\end{equation}
+
+Luego, para los siguientes términos del escalar de curvatura de DFT, solo necesitamos el ansatz de la matriz escalar. El término con una sola matriz es simple
+
+\begin{equation}\label{V4}
+-\partial_m \partial_n M^{m n} \longrightarrow - e^{- \gamma} \hat{M}^{a b} e^{\gamma} \left( \partial_m u^{m}_{\ a} \partial_n u^{n}_{\ b} + 2  u^{m}_{\ a} \partial_m \partial_n u^{n}_{\ b} + \partial_m u^{n}_{\ b} \partial_n u^{m}_{\ a} \right)
+\end{equation}
+
+Para los dos restantes hay que hacer un poco más de cuentas
+
+\begin{equation}\label{V5}
+\begin{aligned}
+\frac{1}{8} M^{m n} \partial_m M^{o p} \partial_n M_{o p} \longrightarrow& \frac{1}{8} \hat{M}^{a b} u^{m}_{\ a} u^{n}_{\ b} \hat{M}^{c d} \left( \partial_m u^{o}_{\ c} u^{p}_{ \ d} + u^{o}_{\ c} \partial_m u^{p}_{ \ d} \right) \hat{M}_{e f} \left( \partial_n u_{o}^{\ e} u_{p}^{ \ f} + u_{o}^{\ e} \partial_n u_{p}^{ \ f} \right)\\
+=&\frac{1}{8} e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} e^{\gamma} \left( u^{m}_{\ a} \partial_m u^{o}_{\ c} u^{n}_{\ b} \partial_n u_{o}^{\ e} \delta^f_d + 2 u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_n u_{o}^{\ e} + u^{m}_{\ a} \partial_m u^{p}_{\ d} u^{n}_{\ b} \partial_n u_{p}^{\ f} \delta^e_c\right)\\
+=& \frac{1}{4} e^{-\gamma} \hat{M}^{a b}  e^{\gamma} u^{m}_{\ a} u^{n}_{\ b} \partial_m u^{p}_{\ c}  \partial_n u_{p}^{\ c}\\
++& \frac{1}{4} e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} e^{\gamma} u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_n u_{o}^{\ e} 
+\end{aligned}
+\end{equation}
+
+donde utilizamos la relación
+
+\begin{equation}
+\hat{M}^{a c} \hat{M}_{c b} = \delta^a_b
+\end{equation}
+
+para hacer aparecer términos lineales en $ \hat{M} $. Un cálculo muy similar nos revela la modificación del último término de $ \mathcal{R}[M,d] $
+
+\begin{equation}\label{V6}
+\begin{aligned}
+- \frac{1}{2} M^{m n} \partial_m M^{o p} \partial_o M_{n p} \longrightarrow& - \frac{1}{2} e^{-\gamma} \hat{M}^{a b}  e^{\gamma} \left( -\partial_m u^{n}_{\ a} \partial_n u^{m}_{\ b} + 2 u^{m}_{\ c} u^{n}_{\ a} \partial_m u^{p}_{\ b} \partial_n u_{p}^{\ c}\right)\\
+-& \frac{1}{2} e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} \ e^{\gamma}  u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_o u_{n}^{\ e} 
+\end{aligned}
+\end{equation}
+
+Finalmente el último término del potencial escalar resulta muy sencillo
+
+\begin{equation}\label{V7}
+\begin{aligned}
+\frac{1}{4} M^{m n} \partial_m g^{\mu \nu} \partial_n g_{\mu \nu} \longrightarrow& - \frac{d}{4} \hat{M}^{a b} u^m_{\ a} u^n_{\ b} \partial_m \gamma \partial_n \gamma\\
+=& - e^{- \gamma} \hat{M}^{a b} \frac{d}{4} f_a f_b = - e^{- \gamma} \hat{M}^{a b} f_a f_b
+\end{aligned}
+\end{equation}
+
+Llegado a este punto, el siguiente trabajo consiste en sumar los 7 términos para ver que cosas se cancelan y cuales otras se agrupan en estructuras más amigables. Para ello, uno puede separar el problema en aquellas estructuras lineales en $ \hat{M} $ y con las que poseen 3 matrices escalares. Comenzando por  estas últimas, sumando las partes correspondientes de \ref{V5} y \ref{V6} obtenemos
+
+\begin{equation}
+e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} \ e^{\gamma}  \left( \frac{1}{4}u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_n u_{o}^{\ e} - \frac{1}{2}u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_o u_{n}^{\ e} \right)
+\end{equation}
+
+Así escrita la expresión parece ser un término problemático que depende de las coordenadas internas, algo no deseado para nuestra acción efectiva. Sin embargo, milagrosamente uno puede verificar que dicha magnitud se agrupa en un producto de gaugings tensoriales. Dicho esto, uno puede calcular explícitamente la siguiente magnitud
+
+\begin{equation}
+\begin{aligned}
+\hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} f_{a c}^{\ \ \ e} f_{b d}^{\ \ \ f} =& e^{\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} \left( u^{m}_{ \ a} \partial_m u^{p}_{\ c} u_{ p}^{\ e} + u^{m}_{ \ c} \partial_m u^{p e} u_{ p a} + u^{m e} \partial_m u^{p}_{\ a} u_{ p c} \right)\\
+&\times \left( u^{n}_{ \ b} \partial_n u^{o}_{\ d} u_{ o}^{\ f} + u^{n}_{ \ d} \partial_n u^{o f} u_{ o b} + u^{n f} \partial_n u^{o}_{\ b} u_{ o d} \right)\\
+=& e^{\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} \left( -3 u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ c} \partial_n u^{o}_{\ d} + 6 u^{m}_{\ a} u^{n}_{\ b} u^{p}_{\ c} u^{o f} \partial_m u_{p}^{\ e} \partial_o u_{n d} \right)
+\end{aligned}
+\end{equation}
+
+donde para llegar a la misma utilizamos reiteradas veces la simetría de las matrices $ \hat{M} $. De aquí podemos observar que al redefinir indices obtenemos (a menos de un factor $ -\frac{1}{12} $) lo que nos salió de compactificar el potencial! Explícitamente tenemos
+
+\begin{equation}\label{potencialMMM}
+e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} \ e^{\gamma}  \left( \frac{1}{4}u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_n u_{o}^{\ e} - \frac{1}{2}u^{m}_{\ a} u^{n}_{\ b} u^{o}_{\ c} u_{p}^{\ f} \partial_m u^{p}_{\ d} \partial_o u_{n}^{\ e} \right) = -\frac{1}{12} e^{-\gamma} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} f_{a c}^{\ \ \ e} f_{b d}^{\ \ \ f}
+\end{equation}
+
+con lo que la dependencia en $ Y $ queda escondida en el factor warp deseado y los gaugings tensoriales que ahora demandamos constantes!\\
+
+Pasando a la dependencia lineal en la matriz escalar, sumando todos los términos de \ref{V123}, \ref{V4} y \ref{V7} observamos que casi todos los términos con estructuras extrañas se cancelan entre sí dejando solo la parte con gaugings vectoriales y un parásito
+
+\begin{equation}
+\begin{aligned}
+&e^{-\gamma} \hat{M}^{a b} \left( - \frac{1}{4} f_a f_b + \frac{1}{2} f_a f_b - f_a f_b - e^{\gamma} \partial_m u^{n}_{\ b} \partial_n u^{m}_{\ a}\right)\\
+&= - e^{-\gamma} \hat{M}^{a b} \left( \frac{3}{4} f_a f_b + e^{\gamma} \partial_m u^{n}_{\ b} \partial_n u^{m}_{\ a}\right) 
+\end{aligned}
+\end{equation}
+
+Finalmente, para completar la compactificación del potencial escalar es necesario agregar las contribuciones lineales de \ref{V5} y \ref{V6}, sumando esto al resultado anterior obtenemos
+
+\begin{equation}\label{auxiliarpotencial}
+\begin{aligned}
+&e^{-\gamma} \hat{M}^{a b} \left[ -\frac{3}{4} f_a f_b + e^{\gamma} \left( - \partial_m u^{n}_{\ b} \partial_n u^{m}_{\ a} + \frac{1}{4} u^{m}_{\ a} u^{n}_{\ b} \partial_m u^{p}_{\ c}  \partial_n u_{p}^{\ c} + \frac{1}{2} \partial_m u^{n}_{\ a} \partial_n u^{m}_{\ b} - u^{m}_{\ c} u^{n}_{\ a} \partial_m u^{p}_{\ b} \partial_n u_{p}^{\ c} \right) \right] \\
+&= e^{-\gamma} \hat{M}^{a b} \left[ -\frac{3}{4} f_a f_b + e^{\gamma} \left( - \frac{1}{2}\partial_m u^{n}_{\ b} \partial_n u^{m}_{\ a} + \frac{1}{4} u^{m}_{\ a} u^{n}_{\ b} \partial_m u^{p}_{\ c}  \partial_n u_{p}^{\ c} - u^{m}_{\ c} u^{n}_{\ a} \partial_m u^{p}_{\ b} \partial_n u_{p}^{\ c} \right) \right]
+\end{aligned}
+\end{equation}
+
+y nuevamente nos encontramos con el mismo problema de estructuras no deseadas dependendientes del espacio compacto. Al igual que antes, esto puede compararse con estructuras más amigables, en este caso particular es necesario calcular
+
+\begin{equation}
+\begin{aligned}
+\hat{M}^{a b} f_{a c}^{\ \ \ d} f_{b d}^{\ \ \ c} =& e^{\gamma} \hat{M}^{a b} \left( u^{m}_{ \ a} \partial_m u^{p}_{\ c} u_{ p}^{\ d} + u^{m}_{ \ c} \partial_m u^{p d} u_{ p a} + u^{m d} \partial_m u^{p}_{\ a} u_{ p c} \right)\\
+&\times \left( u^{n}_{ \ b} \partial_n u^{o}_{\ d} u_{ o}^{\ c} + u^{n}_{ \ d} \partial_n u^{o c} u_{ o b} + u^{n c} \partial_n u^{o}_{\ b} u_{ o d} \right)\\
+&=  e^{\gamma} \hat{M}^{a b} \left( -2 u^{m}_{ \ a} u^{n}_{ \ b} \partial_m u^{p c} \partial_n u_p c + 4 u^{m}_{ \ a} \partial_m u^{n}_{ \ c} \partial_n u^{p c} u_{p b} + 2 \partial_m u^{n}_a \partial_n u^m_b \right)
+\end{aligned}
+\end{equation}
+
+donde para llegar a la expresión anterior utilizamos el strong constrain sobre los twist y utilizamos \ref{uinversas} y la simetría de $ \hat{M}^{a b} $. De aquí vemos que a menos de un factor $ -\frac{1}{4} $, este resultado es el obtenido en \ref{auxiliarpotencial}! Por ello logramos agrupar toda la dependencia del espacio interno en gaugings tensoriales y vectoriales
+
+\begin{equation}
+-\frac{1}{4} e^{-\gamma} \hat{M}^{a b} \left( 3 f_a f_b + f_{a c}^{\ \ \ d} f_{b d}^{\ \ \ c} \right) 
+\end{equation}
+
+Y uniendo esto con \ref{potencialMMM} tenemos la compactificación del potencial escalar en la forma deseada!\\
+
+\begin{boxquation}
+\begin{equation}
+V \longrightarrow \hat{V} \equiv -\frac{1}{4} e^{- \gamma} \left[ \frac{1}{3} \hat{M}^{a b} \hat{M}^{c d}\hat{M}_{e f} f_{a c}^{\ \ \ e} f_{b d}^{\ \ \ f}  + \hat{M}^{a b} \left( 3 f_a f_b + f_{a c}^{\ \ \ d} f_{b d}^{\ \ \ c} \right)  \right]
+\end{equation}
+\end{boxquation}
+
+
+
+Analizados todos los objetos podemos presentar la acción resultando completa\\
+
+
+\begin{boxquation}
+	\begin{equation}\label{Sgsugra}
+	\begin{aligned}
+	S = \int \mathrm{d}^{2N} Y e^{-2c - \gamma} \int \mathrm{d}^d x \  \sqrt{-\hat{g}}e^{-2 \hat{\phi}} \left[ \hat{R} -4\hat{g}^{\mu \nu} \hat{D}_{\mu} \hat{\phi} \hat{D}_{\nu} \hat{\phi} + 4 \hat{\nabla}_{\mu} \left(\hat{g}^{\mu \nu} \hat{D}_{\nu} \hat{\phi}\right) - \frac{1}{4} \hat{M}^{a b} \hat{\mathcal{F}}_{\mu \nu a} \hat{\mathcal{F}}^{\mu \nu}_{\ \ b} \right.\\
+	\left. + \frac{1}{8} \hat{g}^{\mu \nu} \hat{D}_{\mu} \hat{M}^{a b} \hat{D}_{\nu} \hat{M}_{a b}  - \frac{1}{12}\hat{\mathcal{W}}_{\mu \nu \rho}\hat{\mathcal{W}}^{\mu \nu \rho} - \hat{V}[\hat{M}] \right]
+	\end{aligned}
+	\end{equation}
+\end{boxquation}
+
+\vspace{.5cm}
+
+En donde integrando trivialmente el factor global $ e^{-2c - \gamma} (Y) $ sobre el espacio compacto, se recupera la acción de half-maximal gauged supergravity en d=4 para el frame eléctrico!\footnote{\textcolor{red}{Decir mucho más de esto!}}
+
+\subsection{\textcolor{white!60!teal}{Transformaciones de los campos}}
+
+Recuperada la acción de gauged supergravity, podemos estudiar si las transformaciones de los diversos campos y objetos también se corresponden con las de dicha teoría. A su vez resulta necesario corroborar que la teoría sigue siendo invariante ante las nuevas simetrías y para hacer todo esto es necesario introducir un ansatz de Sherk-Schwarz también sobre los parámetros \ref{parametros}, por ello proponemos
+
+\begin{equation}
+\xi_M(x,Y)=(\hat{\xi}^{\mu}(x), e^{\gamma} \hat{\lambda}_{\mu}(x), e^{\frac{\gamma}{2}} u^{a}_{\ m}(Y)\ \hat{\Lambda}_a(x))
+\end{equation}
+
+Con esta reescritura podemos comenzar explorando como se modifica la invarianza de gauge de nuestra nueva acción: Recordando lo que hicimos para verificar la invarianza de la teoría de DFT-KK ante gauges y shifts, vemos que los puntos claves fueron observar las transformaciones
+
+\begin{equation}\label{auxmedidayl}
+\begin{aligned}
+\delta \left( \sqrt{g} e^{-2 \phi} \right) &= \partial_p \left( \Lambda^p \sqrt{g} e^{-2 \phi}\right)\\
+\delta \mathcal{L}_{DFT_{KK}} &= \Lambda^p \partial_p \mathcal{L}_{DFT_{KK}}
+\end{aligned}
+\end{equation}
+
+que al juntarlos daban lugar a una derivada total dejando la acción invariante. La diferencia con la teoría efectiva a la cual llegamos, es que ahora no tenemos más derivadas parciales en las transformaciones, ni sobre la medida ni el Lagrangiano, ya que todo quedó dentro de los gaugings vectoriales. Por ello, el argumento sobre términos de borde no será válido y es necesario observar como deben transformar los objetos para obtener una acción invariante. Compactificando \ref{auxmedidayl} y utilizando por lo visto en la sección anterior que $ \mathcal{L} \longrightarrow e^{- \gamma} \hat{\mathcal{L}}(x) $ obtenemos las transformaciones
+
+\begin{equation}
+\begin{aligned}
+\delta \left( \sqrt{g} e^{-2 \phi} \right) &= \partial_p \left( \Lambda^p \sqrt{g} e^{-2 \phi}\right) = e^{-2 c} f_a \hat{\Lambda}^a \sqrt{\hat{g}} e^{-2 \hat{\phi}} \\
+\delta \mathcal{L} &= \Lambda^p \partial_p \mathcal{L} = - e^{- \gamma} f_a \hat{\Lambda}^a \hat{\mathcal{L}}(x)
+\end{aligned}
+\end{equation}
+
+Agrupando ahora ambas transformaciones vemos que la variación total de la acción es identicamente nula sin necesidad de recurrir a términos de borde! De esta forma vemos que la invarianza de gauge (y por lo visto en \ref{sec_difeoinvariance} también ante difeomorfismos) se recupera trivialmente siempre y cuando $ \delta \mathcal{L} = - e^{- \gamma} f_a \hat{\Lambda}^a \hat{\mathcal{L}}(x) $. Esto último no es un dato menor ya que tenemos dos maneras distintas de llegar a la transformación compactificada del lagrangiano y ambas deben ser equivalentes. La primer forma es la utilizada recientemente compactificando directamente $ \Lambda^p \partial_p \mathcal{L} $. La segunda manera de obtener este resultado es compactificando directamente término a término del Lagrangiano, los cuales por consistencia deben transformar cada uno por separado como lo hace el Lagrangiano en su totalidad. Para ser más claro, tomemos como ejemplo el escalar de Ricci para el gravitón, para obtener la transformación deseada sobre $ \mathcal{L} $, necesitamos que
+
+\begin{equation}
+\delta R[g] = e^{- \gamma} f_a \hat{\Lambda}^a \hat{R}[\hat{g}]
+\end{equation}
+
+lo cual necesariamente debemos verificar que se cumpla! Para ello debemos calcular explícitamente dicha variación pero para ello necesitamos conocer como transforma $ g_{\mu \nu} $. Este mismo procedimiento debe realizarse para todos los término del Lagrangiano y por lo tanto necesitamos conocer como transforman todos los campos efectivos, tarea a la cual le dedicaremos los próximos párrafos.\\
+
+Comenzando con el dilatón...
 
 
 \end{document}
